@@ -3,23 +3,46 @@ import './main-page.css';
 import {useState, useEffect} from "react"
 
 
-function Post({title,body})
+function Post({post})
 {
+  const savedVotes = post.votes;
+
+  const [userVote,setUserVote] = useState("none");
+  const [currentVotes,setCurrentVotes] = useState(savedVotes);
+
+  function handleUserVote(newVote)
+  {
+    if(newVote===userVote)
+    {
+      setUserVote("none");
+    }
+    else
+    {
+      setUserVote(newVote);
+    }
+  }
+
+  function calculateCurrentVotes()
+  {
+    return savedVotes + (userVote==="like" ? 1 : userVote==="dislike" ? -1 : 0)
+  }
+
+
   return(
     <div className="post-container flex-column">
       <div className="post-info">
         <p className="post-date">posted by OmarWalid 25 minutes ago</p>
-        <h1 className="post-title">{title}</h1>
-        <p className="post-body">{body}</p>
+        <h1 className="post-title">{post.title}</h1>
+        <p className="post-body">{post.body}</p>
       </div>
       <div className="post-bottom-bar flex-row">
         <div className="post-options flex-row">
           <div className="post-votes-container flex-row">
-            <p>Like</p>
-            <p>0</p>
-            <p>Dislike</p>
+            <button className="voting-button" vote={userVote==="like" ? "like" : "none"} onClick={function(){handleUserVote("like")}}>Like</button>
+            <p>{calculateCurrentVotes()}</p>
+            <button className="voting-button" vote={userVote==="dislike" ? "dislike" : "none"} onClick={function(){handleUserVote("dislike")}}>Dislike</button>
           </div>
-          <div>Comments(5)</div>
+          <div>Comments(0)</div>
           <div>Save</div>
         </div>
       </div>
@@ -65,7 +88,7 @@ function App()
           </div>
           {
             posts && posts.map((post)=>
-              <Post title={post.title} body={post.body} />
+              <Post post={post} key={"post"+post.id} />
             )
           }
         </div>
