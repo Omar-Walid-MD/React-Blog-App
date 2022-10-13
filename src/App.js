@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './main-page.css';
+import {useState, useEffect} from "react"
 
 
 function Post({title,body})
@@ -30,17 +31,21 @@ function Post({title,body})
 function App()
 {
 
-  let posts = [
-    {
-      title: "Hello, this is my first blog post",
-      body: "This is a random project of a blog app to add to my resume"
-    },
-    {
-      title: "A second post",
-      body: "Just a second post to test the page"
-    },
+  const [posts,setPosts] = useState();
 
-  ]
+  useEffect(()=>{
+
+    fetch('http://localhost:8000/posts')
+    .then(res => {
+      return res.json()
+    })
+    .then((data)=>{
+    //   console.log(data);
+    setPosts(data);
+    console.log(data);
+    })
+
+  },[])
 
   return (
     <div className="main-page">
@@ -59,7 +64,7 @@ function App()
 
           </div>
           {
-            posts.map((post)=>
+            posts && posts.map((post)=>
               <Post title={post.title} body={post.body} />
             )
           }
