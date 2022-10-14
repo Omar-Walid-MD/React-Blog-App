@@ -5,13 +5,15 @@
             "id": 1,
             "title": "First blog",
             "body": "First blog body",
-            "votes": 0
+            "likes": 0,
+            "dislikes": 0
         },
         {
             "id": 2,
             "title": "Second blog",
             "body": "Second blog body",
-            "votes": 0
+            "likes": 0,
+            "dislikes": 0
         }
     ]
 }

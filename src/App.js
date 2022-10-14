@@ -5,28 +5,40 @@ import {useState, useEffect} from "react"
 
 function Post({post})
 {
-  const savedVotes = post.votes;
 
-  const [userVote,setUserVote] = useState("none");
-  const [currentVotes,setCurrentVotes] = useState(savedVotes);
-
-  function handleUserVote(newVote)
+  const [likes,setLikes] = useState(post.likes);
+  const [dislikes,setDislikes] = useState(post.dislikes);
+  const [voteState,setVoteState] = useState("none");
+  
+  function handleVote(newVoteState)
   {
-    if(newVote===userVote)
+    if(newVoteState===voteState)
     {
-      setUserVote("none");
+      setVoteState("none")
+
+      setLikes(post.likes);
+      setDislikes(post.dislikes);
     }
     else
     {
-      setUserVote(newVote);
+      if(newVoteState==="like")
+      {
+        setVoteState("like");
+      }
+      else if(newVoteState==="dislike")
+      {
+        setVoteState("dislike");
+      }
+
+      setLikes(post.likes + (newVoteState==="like" ? 1 : 0));
+      setDislikes(post.dislikes + (newVoteState==="dislike" ? 1 : 0));
     }
-  }
 
-  function calculateCurrentVotes()
-  {
-    return savedVotes + (userVote==="like" ? 1 : userVote==="dislike" ? -1 : 0)
-  }
 
+    
+
+    
+  }
 
   return(
     <div className="post-container flex-column">
@@ -38,9 +50,8 @@ function Post({post})
       <div className="post-bottom-bar flex-row">
         <div className="post-options flex-row">
           <div className="post-votes-container flex-row">
-            <button className="voting-button" vote={userVote==="like" ? "like" : "none"} onClick={function(){handleUserVote("like")}}>Like</button>
-            <p>{calculateCurrentVotes()}</p>
-            <button className="voting-button" vote={userVote==="dislike" ? "dislike" : "none"} onClick={function(){handleUserVote("dislike")}}>Dislike</button>
+            <button className="voting-button flex-row" vote={voteState==="like" && "like"} onClick={function(){handleVote("like")}}><i className='bx bxs-like voting-icon'></i>{likes}</button>
+            <button className="voting-button flex-row" vote={voteState==="dislike" && "dislike"} onClick={function(){handleVote("dislike")}}><i className='bx bxs-dislike voting-icon' ></i>{dislikes}</button>
           </div>
           <div>Comments(0)</div>
           <div>Save</div>

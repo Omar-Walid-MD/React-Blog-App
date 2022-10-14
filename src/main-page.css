@@ -117,16 +117,27 @@
 
 .voting-button
 {
+    font-size: 15pt;
+
+    color: white;
+    background-color: transparent;
+
     border: none;
     outline: none;
+    
 }
+.voting-icon
+{
+    font-size: 20pt;
+    margin-right: 5px;
 
+}
 .voting-button[vote="like"]
 {
-    background-color: deepskyblue;
+    color: deepskyblue;
 }
 
 .voting-button[vote="dislike"]
 {
-    background-color: red;
+    color: red;
 }
