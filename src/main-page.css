@@ -61,12 +61,17 @@
 }
 .blog-sort-container
 {
-    height: 100px;
+    height: 80px;
+
+    padding: 20px;
 
     background-color: darkslateblue;
 
 }
-
+.write-post-button
+{
+    background-color: white;
+}
 
 .post-container
 {
@@ -124,6 +129,8 @@
 
     border: none;
     outline: none;
+
+    cursor: pointer;
     
 }
 .voting-icon
