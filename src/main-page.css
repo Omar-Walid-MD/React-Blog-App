@@ -70,7 +70,15 @@
 }
 .write-post-button
 {
+    font-size: 18pt;
+    font-weight: 500;
+    text-decoration: none;
+
     background-color: white;
+    color: purple;
+
+    padding: 5px 10px;
+    border-radius: 10px;
 }
 
 .post-container

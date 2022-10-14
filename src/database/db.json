@@ -1,19 +1,32 @@
 {
-    "posts":
-    [
-        {
-            "id": 1,
-            "title": "First blog",
-            "body": "First blog body",
-            "likes": 0,
-            "dislikes": 0
-        },
-        {
-            "id": 2,
-            "title": "Second blog",
-            "body": "Second blog body",
-            "likes": 0,
-            "dislikes": 0
-        }
-    ]
+  "posts": [
+    {
+      "id": 1,
+      "title": "First blog",
+      "body": "First blog body",
+      "likes": 0,
+      "dislikes": 0
+    },
+    {
+      "id": 2,
+      "title": "Second blog",
+      "body": "Second blog body",
+      "likes": 0,
+      "dislikes": 0
+    },
+    {
+      "id": "post-2116585246",
+      "title": "This is my first page to post thru the page",
+      "body": "I posted this through a form",
+      "likes": 0,
+      "dislikes": 0
+    },
+    {
+      "id": "post-9748397878",
+      "title": "Second try",
+      "body": "This time the post should appear without having to reload",
+      "likes": 0,
+      "dislikes": 0
+    }
+  ]
 }

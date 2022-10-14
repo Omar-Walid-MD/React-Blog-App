@@ -1,0 +1,43 @@
+.post-write-form-container
+{
+    width: 500px;
+
+    background-color: rebeccapurple;
+
+    padding: 20px;
+
+    align-items: flex-start;
+}
+
+.post-write-form-input-group
+{
+    width: 100%;
+    align-items: flex-start;
+}
+
+.post-write-form-title-input
+{
+    font-size: 18pt;
+    width: 50%;
+}
+
+.post-write-form-body-input
+{
+    font-size: 15pt;
+
+    min-width: 100%; max-width: 100%;
+    min-height: 200px; max-height: 100%;
+
+    margin: 50px 0;
+}
+
+.post-write-form-submit-container
+{
+    width: 100%;
+}
+.post-write-form-submit
+{
+    font-size: 18pt;
+
+    float: right;
+}

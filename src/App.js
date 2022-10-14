@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react"
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./main-page";
+import WritePage from "./write-page";
 import './main-page.css';
 
 
@@ -27,6 +28,7 @@ function App()
   return (
     <Routes>
       <Route path="/" element={<MainPage posts={posts} />} />
+      <Route path="/write" element={<WritePage handlePostList={setPosts} />} />
     </Routes>
     
   );
