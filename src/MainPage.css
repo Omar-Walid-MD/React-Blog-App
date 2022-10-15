@@ -44,16 +44,35 @@
 .navbar-options
 {
     font-size: 15pt;
-    width: 100px;
-}
+    width: 250px;
 
+    margin-right: 50px;
+}
+.navbar-button
+{
+    font-size: 15pt;
+    font-weight: 600;
+    text-decoration: none;
+
+    color: purple;
+    background-color: white;
+
+
+    padding: 5px 15px;
+    border-radius: 10px;
+
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+}
 .page-container
 {
     width: 100%; min-height: 100vh;
 
     background-color: lightsteelblue;
 
-    margin-top: 80px;
+    padding-top: 80px;
 
     align-items: flex-start;
 }

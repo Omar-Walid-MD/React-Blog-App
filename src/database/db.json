@@ -1,4 +1,12 @@
 {
+  "users": [
+    {
+      "username": "OmarWalid",
+      "email": "omar.madinah49@yahoo.com",
+      "password": "123",
+      "id": "user-4499347254"
+    }
+  ],
   "posts": [
     {
       "title": "Template post",

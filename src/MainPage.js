@@ -1,8 +1,8 @@
 import {useState, useEffect} from "react"
 import { Link } from "react-router-dom";
-import Header from "./header";
-import Post from "./post";
-import './main-page.css';
+import Header from "./Header";
+import Post from "./Post";
+import './MainPage.css';
 
 function MainPage({posts})
 {

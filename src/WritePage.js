@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
-import Header from "./header"
-import "./write-page.css"
+import Header from "./Header"
+import "./WritePage.css"
 
 function WritePage({handlePostList})
 {
-
     const navigate = useNavigate();
 
     const [newPost,setNewPost] = useState({

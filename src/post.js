@@ -1,4 +1,4 @@
-import './main-page.css';
+import './MainPage.css';
 import {useState, useEffect} from "react";
 import axios from 'axios';
 
