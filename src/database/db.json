@@ -3,17 +3,18 @@
     {
       "title": "Template post",
       "body": "This is a post made solely for development purposes.",
-      "likes": 0,
-      "dislikes": 0,
-      "date": 0
+      "id": "post-1982937877",
+      "date": 0,
+      "likes": 1,
+      "dislikes": 1
     },
     {
       "title": "Date update",
       "body": "Today, I am adding a date to my posts.",
       "id": "post-1952527877",
-      "likes": 0,
-      "dislikes": 0,
-      "date": 1665836969664
+      "date": 1665836969664,
+      "likes": 2,
+      "dislikes": 1
     }
   ]
 }

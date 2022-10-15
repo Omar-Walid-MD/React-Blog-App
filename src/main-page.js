@@ -6,6 +6,12 @@ import './main-page.css';
 
 function MainPage({posts})
 {
+
+  function sortPosts(postList)
+  {
+    return postList.reverse()
+  }
+
     return (
         <div className="main-page">
           <Header />
@@ -15,7 +21,7 @@ function MainPage({posts})
                 <Link className="write-post-button" to="/write">Write a post!</Link>
               </div>
               {
-                posts && posts.map((post)=>
+                posts && sortPosts(posts).map((post)=>
                   <Post post={post} key={"post"+post.id} />
                 )
               }
