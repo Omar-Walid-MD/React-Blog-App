@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
+import Header from "./header"
 import "./write-page.css"
 
 function WritePage({handlePostList})
@@ -8,11 +9,9 @@ function WritePage({handlePostList})
     const navigate = useNavigate();
 
     const [newPost,setNewPost] = useState({
-        id: "post-" + makeId(10),
         title: "",
         body: "",
-        likes: 0,
-        dislikes: 0
+        
     });
     
 
@@ -31,13 +30,21 @@ function WritePage({handlePostList})
     {
         e.preventDefault();
 
+        let postToAdd = {
+            ...newPost,
+            id: "post-" + makeId(10),
+            likes: 0,
+            dislikes: 0,
+            date: Date.now()
+        }
+
         fetch('http://localhost:8000/posts',{
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newPost)
+            body: JSON.stringify(postToAdd)
         }).then(()=>{
             console.log("New Post Added.");
-            handlePostList(prevList => [...prevList,newPost])
+            handlePostList(prevList => [...prevList,postToAdd])
         })
 
         navigate("/");
@@ -57,28 +64,21 @@ function WritePage({handlePostList})
 
     return (
         <div className="main-page">
-          <header className="navbar flex-row">
-            <div>
-              <h1 className="navbar-logo">BLOG APP</h1>
+            <Header />
+            <div className="page-container flex-center">
+                <div className="main-column flex-column">
+                    <form className="post-write-form-container flex-column" onSubmit={submitPost}>
+                        <h1 className="post-write-form-label">Write a post</h1>
+                        <div className="post-write-form-input-group">
+                            <input className="post-write-form-title-input" type="text" name="title" placeholder="Enter Title" onChange={handlePost} />
+                            <textarea className="post-write-form-body-input" name="body" onChange={handlePost} placeholder="Enter Body"></textarea>
+                        </div>
+                        <div className="post-write-form-submit-container">
+                            <input className="post-write-form-submit" type="submit" />
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div className="navbar-options flex-row">
-              <p>LINK</p>
-              <p>LINK</p>
-            </div>
-          </header>
-          <div className="page-container flex-center">
-            <div className="main-column flex-column">
-                <form className="post-write-form-container flex-column" onSubmit={submitPost}>
-                    <div className="post-write-form-input-group">
-                        <input className="post-write-form-title-input" type="text" name="title" onChange={handlePost} />
-                        <textarea className="post-write-form-body-input" name="body" onChange={handlePost}></textarea>
-                    </div>
-                    <div className="post-write-form-submit-container">
-                        <input className="post-write-form-submit" type="submit" />
-                    </div>
-                </form>
-              </div>
-          </div>
         </div>
     );
 }

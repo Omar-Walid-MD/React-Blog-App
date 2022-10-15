@@ -37,7 +37,7 @@ function Post({post})
   return(
     <div className="post-container flex-column">
       <div className="post-info">
-        <p className="post-date">posted by OmarWalid 25 minutes ago</p>
+        <p className="post-date">posted by OmarWalid at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
         <h1 className="post-title">{post.title}</h1>
         <p className="post-body">{post.body}</p>
       </div>

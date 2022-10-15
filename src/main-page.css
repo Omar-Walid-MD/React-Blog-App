@@ -30,8 +30,17 @@
 
     padding: 0 20px;
 
-}
+    z-index: 2;
 
+}
+.navbar-logo
+{
+    color: white;
+
+    font-size: 30pt;
+    font-weight: 500;
+    text-decoration: none;
+}
 .navbar-options
 {
     font-size: 15pt;
