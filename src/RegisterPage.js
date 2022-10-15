@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import "./RegisterPage.css";
 
-function RegisterPage({handleUserList})
+function RegisterPage({handleUserList, handleUser})
 {
     const navigate = useNavigate();
 
@@ -47,7 +47,8 @@ function RegisterPage({handleUserList})
                 body: JSON.stringify(userToAdd)
             }).then(()=>{
                 console.log("New Post Added.");
-                handleUserList(prevList => [...prevList,userToAdd])
+                handleUserList(prevList => [...prevList,userToAdd]);
+                handleUser(newUser);
             })
     
             navigate("/");

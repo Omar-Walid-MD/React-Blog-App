@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Header from "./Header"
 import "./WritePage.css"
 
-function WritePage({handlePostList})
+function WritePage({handlePostList, currentUser})
 {
     const navigate = useNavigate();
 
@@ -63,7 +63,7 @@ function WritePage({handlePostList})
 
     return (
         <div className="main-page">
-            <Header />
+            <Header currentUser={currentUser} />
             <div className="page-container flex-center">
                 <div className="main-column flex-column">
                     <form className="post-write-form-container flex-column" onSubmit={submitPost}>

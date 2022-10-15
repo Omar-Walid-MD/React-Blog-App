@@ -4,14 +4,16 @@ import MainPage from "./MainPage";
 import WritePage from "./WritePage";
 import './MainPage.css';
 import RegisterPage from "./RegisterPage";
+import LoginPage from "./LoginPage";
 
 
 
 function App()
 {
 
-  const [posts,setPosts] = useState();
-  const [users,setUsers] = useState();
+  const [posts,setPosts] = useState(null);
+  const [users,setUsers] = useState(null);
+  const [currentUser,setCurrentUser] = useState(null);
 
   useEffect(()=>{
 
@@ -22,7 +24,6 @@ function App()
     .then((data)=>{
     //   console.log(data);
     setPosts(data);
-    console.log(data);
     })
 
     fetch('http://localhost:8000/users')
@@ -30,19 +31,23 @@ function App()
       return res.json()
     })
     .then((data)=>{
-    //   console.log(data);
     setUsers(data);
-    console.log(data);
+    // console.log(data);
     })
+
+    setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
+
+    // console.log(JSON.parse(localStorage.getItem("currentUser")));
 
   },[])
 
   return (
     <Routes>
-      <Route path="/" element={<MainPage posts={posts} />} />
-      <Route path="/write" element={<WritePage handlePostList={setPosts} />} />
+      <Route path="/" element={<MainPage posts={posts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/write" element={<WritePage handlePostList={setPosts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
 
-      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/register" element={<RegisterPage handleUserList={setUsers} handleUser={setCurrentUser} />} />
+      <Route path="/login" element={<LoginPage userList={users} handleUser={setCurrentUser} />} />
     </Routes>
     
   );

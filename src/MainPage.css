@@ -43,8 +43,13 @@
 }
 .navbar-options
 {
-    font-size: 15pt;
     width: 250px;
+
+    margin-right: 50px;
+}
+.navbar-options-loggedin
+{
+    width: 350px;
 
     margin-right: 50px;
 }

@@ -4,17 +4,23 @@ import Header from "./Header";
 import Post from "./Post";
 import './MainPage.css';
 
-function MainPage({posts})
+function MainPage({posts, currentUser, setCurrentUser})
 {
 
-  function sortPosts(postList)
-  {
-    return postList.reverse()
-  }
+    function sortPosts(postList)
+    {
+      return postList.reverse();
+    }
+
+    useEffect(()=>{
+
+      posts && console.log(sortPosts(posts))
+
+    },[posts])
 
     return (
         <div className="main-page">
-          <Header />
+          <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
           <div className="page-container flex-center">
             <div className="main-column flex-column">
               <div className="blog-sort-container flex-row">
