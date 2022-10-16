@@ -9,7 +9,9 @@ function MainPage({posts, currentUser, setCurrentUser})
 
     function sortPosts(postList)
     {
-      return postList.reverse();
+      postList.sort();
+      postList.reverse();
+      return postList
     }
 
     useEffect(()=>{
@@ -28,7 +30,7 @@ function MainPage({posts, currentUser, setCurrentUser})
               </div>
               {
                 posts && sortPosts(posts).map((post)=>
-                  <Post post={post} key={"post"+post.id} />
+                  <Post post={post} currentUser={currentUser} setCurrentUser={setCurrentUser} key={"post"+post.id} />
                 )
               }
             </div>

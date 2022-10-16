@@ -3,62 +3,152 @@ import {useState, useEffect} from "react";
 import axios from 'axios';
 
 
-function Post({post})
+function Post({post,currentUser,setCurrentUser})
 {
 
-  const [voteState,setVoteState] = useState("none");
+  const [voteState,setVoteState] = useState(CheckUserVote());
+  const [likes,setLikes] = useState(post.likes);
+  const [dislikes,setDislikes] = useState(post.dislikes);
   
   function handleVote(newVoteState)
   {
+    let newLikes = likes;
+    let newDislikes = dislikes;
+    
     if(newVoteState===voteState)
     {
-      setVoteState("none")
+      setVoteState("none");
+      if(newVoteState==="like")
+      {
+        setLikes(l => l - 1);
+        newLikes--;
+      }
+      if(voteState==="dislike")
+      {
+        setDislikes(l => l - 1);
+        newDislikes--;
+      }
     }
     else
     {
       if(newVoteState==="like")
       {
+        if(voteState==="dislike")
+        {
+          setDislikes(l => l - 1);
+          newDislikes--;
+        }
         setVoteState("like");
+        setLikes(l => l + 1);
+        newLikes++;
       }
       else if(newVoteState==="dislike")
       {
+        if(voteState==="like")
+        {
+          setLikes(l => l - 1);
+          newLikes--;
+        }
         setVoteState("dislike");
+        setDislikes(l => l + 1);
+        newDislikes++;
       }
 
-      // setLikes(post.likes + (newVoteState==="like" ? 1 : 0));
-      // setDislikes(post.dislikes + (newVoteState==="dislike" ? 1 : 0));
     }
 
+    let updatedPost = {
+      ...post,
+      likes: newLikes,
+      dislikes: newDislikes,
+    }
 
-  }
+    // const axios = require('axios');
 
-  function UpdateVotes()
-  {
-      let updatedPost = {
-        ...post,
-        likes: (voteState==="like" ? post.likes+1 : post.likes),
-        dislikes: (voteState==="dislike" ? post.dislikes+1 : post.dislikes),
+    axios.put('http://localhost:8000/posts/'+updatedPost.id,
+      updatedPost
+    )
+    .then(resp =>{
+        console.log("Updated Post likes");
+    }).catch(error => {
+        console.log(error);
+    });
+
+    let updatedUser = currentUser;
+
+
+    if(newVoteState===voteState)
+    {
+      if(updatedUser.dislikes.includes(post.id))
+      {
+        updatedUser.dislikes = currentUser.dislikes.filter((dislikedPost)=>dislikedPost!==post.id)
       }
 
-      // const axios = require('axios');
+      if(updatedUser.likes.includes(post.id))
+      {
+        updatedUser.likes = currentUser.likes.filter((likedPost)=>likedPost!==post.id);
+        console.log("come here");
+      }
 
-      axios.put('http://localhost:8000/posts/'+updatedPost.id,
-        updatedPost
-      )
-      .then(resp =>{
-          console.log("Updated Post likes");
-      }).catch(error => {
-          console.log(error);
-      });
-    
+    }
+    else
+    {
+      if(newVoteState==="like")
+      {
+        console.log("changed")
+  
+        if(updatedUser.dislikes.includes(post.id))
+        {
+          updatedUser.dislikes = currentUser.dislikes.filter((dislikedPost)=>dislikedPost!==post.id)
+        }
+        updatedUser.likes = newVoteState==="like" ?  [...updatedUser.likes,post.id] : updatedUser.likes;
+      }
+      else if(newVoteState==="dislike")
+      {
+        if(updatedUser.likes.includes(post.id))
+        {
+          updatedUser.likes = currentUser.likes.filter((likedPost)=>likedPost!==post.id)
+        }
+        updatedUser.dislikes = newVoteState==="dislike" ?  [...updatedUser.dislikes,post.id] : updatedUser.dislikes;
+  
+      }
+    }
+
+    // updatedUser.likes = [];
+    // updatedUser.dislikes = [];
+
+
+    axios.put('http://localhost:8000/users/'+updatedUser.id,
+      updatedUser
+    )
+    .then(resp =>{
+        console.log("Updated User Votes");
+        localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+        setCurrentUser(updatedUser);
+    }).catch(error => {
+        console.log(error);
+    });
+
   }
 
-  useEffect(()=>{
+  function CheckUserVote()
+  {
+    let result = "";
+    if(currentUser.likes.includes(post.id)) result = "like";
+    else if(currentUser.dislikes.includes(post.id)) result = "dislike";
+    else result = "none";
+    
+    return result;
+  }
 
-    UpdateVotes();
-  },[voteState])
 
-  return(
+
+  // useEffect(()=>{
+
+   
+
+  // },[currentUser])
+
+  return(     
     <div className="post-container flex-column">
       <div className="post-info">
         <p className="post-date">posted by OmarWalid at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
@@ -68,8 +158,8 @@ function Post({post})
       <div className="post-bottom-bar flex-row">
         <div className="post-options flex-row">
           <div className="post-votes-container flex-row">
-            <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}}><i className='bx bxs-like voting-icon'></i>{(voteState==="like" ? post.likes+1 : post.likes)}</button>
-            <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}}><i className='bx bxs-dislike voting-icon' ></i>{(voteState==="dislike" ? post.dislikes+1 : post.dislikes)}</button>
+            <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
+            <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
           </div>
           <div>Comments(0)</div>
           <div>Save</div>
@@ -77,6 +167,7 @@ function Post({post})
       </div>
 
     </div>
+      
   )
 }
 

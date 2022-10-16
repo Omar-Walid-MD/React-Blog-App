@@ -4,7 +4,9 @@
       "username": "OmarWalid",
       "email": "omar.madinah49@yahoo.com",
       "password": "123",
-      "id": "user-4499347254"
+      "id": "user-4499347254",
+      "likes": [],
+      "dislikes": []
     }
   ],
   "posts": [
@@ -13,16 +15,16 @@
       "body": "This is a post made solely for development purposes.",
       "id": "post-1982937877",
       "date": 0,
-      "likes": 1,
-      "dislikes": 1
+      "likes": 0,
+      "dislikes": 0
     },
     {
       "title": "Date update",
       "body": "Today, I am adding a date to my posts.",
       "id": "post-1952527877",
       "date": 1665836969664,
-      "likes": 2,
-      "dislikes": 1
+      "likes": 0,
+      "dislikes": 0
     }
   ]
 }
