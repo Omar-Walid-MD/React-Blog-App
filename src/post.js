@@ -12,132 +12,148 @@ function Post({post,currentUser,setCurrentUser})
   
   function handleVote(newVoteState)
   {
-    let newLikes = likes;
-    let newDislikes = dislikes;
-    
-    if(newVoteState===voteState)
+    if(currentUser)
     {
-      setVoteState("none");
-      if(newVoteState==="like")
+
+      let newLikes = likes;
+      let newDislikes = dislikes;
+      
+      if(newVoteState===voteState)
       {
-        setLikes(l => l - 1);
-        newLikes--;
-      }
-      if(voteState==="dislike")
-      {
-        setDislikes(l => l - 1);
-        newDislikes--;
-      }
-    }
-    else
-    {
-      if(newVoteState==="like")
-      {
+        setVoteState("none");
+        if(newVoteState==="like")
+        {
+          setLikes(l => l - 1);
+          newLikes--;
+        }
         if(voteState==="dislike")
         {
           setDislikes(l => l - 1);
           newDislikes--;
         }
-        setVoteState("like");
-        setLikes(l => l + 1);
-        newLikes++;
       }
-      else if(newVoteState==="dislike")
+      else
       {
-        if(voteState==="like")
+        if(newVoteState==="like")
         {
-          setLikes(l => l - 1);
-          newLikes--;
+          if(voteState==="dislike")
+          {
+            setDislikes(l => l - 1);
+            newDislikes--;
+          }
+          setVoteState("like");
+          setLikes(l => l + 1);
+          newLikes++;
         }
-        setVoteState("dislike");
-        setDislikes(l => l + 1);
-        newDislikes++;
-      }
-
-    }
-
-    let updatedPost = {
-      ...post,
-      likes: newLikes,
-      dislikes: newDislikes,
-    }
-
-    // const axios = require('axios');
-
-    axios.put('http://localhost:8000/posts/'+updatedPost.id,
-      updatedPost
-    )
-    .then(resp =>{
-        console.log("Updated Post likes");
-    }).catch(error => {
-        console.log(error);
-    });
-
-    let updatedUser = currentUser;
-
-
-    if(newVoteState===voteState)
-    {
-      if(updatedUser.dislikes.includes(post.id))
-      {
-        updatedUser.dislikes = currentUser.dislikes.filter((dislikedPost)=>dislikedPost!==post.id)
-      }
-
-      if(updatedUser.likes.includes(post.id))
-      {
-        updatedUser.likes = currentUser.likes.filter((likedPost)=>likedPost!==post.id);
-        console.log("come here");
-      }
-
-    }
-    else
-    {
-      if(newVoteState==="like")
-      {
-        console.log("changed")
+        else if(newVoteState==="dislike")
+        {
+          if(voteState==="like")
+          {
+            setLikes(l => l - 1);
+            newLikes--;
+          }
+          setVoteState("dislike");
+          setDislikes(l => l + 1);
+          newDislikes++;
+        }
   
+      }
+  
+      let updatedPost = {
+        ...post,
+        likes: newLikes,
+        dislikes: newDislikes,
+      }
+  
+      // const axios = require('axios');
+  
+      axios.put('http://localhost:8000/posts/'+updatedPost.id,
+        updatedPost
+      )
+      .then(resp =>{
+          console.log("Updated Post likes");
+      }).catch(error => {
+          console.log(error);
+      });
+  
+      let updatedUser = currentUser;
+  
+  
+      if(newVoteState===voteState)
+      {
         if(updatedUser.dislikes.includes(post.id))
         {
           updatedUser.dislikes = currentUser.dislikes.filter((dislikedPost)=>dislikedPost!==post.id)
         }
-        updatedUser.likes = newVoteState==="like" ?  [...updatedUser.likes,post.id] : updatedUser.likes;
-      }
-      else if(newVoteState==="dislike")
-      {
+  
         if(updatedUser.likes.includes(post.id))
         {
-          updatedUser.likes = currentUser.likes.filter((likedPost)=>likedPost!==post.id)
+          updatedUser.likes = currentUser.likes.filter((likedPost)=>likedPost!==post.id);
+          console.log("come here");
         }
-        updatedUser.dislikes = newVoteState==="dislike" ?  [...updatedUser.dislikes,post.id] : updatedUser.dislikes;
   
       }
+      else
+      {
+        if(newVoteState==="like")
+        {
+          console.log("changed")
+    
+          if(updatedUser.dislikes.includes(post.id))
+          {
+            updatedUser.dislikes = currentUser.dislikes.filter((dislikedPost)=>dislikedPost!==post.id)
+          }
+          updatedUser.likes = newVoteState==="like" ?  [...updatedUser.likes,post.id] : updatedUser.likes;
+        }
+        else if(newVoteState==="dislike")
+        {
+          if(updatedUser.likes.includes(post.id))
+          {
+            updatedUser.likes = currentUser.likes.filter((likedPost)=>likedPost!==post.id)
+          }
+          updatedUser.dislikes = newVoteState==="dislike" ?  [...updatedUser.dislikes,post.id] : updatedUser.dislikes;
+    
+        }
+      }
+  
+      // updatedUser.likes = [];
+      // updatedUser.dislikes = [];
+  
+  
+      axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+      )
+      .then(resp =>{
+          console.log("Updated User Votes");
+          localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+          setCurrentUser(updatedUser);
+      }).catch(error => {
+          console.log(error);
+      });
     }
-
-    // updatedUser.likes = [];
-    // updatedUser.dislikes = [];
-
-
-    axios.put('http://localhost:8000/users/'+updatedUser.id,
-      updatedUser
-    )
-    .then(resp =>{
-        console.log("Updated User Votes");
-        localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-        setCurrentUser(updatedUser);
-    }).catch(error => {
-        console.log(error);
-    });
+    else
+    {
+      console.log("Must be logged in to vote!");
+    }
 
   }
 
   function CheckUserVote()
   {
-    let result = "";
-    if(currentUser.likes.includes(post.id)) result = "like";
-    else if(currentUser.dislikes.includes(post.id)) result = "dislike";
-    else result = "none";
+    if(currentUser)
+    {
+      let result = "";
+      if(currentUser.likes.includes(post.id)) result = "like";
+      else if(currentUser.dislikes.includes(post.id)) result = "dislike";
+      else result = "none";
+
+      return result;
+    }
+    else
+    {
+      return "none";
+    }
     
-    return result;
   }
 
 
@@ -151,7 +167,7 @@ function Post({post,currentUser,setCurrentUser})
   return(     
     <div className="post-container flex-column">
       <div className="post-info">
-        <p className="post-date">posted by OmarWalid at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
+        <p className="post-date">posted by {post.user} at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
         <h1 className="post-title">{post.title}</h1>
         <p className="post-body">{post.body}</p>
       </div>

@@ -26,12 +26,15 @@ function MainPage({posts, currentUser, setCurrentUser})
           <div className="page-container flex-center">
             <div className="main-column flex-column">
               <div className="blog-sort-container flex-row">
-                <Link className="write-post-button" to="/write">Write a post!</Link>
+                {
+                  currentUser && 
+                  <Link className="write-post-button" to="/write">Write a post!</Link>
+                }
               </div>
               {
-                posts && sortPosts(posts).map((post)=>
+                posts && posts.length>0 ? sortPosts(posts).map((post)=>
                   <Post post={post} currentUser={currentUser} setCurrentUser={setCurrentUser} key={"post"+post.id} />
-                )
+                ) : <div className="blog-empty-label flex-center"><h1>No Posts Available</h1></div>
               }
             </div>
           </div>

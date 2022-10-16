@@ -34,6 +34,7 @@ function WritePage({handlePostList, currentUser})
             id: "post-" + makeId(10),
             likes: 0,
             dislikes: 0,
+            user: currentUser.username,
             date: Date.now()
         }
 

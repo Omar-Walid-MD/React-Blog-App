@@ -5,26 +5,21 @@
       "email": "omar.madinah49@yahoo.com",
       "password": "123",
       "id": "user-4499347254",
-      "likes": [],
+      "likes": [
+        "post-6423576815"
+      ],
       "dislikes": []
     }
   ],
   "posts": [
     {
-      "title": "Template post",
-      "body": "This is a post made solely for development purposes.",
-      "id": "post-1982937877",
-      "date": 0,
-      "likes": 0,
-      "dislikes": 0
-    },
-    {
-      "title": "Date update",
-      "body": "Today, I am adding a date to my posts.",
-      "id": "post-1952527877",
-      "date": 1665836969664,
-      "likes": 0,
-      "dislikes": 0
+      "title": "Another test",
+      "body": "I am testing the username feature!",
+      "id": "post-6423576815",
+      "likes": 1,
+      "dislikes": 0,
+      "user": "OmarWalid",
+      "date": 1665947406288
     }
   ]
 }

@@ -7,13 +7,11 @@ function Header({currentUser, setCurrentUser})
 
   function LogOut(e)
   {
-    e.preventDefault();
 
     setCurrentUser(null);
     localStorage.setItem('currentUser', JSON.stringify(null));
 
-    console.log(currentUser)
-
+    window.location.reload();
     
   }
 
