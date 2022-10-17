@@ -129,6 +129,7 @@
     margin-top: 20px;
 
     position: relative;
+   
 }
 .post-info
 {
@@ -147,8 +148,21 @@
 .post-body
 {
     font-size: 14pt;
-}
 
+    max-height: 300px;
+    overflow: hidden;
+}
+.post-long-shadow
+{
+    height: 200px; width: 100%;
+
+    /* background-color: black; */
+    background-image:  linear-gradient(transparent,rebeccapurple 80%);
+
+    position: absolute;
+
+    bottom: 40px; left: 0;
+}
 .post-bottom-bar
 {
     width: 100%; height: 30px;

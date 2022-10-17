@@ -157,6 +157,12 @@ function Post({post,currentUser,setCurrentUser})
   }
 
 
+  function GetPostLength()
+  {
+    return (post.body.length > 800);
+  }
+
+
 
   // useEffect(()=>{
 
@@ -170,6 +176,9 @@ function Post({post,currentUser,setCurrentUser})
         <p className="post-date">posted by {post.user} at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
         <h1 className="post-title">{post.title}</h1>
         <p className="post-body">{post.body}</p>
+        {
+          GetPostLength() && <div className="post-long-shadow"></div>
+        }
       </div>
       <div className="post-bottom-bar flex-row">
         <div className="post-options flex-row">
