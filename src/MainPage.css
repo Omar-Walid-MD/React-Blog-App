@@ -28,6 +28,8 @@
     position: fixed;
     top: 0;
 
+    box-shadow: 0 0 40px rgb(62, 76, 138);
+
     padding: 0 20px;
 
     z-index: 2;
@@ -40,6 +42,16 @@
     font-size: 30pt;
     font-weight: 500;
     text-decoration: none;
+
+    text-align: right;
+
+    transition: all 0.2s ease-in;
+    
+}
+.navbar-logo:hover
+{
+    font-size: 32pt;
+    color: lightsteelblue;
 }
 .navbar-options
 {
@@ -69,7 +81,14 @@
     border: none;
     outline: none;
 
+    transition: all 0.2s ease-in-out;
+
     cursor: pointer;
+}
+.navbar-button:hover
+{
+    background-color: rgb(238, 233, 255);
+    transform: scale(1.25);
 }
 .page-container
 {
@@ -96,6 +115,7 @@
 {
     height: 80px;
 
+    border-radius: 20px;
     padding: 20px;
 
     background-color: darkslateblue;
@@ -112,6 +132,14 @@
 
     padding: 5px 10px;
     border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+
+    cursor: pointer;
+}
+.write-post-button:hover
+{
+    background-color: rgb(238, 233, 255);
+    transform: scale(1.1);
 }
 .blog-empty-label
 {
@@ -124,11 +152,17 @@
     color: white;
     background-color: rebeccapurple;
 
+    box-shadow: 0 10px 20px rgb(91, 91, 128);
+
+    border-radius: 20px;
+
     align-items: flex-start;
 
     margin-top: 20px;
 
     position: relative;
+
+    overflow: hidden;
    
 }
 .post-info
@@ -148,6 +182,8 @@
 .post-body
 {
     font-size: 14pt;
+
+    white-space: pre-line;
 
     max-height: 300px;
     overflow: hidden;
@@ -191,7 +227,13 @@
     outline: none;
 
     cursor: pointer;
+
+    transition: transform 0.1s ease-in-out ;
     
+}
+.voting-button:hover
+{
+    transform: scale(1.25);
 }
 .voting-icon
 {
