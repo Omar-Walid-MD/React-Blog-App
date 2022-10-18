@@ -2,6 +2,7 @@ import {useState, useEffect} from "react"
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import WritePage from "./WritePage";
+import PostPage from "./PostPage";
 import './MainPage.css';
 import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
@@ -45,6 +46,7 @@ function App()
     <Routes>
       <Route path="/" element={<MainPage posts={posts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
       <Route path="/write" element={<WritePage handlePostList={setPosts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/post/:id" element={<PostPage posts={posts}  currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
 
       <Route path="/register" element={<RegisterPage handleUserList={setUsers} handleUser={setCurrentUser} />} />
       <Route path="/login" element={<LoginPage userList={users} handleUser={setCurrentUser} />} />

@@ -1,5 +1,6 @@
 import './MainPage.css';
 import {useState, useEffect} from "react";
+import {Link} from "react-router-dom";
 import axios from 'axios';
 
 
@@ -172,14 +173,14 @@ function Post({post,currentUser,setCurrentUser})
 
   return(     
     <div className="post-container flex-column">
-      <div className="post-info">
+      <Link to={"/post/"+post.id} className="post-info">
         <p className="post-date">posted by {post.user} at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
         <h1 className="post-title">{post.title}</h1>
         <p className="post-body">{post.body}</p>
         {
           GetPostLength() && <div className="post-long-shadow"></div>
         }
-      </div>
+      </Link>
       <div className="post-bottom-bar flex-row">
         <div className="post-options flex-row">
           <div className="post-votes-container flex-row">

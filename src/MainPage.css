@@ -167,8 +167,10 @@
 }
 .post-info
 {
-    padding: 0 20px;
+    color: white;
+    text-decoration: none;
 
+    padding: 0 20px;
 }
 .post-date
 {
