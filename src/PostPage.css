@@ -151,7 +151,22 @@
 {
     margin-top: 20px;
 }
+.post-page-comment-logged-out-warning
+{
 
+    font-size: 20pt;
+    font-weight: 500;
+    text-align: center;
+
+    color: plum;
+    background-color: rgb(72, 37, 107);
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+
+    border-radius: 20px;
+    
+    padding: 20px;
+}
 .post-page-comments-section
 {
 

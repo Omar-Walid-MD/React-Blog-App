@@ -32,7 +32,7 @@ function Header({currentUser, setCurrentUser})
                 </div> 
               : <div className="navbar-options flex-row">
                   <Link to="/register" className="navbar-button">Register</Link>
-                  <Link to="login" className="navbar-button">Log In</Link>
+                  <Link to="/login" className="navbar-button">Log In</Link>
                 </div>
               
             }

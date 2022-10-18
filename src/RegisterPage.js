@@ -69,7 +69,7 @@ function RegisterPage({handleUserList, handleUser})
 
     return (
         <div className="main-page">
-            <div className="page-container flex-center">
+            <div className="page-container flex-center" header="none">
                 <form className="register-form-container flex-column" onSubmit={RegisterUser}>
                     <h1 className="register-form-label">Register New User</h1>
                     <div className="register-form-input-group flex-column">

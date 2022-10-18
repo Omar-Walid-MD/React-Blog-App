@@ -97,8 +97,10 @@
     background-color: lightsteelblue;
 
     padding-top: 80px;
-
-    align-items: flex-start;
+}
+.page-container[header="none"]
+{
+    padding: 0;
 }
 .main-column
 {

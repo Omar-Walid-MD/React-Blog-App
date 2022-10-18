@@ -271,10 +271,17 @@ function PostPage({currentUser,setCurrentUser})
                             </div>
                         </div>
                         <div className="post-page-comments-section-container">
-                            <form className="post-page-write-comment-form flex-column" onSubmit={submitComment}>
-                                <textarea className="post-page-write-comment-input" placeholder="Write your comment..." value={newComment} onChange={handleComment}></textarea>
-                                <input className="post-page-write-comment-submit" type="submit" />
-                            </form>
+                            {
+                                currentUser ?
+                                <form className="post-page-write-comment-form flex-column" onSubmit={submitComment}>
+                                    <textarea className="post-page-write-comment-input" placeholder="Write your comment..." value={newComment} onChange={handleComment}></textarea>
+                                    <input className="post-page-write-comment-submit" type="submit" />
+                                </form>
+                                :
+                                <div className="post-page-comment-logged-out-warning">
+                                    You must be logged in to comment!
+                                </div>
+                            }
                             <div className="post-page-comments-section">
                                 {
                                     comments && comments.map((comment)=>

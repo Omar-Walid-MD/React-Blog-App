@@ -60,7 +60,7 @@ function LoginPage({userList,handleUser})
 
     return (
         <div className="main-page">
-            <div className="page-container flex-center">
+            <div className="page-container flex-center" header="none">
                 <form className="login-form-container flex-column" onSubmit={Login}>
                     <h1 className="login-form-label">Log in</h1>
                     <div className="login-form-input-group flex-column">

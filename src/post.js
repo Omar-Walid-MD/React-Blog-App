@@ -196,7 +196,7 @@ function Post({post,currentUser,setCurrentUser})
             <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
             <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
           </div>
-          <Link to={"/post/"+post.id} className="comment-button flex-row"><i class='bx bxs-comment-detail comment-icon'></i>({commentsCount})</Link>
+          <Link to={"/post/"+post.id} className="comment-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>({commentsCount})</Link>
           <div>Save</div>
         </div>
       </div>
