@@ -35,6 +35,7 @@ function WritePage({handlePostList, currentUser})
             likes: 0,
             dislikes: 0,
             user: currentUser.username,
+            comments: [],
             date: Date.now()
         }
 

@@ -10,6 +10,8 @@ function Post({post,currentUser,setCurrentUser})
   const [voteState,setVoteState] = useState(CheckUserVote());
   const [likes,setLikes] = useState(post.likes);
   const [dislikes,setDislikes] = useState(post.dislikes);
+
+  const [commentsCount,setCommentsCount] = useState(0);
   
   function handleVote(newVoteState)
   {
@@ -165,11 +167,18 @@ function Post({post,currentUser,setCurrentUser})
 
 
 
-  // useEffect(()=>{
+  useEffect(()=>{
 
-   
+    fetch('http://localhost:8000/comments/')
+    .then(res => {
+    return res.json()
+    })
+    .then((data)=>{
 
-  // },[currentUser])
+        setCommentsCount(data.filter((comment)=>comment.post===post.id).length);
+    });
+
+  },[])
 
   return(     
     <div className="post-container flex-column">
@@ -187,7 +196,7 @@ function Post({post,currentUser,setCurrentUser})
             <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
             <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
           </div>
-          <div>Comments(0)</div>
+          <Link to={"/post/"+post.id} className="comment-button flex-row"><i class='bx bxs-comment-detail comment-icon'></i>({commentsCount})</Link>
           <div>Save</div>
         </div>
       </div>

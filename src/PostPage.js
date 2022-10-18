@@ -4,10 +4,11 @@ import axios from 'axios';
 
 import Header from "./Header";
 import Post from "./Post";
+import Comment from "./Comment";
 import './MainPage.css';
 import "./PostPage.css";
 
-function PostPage({posts,currentUser,setCurrentUser})
+function PostPage({currentUser,setCurrentUser})
 {
 
     let postId = useParams().id;
@@ -20,6 +21,41 @@ function PostPage({posts,currentUser,setCurrentUser})
     const [voteState,setVoteState] = useState("none");
     const [likes,setLikes] = useState(0);
     const [dislikes,setDislikes] = useState(0);
+
+    const [newComment,setNewComment] = useState("");
+
+    const [comments,setComments] = useState([]);
+
+    function handleComment(event)
+    {
+        setNewComment(event.target.value);
+    }
+
+    function submitComment(event)
+    {
+        event.preventDefault();
+
+        if(newComment!=="")
+        {
+
+            let commentToAdd = {
+                id: "comment-"+makeId(10),
+                text: newComment,
+                user: currentUser.username,
+                post: postId,
+                date: Date.now()
+            }
+
+            fetch('http://localhost:8000/comments',{
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(commentToAdd)
+            }).then(()=>{
+                console.log("New Comment Added.");
+                setNewComment("");
+            })
+        }
+    }
     
     function handleVote(newVoteState)
     {
@@ -167,22 +203,49 @@ function PostPage({posts,currentUser,setCurrentUser})
         
     }
 
+    function GetPostComments(commentList)
+    {
+        return commentList.filter((comment)=>comment.post===postId);
+    }
+
+    function makeId(length)
+    {
+        let result = "";
+        let chars = "123456789";
+        for (var i = 0; i < length; i++) {
+        result += chars[Math.floor(Math.random() * 9)];
+        }
+        return result;
+    }
+
 
     useEffect(()=>{
 
-        window.scrollTo(0,0);
+        window.scrollTo(0,0);    
+            
+        fetch('http://localhost:8000/posts/'+postId)
+        .then(res => {
+        return res.json()
+        })
+        .then((data)=>{
+
+            setPost(data);
+            setVoteState(CheckUserVote(data));
+            setLikes(data.likes);
+            setDislikes(data.dislikes);
+        });
+
+        fetch('http://localhost:8000/comments/')
+        .then(res => {
+        return res.json()
+        })
+        .then((data)=>{
+
+            setComments(GetPostComments(data));
+        });
         
-        if(posts) 
-        {
-            let loadedPost = posts.filter((post)=>post.id==postId)[0]
-            setPost(loadedPost);
 
-            setVoteState(CheckUserVote(loadedPost));
-            setLikes(loadedPost.likes);
-            setDislikes(loadedPost.dislikes);
-        }
-
-    },[posts,postId]);
+    },[postId]);
 
     return (
         <div className="main-page">
@@ -205,10 +268,21 @@ function PostPage({posts,currentUser,setCurrentUser})
                                 <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
                                 <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                                 </div>
-                                <div>Comments(0)</div>
-                                <div>Save</div>
                             </div>
-                        </div> 
+                        </div>
+                        <div className="post-page-comments-section-container">
+                            <form className="post-page-write-comment-form flex-column" onSubmit={submitComment}>
+                                <textarea className="post-page-write-comment-input" placeholder="Write your comment..." value={newComment} onChange={handleComment}></textarea>
+                                <input className="post-page-write-comment-submit" type="submit" />
+                            </form>
+                            <div className="post-page-comments-section">
+                                {
+                                    comments && comments.map((comment)=>
+                                    <Comment comment={comment} key={comment.id} />
+                                    )
+                                }
+                            </div>
+                        </div>
                     
                 </div>
             }
