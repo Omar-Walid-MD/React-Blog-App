@@ -1,16 +1,18 @@
-import {useState, useEffect} from "react"
-import { Routes, Route } from "react-router-dom";
+import {useState, useEffect } from "react"
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import MainPage from "./MainPage";
 import WritePage from "./WritePage";
 import PostPage from "./PostPage";
 import './MainPage.css';
 import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
+import UserActivityPage from "./UserActivityPage";
 
 
 
 function App()
 {
+  const navigate = useLocation();
 
   const [posts,setPosts] = useState(null);
   const [users,setUsers] = useState(null);
@@ -38,9 +40,11 @@ function App()
 
     setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
 
-    // console.log(JSON.parse(localStorage.getItem("currentUser")));
+    console.log("reload");
 
-  },[])
+
+  },[navigate.pathname]);
+
 
   return (
     <Routes>
@@ -50,6 +54,8 @@ function App()
 
       <Route path="/register" element={<RegisterPage handleUserList={setUsers} handleUser={setCurrentUser} />} />
       <Route path="/login" element={<LoginPage userList={users} handleUser={setCurrentUser} />} />
+
+      <Route path="/activity" element={<UserActivityPage posts={posts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
     </Routes>
     
   );

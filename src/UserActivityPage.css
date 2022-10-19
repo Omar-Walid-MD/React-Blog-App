@@ -1,0 +1,45 @@
+.activity-page-option-row
+{
+    height: 80px;
+
+    border-radius: 20px;
+    padding: 20px;
+
+    background-color: darkslateblue;
+
+    justify-content: flex-start;
+}
+
+.activity-page-option-button
+{
+    color: purple;
+    background-color: white;
+
+    font-size: 18pt;
+    font-weight: 600;
+
+    border-radius: 10px;
+
+    border: none;
+    outline: none;
+
+    padding: 5px 10px;
+
+    margin-right: 20px;
+
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
+}
+.activity-page-option-button[current="true"]
+{
+    color: white;
+    background-color: purple;
+
+    pointer-events: none;
+}
+.activity-page-option-button:hover
+{
+    background-color: plum;
+    transform: scale(1.1);
+}

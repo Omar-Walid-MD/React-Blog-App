@@ -5,9 +5,7 @@
       "email": "omar.madinah49@yahoo.com",
       "password": "123",
       "id": "user-4499347254",
-      "likes": [
-        "post-2364728155"
-      ],
+      "likes": [],
       "dislikes": []
     }
   ],
@@ -34,7 +32,7 @@
       "title": "Paragraph test",
       "body": "Paragraph 1\n\nParagraph 2\n\nParagraph 3",
       "id": "post-2364728155",
-      "likes": 1,
+      "likes": 0,
       "dislikes": 0,
       "user": "OmarWalid",
       "date": 1666042687823
