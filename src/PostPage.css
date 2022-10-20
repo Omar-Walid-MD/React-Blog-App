@@ -196,12 +196,14 @@
     border-top: 5px solid rgb(72, 37, 107);
 
     margin: 30px 0;
-
+}
+.post-page-comments-section > *
+{
+    width: fit-content;
 }
 
 .post-page-comment-container
 {
-    width: fit-content;
 
     color: white;
     background-color: rgb(72, 37, 107);

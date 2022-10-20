@@ -43,3 +43,13 @@
     background-color: plum;
     transform: scale(1.1);
 }
+
+.activity-page-content-container
+{
+    min-height: 700px;
+}
+
+.activity-page-content-container > *
+{
+    width: 100%;
+}
