@@ -34,7 +34,7 @@ function Header({currentUser, setCurrentUser})
                     <h1>{currentUser.username}</h1>
                     <div className="split-line"></div>
                     <Link to="/activity" className="navbar-profile-dropdown-link">Activity</Link>
-                    <Link className="navbar-profile-dropdown-link">Saved posts</Link>
+                    <Link to="/saved" className="navbar-profile-dropdown-link">Saved</Link>
                   </div>
                 </div>
                   <button className="navbar-button" onClick={LogOut}>Log Out</button>

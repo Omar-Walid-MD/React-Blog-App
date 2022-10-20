@@ -23,7 +23,7 @@ function UserComment({posts, comment})
 }
 
 
-function UserActivityPage({posts, currentUser, setCurrentUser})
+function SavedPage({posts, currentUser, setCurrentUser})
 {
 
     const [currentTab,setCurrentTab] = useState("overview");
@@ -52,7 +52,8 @@ function UserActivityPage({posts, currentUser, setCurrentUser})
         contents = comments.map((comment)=>({...comment,type: "comment"}));
       }
 
-      return contents.filter((content)=>content.user===currentUser.username);
+      console.log(currentUser.savedPosts);
+      return contents.filter((content)=>currentUser.savedPosts.includes(content.id));
     }
 
     function SortContent(contents)
@@ -88,7 +89,6 @@ function UserActivityPage({posts, currentUser, setCurrentUser})
                 comments && posts && SortContent(GetContent(currentTab)).map((content)=>
                  
                    content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id}/>
-                 
                  )
               }
               </div>
@@ -98,4 +98,4 @@ function UserActivityPage({posts, currentUser, setCurrentUser})
       );
 }
 
-export default UserActivityPage;
+export default SavedPage;

@@ -211,8 +211,9 @@ function Post({post,currentUser,setCurrentUser})
     });
     
     currentUser && setSaved(currentUser.savedPosts.includes(post.id));
+    currentUser && console.log("yes");
 
-  },[])
+  },[currentUser])
 
   return(     
     <div className="post-container flex-column">

@@ -7,6 +7,7 @@ import './MainPage.css';
 import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
 import UserActivityPage from "./UserActivityPage";
+import SavedPage from "./SavedPage";
 
 
 
@@ -56,6 +57,7 @@ function App()
       <Route path="/login" element={<LoginPage userList={users} handleUser={setCurrentUser} />} />
 
       <Route path="/activity" element={<UserActivityPage posts={posts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/saved" element={<SavedPage posts={posts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
     </Routes>
     
   );

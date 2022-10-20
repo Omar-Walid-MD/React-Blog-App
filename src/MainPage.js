@@ -9,9 +9,7 @@ function MainPage({posts, currentUser, setCurrentUser})
 
     function sortPosts(postList)
     {
-      postList.sort();
-      postList.reverse();
-      return postList
+      return postList.sort().slice().reverse();
     }
 
     useEffect(()=>{
