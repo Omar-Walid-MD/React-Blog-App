@@ -1,5 +1,5 @@
-import {useState, useEffect} from "react"
-import { Link, useParams } from "react-router-dom";
+import {useState, useEffect, useRef} from "react"
+import { Link, useParams, useLocation } from "react-router-dom";
 import axios from 'axios';
 
 import Header from "./Header";
@@ -13,10 +13,15 @@ function PostPage({currentUser,setCurrentUser})
 
     let postId = useParams().id;
 
-    console.log(postId);
+    const location = useLocation();
+    const {targetCommentId} = location.state || {};
+
+    const targetComment = useRef(null);
+
+
+    // if(targetComment) ScrollToComment();
 
     const [post,setPost] = useState(null);
-
 
     const [voteState,setVoteState] = useState("none");
     const [likes,setLikes] = useState(0);
@@ -208,6 +213,18 @@ function PostPage({currentUser,setCurrentUser})
         return commentList.filter((comment)=>comment.post===postId);
     }
 
+    function SetTargetComment(targetCommentId,commentId)
+    {
+        console.log(targetCommentId===commentId);
+        return targetCommentId===commentId ? targetComment : null;
+    }
+
+    function ScrollToComment()
+    {
+        console.log("Scrolled");
+        targetComment.current.scrollIntoView();
+    }
+
     function makeId(length)
     {
         let result = "";
@@ -247,6 +264,10 @@ function PostPage({currentUser,setCurrentUser})
 
     },[postId]);
 
+    useEffect(()=>{
+        if(targetComment.current) ScrollToComment();
+    },[targetComment.current]);
+
     return (
         <div className="main-page">
           <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
@@ -285,7 +306,7 @@ function PostPage({currentUser,setCurrentUser})
                             <div className="post-page-comments-section">
                                 {
                                     comments && comments.map((comment)=>
-                                    <Comment comment={comment} key={comment.id} />
+                                    <Comment comment={comment} key={comment.id} commentRef={SetTargetComment(targetCommentId,comment.id)} />
                                     )
                                 }
                             </div>

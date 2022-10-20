@@ -13,7 +13,7 @@ function UserComment({posts, comment})
 
   return (
     <div className="activity-page-comment-container">
-      <Link to={"/post/"+linkPost.id} className="activity-page-comment-link">
+      <Link to={"/post/"+linkPost.id} state={{targetCommentId: comment.id}} className="activity-page-comment-link">
         <p className="activity-page-comment-info">By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
         <p className="activity-page-comment-post">On "{linkPost.title}"</p>
         <p className="activity-page-comment-text">{comment.text}</p>
