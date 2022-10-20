@@ -12,6 +12,8 @@ function Post({post,currentUser,setCurrentUser})
   const [dislikes,setDislikes] = useState(post.dislikes);
 
   const [commentsCount,setCommentsCount] = useState(0);
+
+  const [saved,setSaved] = useState();
   
   function handleVote(newVoteState)
   {
@@ -141,6 +143,36 @@ function Post({post,currentUser,setCurrentUser})
 
   }
 
+  function handleSave()
+  {
+    console.log("yea");
+    setSaved(prev => !prev);
+
+    let updatedUser = currentUser;
+
+    if(updatedUser.savedPosts.includes(post.id))
+    {
+      updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==post.id);
+    }
+    else
+    {
+      updatedUser.savedPosts = [...updatedUser.savedPosts,post.id];
+    }
+
+    axios.put('http://localhost:8000/users/'+updatedUser.id,
+      updatedUser
+    )
+    .then(resp =>{
+        console.log("Updated User Saved Posts");
+        localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+        setCurrentUser(updatedUser);
+    }).catch(error => {
+        console.log(error);
+    });
+
+
+  }
+
   function CheckUserVote()
   {
     if(currentUser)
@@ -177,6 +209,8 @@ function Post({post,currentUser,setCurrentUser})
 
         setCommentsCount(data.filter((comment)=>comment.post===post.id).length);
     });
+    
+    currentUser && setSaved(currentUser.savedPosts.includes(post.id));
 
   },[])
 
@@ -197,7 +231,7 @@ function Post({post,currentUser,setCurrentUser})
             <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
           </div>
           <Link to={"/post/"+post.id} className="comment-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>({commentsCount})</Link>
-          <div>Save</div>
+          <button className="save-button flex-row" saved={saved ? "true" : "false"}  onClick={handleSave}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
         </div>
       </div>
 

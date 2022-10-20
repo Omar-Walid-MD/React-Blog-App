@@ -35,7 +35,7 @@ function App()
     })
     .then((data)=>{
     setUsers(data);
-    // console.log(data);
+    // setCurrentUser(JSON.parse(localStorage.setItem("currentUser")));
     })
 
     setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));

@@ -6,7 +6,10 @@
       "password": "123",
       "id": "user-4499347254",
       "likes": [],
-      "dislikes": []
+      "dislikes": [],
+      "savedPosts": [
+        "post-1432977528"
+      ]
     }
   ],
   "posts": [
