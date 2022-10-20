@@ -21,9 +21,7 @@ function Header({currentUser, setCurrentUser})
 
     return (
         <header className="navbar flex-row">
-            <div>
-              <Link to="/" className="navbar-logo">BLOG APP</Link>
-            </div>
+              <Link to="/" className="navbar-logo">BLOGGEST</Link>
             {
               currentUser ? 
               <div className="navbar-options-loggedin flex-row">

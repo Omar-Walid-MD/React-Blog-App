@@ -6,12 +6,13 @@
       "password": "123",
       "id": "user-4499347254",
       "likes": [
-        "post-1432977528"
-      ],
-      "dislikes": [
+        "post-1432977528",
         "post-2364728155"
       ],
-      "savedPosts": []
+      "dislikes": [],
+      "savedPosts": [
+        "post-2364728155"
+      ]
     }
   ],
   "posts": [
@@ -37,10 +38,11 @@
       "title": "Paragraph test",
       "body": "Paragraph 1\n\nParagraph 2\n\nParagraph 3",
       "id": "post-2364728155",
-      "likes": 0,
-      "dislikes": 1,
+      "likes": 1,
+      "dislikes": 0,
       "user": "OmarWalid",
-      "date": 1666042687823
+      "date": 1666042687823,
+      "type": "post"
     }
   ],
   "comments": [

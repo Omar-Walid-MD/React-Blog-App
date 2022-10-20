@@ -44,18 +44,22 @@
 {
     color: white;
 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
     font-size: 30pt;
-    font-weight: 500;
+    font-weight: 900;
     text-decoration: none;
 
-    text-align: right;
+    text-align: center;
+
+    text-shadow: 0 5px 10px rgb(26, 28, 82);
 
     transition: all 0.2s ease-in;
     
 }
 .navbar-logo:hover
 {
-    font-size: 32pt;
+    transform: scale(1.1);
     color: lightsteelblue;
 }
 .navbar-options
@@ -166,7 +170,9 @@
 {
     width: 100%; min-height: 100vh;
 
-    background-color: lightsteelblue;
+    /* background-color: lightsteelblue; */
+    background: linear-gradient(rgb(199, 210, 224),rgb(135, 173, 223));
+    background-attachment: fixed;
 
     padding-top: 80px;
 }
@@ -319,12 +325,12 @@
 }
 .voting-button[vote="like"]
 {
-    color: deepskyblue;
+    color: red;
 }
 
 .voting-button[vote="dislike"]
 {
-    color: red;
+    color: deepskyblue;
 }
 
 .comment-button
