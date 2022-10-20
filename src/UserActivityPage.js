@@ -6,6 +6,23 @@ import Comment from "./Comment";
 import './MainPage.css';
 import "./UserActivityPage.css"
 
+
+function UserComment({posts, comment})
+{
+  const linkPost = (posts.filter((post)=>post.id===comment.post)[0]);
+
+  return (
+    <div className="activity-page-comment-container">
+      <Link to={"/post/"+linkPost.id} className="activity-page-comment-link">
+        <p className="activity-page-comment-info">By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
+        <p className="activity-page-comment-post">On "{linkPost.title}"</p>
+        <p className="activity-page-comment-text">{comment.text}</p>
+      </Link> 
+    </div>
+  )
+}
+
+
 function UserActivityPage({posts, currentUser, setCurrentUser})
 {
 
@@ -68,9 +85,9 @@ function UserActivityPage({posts, currentUser, setCurrentUser})
               </div>
               <div className="activity-page-content-container">
               {
-                posts && SortContent(GetContent(currentTab)).map((content)=>
+                comments && posts && SortContent(GetContent(currentTab)).map((content)=>
                  
-                   content.type==="post" ? <Post post={content} key={content.id} /> : content.type==="comment" && <Comment comment={content} key={content.id}/>
+                   content.type==="post" ? <Post post={content} key={content.id} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id}/>
                  
                  )
               }

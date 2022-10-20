@@ -53,3 +53,39 @@
 {
     width: 100%;
 }
+
+.activity-page-comment-container
+{
+
+    color: white;
+    background-color: rebeccapurple;
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    
+    padding: 5px 20px;
+
+    margin-top: 30px;
+}
+.activity-page-comment-link
+{
+    color: white;
+
+    text-decoration: none;
+}
+.activity-page-comment-info
+{
+    color: plum;
+    font-size: 10pt;
+}
+.activity-page-comment-post
+{
+    color: plum;
+    font-size: 13pt;
+    font-weight: 600;
+}
+.activity-page-comment-text
+{
+    font-size: 15pt;
+    font-weight: 500;
+}
