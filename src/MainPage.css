@@ -40,9 +40,19 @@
     z-index: 2;
 
 }
+
+@keyframes navbar-logo-hover {
+
+    0% {color: lightsteelblue;}
+
+    50% {color: rgb(226, 239, 255);}
+
+    100% {color: lightsteelblue;}
+    
+}
 .navbar-logo
 {
-    color: white;
+    color: lightsteelblue;
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
@@ -55,12 +65,16 @@
     text-shadow: 0 5px 10px rgb(26, 28, 82);
 
     transition: all 0.2s ease-in;
+
     
 }
 .navbar-logo:hover
 {
     transform: scale(1.1);
     color: lightsteelblue;
+
+    animation: navbar-logo-hover 0.5s 0.2s ease-in-out forwards;
+
 }
 .navbar-options
 {
@@ -379,3 +393,10 @@
 {
     color: lime;
 }
+
+
+
+
+
+
+

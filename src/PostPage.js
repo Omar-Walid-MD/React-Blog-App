@@ -48,7 +48,9 @@ function PostPage({currentUser,setCurrentUser})
                 text: newComment,
                 user: currentUser.username,
                 post: postId,
-                date: Date.now()
+                date: Date.now(),
+                likes: 0,
+                dislikes: 0
             }
 
             fetch('http://localhost:8000/comments',{
@@ -58,6 +60,7 @@ function PostPage({currentUser,setCurrentUser})
             }).then(()=>{
                 console.log("New Comment Added.");
                 setNewComment("");
+                setComments(prev => [...prev,commentToAdd]);
             })
         }
     }
@@ -306,7 +309,7 @@ function PostPage({currentUser,setCurrentUser})
                             <div className="post-page-comments-section">
                                 {
                                     comments && comments.map((comment)=>
-                                    <Comment comment={comment} key={comment.id} commentRef={SetTargetComment(targetCommentId,comment.id)} />
+                                    <Comment comment={comment} key={comment.id} commentRef={SetTargetComment(targetCommentId,comment.id)} currentUser={currentUser} setCurrentUser={setCurrentUser} />
                                     )
                                 }
                             </div>

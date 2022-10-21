@@ -7,9 +7,13 @@
       "id": "user-4499347254",
       "likes": [
         "post-1432977528",
-        "post-2364728155"
+        "post-2364728155",
+        "comment-2935444123"
       ],
-      "dislikes": [],
+      "dislikes": [
+        "comment-6624387775",
+        "comment-1146522483"
+      ],
       "savedPosts": [
         "post-2364728155"
       ]
@@ -51,14 +55,27 @@
       "text": "This is my first comment",
       "date": 1666120127115,
       "id": "comment-6624387775",
-      "post": "post-2364728155"
+      "post": "post-2364728155",
+      "likes": 0,
+      "dislikes": 1
     },
     {
       "id": "comment-2935444123",
       "text": "Another comment for testing",
       "user": "OmarWalid",
       "post": "post-2364728155",
-      "date": 1666120476333
+      "date": 1666120476333,
+      "likes": 1,
+      "dislikes": 0
+    },
+    {
+      "id": "comment-1146522483",
+      "text": "Lemme try again",
+      "user": "OmarWalid",
+      "post": "post-2364728155",
+      "date": 1666361646422,
+      "likes": 0,
+      "dislikes": 1
     }
   ]
 }

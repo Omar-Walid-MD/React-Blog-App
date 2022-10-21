@@ -204,6 +204,7 @@
 
 .post-page-comment-container
 {
+    min-width: 500px;
 
     color: white;
     background-color: rgb(72, 37, 107);
@@ -224,4 +225,106 @@
 {
     font-size: 15pt;
     font-weight: 500;
+}
+
+
+.comment-bottom-bar
+{
+    width: 100%; height: 30px;
+
+    background-color: rgb(72, 37, 107);
+
+}
+.comment-options
+{
+    width: 350px;
+
+}
+.comment-votes-container
+{
+    width: 40%;
+
+    padding-right: 10px;
+}
+
+.comment-voting-button
+{
+    font-size: 15pt;
+
+    color: white;
+    background-color: transparent;
+
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+
+    transition: transform 0.1s ease-in-out ;
+    
+}
+.comment-voting-button:hover
+{
+    transform: scale(1.25);
+}
+.voting-icon
+{
+    font-size: 20pt;
+    margin-right: 5px;
+
+}
+.comment-voting-button[vote="like"]
+{
+    color: red;
+}
+
+.comment-voting-button[vote="dislike"]
+{
+    color: deepskyblue;
+}
+
+.comment-reply-button
+{
+    font-size: 15pt;
+
+    color: white;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: transform 0.1s ease-in-out ;
+
+    margin-bottom: 5px;
+    
+}
+.comment-reply-button:hover
+{
+    transform: scale(1.25);
+}
+.comment-icon
+{
+    font-size: 20pt;
+    margin: 5px 5px 0 0;
+}
+.comment-save-button
+{
+    font-size: 15pt;
+
+    color: white;
+    background-color: transparent;
+
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+
+    transition: transform 0.1s ease-in-out ;
+    
+}
+.comment-save-button:hover
+{
+    transform: scale(1.25);
+}
+.comment-save-button[saved="true"]
+{
+    color: lime;
 }
