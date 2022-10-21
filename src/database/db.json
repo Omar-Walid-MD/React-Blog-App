@@ -6,17 +6,14 @@
       "password": "123",
       "id": "user-4499347254",
       "likes": [
-        "post-1432977528",
-        "post-2364728155",
-        "comment-2935444123"
+        "post-1432977528"
       ],
       "dislikes": [
         "comment-6624387775",
-        "comment-1146522483"
+        "comment-1146522483",
+        "comment-2935444123"
       ],
-      "savedPosts": [
-        "post-2364728155"
-      ]
+      "savedPosts": []
     }
   ],
   "posts": [
@@ -42,8 +39,8 @@
       "title": "Paragraph test",
       "body": "Paragraph 1\n\nParagraph 2\n\nParagraph 3",
       "id": "post-2364728155",
-      "likes": 1,
-      "dislikes": 0,
+      "likes": 4,
+      "dislikes": 3,
       "user": "OmarWalid",
       "date": 1666042687823,
       "type": "post"
@@ -65,8 +62,8 @@
       "user": "OmarWalid",
       "post": "post-2364728155",
       "date": 1666120476333,
-      "likes": 1,
-      "dislikes": 0
+      "likes": 0,
+      "dislikes": 1
     },
     {
       "id": "comment-1146522483",

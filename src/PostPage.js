@@ -31,6 +31,8 @@ function PostPage({currentUser,setCurrentUser})
 
     const [comments,setComments] = useState([]);
 
+    const [saved,setSaved] = useState();
+
     function handleComment(event)
     {
         setNewComment(event.target.value);
@@ -193,7 +195,37 @@ function PostPage({currentUser,setCurrentUser})
 
     }
 
-    function CheckUserVote(post)
+    function handleSave()
+  {
+    console.log("yea");
+    setSaved(prev => !prev);
+
+    let updatedUser = currentUser;
+
+    if(updatedUser.savedPosts.includes(post.id))
+    {
+      updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==post.id);
+    }
+    else
+    {
+      updatedUser.savedPosts = [...updatedUser.savedPosts,post.id];
+    }
+
+    axios.put('http://localhost:8000/users/'+updatedUser.id,
+      updatedUser
+    )
+    .then(resp =>{
+        console.log("Updated User Saved Posts");
+        localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+        setCurrentUser(updatedUser);
+    }).catch(error => {
+        console.log(error);
+    });
+
+
+  }
+
+    function CheckUserVote()
     {
         if(currentUser)
         {
@@ -268,6 +300,16 @@ function PostPage({currentUser,setCurrentUser})
     },[postId]);
 
     useEffect(()=>{
+        if(post) 
+        {
+            setVoteState(CheckUserVote());
+            setSaved(currentUser.savedPosts.includes(post.id));
+        }
+
+    },[post])
+
+
+    useEffect(()=>{
         if(targetComment.current) ScrollToComment();
     },[targetComment.current]);
 
@@ -289,9 +331,10 @@ function PostPage({currentUser,setCurrentUser})
                         <div className="post-page-post-bottom-bar flex-row">
                             <div className="post-page-post-options flex-row">
                                 <div className="post-votes-container flex-row">
-                                <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
-                                <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
+                                    <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
+                                    <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                                 </div>
+                                <button className="save-button flex-row" saved={saved ? "true" : "false"}  onClick={handleSave}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
                             </div>
                         </div>
                         <div className="post-page-comments-section-container">
@@ -299,7 +342,7 @@ function PostPage({currentUser,setCurrentUser})
                                 currentUser ?
                                 <form className="post-page-write-comment-form flex-column" onSubmit={submitComment}>
                                     <textarea className="post-page-write-comment-input" placeholder="Write your comment..." value={newComment} onChange={handleComment}></textarea>
-                                    <input className="post-page-write-comment-submit" type="submit" />
+                                    <input className="post-page-write-comment-submit" type="submit" value="Comment" />
                                 </form>
                                 :
                                 <div className="post-page-comment-logged-out-warning">
