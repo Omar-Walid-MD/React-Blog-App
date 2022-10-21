@@ -1,23 +1,220 @@
-import {useState, useEffect} from "react"
-import { Link } from "react-router-dom";
+import {useState, useEffect, useRef} from "react"
+import { Link, useParams, useLocation } from "react-router-dom";
+import axios from 'axios';
+
 import Header from "./Header";
 import Post from "./Post";
 import Comment from "./Comment";
+
+import "./PostPage.css"
 import './MainPage.css';
 import "./UserActivityPage.css"
 
 
-function UserComment({posts, comment})
+function UserComment({posts, comment, currentUser, setCurrentUser})
 {
   const linkPost = (posts.filter((post)=>post.id===comment.post)[0]);
 
+  const [voteState,setVoteState] = useState(CheckUserVote());
+  const [likes,setLikes] = useState(comment.likes);
+  const [dislikes,setDislikes] = useState(comment.dislikes);
+
+  const [saved,setSaved] = useState(currentUser.savedPosts.includes(comment.id));
+
+  function handleVote(newVoteState)
+  {
+      if(currentUser)
+      {
+
+          let newLikes = likes;
+          let newDislikes = dislikes;
+          
+          if(newVoteState===voteState)
+          {
+              setVoteState("none");
+              if(newVoteState==="like")
+              {
+                  setLikes(l => l - 1);
+                  newLikes--;
+              }
+              if(voteState==="dislike")
+              {
+                  setDislikes(l => l - 1);
+                  newDislikes--;
+              }
+          }
+          else
+          {
+              if(newVoteState==="like")
+              {
+                  if(voteState==="dislike")
+                  {
+                      setDislikes(l => l - 1);
+                      newDislikes--;
+                  }
+                  setVoteState("like");
+                  setLikes(l => l + 1);
+                  newLikes++;
+              }
+              else if(newVoteState==="dislike")
+              {
+                  if(voteState==="like")
+                  {
+                      setLikes(l => l - 1);
+                      newLikes--;
+                  }
+                  setVoteState("dislike");
+                  setDislikes(l => l + 1);
+                  newDislikes++;
+              }
+      
+          }
+      
+          let updatedComment = {
+              ...comment,
+              likes: newLikes,
+              dislikes: newDislikes,
+          }
+      
+          // const axios = require('axios');
+      
+          axios.put('http://localhost:8000/comments/'+updatedComment.id,
+              updatedComment
+          )
+          .then(resp =>{
+              console.log("Updated Comment likes");
+          }).catch(error => {
+              console.log(error);
+          });
+      
+          let updatedUser = currentUser;
+      
+      
+          if(newVoteState===voteState)
+          {
+              if(updatedUser.dislikes.includes(comment.id))
+              {
+                  updatedUser.dislikes = currentUser.dislikes.filter((disliked)=>disliked!==comment.id)
+              }
+      
+              if(updatedUser.likes.includes(comment.id))
+              {
+                  updatedUser.likes = currentUser.likes.filter((liked)=>liked!==comment.id);
+              }
+      
+          }
+          else
+          {
+              if(newVoteState==="like")
+              {
+                  console.log("changed")
+              
+                  if(updatedUser.dislikes.includes(comment.id))
+                  {
+                      updatedUser.dislikes = currentUser.dislikes.filter((dislikedPost)=>dislikedPost!==comment.id)
+                  }
+                  updatedUser.likes = newVoteState==="like" ?  [...updatedUser.likes,comment.id] : updatedUser.likes;
+              }
+              else if(newVoteState==="dislike")
+              {
+                  if(updatedUser.likes.includes(comment.id))
+                  {
+                      updatedUser.likes = currentUser.likes.filter((likedPost)=>likedPost!==comment.id)
+                  }
+                  updatedUser.dislikes = newVoteState==="dislike" ?  [...updatedUser.dislikes,comment.id] : updatedUser.dislikes;
+          
+              }
+          }
+      
+          // updatedUser.likes = [];
+          // updatedUser.dislikes = [];
+      
+      
+          axios.put('http://localhost:8000/users/'+updatedUser.id,
+              updatedUser
+          )
+          .then(resp =>{
+              console.log("Updated User Votes");
+              localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+              setCurrentUser(updatedUser);
+          }).catch(error => {
+              console.log(error);
+          });
+      }
+      else
+      {
+          console.log("Must be logged in to vote!");
+      }
+
+  }
+
+  function handleSave()
+{
+  console.log("yea");
+  setSaved(prev => !prev);
+
+  let updatedUser = currentUser;
+
+  if(updatedUser.savedPosts.includes(comment.id))
+  {
+    updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==comment.id);
+  }
+  else
+  {
+    updatedUser.savedPosts = [...updatedUser.savedPosts,comment.id];
+  }
+
+  axios.put('http://localhost:8000/users/'+updatedUser.id,
+    updatedUser
+  )
+  .then(resp =>{
+      console.log("Updated User Saved Posts");
+      localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+      setCurrentUser(updatedUser);
+  }).catch(error => {
+      console.log(error);
+  });
+
+}
+
+
+  function CheckUserVote()
+  {
+      if(currentUser)
+      {
+          let result = "";
+          if(currentUser.likes.includes(comment.id)) result = "like";
+          else if(currentUser.dislikes.includes(comment.id)) result = "dislike";
+          else result = "none";
+
+          return result;
+      }
+      else
+      {
+          return "none";
+      }
+      
+  }
+
   return (
     <div className="activity-page-comment-container">
-      <Link to={"/post/"+linkPost.id} state={{targetCommentId: comment.id}} className="activity-page-comment-link">
-        <p className="activity-page-comment-info">By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
-        <p className="activity-page-comment-post">On "{linkPost.title}"</p>
-        <p className="activity-page-comment-text">{comment.text}</p>
-      </Link> 
+      <div className="activity-page-comment-link-padding">
+        <Link to={"/post/"+linkPost.id} state={{targetCommentId: comment.id}} className="activity-page-comment-link">
+          <p className="activity-page-comment-info">By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
+          <p className="activity-page-comment-post">On "{linkPost.title}"</p>
+          <p className="activity-page-comment-text">{comment.text}</p>
+        </Link>
+      </div>
+      <div className="activity-page-comment-bottom-bar flex-row">
+        <div className="comment-options flex-row">
+        <div className="comment-votes-container flex-row">
+            <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
+            <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
+        </div>
+        <Link to={"/post/"} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>Reply</Link>
+        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"}  onClick={handleSave}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+        </div>
+      </div> 
     </div>
   )
 }
@@ -88,7 +285,7 @@ function SavedPage({posts, currentUser, setCurrentUser})
               {
                 comments && posts && SortContent(GetContent(currentTab)).map((content)=>
                  
-                   content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id}/>
+                   content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                  )
               }
               </div>

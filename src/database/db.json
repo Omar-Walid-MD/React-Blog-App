@@ -6,14 +6,19 @@
       "password": "123",
       "id": "user-4499347254",
       "likes": [
-        "post-1432977528"
+        "post-1432977528",
+        "post-2364728155",
+        "post-6423576815"
       ],
       "dislikes": [
         "comment-6624387775",
         "comment-1146522483",
         "comment-2935444123"
       ],
-      "savedPosts": []
+      "savedPosts": [
+        "post-2364728155",
+        "comment-2935444123"
+      ]
     }
   ],
   "posts": [
@@ -21,10 +26,11 @@
       "title": "Another test",
       "body": "I am testing the username feature!",
       "id": "post-6423576815",
-      "likes": 0,
+      "likes": 1,
       "dislikes": 0,
       "user": "OmarWalid",
-      "date": 1665947406288
+      "date": 1665947406288,
+      "type": "post"
     },
     {
       "title": "Long post",
@@ -39,7 +45,7 @@
       "title": "Paragraph test",
       "body": "Paragraph 1\n\nParagraph 2\n\nParagraph 3",
       "id": "post-2364728155",
-      "likes": 4,
+      "likes": 5,
       "dislikes": 3,
       "user": "OmarWalid",
       "date": 1666042687823,
@@ -63,7 +69,8 @@
       "post": "post-2364728155",
       "date": 1666120476333,
       "likes": 0,
-      "dislikes": 1
+      "dislikes": 1,
+      "type": "comment"
     },
     {
       "id": "comment-1146522483",

@@ -227,7 +227,7 @@ function PostPage({currentUser,setCurrentUser})
 
     function CheckUserVote()
     {
-        if(currentUser)
+        if(currentUser && post)
         {
             let result = "";
             if(currentUser.likes.includes(post.id)) result = "like";
