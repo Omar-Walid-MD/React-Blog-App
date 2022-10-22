@@ -220,7 +220,7 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
 }
 
 
-function SavedPage({posts, currentUser, setCurrentUser})
+function SavedPage({posts, topics, currentUser, setCurrentUser})
 {
 
     const [currentTab,setCurrentTab] = useState("overview");
@@ -273,7 +273,7 @@ function SavedPage({posts, currentUser, setCurrentUser})
 
     return (
         <div className="main-page">
-          <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <Header topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
           <div className="page-container flex-center">
             <div className="main-column flex-column">
               <div className="activity-page-option-row flex-row">

@@ -8,6 +8,7 @@ import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
 import UserActivityPage from "./UserActivityPage";
 import SavedPage from "./SavedPage";
+import CreateTopicPage from "./CreateTopicPage";
 
 
 
@@ -15,8 +16,10 @@ function App()
 {
   const navigate = useLocation();
 
-  const [posts,setPosts] = useState(null);
   const [users,setUsers] = useState(null);
+  const [topics,setTopics] = useState(null);
+  const [posts,setPosts] = useState(null);
+
   const [currentUser,setCurrentUser] = useState(null);
 
   useEffect(()=>{
@@ -36,10 +39,23 @@ function App()
     })
     .then((data)=>{
     setUsers(data);
-    // setCurrentUser(JSON.parse(localStorage.setItem("currentUser")));
+
+    //Reset user from database if there are manually added changes
+    // localStorage.setItem("currentUser", JSON.stringify(data.filter((user)=>user.id==="user-4499347254")));
+    })
+
+    fetch('http://localhost:8000/topics')
+    .then(res => {
+      return res.json()
+    })
+    .then((data)=>{
+    setTopics(data);
     })
 
     setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
+
+    
+
 
     console.log("reload");
 
@@ -49,15 +65,18 @@ function App()
 
   return (
     <Routes>
-      <Route path="/" element={<MainPage posts={posts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-      <Route path="/write" element={<WritePage handlePostList={setPosts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-      <Route path="/post/:id" element={<PostPage posts={posts}  currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/" element={<MainPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/write" element={<WritePage topics={topics} handlePostList={setPosts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/post/:id" element={<PostPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+
+      <Route path="/new-topic" element={<CreateTopicPage currentUser={currentUser} topics={topics} setCurrentUser={setCurrentUser} topics={topics} setTopics={setTopics} />} />
+      <Route path="/topic/:id" element={<MainPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
 
       <Route path="/register" element={<RegisterPage handleUserList={setUsers} handleUser={setCurrentUser} />} />
       <Route path="/login" element={<LoginPage userList={users} handleUser={setCurrentUser} />} />
 
-      <Route path="/activity" element={<UserActivityPage posts={posts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-      <Route path="/saved" element={<SavedPage posts={posts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/activity" element={<UserActivityPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/saved" element={<SavedPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
     </Routes>
     
   );

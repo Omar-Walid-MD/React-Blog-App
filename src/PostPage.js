@@ -8,7 +8,7 @@ import Comment from "./Comment";
 import './MainPage.css';
 import "./PostPage.css";
 
-function PostPage({currentUser,setCurrentUser})
+function PostPage({topics, currentUser,setCurrentUser})
 {
 
     let postId = useParams().id;
@@ -336,7 +336,7 @@ function PostPage({currentUser,setCurrentUser})
 
     return (
         <div className="main-page">
-          <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <Header topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
           <div className="page-container flex-center">
             {
                 post &&

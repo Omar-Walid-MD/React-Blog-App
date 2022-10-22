@@ -5,6 +5,10 @@
       "email": "omar.madinah49@yahoo.com",
       "password": "123",
       "id": "user-4499347254",
+      "subbedTopics": [
+        "topic-9186347593",
+        "topic-9943383413"
+      ],
       "likes": [
         "post-1432977528",
         "post-6423576815"
@@ -24,146 +28,66 @@
       ]
     }
   ],
-  "posts": [
+  "topics": [
     {
-      "title": "Another test",
-      "body": "I am testing the username feature!",
-      "id": "post-6423576815",
-      "likes": 1,
-      "dislikes": 0,
-      "user": "OmarWalid",
-      "date": 1665947406288,
-      "type": "post"
+      "title": "React Development",
+      "description": "This is a test topic where we discuss React and showcase our work!",
+      "id": "topic-9186347593",
+      "posts": [],
+      "members": 0,
+      "date": 1666467538107
     },
     {
-      "title": "Long post",
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n",
-      "id": "post-1432977528",
-      "likes": 1,
-      "dislikes": 0,
-      "user": "OmarWalid",
-      "date": 1666041485374
+      "title": "College",
+      "description": "Here we discuss a wide variety of matters regarding college life and struggles.",
+      "id": "topic-9943383413",
+      "posts": [],
+      "members": 0,
+      "date": 1666469894764
     },
     {
-      "title": "Paragraph test",
-      "body": "Paragraph 1\n\nParagraph 2\n\nParagraph 3",
-      "id": "post-2364728155",
-      "likes": 4,
-      "dislikes": 4,
-      "user": "OmarWalid",
-      "date": 1666042687823
+      "title": "Cats",
+      "description": "Do you love cats? ",
+      "id": "topic-6491331964",
+      "posts": [],
+      "members": 0,
+      "date": 1666471200585
     }
   ],
-  "comments": [
+  "posts": [
     {
-      "user": "OmarWalid",
-      "text": "This is my first comment",
-      "date": 1666120127115,
-      "id": "comment-6624387775",
-      "post": "post-2364728155",
-      "likes": 0,
-      "dislikes": 1,
-      "parentComment": "none"
-    },
-    {
-      "id": "comment-2935444123",
-      "text": "Another comment for testing",
-      "user": "OmarWalid",
-      "post": "post-2364728155",
-      "date": 1666120476333,
-      "likes": 0,
-      "dislikes": 1,
-      "parentComment": "none"
-    },
-    {
-      "id": "comment-1146522483",
-      "text": "Lemme try again",
-      "user": "OmarWalid",
-      "post": "post-2364728155",
-      "date": 1666361646422,
-      "likes": 0,
-      "dislikes": 1,
-      "parentComment": "none"
-    },
-    {
-      "id": "comment-7761549247",
-      "text": "My first reply ever!",
-      "user": "OmarWalid",
-      "post": "post-2364728155",
-      "date": 1666370320733,
-      "likes": 1,
-      "dislikes": 1,
-      "parentComment": "comment-6624387775"
-    },
-    {
-      "id": "comment-8291228199",
-      "text": "New Reply",
-      "user": "OmarWalid",
-      "post": "post-2364728155",
-      "date": 1666373869251,
+      "title": "First post on new topic",
+      "body": "This is the first post of the React discussion",
+      "topic": "topic-9186347593",
+      "id": "post-6629843829",
       "likes": 0,
       "dislikes": 0,
-      "parentComment": "comment-6624387775"
+      "user": "OmarWalid",
+      "comments": [],
+      "date": 1666469790686
     },
     {
-      "id": "comment-7372929481",
-      "text": "LONG REPLY HERE WE GOLONG REPLY HERE WE GOLONG REPLY HERE WE GOLONG REPLY HERE WE GOLONG REPLY HERE WE GOLONG REPLY HERE WE GOLONG REPLY HERE WE GO",
-      "user": "OmarWalid",
-      "post": "post-2364728155",
-      "date": 1666376991150,
+      "title": "First post on college",
+      "body": "I have a report I need to do after I finish this",
+      "topic": "topic-9943383413",
+      "id": "post-9512697362",
       "likes": 0,
       "dislikes": 0,
-      "parentComment": "comment-6624387775"
+      "user": "OmarWalid",
+      "comments": [],
+      "date": 1666469930849
     },
     {
-      "id": "comment-6446397871",
-      "text": "trying again\n",
-      "user": "OmarWalid",
-      "post": "post-2364728155",
-      "date": 1666388642629,
+      "title": "I love cats",
+      "body": "yea",
+      "topic": "topic-6491331964",
+      "id": "post-6843895235",
       "likes": 0,
       "dislikes": 0,
-      "parentComment": "comment-6624387775"
-    },
-    {
-      "id": "comment-7258922351",
-      "text": "Test Reply",
       "user": "OmarWalid",
-      "post": "post-2364728155",
-      "date": 1666425459243,
-      "likes": 0,
-      "dislikes": 0,
-      "parentComment": "comment-6624387775"
-    },
-    {
-      "id": "comment-1254946177",
-      "text": "weird",
-      "user": "OmarWalid",
-      "post": "post-2364728155",
-      "date": 1666425467653,
-      "likes": 0,
-      "dislikes": 0,
-      "parentComment": "comment-6624387775"
-    },
-    {
-      "id": "comment-1524237171",
-      "text": "Weird",
-      "user": "OmarWalid",
-      "post": "post-2364728155",
-      "date": 1666425476453,
-      "likes": 0,
-      "dislikes": 0,
-      "parentComment": "comment-6624387775"
-    },
-    {
-      "id": "comment-7378843647",
-      "text": "Paragraph Reply\n\nParagraph Reply\n",
-      "user": "OmarWalid",
-      "post": "post-2364728155",
-      "date": 1666438821805,
-      "likes": 0,
-      "dislikes": 1,
-      "parentComment": "comment-6624387775"
+      "comments": [],
+      "date": 1666471217943
     }
-  ]
+  ],
+  "comments": []
 }

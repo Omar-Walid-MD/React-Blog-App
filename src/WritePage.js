@@ -3,17 +3,17 @@ import { useNavigate, Link } from 'react-router-dom';
 import Header from "./Header"
 import "./WritePage.css"
 
-function WritePage({handlePostList, currentUser})
+function WritePage({handlePostList, topics, currentUser, setCurrentUser})
 {
     const navigate = useNavigate();
 
     const [newPost,setNewPost] = useState({
         title: "",
         body: "",
+        topic: "",
         
     });
     
-
     function handlePost(event)
     {
         setNewPost({
@@ -21,35 +21,42 @@ function WritePage({handlePostList, currentUser})
             [event.target.name]: event.target.value
         })
 
-        console.log("title:"+newPost.title);
-        console.log("body:"+newPost.body);
+        console.log(newPost);
     }
 
     function submitPost(e)
     {
         e.preventDefault();
 
-        let postToAdd = {
-            ...newPost,
-            id: "post-" + makeId(10),
-            likes: 0,
-            dislikes: 0,
-            user: currentUser.username,
-            comments: [],
-            date: Date.now()
+        if(newPost.topic!=="")
+        {
+            let postToAdd = {
+                ...newPost,
+                id: "post-" + makeId(10),
+                likes: 0,
+                dislikes: 0,
+                user: currentUser.username,
+                comments: [],
+                date: Date.now()
+            }
+    
+            fetch('http://localhost:8000/posts',{
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(postToAdd)
+            }).then(()=>{
+                console.log("New Post Added.");
+                handlePostList(prevList => [...prevList,postToAdd])
+            })
+    
+            navigate("/");
+            return
+        }
+        else
+        {
+            console.log("Topic invalid")
         }
 
-        fetch('http://localhost:8000/posts',{
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(postToAdd)
-        }).then(()=>{
-            console.log("New Post Added.");
-            handlePostList(prevList => [...prevList,postToAdd])
-        })
-
-        navigate("/");
-        return
     }
 
 
@@ -65,13 +72,22 @@ function WritePage({handlePostList, currentUser})
 
     return (
         <div className="main-page">
-            <Header currentUser={currentUser} />
+        <Header topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
             <div className="page-container flex-center">
                 <div className="main-column flex-column">
                     <form className="post-write-form-container flex-column" onSubmit={submitPost}>
                         <h1 className="post-write-form-label">Write a post</h1>
                         <div className="post-write-form-input-group">
                             <input className="post-write-form-title-input" type="text" name="title" placeholder="Enter Title" onChange={handlePost} />
+                            <h2>Post at:</h2>
+                            <select name="topic" onChange={handlePost}>
+                                <option value={""}>None</option>
+                                {
+                                    topics && topics.map((topic)=>
+                                    <option value={topic.id} key={topic.id}>{topic.title}</option>
+                                    )
+                                }
+                            </select>
                             <textarea className="post-write-form-body-input" name="body" onChange={handlePost} placeholder="Enter Body"></textarea>
                         </div>
                         <div className="post-write-form-submit-container">

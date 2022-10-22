@@ -112,8 +112,6 @@
     position: absolute;
     top: calc(100%);
 
-    display: none;
-
     overflow: hidden;
 }
 .navbar-search-input:focus +.navbar-search-dropdown
@@ -124,7 +122,10 @@
 {
     padding: 10px;
 }
-
+.topic-results-empty
+{
+    text-align: center;
+}
 .topic-result-container
 {
     color: white;

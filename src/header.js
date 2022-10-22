@@ -2,23 +2,8 @@
 import { useEffect, useState } from "react";
 import {Link} from "react-router-dom";
 
-function Header({currentUser, setCurrentUser})
+function Header({topics, currentUser, setCurrentUser})
 {
-
-  let topicList = [
-    {
-      title: "Web development",
-      members: 125
-    },
-    {
-      title: "College",
-      members: 900
-    },
-    {
-      title: "Cats",
-      members: 1200
-    }
-  ]
 
   const [searchValue,setSearchValue] = useState("");
 
@@ -30,7 +15,7 @@ function Header({currentUser, setCurrentUser})
 
   function GetSearchResults(searchValue)
   {
-    return topicList.filter((topic)=>topic.title.toLowerCase().includes(searchValue.toLowerCase()));
+    return topics.filter((topic)=>topic.title.toLowerCase().includes(searchValue.toLowerCase()));
   }
 
   function LogOut(e)
@@ -44,7 +29,7 @@ function Header({currentUser, setCurrentUser})
   }
 
   useEffect(()=>{
-    // console.log(currentUser)
+    setSearchValue("");
   },[])
 
     return (
@@ -52,28 +37,31 @@ function Header({currentUser, setCurrentUser})
             <Link to="/" className="navbar-logo">BLOGGEST</Link>
             <div className="navbar-search-container flex-center">
               <input className="navbar-search-input" type="search" placeholder="Search for topics..." value={searchValue} onChange={handleSearchValue} />
-              <div className="navbar-search-dropdown">
-                <div className="navbar-search-results">
+              
+                
                   {
-                    searchValue!=="" ? (GetSearchResults(searchValue).length > 0) ?
+                    searchValue!=="" &&
+                    <div className="navbar-search-dropdown">
+                      <div className="navbar-search-results">
+                        {
+                          GetSearchResults(searchValue).length > 0 ?
 
-                    GetSearchResults(searchValue).map((searchResult)=>
-                    <Link className="topic-result-container flex-column">
-                      <h2 className="topic-result-title">{searchResult.title}</h2>
-                      <p className="topic-result-members">{searchResult.members} Members</p>
-                    </Link>
-                    )
-                    : <h1>No results for "{searchValue}"</h1>
-                    : null
-
-                    
+                          GetSearchResults(searchValue).map((searchResult)=>
+                          <Link to={"/topic/"+searchResult.id} className="topic-result-container flex-column">
+                            <h2 className="topic-result-title">{searchResult.title}</h2>
+                            <p className="topic-result-members">{searchResult.members} Members</p>
+                          </Link>
+                          )
+                          : <h1 className="topic-results-empty">No results for "{searchValue}"</h1>
+                        }
+                      </div>
+                      <div className="navbar-create-topic-tab-container">
+                        <Link to={"/new-topic"} className="navbar-create-topic-link flex-row"><div className="navbar-create-topic-circle flex-center"><i className='bx bx-plus-medical add-icon'></i></div>Create New Topic</Link>
+                      </div>
+                  </div>
                   }
-                </div>
-                <div className="navbar-create-topic-tab-container">
-                  <Link className="navbar-create-topic-link flex-row"><div className="navbar-create-topic-circle flex-center"><i className='bx bx-plus-medical add-icon'></i></div>Create New Topic</Link>
-                </div>
+                
               </div>
-            </div>
           {
             currentUser ? 
             <div className="navbar-options-loggedin flex-row">
