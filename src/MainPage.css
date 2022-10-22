@@ -71,7 +71,6 @@
 
     transition: all 0.2s ease-in;
 
-    
 }
 .navbar-logo:hover
 {
@@ -79,7 +78,127 @@
     color: lightsteelblue;
 
     animation: navbar-logo-hover 0.5s 0.2s ease-in-out forwards;
+}
+.navbar-search-container
+{
+    width: 50%; height: 100%;
 
+    position: relative;
+}
+.navbar-search-input
+{
+    width: 100%;
+    height: 40px;
+
+    font-size: 15pt;
+
+    padding: 5px;
+
+    border-radius: 10px;
+
+    border: none;
+    outline: none;
+}
+.navbar-search-dropdown
+{
+    width: 100%;
+
+    background-color: darkslateblue;
+
+    border-radius: 0 0 20px 20px;
+
+    box-shadow: 0 20px 15px 10px rgba(0, 0, 0, 0.6);
+
+    position: absolute;
+    top: calc(100%);
+
+    display: none;
+
+    overflow: hidden;
+}
+.navbar-search-input:focus +.navbar-search-dropdown
+{
+    display: block;
+}
+.navbar-search-results
+{
+    padding: 10px;
+}
+
+.topic-result-container
+{
+    color: white;
+    background-color: rgb(86, 74, 161);
+
+    text-decoration: none;
+
+    border-bottom: solid 5px lightsteelblue;
+    border-radius: 10px;
+
+    padding: 10px;
+    margin: 5px 0;
+
+    align-items: flex-start;
+
+    transition: all 0.1s ease-in-out;
+}
+.topic-result-container:hover
+{
+    background-color: rgba(176, 196, 222, 0.5);
+}
+.topic-result-title
+{
+    margin: 0;
+}
+.topic-result-members
+{
+    margin: 0;
+}
+
+.navbar-create-topic-tab-container
+{
+    background-color: rebeccapurple;
+    padding: 20px;
+}
+.navbar-create-topic-link
+{
+    width: fit-content;
+
+    color: white;
+    
+    font-size: 15pt;
+    text-decoration: none;
+
+    transition: all 0.1s ease-in-out;
+    
+}
+.navbar-create-topic-circle
+{
+    height: 50px; aspect-ratio: 1;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    margin-right: 20px;
+
+    transition: all 0.1s ease-in-out;
+
+}
+.navbar-create-topic-circle > .add-icon
+{
+    color: purple;
+    font-size: 25pt;
+
+    margin-top: 2px;
+}
+.navbar-create-topic-link:hover
+{
+    color: plum;
+}
+.navbar-create-topic-link:hover .navbar-create-topic-circle
+{
+    background-color: plum;
 }
 .navbar-options
 {
