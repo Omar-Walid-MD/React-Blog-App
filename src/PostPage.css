@@ -228,6 +228,9 @@
 {
     font-size: 15pt;
     font-weight: 500;
+
+    white-space: pre-line;
+
 }
 
 
@@ -241,12 +244,12 @@
 }
 .comment-options
 {
-    width: 350px;
+    width: 380px;
 
 }
 .comment-votes-container
 {
-    width: 40%;
+    width: 30%;
 
     padding-right: 10px;
 }

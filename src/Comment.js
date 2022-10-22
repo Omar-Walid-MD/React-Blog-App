@@ -192,8 +192,8 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last})
 
     return (
         <div className="post-page-comment-content-container" id={comment.id}>
-            <p className="post-page-comment-info" ref={SetCommentRef(comment.id)}>By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
-            <p className="post-page-comment-text">{comment.text}</p>
+            <p className="post-page-comment-info">By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
+            <p className="post-page-comment-text" ref={SetCommentRef(comment.id)} parentcommentid={comment.parentComment} reply="true">{comment.text}</p>
 
             <div className="comment-bottom-bar flex-row">
                 <div className="comment-options flex-row">
@@ -462,7 +462,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
                         <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
                         <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                     </div>
-                    <label htmlFor={"reply-checkbox-"+comment.id} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>Reply<i className='bx bxs-down-arrow reply-arrow-icon'></i></label>
+                    <label htmlFor={"reply-checkbox-"+comment.id} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>Replies({replyList.length})<i className='bx bxs-down-arrow reply-arrow-icon'></i></label>
                     <button className="comment-save-button flex-row" saved={saved ? "true" : "false"}  onClick={handleSave}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
                     </div>
                 </div>

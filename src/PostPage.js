@@ -268,8 +268,16 @@ function PostPage({currentUser,setCurrentUser})
 
     function ScrollToComment()
     {
-        console.log("Scrolled");
-        targetComment.current.scrollIntoView();
+        console.log(targetComment.current.getAttribute("reply"))
+        if(targetComment.current.getAttribute("reply")==="true")
+        {
+            document.querySelector("#"+targetComment.current.getAttribute("parentcommentid")).previousSibling.checked=true
+        }
+        targetComment.current.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
     }
 
     function makeId(length)
