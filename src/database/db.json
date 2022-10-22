@@ -13,11 +13,13 @@
       "dislikes": [
         "comment-6624387775",
         "comment-1146522483",
-        "comment-2935444123"
+        "comment-2935444123",
+        "comment-7761549247"
       ],
       "savedPosts": [
         "post-2364728155",
-        "comment-2935444123"
+        "comment-2935444123",
+        "comment-8291228199"
       ]
     }
   ],
@@ -48,8 +50,7 @@
       "likes": 5,
       "dislikes": 3,
       "user": "OmarWalid",
-      "date": 1666042687823,
-      "type": "post"
+      "date": 1666042687823
     }
   ],
   "comments": [
@@ -60,7 +61,8 @@
       "id": "comment-6624387775",
       "post": "post-2364728155",
       "likes": 0,
-      "dislikes": 1
+      "dislikes": 1,
+      "parentComment": "none"
     },
     {
       "id": "comment-2935444123",
@@ -70,7 +72,7 @@
       "date": 1666120476333,
       "likes": 0,
       "dislikes": 1,
-      "type": "comment"
+      "parentComment": "none"
     },
     {
       "id": "comment-1146522483",
@@ -79,7 +81,78 @@
       "post": "post-2364728155",
       "date": 1666361646422,
       "likes": 0,
-      "dislikes": 1
+      "dislikes": 1,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-7761549247",
+      "text": "My first reply ever!",
+      "user": "OmarWalid",
+      "post": "post-2364728155",
+      "date": 1666370320733,
+      "likes": 1,
+      "dislikes": 1,
+      "parentComment": "comment-6624387775"
+    },
+    {
+      "id": "comment-8291228199",
+      "text": "New Reply",
+      "user": "OmarWalid",
+      "post": "post-2364728155",
+      "date": 1666373869251,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-6624387775"
+    },
+    {
+      "id": "comment-7372929481",
+      "text": "LONG REPLY HERE WE GOLONG REPLY HERE WE GOLONG REPLY HERE WE GOLONG REPLY HERE WE GOLONG REPLY HERE WE GOLONG REPLY HERE WE GOLONG REPLY HERE WE GO",
+      "user": "OmarWalid",
+      "post": "post-2364728155",
+      "date": 1666376991150,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-6624387775"
+    },
+    {
+      "id": "comment-6446397871",
+      "text": "trying again\n",
+      "user": "OmarWalid",
+      "post": "post-2364728155",
+      "date": 1666388642629,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-6624387775"
+    },
+    {
+      "id": "comment-7258922351",
+      "text": "Test Reply",
+      "user": "OmarWalid",
+      "post": "post-2364728155",
+      "date": 1666425459243,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-6624387775"
+    },
+    {
+      "id": "comment-1254946177",
+      "text": "weird",
+      "user": "OmarWalid",
+      "post": "post-2364728155",
+      "date": 1666425467653,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-6624387775"
+    },
+    {
+      "id": "comment-1524237171",
+      "text": "Weird",
+      "user": "OmarWalid",
+      "post": "post-2364728155",
+      "date": 1666425476453,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-6624387775"
     }
   ]
 }

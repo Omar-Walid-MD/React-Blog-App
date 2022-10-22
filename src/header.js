@@ -26,7 +26,7 @@ function Header({currentUser, setCurrentUser})
               currentUser ? 
               <div className="navbar-options-loggedin flex-row">
                 <div className="navbar-profile-menu flex-center">
-                  <input className="navbar-profile-checkbox" id="navbar-profile-checkbox" type="checkbox" />
+                  <input className="navbar-profile-checkbox hidden-checkbox" id="navbar-profile-checkbox" type="checkbox" />
                   <label htmlFor="navbar-profile-checkbox" className="navbar-profile-button flex-center"><img className="navbar-profile-icon" src={require("./img/profile-icon.png")} /></label>
                   <div className="navbar-profile-dropdown-container">
                     <h1>{currentUser.username}</h1>

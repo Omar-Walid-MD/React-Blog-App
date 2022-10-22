@@ -202,9 +202,9 @@
     width: fit-content;
 }
 
-.post-page-comment-container
+.post-page-comment-content-container
 {
-    min-width: 500px;
+    min-width: 500px; max-width: fit-content;
 
     color: white;
     background-color: rgb(72, 37, 107);
@@ -215,6 +215,9 @@
     padding: 5px 20px;
 
     margin-top: 30px;
+
+    position: relative;
+
 }
 .post-page-comment-info
 {
@@ -226,6 +229,7 @@
     font-size: 15pt;
     font-weight: 500;
 }
+
 
 
 .comment-bottom-bar
@@ -305,6 +309,15 @@
     font-size: 20pt;
     margin: 5px 5px 0 0;
 }
+.reply-arrow-icon
+{
+    font-size: 15pt;
+    margin: 5px 0 0 5px;
+
+    transform-origin: center;
+
+    transition: transform 0.2s ease-in-out;
+}
 .comment-save-button
 {
     font-size: 15pt;
@@ -327,4 +340,134 @@
 .comment-save-button[saved="true"]
 {
     color: lime;
+}
+
+
+
+
+.reply-margin
+{
+    margin-left: 100px;
+
+    transform: scale(0.9);
+
+    transform-origin: top;
+}
+.post-page-comment-replies-container
+{
+    height: fit-content; max-height: 0;
+
+    transform: scaleY(0);
+
+    transform-origin: top;
+
+    position: relative;
+
+}
+.post-page-comment-replies-section
+{
+    align-items: flex-start;
+}
+.post-page-write-reply-form
+{
+    width: 800px;
+
+    background-color: rgb(72, 37, 107);
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+
+    border-radius: 20px;
+    
+    padding: 20px;
+    margin-top: 30px;
+
+    align-items: flex-end;
+
+    position: relative;
+    
+}
+.post-page-write-reply-input
+{
+    font-family: sans-serif;
+    font-size: 15pt;
+
+    height: fit-content;
+    min-width: 80%; max-width: 0;
+    min-height: 50%; max-height: fit-content;
+
+    padding: 5px;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    overflow: visible;
+}
+.post-page-write-reply-submit
+{
+    color: purple;
+    background-color: white;
+
+    font-size: 18pt;
+    font-weight: 600;
+
+    border-radius: 10px;
+
+    border: none;
+    outline: none;
+
+    padding: 7px 10px;
+
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
+}
+.post-page-write-reply-submit:hover
+{
+    background-color: plum;
+    transform: scale(1.1);
+}
+.post-page-comment-reply-checkbox:checked ~.post-page-comment-replies-container
+{
+    max-height: fit-content;
+
+    transform: scaleY(1);
+}
+.post-page-comment-reply-checkbox:checked +.post-page-comment-content-container > .comment-bottom-bar .comment-reply-button .reply-arrow-icon
+{
+    transform: rotate(180deg);
+}
+
+.post-page-comment-replies-line
+{
+    width: 10px; height: calc(100% + 40px);
+
+    background-color: white;
+
+    position: absolute;
+    bottom: 0; left: -90px;
+    
+}
+.post-page-comment-replies-line[last="true"]
+{
+
+    height: calc(50% + 40px);
+    bottom: 49%;
+}
+.post-page-comment-replies-line[first="true"]
+{
+
+    height: 100%;
+}
+
+.reply-pointer-line
+{
+    height: 10px; width: 90px;
+
+    background-color: white;
+
+    transform-origin: left;
+
+    position: absolute;
+    top: 50%; right: 100%;
 }

@@ -52,7 +52,8 @@ function PostPage({currentUser,setCurrentUser})
                 post: postId,
                 date: Date.now(),
                 likes: 0,
-                dislikes: 0
+                dislikes: 0,
+                parentComment: "none"
             }
 
             fetch('http://localhost:8000/comments',{
@@ -248,7 +249,18 @@ function PostPage({currentUser,setCurrentUser})
         return commentList.filter((comment)=>comment.post===postId);
     }
 
-    function SetTargetComment(targetCommentId,commentId)
+    function GetMainComments(commentList)
+    {
+        return commentList.filter((comment)=>comment.post===postId && comment.parentComment==="none");
+    }
+
+    function GetCommentReplies(commentId,commentList)
+    {
+        console.log(commentList[2].parentComment);
+        return commentList.filter((comment)=>comment.post===postId && comment.parentComment===commentId);
+    }
+
+    function SetTargetComment(commentId)
     {
         console.log(targetCommentId===commentId);
         return targetCommentId===commentId ? targetComment : null;
@@ -311,6 +323,7 @@ function PostPage({currentUser,setCurrentUser})
 
     useEffect(()=>{
         if(targetComment.current) ScrollToComment();
+        console.log(targetComment.current);
     },[targetComment.current]);
 
     return (
@@ -351,8 +364,8 @@ function PostPage({currentUser,setCurrentUser})
                             }
                             <div className="post-page-comments-section">
                                 {
-                                    comments && comments.map((comment)=>
-                                    <Comment comment={comment} key={comment.id} commentRef={SetTargetComment(targetCommentId,comment.id)} currentUser={currentUser} setCurrentUser={setCurrentUser} />
+                                    comments && GetMainComments(comments).map((comment)=>
+                                    <Comment comment={comment} key={comment.id} SetCommentRef={SetTargetComment} currentUser={currentUser} setCurrentUser={setCurrentUser} setComments={setComments} replyList={GetCommentReplies(comment.id,comments)} />
                                     )
                                 }
                             </div>
