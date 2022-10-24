@@ -1,10 +1,10 @@
-import {useState, useEffect} from "react"
+import {useState, useEffect, useRef} from "react"
 import { Link, useNavigate } from "react-router-dom";
 
 import Header from "./Header";
 import Post from "./Post";
 
-import './MainPage.css';
+import './WritePage.css';
 
 function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
 {
@@ -59,6 +59,23 @@ function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
 
     }
 
+    const CreateTopicForm = useRef();
+
+    function readyToSubmit()
+    {
+        let allInputs = null;
+        if(CreateTopicForm.current)
+        {
+            allInputs = CreateTopicForm.current.querySelectorAll(":required");
+            console.log([...allInputs].filter((formInput)=>formInput.value==='').length);
+            return [...allInputs].filter((formInput)=>formInput.value==='').length > 0;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
 
     function makeId(length)
     {
@@ -75,14 +92,16 @@ function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
             <Header topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
             <div className="page-container flex-center">
                 <div className="main-column flex-column">
-                    <form className="post-write-form-container flex-column" onSubmit={submitTopic}>
-                        <h1 className="post-write-form-label">Create a new topic</h1>
+                    <form className="post-write-form-container flex-column" ref={CreateTopicForm} onSubmit={submitTopic}>
+                        <div className="post-write-post-to-form-row">
+                            <h1 className="post-write-form-label">Create a new topic</h1>
+                        </div>
                         <div className="post-write-form-input-group">
-                            <input className="post-write-form-title-input" type="text" name="title" placeholder="Your interesting topic..." value={newTopic.title} onChange={handleTopic}/>
-                            <textarea className="post-write-form-body-input" name="description" maxLength={150}  placeholder="A brief description of your topic..." value={newTopic.description} onChange={handleTopic}></textarea>
+                            <input className="post-write-form-title-input" type="text" name="title" placeholder="Your interesting topic..." value={newTopic.title} onChange={handleTopic} required />
+                            <textarea className="post-write-form-body-input" name="description" maxLength={150}  placeholder="A brief description of your topic..." value={newTopic.description} onChange={handleTopic} required ></textarea>
                         </div>
                         <div className="post-write-form-submit-container">
-                            <input className="post-write-form-submit" type="submit" />
+                            <input className="post-write-form-submit" type="submit" disabled={readyToSubmit()} />
                         </div>
                     </form>
                 </div>

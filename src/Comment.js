@@ -435,6 +435,15 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
         
     }
 
+    
+    function AutoResize(event)
+    {
+        console.log(event.target.getAttribute("minheight"))
+        event.target.style.minHeight = 0;
+        event.target.style.minHeight = "max(" + event.target.getAttribute("minheight") + "px,"+(event.target.scrollHeight) + "px)" ;
+    }
+
+
     function makeId(length)
     {
         let result = "";
@@ -470,7 +479,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
             <div className="post-page-comment-replies-container">
                 <div className="post-page-comment-replies-section reply-margin flex-column">
                     <form className="post-page-write-reply-form flex-row" onSubmit={submitReply}>
-                        <textarea className="post-page-write-reply-input" placeholder="Write your reply..." value={newReply} onChange={handleReply}></textarea>
+                        <textarea className="post-page-write-reply-input" placeholder="Write your reply..." minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
                         <input className="post-page-write-reply-submit" type="submit" value="Reply" />
                         <div className="post-page-comment-replies-line" first="true"></div>
 

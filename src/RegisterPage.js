@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import "./RegisterPage.css";
 
@@ -56,6 +56,24 @@ function RegisterPage({handleUserList, handleUser})
         }
     }
 
+    const RegisterForm = useRef();
+
+    function readyToSubmit()
+    {
+        let allInputs = null;
+        if(RegisterForm.current)
+        {
+            allInputs = RegisterForm.current.querySelectorAll(":required");
+            console.log([...allInputs].filter((formInput)=>formInput.value==='').length);
+            return [...allInputs].filter((formInput)=>formInput.value==='').length > 0;
+        }
+        else
+        {
+            return true;
+        }
+    }
+       
+
     function makeId(length)
     {
         let result = "";
@@ -70,15 +88,15 @@ function RegisterPage({handleUserList, handleUser})
     return (
         <div className="main-page">
             <div className="page-container flex-center" header="none">
-                <form className="register-form-container flex-column" onSubmit={RegisterUser}>
+                <form className="register-form-container flex-column" ref={RegisterForm} onSubmit={RegisterUser}>
                     <h1 className="register-form-label">Register New User</h1>
                     <div className="register-form-input-group flex-column">
-                        <input className="register-form-input" type="text" placeholder="Enter Username" name="username" value={newUser.username} onChange={handleNewUser}/>
-                        <input className="register-form-input" type="email" placeholder="Enter Email" name="email" value={newUser.email} onChange={handleNewUser}/>
-                        <input className="register-form-input" type="password" placeholder="Enter Password" name="password" value={newUser.password} onChange={handleNewUser}/>
-                        <input className="register-form-input" type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} onChange={HandleconfirmPassword}/>
+                        <input className="register-form-input" type="text" placeholder="Enter Username" name="username" value={newUser.username} required onChange={handleNewUser}/>
+                        <input className="register-form-input" type="email" placeholder="Enter Email" name="email" value={newUser.email} required onChange={handleNewUser}/>
+                        <input className="register-form-input" type="password" placeholder="Enter Password" name="password" value={newUser.password} required onChange={handleNewUser}/>
+                        <input className="register-form-input" type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} required onChange={HandleconfirmPassword}/>
                     </div>
-                    <input className="register-form-submit" type="submit" />
+                    <input className="register-form-submit" type="submit" disabled={readyToSubmit()} />
                 </form>
             </div>
         </div>

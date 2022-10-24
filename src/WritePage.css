@@ -42,7 +42,9 @@
 .post-write-form-title-input
 {
     font-size: 18pt;
-    width: 100%;
+    
+    min-width: 100%; max-width: 100%;
+    min-height: 50px; max-height: 100%;
 
     border-radius: 10px;
 

@@ -53,3 +53,10 @@
     background-color: rgb(238, 233, 255);
     transform: scale(1.1);
 }
+.login-form-submit:disabled
+{
+    background-color: lightgray;
+    color: rgb(80, 80, 80);
+
+    pointer-events: none;
+}

@@ -67,6 +67,15 @@ function PostPage({topics, currentUser,setCurrentUser})
             })
         }
     }
+
+    
+    function AutoResize(event)
+    {
+        console.log(event.target.getAttribute("minheight"))
+        event.target.style.minHeight = 0;
+        event.target.style.minHeight = "max(" + event.target.getAttribute("minheight") + "px,"+(event.target.scrollHeight) + "px)" ;
+    }
+
     
     function handleVote(newVoteState)
     {
@@ -256,7 +265,6 @@ function PostPage({topics, currentUser,setCurrentUser})
 
     function GetCommentReplies(commentId,commentList)
     {
-        console.log(commentList[2].parentComment);
         return commentList.filter((comment)=>comment.post===postId && comment.parentComment===commentId);
     }
 
@@ -362,7 +370,7 @@ function PostPage({topics, currentUser,setCurrentUser})
                             {
                                 currentUser ?
                                 <form className="post-page-write-comment-form flex-column" onSubmit={submitComment}>
-                                    <textarea className="post-page-write-comment-input" placeholder="Write your comment..." value={newComment} onChange={handleComment}></textarea>
+                                    <textarea className="post-page-write-comment-input" placeholder="Write your comment..." minheight={100} value={newComment} onChange={handleComment} onInput={AutoResize}></textarea>
                                     <input className="post-page-write-comment-submit" type="submit" value="Comment" />
                                 </form>
                                 :
@@ -372,9 +380,10 @@ function PostPage({topics, currentUser,setCurrentUser})
                             }
                             <div className="post-page-comments-section">
                                 {
-                                    comments && GetMainComments(comments).map((comment)=>
+                                    comments && GetMainComments(comments).length > 0 ? GetMainComments(comments).map((comment)=>
                                     <Comment comment={comment} key={comment.id} SetCommentRef={SetTargetComment} currentUser={currentUser} setCurrentUser={setCurrentUser} setComments={setComments} replyList={GetCommentReplies(comment.id,comments)} />
                                     )
+                                    : <h1 className="post-page-comments-section-empty-label">No comments yet</h1>
                                 }
                             </div>
                         </div>

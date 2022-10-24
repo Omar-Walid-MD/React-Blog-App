@@ -100,5 +100,16 @@
       "date": 1666594508630
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "id": "comment-4487479368",
+      "text": "Nice!",
+      "user": "OmarWalid",
+      "post": "post-4581794152",
+      "date": 1666594710355,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    }
+  ]
 }

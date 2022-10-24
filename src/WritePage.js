@@ -78,6 +78,13 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
         
     }
 
+    function AutoResize(event)
+    {
+        console.log(event.target.getAttribute("minheight"))
+        event.target.style.minHeight = 0;
+        event.target.style.minHeight = "max(" + event.target.getAttribute("minheight") + "px,"+(event.target.scrollHeight) + "px)" ;
+    }
+
 
     function makeId(length)
     {
@@ -107,9 +114,9 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
                             </select>
                         </div>
                         <div className="post-write-form-input-group">
-                            <input className="post-write-form-title-input" type="text" name="title" placeholder="Enter Title" onChange={handlePost} required/>
+                            <textarea className="post-write-form-title-input" type="text" name="title" placeholder="Enter Title" minheight={50} onChange={handlePost} onInput={AutoResize} required></textarea>
                             
-                            <textarea className="post-write-form-body-input" name="body" placeholder="Enter Body" onChange={handlePost} required></textarea>
+                            <textarea className="post-write-form-body-input" name="body" placeholder="Enter Body" minheight={200} onChange={handlePost} onInput={AutoResize} required></textarea>
                         </div>
                         <div className="post-write-form-submit-container">
                             <input className="post-write-form-submit" type="submit" disabled={readyToSubmit()} />
