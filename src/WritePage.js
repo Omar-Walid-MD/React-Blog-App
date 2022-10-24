@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import Header from "./Header"
 import "./WritePage.css"
@@ -49,7 +49,7 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
                 handlePostList(prevList => [...prevList,postToAdd])
             })
     
-            navigate("/");
+            navigate("/post/"+postToAdd.id);
             return
         }
         else
@@ -57,6 +57,25 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
             console.log("Topic invalid")
         }
 
+    }
+
+    const WritePageForm = useRef();
+
+    function readyToSubmit()
+    {
+        let allInputs = null;
+        if(WritePageForm.current)
+        {
+            allInputs = WritePageForm.current.querySelectorAll(":required");
+            console.log([...allInputs].filter((formInput)=>formInput.value==='').length);
+            return [...allInputs].filter((formInput)=>formInput.value==='').length > 0;
+        }
+        else
+        {
+            return true;
+        }
+
+        
     }
 
 
@@ -75,23 +94,25 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
         <Header topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
             <div className="page-container flex-center">
                 <div className="main-column flex-column">
-                    <form className="post-write-form-container flex-column" onSubmit={submitPost}>
-                        <h1 className="post-write-form-label">Write a post</h1>
-                        <div className="post-write-form-input-group">
-                            <input className="post-write-form-title-input" type="text" name="title" placeholder="Enter Title" onChange={handlePost} />
-                            <h2>Post at:</h2>
-                            <select name="topic" onChange={handlePost}>
-                                <option value={""}>None</option>
+                    <form className="post-write-form-container flex-column" ref={WritePageForm} onSubmit={submitPost}>
+                        <div className="post-write-post-to-form-row flex-row">
+                            <h1 className="post-write-form-label">Submit Post to: </h1>
+                            <select className="post-write-form-select-topic" name="topic" onChange={handlePost} required>
+                                <option value={""}>--Select Topic--</option>
                                 {
                                     topics && topics.map((topic)=>
                                     <option value={topic.id} key={topic.id}>{topic.title}</option>
                                     )
                                 }
                             </select>
-                            <textarea className="post-write-form-body-input" name="body" onChange={handlePost} placeholder="Enter Body"></textarea>
+                        </div>
+                        <div className="post-write-form-input-group">
+                            <input className="post-write-form-title-input" type="text" name="title" placeholder="Enter Title" onChange={handlePost} required/>
+                            
+                            <textarea className="post-write-form-body-input" name="body" placeholder="Enter Body" onChange={handlePost} required></textarea>
                         </div>
                         <div className="post-write-form-submit-container">
-                            <input className="post-write-form-submit" type="submit" />
+                            <input className="post-write-form-submit" type="submit" disabled={readyToSubmit()} />
                         </div>
                     </form>
                 </div>

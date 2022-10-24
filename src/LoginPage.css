@@ -33,4 +33,23 @@
 .login-form-submit
 {
     font-size: 15pt;
+    font-weight: 500;
+    text-decoration: none;
+
+    outline: none;
+    border: none;
+
+    background-color: white;
+    color: purple;
+
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+
+    cursor: pointer;
+}
+.login-form-submit:hover
+{
+    background-color: rgb(238, 233, 255);
+    transform: scale(1.1);
 }

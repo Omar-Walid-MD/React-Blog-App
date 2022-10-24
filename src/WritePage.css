@@ -2,18 +2,36 @@
 {
     width: 800px;
 
-    background-color: rebeccapurple;
+    background-color: darkslateblue;
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+
+    border-radius: 20px;
 
     padding: 20px;
 
     align-items: flex-start;
 }
+.post-write-post-to-form-row
+{
+    margin-bottom: 20px;
+}
 .post-write-form-label
 {
     color: white;
-
     margin: 0;
-    margin-bottom: 20px;
+    margin-right: 20px;
+}
+.post-write-form-select-topic
+{
+    font-size: 15pt;
+
+    padding: 5px 10px;
+
+    border-radius: 10px;
+
+    outline: none;
+    border: none;
 }
 .post-write-form-input-group
 {
@@ -26,9 +44,12 @@
     font-size: 18pt;
     width: 100%;
 
+    border-radius: 10px;
+
     padding: 5px;
 
     outline: none;
+    border: none;
 }
 
 .post-write-form-body-input
@@ -43,7 +64,10 @@
 
     margin: 20px 0;
 
+    border-radius: 10px;
+
     outline: none;
+    border: none;
 }
 
 .post-write-form-submit-container
@@ -53,6 +77,32 @@
 .post-write-form-submit
 {
     font-size: 18pt;
+    font-weight: 500;
+    text-decoration: none;
+
+    outline: none;
+    border: none;
 
     float: right;
+
+    background-color: white;
+    color: purple;
+
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+
+    cursor: pointer;
+}
+.post-write-form-submit:hover
+{
+    background-color: rgb(238, 233, 255);
+    transform: scale(1.1);
+}
+.post-write-form-submit:disabled
+{
+    background-color: lightgray;
+    color: rgb(80, 80, 80);
+
+    pointer-events: none;
 }

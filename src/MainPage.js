@@ -49,7 +49,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
                 }
               </div>
               {
-                posts && GetPostsForTopic(topicId).length>0 ? sortPosts(GetPostsForTopic(topicId)).map((post)=>
+                currentUser && posts && GetPostsForTopic(topicId).length>0 ? sortPosts(GetPostsForTopic(topicId)).map((post)=>
                   <Post post={post} currentUser={currentUser} setCurrentUser={setCurrentUser} key={"post"+post.id} />
                 ) : <div className="blog-empty-label flex-center"><h1>No Posts Available</h1></div>
               }
