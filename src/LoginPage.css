@@ -33,7 +33,7 @@
 .login-form-submit
 {
     font-size: 15pt;
-    font-weight: 500;
+    font-weight: 700;
     text-decoration: none;
 
     outline: none;
@@ -59,4 +59,27 @@
     color: rgb(80, 80, 80);
 
     pointer-events: none;
+}
+
+@keyframes form-warning
+{
+  0% {transform: translateX(0%);}
+  20% {transform: translateX(5%);}
+  80% {transform: translateX(-5%);}
+  100% {transform: translateX(0);}  
+}
+.login-form-warning
+{
+    color: red;
+
+    font-size: 15pt;
+    font-weight: 500;
+
+    margin: 0;
+    margin-bottom: 20px;
+}
+.login-form-warning[animate="true"]
+{
+    animation: form-warning 0.2s ease-in-out forwards;
+    animation-iteration-count: 3;
 }

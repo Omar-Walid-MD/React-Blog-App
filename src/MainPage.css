@@ -51,7 +51,8 @@
     position: fixed;
     top: 0;
 
-    box-shadow: 0 0 40px rgb(62, 76, 138);
+    /* box-shadow: 0 0 40px rgb(62, 76, 138); */
+    box-shadow: 0 0 40px lightblue;
 
     padding: 0 20px;
 
@@ -229,7 +230,7 @@
 .navbar-button
 {
     font-size: 15pt;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
 
     color: purple;

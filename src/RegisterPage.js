@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import "./RegisterPage.css";
 
-function RegisterPage({handleUserList, handleUser})
+function RegisterPage({userList, handleUserList, handleUser})
 {
     const navigate = useNavigate();
 
@@ -13,6 +13,8 @@ function RegisterPage({handleUserList, handleUser})
     });
 
     const [confirmPassword,setConfirmPassword] = useState("");
+
+    const [warning,setWarning] = useState("");
 
     function handleNewUser(event)
     {
@@ -35,7 +37,18 @@ function RegisterPage({handleUserList, handleUser})
 
         if(newUser.password===confirmPassword)
         {
-            
+            if(userList.some((function(user){return user.username===newUser.username})))
+            {
+                handleWarning("Username already taken!");
+                return;
+            }
+
+            if(userList.some((function(user){return user.email===newUser.email})))
+            {
+                handleWarning("Email already registered!");
+                return;
+            }
+
             let userToAdd = {
                 ...newUser,
                 id: "user-"+makeId(10)
@@ -52,8 +65,31 @@ function RegisterPage({handleUserList, handleUser})
             })
     
             navigate("/");
-            return
+            return;
         }
+        else
+        {
+            handleWarning("Password confirmation mismatch!");
+            return;
+        }
+    }
+
+    const warningElement = useRef();
+
+    function handleWarning(warningText)
+    {
+        setWarning(warningText);
+        if(warningElement.current.getAttribute("animate")==="true")
+        {
+            warningElement.current.setAttribute("animate","false");
+        }
+        warningElement.current.setAttribute("animate","true");
+    }
+
+    function ResetWarningAnimation(event)
+    {
+        console.log("works");
+        event.target.setAttribute("animate","false");
     }
 
     const RegisterForm = useRef();
@@ -96,7 +132,11 @@ function RegisterPage({handleUserList, handleUser})
                         <input className="register-form-input" type="password" placeholder="Enter Password" name="password" value={newUser.password} required onChange={handleNewUser}/>
                         <input className="register-form-input" type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} required onChange={HandleconfirmPassword}/>
                     </div>
-                    <input className="register-form-submit" type="submit" disabled={readyToSubmit()} />
+                    {
+                        warning !== "" &&
+                        <p className="login-form-warning" onAnimationEnd={ResetWarningAnimation} ref={warningElement} animate="true">{warning}</p>
+                    }
+                    <input className="register-form-submit" type="submit" value="Register" disabled={readyToSubmit()} />
                 </form>
             </div>
         </div>

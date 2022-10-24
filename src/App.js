@@ -72,7 +72,7 @@ function App()
       <Route path="/new-topic" element={<CreateTopicPage currentUser={currentUser} topics={topics} setCurrentUser={setCurrentUser} topics={topics} setTopics={setTopics} />} />
       <Route path="/topic/:id" element={<MainPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
 
-      <Route path="/register" element={<RegisterPage handleUserList={setUsers} handleUser={setCurrentUser} />} />
+      <Route path="/register" element={<RegisterPage userList={users} handleUserList={setUsers} handleUser={setCurrentUser} />} />
       <Route path="/login" element={<LoginPage userList={users} handleUser={setCurrentUser} />} />
 
       <Route path="/activity" element={<UserActivityPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />

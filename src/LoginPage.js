@@ -9,8 +9,9 @@ function LoginPage({userList,handleUser})
     const [loginInfo,setLoginInfo] = useState({
         email: "",
         password: ""
-    })
+    });
 
+    const [warning,setWarning] = useState("");
 
     function handleLoginInfo(event)
     {
@@ -40,12 +41,33 @@ function LoginPage({userList,handleUser})
                 }
                 else
                 {
+                    handleWarning("Password Incorrect!");
                     console.log("Password Incorrect");
                     return;
                 }
             }
         }
+        handleWarning("Email not registered!");
         console.log("Email not registered");
+        return;
+    }
+
+    const warningElement = useRef();
+
+    function handleWarning(warningText)
+    {
+        setWarning(warningText);
+        if(warningElement.current.getAttribute("animate")==="true")
+        {
+            warningElement.current.setAttribute("animate","false");
+        }
+        warningElement.current.setAttribute("animate","true");
+    }
+
+    function ResetWarningAnimation(event)
+    {
+        console.log("works");
+        event.target.setAttribute("animate","false");
     }
 
     const LoginForm = useRef();
@@ -64,7 +86,6 @@ function LoginPage({userList,handleUser})
             return true;
         }
 
-        
     }
 
     function makeId(length)
@@ -86,6 +107,10 @@ function LoginPage({userList,handleUser})
                         <input className="login-form-input" type="email" placeholder="Enter Email" name="email" value={loginInfo.email} onChange={handleLoginInfo} required/>
                         <input className="login-form-input" type="password" placeholder="Enter Password" name="password" value={loginInfo.password} onChange={handleLoginInfo} required/>
                     </div>
+                    {
+                        warning !== "" &&
+                        <p className="login-form-warning" onAnimationEnd={ResetWarningAnimation} ref={warningElement} animate="true">{warning}</p>
+                    }
                     <input className="login-form-submit" type="submit" value="Log in" disabled={readyToSubmit()} />
                 </form>
             </div>
