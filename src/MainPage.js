@@ -95,7 +95,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
               <div className="blog-sort-container flex-row">
                 {
                   currentUser && 
-                  <Link className="write-post-button" to="/write">Write a post!</Link>
+                  <Link className="write-post-button" to={"/write"} state={{topicForPost: topicId}}>Write a post!</Link>
                 }
               </div>
               <div className="main-column-post-group">

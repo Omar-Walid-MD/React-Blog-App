@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import Header from "./Header"
 import "./WritePage.css"
 
@@ -7,12 +7,15 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
 {
     const navigate = useNavigate();
 
+    const { topicForPost } = useLocation().state;
+
     const [newPost,setNewPost] = useState({
         title: "",
         body: "",
-        topic: "",
+        topic: topicForPost || "",
         
     });
+
     
     function handlePost(event)
     {
@@ -96,6 +99,10 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
         return result;
     }
 
+    useEffect(()=>{
+        console.log(newPost);
+    },[topicForPost]);
+
     return (
         <div className="main-page">
         <Header topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
@@ -104,7 +111,7 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
                     <form className="post-write-form-container flex-column" ref={WritePageForm} onSubmit={submitPost}>
                         <div className="post-write-post-to-form-row flex-row">
                             <h1 className="post-write-form-label">Submit Post to: </h1>
-                            <select className="post-write-form-select-topic" name="topic" onChange={handlePost} required>
+                            <select className="post-write-form-select-topic" name="topic" value={newPost.topic} onChange={handlePost} required>
                                 <option value={""}>--Select Topic--</option>
                                 {
                                     topics && topics.map((topic)=>
@@ -114,9 +121,9 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
                             </select>
                         </div>
                         <div className="post-write-form-input-group">
-                            <textarea className="post-write-form-title-input" type="text" name="title" placeholder="Enter Title" minheight={50} onChange={handlePost} onInput={AutoResize} required></textarea>
+                            <textarea className="post-write-form-title-input" type="text" name="title" placeholder="Enter Title" minheight={50} value={newPost.title} onChange={handlePost} onInput={AutoResize} required></textarea>
                             
-                            <textarea className="post-write-form-body-input" name="body" placeholder="Enter Body" minheight={200} onChange={handlePost} onInput={AutoResize} required></textarea>
+                            <textarea className="post-write-form-body-input" name="body" placeholder="Enter Body" minheight={200} value={newPost.body} onChange={handlePost} onInput={AutoResize} required></textarea>
                         </div>
                         <div className="post-write-form-submit-container">
                             <input className="post-write-form-submit" type="submit" disabled={readyToSubmit()} />

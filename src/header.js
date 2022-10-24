@@ -1,9 +1,11 @@
 
 import { useEffect, useState } from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 function Header({topics, currentUser, setCurrentUser})
 {
+
+  let location = useLocation();
 
   const [searchValue,setSearchValue] = useState("");
 
@@ -18,8 +20,6 @@ function Header({topics, currentUser, setCurrentUser})
     return topics.filter((topic)=>topic.title.toLowerCase().includes(searchValue.toLowerCase()));
   }
 
-  
-
   function LogOut(e)
   {
 
@@ -32,7 +32,8 @@ function Header({topics, currentUser, setCurrentUser})
 
   useEffect(()=>{
     setSearchValue("");
-  },[])
+    console.log("oops");
+  },[location])
 
     return (
         <header className="navbar flex-row">
@@ -49,7 +50,7 @@ function Header({topics, currentUser, setCurrentUser})
                           GetSearchResults(searchValue).length > 0 ?
 
                           GetSearchResults(searchValue).map((searchResult)=>
-                          <Link to={"/topic/"+searchResult.id} className="topic-result-container flex-column">
+                          <Link to={"/topic/"+searchResult.id} className="topic-result-container flex-column" key={searchResult.id}>
                             <h2 className="topic-result-title">{searchResult.title}</h2>
                             <p className="topic-result-members">{searchResult.members} Members</p>
                           </Link>
