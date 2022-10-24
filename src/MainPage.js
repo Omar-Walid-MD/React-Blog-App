@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react"
 import { Link, useParams } from "react-router-dom";
+import axios from 'axios';
 
 import Header from "./Header";
 import Post from "./Post";
@@ -10,9 +11,11 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
 {
     let topicId = useParams().id;
 
-    function GetPostsForTopic(topicId)
+    const [topic,setTopic] = useState(null);
+
+    function GetPostsForTopic(topic)
     {
-      return topicId ? posts.filter((post)=>post.topic===topicId) : posts.filter((post)=>currentUser.subbedTopics.includes(post.topic));
+      return topic ? posts.filter((post)=>post.topic===topic.id) : posts.filter((post)=>currentUser.subbedTopics.includes(post.topic));
     }
 
     function sortPosts(postList)
@@ -20,21 +23,68 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
       return postList.sort().slice().reverse();
     }
 
-    // useEffect(()=>{
+    function IsTopicSubbed(topicId)
+    {
+      return currentUser.subbedTopics.includes(topicId);
+    }
 
-    //   fetch('http://localhost:8000/topcs/'+topicId)
-    //     .then(res => {
-    //     return res.json()
-    //     })
-    //     .then((data)=>{
+    function SetTopicSubbed(topicId)
+    {
 
-    //         setPost(data);
-    //         setVoteState(CheckUserVote(data));
-    //         setLikes(data.likes);
-    //         setDislikes(data.dislikes);
-    //     });
+      let newSubbedTopics = [];
 
-    // },[topicId])
+      if(IsTopicSubbed(topicId))
+      {
+        newSubbedTopics = currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId);
+        console.log(currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId));
+      }
+      else
+      {
+        newSubbedTopics = [...currentUser.subbedTopics,topicId];
+        console.log("uh oh");
+      }
+
+      let updatedUser = {
+        ...currentUser,
+        subbedTopics: newSubbedTopics
+      }
+      
+      // console.log(updatedUser.subbedTopics)
+
+      axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+      )
+      .then(resp =>{
+          console.log("Updated User Subs");
+          localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+          setCurrentUser(updatedUser);
+      }).catch(error => {
+          console.log(error);
+      });
+    }
+
+    useEffect(()=>{
+
+      window.scrollTo(0,0);
+      
+      if(topicId)
+      {
+        fetch('http://localhost:8000/topics/'+topicId)
+        .then(res => {
+        return res.json()
+        })
+        .then((data)=>{
+          
+            setTopic(data);
+        });      
+
+      }
+      else
+      {
+        setTopic(null);
+      }
+
+  },[topicId]);
 
 
     return (
@@ -48,12 +98,29 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
                   <Link className="write-post-button" to="/write">Write a post!</Link>
                 }
               </div>
+              <div className="main-column-post-group">
               {
-                currentUser && posts && GetPostsForTopic(topicId).length>0 ? sortPosts(GetPostsForTopic(topicId)).map((post)=>
+                currentUser && posts && GetPostsForTopic(topic).length>0 ? sortPosts(GetPostsForTopic(topic)).map((post)=>
                   <Post post={post} currentUser={currentUser} setCurrentUser={setCurrentUser} key={"post"+post.id} />
                 ) : <div className="blog-empty-label flex-center"><h1>No Posts Available</h1></div>
               }
+              </div>
             </div>
+            {
+             topic &&
+              <div className="side-column">
+                <div className="side-column-topic-overview">
+                  <h1 className="side-column-topic-title">{topic.title}</h1>
+                  <p className="side-column-topic-desc">{topic.description}</p>
+                </div>
+                <div className="side-column-topic-status flex-row">
+                  <p className="side-column-topic-members">{topic.members} members</p>
+                  <button className="side-column-topic-sub-button" subbed={IsTopicSubbed(topicId) ? "true" : "false"} onClick={function(){SetTopicSubbed(topicId)}}>{IsTopicSubbed(topicId) ? "Unsubscribe" : "Subscribe"}</button>
+                </div>
+                  <p className="side-column-topic-date">Created on {new Date(topic.date).toDateString()}</p>
+              </div>
+            }
+            
           </div>
         </div>
       );

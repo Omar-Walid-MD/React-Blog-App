@@ -374,6 +374,10 @@
     background-color: rgb(238, 233, 255);
     transform: scale(1.1);
 }
+.main-column-post-group
+{
+    width: 100%; min-height: 500px;
+}
 .blog-empty-label
 {
     width: 100%; height: 500px;
@@ -522,7 +526,6 @@
     cursor: pointer;
 
     transition: transform 0.1s ease-in-out ;
-    
 }
 .save-button:hover
 {
@@ -534,8 +537,71 @@
 }
 
 
+.side-column
+{
+    width: 400px; height: 480px;
+    
+    color: white;
+    background-color: darkslateblue;
 
+    border-radius: 20px;
 
+    padding: 20px;
+    margin-left: 50px;
+
+}
+.side-column-topic-desc
+{
+    font-size: 15pt;
+    font-weight: 500;
+}
+.side-column-topic-status
+{
+    margin: 0 30px;
+}
+.side-column-topic-members
+{
+    font-size: 16pt;
+    font-weight: 500;
+}
+.side-column-topic-sub-button
+{
+    font-size: 15pt;
+    font-weight: 700;
+    text-decoration: none;
+
+    outline: none;
+    border: none;
+
+    background-color: white;
+    color: purple;
+
+    border: 2px solid black;
+
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+
+    cursor: pointer;
+}
+.side-column-topic-sub-button[subbed="true"]
+{
+    background-color: purple;
+    color: white;
+}
+.side-column-topic-sub-button:hover
+{
+    background-color: rgb(238, 233, 255);
+    transform: scale(1.1);
+}
+.side-column-topic-sub-button[subbed="true"]:hover
+{
+    background-color: rgb(185, 0, 185);
+}
+.side-column-topic-date
+{
+    color: plum;
+}
 
 
 

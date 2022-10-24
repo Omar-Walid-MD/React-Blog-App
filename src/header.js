@@ -18,6 +18,8 @@ function Header({topics, currentUser, setCurrentUser})
     return topics.filter((topic)=>topic.title.toLowerCase().includes(searchValue.toLowerCase()));
   }
 
+  
+
   function LogOut(e)
   {
 

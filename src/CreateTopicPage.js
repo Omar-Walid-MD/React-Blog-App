@@ -1,5 +1,6 @@
 import {useState, useEffect, useRef} from "react"
 import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 import Header from "./Header";
 import Post from "./Post";
@@ -48,8 +49,25 @@ function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
                 console.log("New Post Added.");
                 setTopics(prev => [...prev,topicToAdd])
             })
+
+            let updatedUser = {
+                ...currentUser,
+                subbedTopics: [...currentUser.subbedTopics,topicToAdd.id]
+
+            }
     
-            navigate("/topic/"+topicToAdd.id);
+            axios.put('http://localhost:8000/users/'+updatedUser.id,
+            updatedUser
+            )
+            .then(resp =>{
+                console.log("Updated User Subbed Topics");
+                localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+                setCurrentUser(updatedUser);
+                navigate("/topic/"+topicToAdd.id);
+            }).catch(error => {
+                console.log(error);
+            });
+
             return
         }
         else

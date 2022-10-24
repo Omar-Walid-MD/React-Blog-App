@@ -6,12 +6,13 @@
       "password": "123",
       "id": "user-4499347254",
       "subbedTopics": [
-        "topic-9186347593",
-        "topic-9943383413"
+        "topic-9943383413",
+        "topic-8781529897"
       ],
       "likes": [
         "post-1432977528",
-        "post-6423576815"
+        "post-6423576815",
+        "post-4581794152"
       ],
       "dislikes": [
         "comment-6624387775",
@@ -47,11 +48,11 @@
     },
     {
       "title": "Cats",
-      "description": "Do you love cats? ",
-      "id": "topic-6491331964",
+      "description": "Do you love cats as I do? Share some interesting stories about cats!",
+      "id": "topic-8781529897",
       "posts": [],
       "members": 0,
-      "date": 1666471200585
+      "date": 1666633088974
     }
   ],
   "posts": [
@@ -78,22 +79,11 @@
       "date": 1666469930849
     },
     {
-      "title": "I love cats",
-      "body": "yea",
-      "topic": "topic-6491331964",
-      "id": "post-6843895235",
-      "likes": 0,
-      "dislikes": 0,
-      "user": "OmarWalid",
-      "comments": [],
-      "date": 1666471217943
-    },
-    {
       "title": "I have just improved the submit post form",
       "body": "I made the submit button only active when no input remains empty.",
       "topic": "topic-9186347593",
       "id": "post-4581794152",
-      "likes": 0,
+      "likes": 1,
       "dislikes": 0,
       "user": "OmarWalid",
       "comments": [],
