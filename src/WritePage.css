@@ -15,12 +15,13 @@
 .post-write-post-to-form-row
 {
     margin-bottom: 20px;
+
+    align-items: flex-end;
 }
 .post-write-form-label
 {
     color: white;
-    margin: 0;
-    margin-right: 20px;
+    margin: 20px 0;
 }
 .post-write-form-select-topic
 {
@@ -64,7 +65,7 @@
 
     padding: 5px;
 
-    margin: 20px 0;
+    margin: 10px 0 20px 0;
 
     border-radius: 10px;
 
@@ -107,4 +108,134 @@
     color: rgb(80, 80, 80);
 
     pointer-events: none;
+}
+
+
+.create-topic-form-title-input
+{
+    font-size: 18pt;
+    
+    width: 77%; height: 50px;
+
+    border-radius: 10px;
+
+    padding: 5px;
+
+    outline: none;
+    border: none;
+}
+.create-topic-form-topic-logo
+{
+    position: relative;
+}
+.topic-logo-background
+{
+    width: 150px; aspect-ratio: 1;
+
+    /* background-image: url("./img/topic-logo/bg3.png"); */
+
+    background-blend-mode: hard-light;
+    
+    background-size: cover;
+
+    border-radius: 10px;
+
+    border: 5px solid white;
+
+    box-shadow: inset 0 0 20px black;
+
+    position: relative;
+}
+.topic-logo-foreground
+{
+    width: 70%; aspect-ratio: 1;
+
+    /* background-color: lightgreen; */
+
+    /* mask-image: url("./img/topic-logo/fg6.png"); */
+
+    mask-size: cover;
+
+    filter: drop-shadow(0 0 2px black);
+
+    position: absolute;
+}
+.topic-logo-foreground-shadow
+{
+    width: 70%; aspect-ratio: 1;
+
+    /* background-image: url("./img/topic-logo/fg1.png"); */
+
+    background-size: cover;
+
+    filter: drop-shadow(0 1px 4px black);
+
+    position: absolute;
+}
+.topic-logo-options-container
+{
+    width: 500px; height: 300px;
+
+    background-color: darkslateblue;
+
+    padding: 35px 20px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 0 20px black;
+
+    position: absolute;
+    top: 100%;
+
+    transform-origin: top;
+    transform: scaleY(0);
+
+    transition: all 0.1s ease-in-out;
+}
+
+.topic-logo-options-row
+{
+    width: 100%; height: 100px;
+}
+.topic-logo-image-options
+{
+    width: 75%; height: 100%;
+
+    background-color: black;
+
+    padding: 5px;
+
+    border-radius: 10px;
+
+    overflow-x: scroll;
+}
+.topic-logo-image-button
+{
+    height: 100%; aspect-ratio: 1;
+
+    margin: 0 10px;
+
+    border-radius: 10px;
+
+    background-size: cover;
+
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
+}
+
+.topic-logo-image-button:hover
+{
+    transform: scale(1.1);
+}
+.topic-logo-color-option
+{
+    width: 20%; height: 100%;
+
+    /* background-color: red; */
+}
+
+.create-topic-form-topic-logo:hover .topic-logo-options-container
+{
+    transform: scaleY(1);
 }

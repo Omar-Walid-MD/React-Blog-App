@@ -17,8 +17,16 @@ function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
         description: "",
         
     });
-    
 
+    const [topicLogo,setTopicLogo] = useState({
+        bgImg: 1,
+        bgColor: "#0b0404",
+        fgImg: 1,
+        fgColor: "#ffffff"
+    });
+
+    const bgImages = 5; const fgImages = 40;
+    
     function handleTopic(event)
     {
         setNewTopic({
@@ -35,6 +43,7 @@ function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
         {
             let topicToAdd = {
                 ...newTopic,
+                logo: topicLogo,
                 id: "topic-" + makeId(10),
                 posts: [],
                 members: 0,
@@ -95,6 +104,16 @@ function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
 
     }
 
+    function handleTopicLogo(event)
+    {
+        setTopicLogo({
+            ...topicLogo,
+            [event.target.name]: event.target.value
+        });
+
+        console.log(topicLogo);
+    }
+
     function makeId(length)
     {
         let result = "";
@@ -111,11 +130,40 @@ function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
             <div className="page-container flex-center">
                 <div className="main-column flex-column">
                     <form className="post-write-form-container flex-column" ref={CreateTopicForm} onSubmit={submitTopic}>
-                        <div className="post-write-post-to-form-row">
-                            <h1 className="post-write-form-label">Create a new topic</h1>
-                        </div>
+                        <h1 className="post-write-form-label">Create a new topic</h1>
                         <div className="post-write-form-input-group">
-                            <input className="post-write-form-title-input" type="text" name="title" placeholder="Your interesting topic..." value={newTopic.title} onChange={handleTopic} required />
+                            <div className="post-write-post-to-form-row flex-row">
+                                <div className="create-topic-form-topic-logo flex-column">
+                                    <div className="topic-logo-background flex-center" style={{backgroundImage: 'url(' + require("./img/topic-logo/bg" + topicLogo.bgImg + ".png") + ')', backgroundColor: topicLogo.bgColor}}>
+                                        <div className="topic-logo-foreground-shadow" style={{backgroundImage: 'url(' + require("./img/topic-logo/fg" + topicLogo.fgImg + ".png") + ')'}}></div>
+                                        <div className="topic-logo-foreground" style={{maskImage: 'url(' + require("./img/topic-logo/fg" + topicLogo.fgImg + ".png") + ')', WebkitMaskImage: 'url(' + require("./img/topic-logo/fg" + topicLogo.fgImg + ".png") + ')', backgroundColor: topicLogo.fgColor}}></div>
+                                    </div>
+                                    <div className="topic-logo-options-container flex-column">
+                                        <div className="topic-logo-options-row flex-row">
+                                            <div className="topic-logo-image-options flex-row">
+                                                {
+                                                    [...Array(bgImages).keys()].map((n)=>
+                                                    <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={n+1} style={{backgroundImage: 'url(' + require("./img/topic-logo/bg"+(n+1)+".png") + ')'}} onClick={function(event){handleTopicLogo(event)}} key={"bg-option-"+n}></button>
+                                                    )
+                                                }
+                                            </div>
+                                            <input className="topic-logo-color-option" type="color" name={"bgColor"} onChange={handleTopicLogo} />
+                                        </div>
+                                        <div className="topic-logo-options-row flex-row">
+                                            <div className="topic-logo-image-options flex-row">
+                                                {
+                                                    [...Array(fgImages).keys()].map((n)=>
+                                                    <button className="topic-logo-image-button flex-center" type="button" name="fgImg" value={n+1} style={{backgroundImage: 'url(' + require("./img/topic-logo/fg"+(n+1)+".png") + ')'}} onClick={function(event){handleTopicLogo(event)}} key={"fg-option-"+n}></button>
+                                                    )
+                                                }
+                                            </div>
+                                            <input className="topic-logo-color-option" type="color" name={"fgColor"} onChange={handleTopicLogo} />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <input className="create-topic-form-title-input" type="text" name="title" placeholder="Your interesting topic..." value={newTopic.title} onChange={handleTopic} required />
+                            </div>
                             <textarea className="post-write-form-body-input" name="description" maxLength={150}  placeholder="A brief description of your topic..." value={newTopic.description} onChange={handleTopic} required ></textarea>
                         </div>
                         <div className="post-write-form-submit-container">

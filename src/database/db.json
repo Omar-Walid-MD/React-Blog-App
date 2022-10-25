@@ -7,7 +7,10 @@
       "id": "user-4499347254",
       "subbedTopics": [
         "topic-9943383413",
-        "topic-8781529897"
+        "topic-8781529897",
+        "topic-9186347593",
+        "topic-8911298389",
+        "topic-1211381976"
       ],
       "likes": [
         "post-1432977528",
@@ -53,6 +56,20 @@
       "posts": [],
       "members": 0,
       "date": 1666633088974
+    },
+    {
+      "title": "Algorithms",
+      "description": "We discuss algorithms",
+      "logo": {
+        "bgImg": "2",
+        "bgColor": "#0f1ccc",
+        "fgImg": "11",
+        "fgColor": "#56ebf5"
+      },
+      "id": "topic-1211381976",
+      "posts": [],
+      "members": 0,
+      "date": 1666728084604
     }
   ],
   "posts": [
