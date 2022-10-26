@@ -52,7 +52,7 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
                 handlePostList(prevList => [...prevList,postToAdd])
             })
     
-            navigate("/post/"+postToAdd.id);
+            navigate("/post/"+postToAdd.id,{state: {submittedPost: postToAdd, submittedTopic: postToAdd.topic}});
             return
         }
         else

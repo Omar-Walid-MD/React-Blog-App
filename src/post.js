@@ -12,6 +12,7 @@ function Post({post,currentUser,setCurrentUser})
   const [dislikes,setDislikes] = useState(post.dislikes);
 
   const [commentsCount,setCommentsCount] = useState(0);
+  const [topic,setTopic] = useState();
 
   const [saved,setSaved] = useState();
   
@@ -211,14 +212,37 @@ function Post({post,currentUser,setCurrentUser})
     });
     
     currentUser && setSaved(currentUser.savedPosts.includes(post.id));
-    currentUser && console.log("yes");
 
   },[currentUser])
+
+  useEffect(()=>{
+
+    fetch('http://localhost:8000/topics/'+post.topic)
+    .then(res => {
+    return res.json()
+    })
+    .then((data)=>{
+
+        setTopic(data);
+    });
+  },[post]);
 
   return(     
     <div className="post-container flex-column">
       <Link to={"/post/"+post.id} className="post-info">
-        <p className="post-date">posted by {post.user} at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
+        <div className="post-info-top-row flex-row">
+          {
+            topic &&
+            <div className="flex-row">
+              <Link to={"/topic/"+topic.id} className="post-topic-logo-background flex-center" style={{backgroundImage: 'url(' + require("./img/topic-logo/bg" + topic.logo.bgImg + ".png") + ')', backgroundColor: topic.logo.bgColor}}>
+                  <div className="topic-logo-foreground-shadow" style={{backgroundImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')'}}></div>
+                  <div className="topic-logo-foreground" style={{maskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', WebkitMaskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', backgroundColor: topic.logo.fgColor}}></div>
+              </Link>
+              <p className="post-topic-title">{topic.title}</p>
+            </div>
+          }
+          <p className="post-date">posted by {post.user} at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
+        </div>
         <h1 className="post-title">{post.title}</h1>
         <p className="post-body">{post.body}</p>
         {

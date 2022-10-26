@@ -6,16 +6,17 @@
       "password": "123",
       "id": "user-4499347254",
       "subbedTopics": [
-        "topic-9943383413",
         "topic-8781529897",
         "topic-9186347593",
         "topic-8911298389",
-        "topic-1211381976"
+        "topic-1211381976",
+        "topic-9943383413"
       ],
       "likes": [
         "post-1432977528",
         "post-6423576815",
-        "post-4581794152"
+        "post-4581794152",
+        "post-4756244164"
       ],
       "dislikes": [
         "comment-6624387775",
@@ -28,7 +29,8 @@
       "savedPosts": [
         "post-2364728155",
         "comment-2935444123",
-        "comment-8291228199"
+        "comment-8291228199",
+        "post-4756244164"
       ]
     }
   ],
@@ -37,6 +39,12 @@
       "title": "React Development",
       "description": "This is a test topic where we discuss React and showcase our work!",
       "id": "topic-9186347593",
+      "logo": {
+        "bgImg": "2",
+        "bgColor": "#0f1ccc",
+        "fgImg": "11",
+        "fgColor": "#56ebf5"
+      },
       "posts": [],
       "members": 0,
       "date": 1666467538107
@@ -45,6 +53,12 @@
       "title": "College",
       "description": "Here we discuss a wide variety of matters regarding college life and struggles.",
       "id": "topic-9943383413",
+      "logo": {
+        "bgImg": "1",
+        "bgColor": "#256f20",
+        "fgImg": "1",
+        "fgColor": "#a7fbf5"
+      },
       "posts": [],
       "members": 0,
       "date": 1666469894764
@@ -52,6 +66,12 @@
     {
       "title": "Cats",
       "description": "Do you love cats as I do? Share some interesting stories about cats!",
+      "logo": {
+        "bgImg": "4",
+        "bgColor": "#cd6d13",
+        "fgImg": "39",
+        "fgColor": "#f0e9bc"
+      },
       "id": "topic-8781529897",
       "posts": [],
       "members": 0,
@@ -105,6 +125,17 @@
       "user": "OmarWalid",
       "comments": [],
       "date": 1666594508630
+    },
+    {
+      "title": "Are cat-dog relationships actually different from what we're shown on media?",
+      "body": "Today, I saw a cat paying attention to a dog on a little girl's lap. I thought a cat's instinct would make it run away from dogs... But maybe they can just get along?",
+      "topic": "topic-8781529897",
+      "id": "post-4756244164",
+      "likes": 1,
+      "dislikes": 0,
+      "user": "OmarWalid",
+      "comments": [],
+      "date": 1666801905615
     }
   ],
   "comments": [

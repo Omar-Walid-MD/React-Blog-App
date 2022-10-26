@@ -8,20 +8,20 @@ import Comment from "./Comment";
 import './MainPage.css';
 import "./PostPage.css";
 
-function PostPage({topics, currentUser,setCurrentUser})
+function PostPage({topics, currentUser, setCurrentUser})
 {
 
     let postId = useParams().id;
 
     const location = useLocation();
     const {targetCommentId} = location.state || {};
+    const {submittedPost} = location.state || {};
 
     const targetComment = useRef(null);
 
 
-    // if(targetComment) ScrollToComment();
-
-    const [post,setPost] = useState(null);
+    const [post,setPost] = useState(submittedPost==={} ? null : submittedPost);
+    const [topic,setTopic] = useState();
 
     const [voteState,setVoteState] = useState("none");
     const [likes,setLikes] = useState(0);
@@ -274,6 +274,33 @@ function PostPage({topics, currentUser,setCurrentUser})
         return targetCommentId===commentId ? targetComment : null;
     }
 
+    function IsTopicSubbed(topicId)
+    {
+      return currentUser.subbedTopics.includes(topicId);
+    }
+
+    function SetTopicSubbed(topicId)
+    {
+
+      let newSubbedTopics = [];
+
+      if(IsTopicSubbed(topicId))
+      {
+        newSubbedTopics = currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId);
+        console.log(currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId));
+      }
+      else
+      {
+        newSubbedTopics = [...currentUser.subbedTopics,topicId];
+        console.log("uh oh");
+      }
+
+      let updatedUser = {
+        ...currentUser,
+        subbedTopics: newSubbedTopics
+      }
+    }
+
     function ScrollToComment()
     {
         console.log(targetComment.current.getAttribute("reply"))
@@ -302,44 +329,54 @@ function PostPage({topics, currentUser,setCurrentUser})
     useEffect(()=>{
 
         window.scrollTo(0,0);    
-            
-        fetch('http://localhost:8000/posts/'+postId)
-        .then(res => {
-        return res.json()
-        })
-        .then((data)=>{
-
-            setPost(data);
-            setVoteState(CheckUserVote(data));
-            setLikes(data.likes);
-            setDislikes(data.dislikes);
-        });
-
-        fetch('http://localhost:8000/comments/')
-        .then(res => {
-        return res.json()
-        })
-        .then((data)=>{
-
-            setComments(GetPostComments(data));
-        });
+        if(!post)
+        {
+            fetch('http://localhost:8000/posts/'+postId)
+            .then(res => {
+            return res.json()
+            })
+            .then((data)=>{
+    
+                setPost(data);
+                setVoteState(CheckUserVote(data));
+                setLikes(data.likes);
+                setDislikes(data.dislikes);
+            });
+    
+            fetch('http://localhost:8000/comments/')
+            .then(res => {
+            return res.json()
+            })
+            .then((data)=>{
+    
+                setComments(GetPostComments(data));
+            });
+        }
         
 
     },[postId]);
 
     useEffect(()=>{
-        if(post) 
+        if(post && currentUser) 
         {
             setVoteState(CheckUserVote());
             setSaved(currentUser.savedPosts.includes(post.id));
+            console.log("happens here");
+            fetch('http://localhost:8000/topics/'+post.topic)
+            .then(res => {
+            return res.json()
+            })
+            .then((data)=>{
+        
+                setTopic(data);
+            });
         }
 
-    },[post])
+    },[post, currentUser])
 
 
     useEffect(()=>{
         if(targetComment.current) ScrollToComment();
-        console.log(targetComment.current);
     },[targetComment.current]);
 
     return (
@@ -352,6 +389,13 @@ function PostPage({topics, currentUser,setCurrentUser})
     
                         <div className="post-page-post-container flex-column">
                             <div className="post-info">
+                                {
+                                // topic &&
+                                // <Link to={"/topic/"+topic.id} className="post-topic-logo-background flex-center" style={{backgroundImage: 'url(' + require("./img/topic-logo/bg" + topic.logo.bgImg + ".png") + ')', backgroundColor: topic.logo.bgColor}}>
+                                //     <div className="topic-logo-foreground-shadow" style={{backgroundImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')'}}></div>
+                                //     <div className="topic-logo-foreground" style={{maskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', WebkitMaskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', backgroundColor: topic.logo.fgColor}}></div>
+                                // </Link>
+                                }
                                 <p className="post-page-post-date">posted by {post.user} at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
                                 <h1 className="post-page-post-title">{post.title}</h1>
                                 <p className="post-page-post-body">{post.body}</p>
@@ -389,6 +433,27 @@ function PostPage({topics, currentUser,setCurrentUser})
                         </div>
                     
                 </div>
+
+                
+            }
+
+            {
+             topic &&
+              <div className="side-column">
+                <div className="side-column-topic-overview">
+                  <div className="topic-logo-background flex-center" style={{backgroundImage: 'url(' + require("./img/topic-logo/bg" + topic.logo.bgImg + ".png") + ')', backgroundColor: topic.logo.bgColor}}>
+                      <div className="topic-logo-foreground-shadow" style={{backgroundImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')'}}></div>
+                      <div className="topic-logo-foreground" style={{maskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', WebkitMaskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', backgroundColor: topic.logo.fgColor}}></div>
+                  </div>
+                  <h1 className="side-column-topic-title">{topic.title}</h1>
+                  <p className="side-column-topic-desc">{topic.description}</p>
+                </div>
+                <div className="side-column-topic-status flex-row">
+                  <p className="side-column-topic-members">{topic.members} members</p>
+                  <button className="side-column-topic-sub-button" subbed={IsTopicSubbed(topic.id) ? "true" : "false"} onClick={function(){SetTopicSubbed(topic.id)}}>{IsTopicSubbed(topic.id) ? "Unsubscribe" : "Subscribe"}</button>
+                </div>
+                  <p className="side-column-topic-date">Created on {new Date(topic.date).toDateString()}</p>
+              </div>
             }
           </div>
         </div>
