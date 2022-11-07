@@ -4,7 +4,7 @@ import axios from 'axios';
 import "./PostPage.css"
 
 
-function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last})
+function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddReply})
 {
 
     const [voteState,setVoteState] = useState(CheckUserVote());
@@ -201,7 +201,7 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last})
                     <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
                     <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                 </div>
-                <Link to={"/post/"} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>Reply</Link>
+                <button className="comment-reply-button flex-row" onClick={function(){AddReply(comment.user)}}><i className='bx bxs-comment-detail comment-icon'></i>Reply</button>
                 <button className="comment-save-button flex-row" saved={saved ? "true" : "false"}  onClick={handleSave}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
                 </div>
             </div>
@@ -387,6 +387,23 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
         }
     }
 
+
+    const replyInput = useRef();
+
+    function MentionReply(userMention)
+    {
+        replyInput.current.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+
+        setNewReply("@"+userMention+" ");
+
+        replyInput.current.focus();
+
+    }
+
     function handleSave()
     {
         console.log("yea");
@@ -453,9 +470,6 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
         }
         return result;
     }
- 
-
-
 
 
     return (
@@ -479,7 +493,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
             <div className="post-page-comment-replies-container">
                 <div className="post-page-comment-replies-section reply-margin flex-column">
                     <form className="post-page-write-reply-form flex-row" onSubmit={submitReply}>
-                        <textarea className="post-page-write-reply-input" placeholder="Write your reply..." minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
+                        <textarea className="post-page-write-reply-input" ref={replyInput} placeholder="Write your reply..." minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
                         <input className="post-page-write-reply-submit" type="submit" value="Reply" />
                         <div className="post-page-comment-replies-line" first="true"></div>
 
@@ -487,7 +501,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
                     <div>
                         {
                             replyList && replyList.map((reply,index)=>
-                            <Reply comment={reply} SetCommentRef={SetCommentRef} currentUser={currentUser} setCurrentUser={setCurrentUser} key={reply.id} last={index===replyList.length-1 ? "true" : "false"} />
+                            <Reply comment={reply} SetCommentRef={SetCommentRef} currentUser={currentUser} setCurrentUser={setCurrentUser} AddReply={MentionReply} key={reply.id} last={index===replyList.length-1 ? "true" : "false"} />
                             )
                         }
                     </div>

@@ -328,6 +328,9 @@
     background-attachment: fixed;
 
     padding-top: 80px;
+    
+
+    /* align-items: flex-start; */
 }
 .page-container[header="none"]
 {
@@ -575,7 +578,7 @@
 
 .side-column
 {
-    width: 400px; height: fit-content;
+    width: 400px;
     
     color: white;
     background-color: darkslateblue;

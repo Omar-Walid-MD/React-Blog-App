@@ -301,8 +301,12 @@
 {
     font-size: 15pt;
 
+    background-color: transparent;
     color: white;
+
     text-decoration: none;
+
+    border: none;
 
     cursor: pointer;
 
