@@ -141,33 +141,33 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
     }
 
     function handleSave()
-  {
-    console.log("yea");
-    setSaved(prev => !prev);
-
-    let updatedUser = currentUser;
-
-    if(updatedUser.savedPosts.includes(comment.id))
     {
-      updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==comment.id);
-    }
-    else
-    {
-      updatedUser.savedPosts = [...updatedUser.savedPosts,comment.id];
-    }
+        console.log("yea");
+        setSaved(prev => !prev);
 
-    axios.put('http://localhost:8000/users/'+updatedUser.id,
-      updatedUser
-    )
-    .then(resp =>{
-        console.log("Updated User Saved Posts");
-        localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-        setCurrentUser(updatedUser);
-    }).catch(error => {
-        console.log(error);
-    });
+        let updatedUser = currentUser;
 
-  }
+        if(updatedUser.savedPosts.includes(comment.id))
+        {
+        updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==comment.id);
+        }
+        else
+        {
+        updatedUser.savedPosts = [...updatedUser.savedPosts,comment.id];
+        }
+
+        axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+        )
+        .then(resp =>{
+            console.log("Updated User Saved Posts");
+            localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+            setCurrentUser(updatedUser);
+        }).catch(error => {
+            console.log(error);
+        });
+
+    }
 
 
     function CheckUserVote()
@@ -188,12 +188,18 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
         
     }
 
+    function FormatText(replyText)
+    {
+        let replyTextSplit = replyText.split(' ').map((word)=> word[0]==='@' ? <Link className="user-tag">{word}&nbsp;</Link> : word+" ");
+        console.log(replyTextSplit);
+        return replyTextSplit;
+    }
 
 
     return (
         <div className="post-page-comment-content-container" id={comment.id}>
             <p className="post-page-comment-info">By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
-            <p className="post-page-comment-text" ref={SetCommentRef(comment.id)} parentcommentid={comment.parentComment} reply="true">{comment.text}</p>
+            <p className="post-page-comment-text" ref={SetCommentRef(comment.id)} parentcommentid={comment.parentComment} reply="true">{FormatText(comment.text)}</p>
 
             <div className="comment-bottom-bar flex-row">
                 <div className="comment-options flex-row">
@@ -452,6 +458,13 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
         
     }
 
+    function FormatText(replyText)
+    {
+        let replyTextSplit = replyText.split(' ').map((word)=> word[0]==='@' ? <Link className="user-tag">{word}&nbsp;</Link> : word+" ");
+        console.log(replyTextSplit);
+        return replyTextSplit;
+    }
+
     
     function AutoResize(event)
     {
@@ -477,7 +490,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
             <input id={"reply-checkbox-"+comment.id} type="checkbox" className="post-page-comment-reply-checkbox hidden-checkbox"/>        
             <div className="post-page-comment-content-container" id={comment.id} ref={SetCommentRef(comment.id)}>
                 <p className="post-page-comment-info">By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
-                <p className="post-page-comment-text">{comment.text}</p>
+                <p className="post-page-comment-text">{FormatText(comment.text)}</p>
 
                 <div className="comment-bottom-bar flex-row">
                     <div className="comment-options flex-row">

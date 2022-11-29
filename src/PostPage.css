@@ -490,3 +490,14 @@
     position: absolute;
     top: 50%; right: 100%;
 }
+
+.user-tag
+{
+    color:deepskyblue;
+
+    text-decoration: none;
+}
+.user-tag:hover
+{
+    color: dodgerblue;
+}
