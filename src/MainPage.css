@@ -330,7 +330,7 @@
     padding-top: 80px;
     
 
-    /* align-items: flex-start; */
+    align-items: flex-start;
 }
 .page-container[header="none"]
 {
@@ -575,8 +575,11 @@
     color: lime;
 }
 
-
 .side-column
+{
+    margin-top: 50px;
+}
+.side-column-topic-container
 {
     width: 400px;
     

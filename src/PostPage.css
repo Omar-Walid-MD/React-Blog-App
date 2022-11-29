@@ -9,6 +9,10 @@
 {
     width: 100%;
 }
+.post-page-side-column
+{
+    margin-top: 70px;
+}
 .post-page-post-container
 {
     color: white;
