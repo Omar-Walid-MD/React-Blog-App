@@ -25,7 +25,9 @@
 {
     height: 70px; width: 350px;
     
-    background-color: lightblue;
+    background-color: lightsteelblue;
+
+    box-shadow: inset 0 0 20px rgba(52, 47, 68, 0.75);
 
     border-radius: 10px;
 
@@ -36,8 +38,15 @@
     width: 100%; height: 100%;
 
     position: relative;
+}
+.post-write-form-select-topic-open-label
+{
+    width: 100%; height: 100%;
 
-    /* cursor: pointer; */
+    font-size: 18pt;
+    font-weight: 500;
+
+    cursor: pointer;
 }
 .post-write-form-select-topic-menu
 {
@@ -49,11 +58,16 @@
     border-radius: 10px;
     box-shadow: 0 0 10px black;
 
-    display: none;
+    display: flex;
 
     top: 100%;
 
     position: absolute;
+
+    transform: scaleY(0);
+    transform-origin: top;
+
+    transition: transform 0.2s ease-in-out;
 }
 .post-write-form-select-topic-menu > h2
 {
@@ -62,12 +76,29 @@
 }
 .post-write-form-select-topic-open:hover .post-write-form-select-topic-menu
 {
-    display: flex;
+    transform: scaleY(1);
 }
 .post-write-form-select-topic-menu-section
 {
     width: 50%;
     padding: 20px;
+}
+.post-write-form-select-topic-menu-label-container
+{
+    height: 100px;
+}
+.post-write-form-select-topic-search
+{
+    width: 90%;
+
+    font-size: 15pt;
+
+    border-radius: 5px;
+
+    padding: 5px;
+
+    outline: none;
+    border: none;
 }
 .post-write-form-select-topic-results
 {
@@ -82,23 +113,30 @@
     width: 100%; height: 50px;
 
     color: white;
-    background-color: purple;
+    background-color: rgb(102, 91, 173);
 
     padding: 10px;
     margin: 5px 0;
 
     border: none;
+    border-bottom: solid 5px lightsteelblue;
+    border-radius: 5px;
+
     outline: none;
 
-    transition: transform 0.1s ease-in-out;
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
 }
 .select-topic-button:hover
 {
-    transform: scale(1.05);
+    background-color: rgba(176, 196, 222, 0.5);
+    /* transform: scale(1.05); */
 }
 .select-topic-info
 {
-    width: 70%;
+    width: 80%;
+    margin-left: 10px;
 
     align-items: flex-start;
 }
@@ -119,14 +157,20 @@
 }
 
 .selected-topic-container
-{
-    width: calc(100% - 10px); height: calc(100% - 10px);
+{   
+    width: 100%; height: 100%;
 
-    background-color: purple;
-
-    border-radius: 10px;
+    color: white;
+    background-color: rgb(102, 91, 173);
 
     padding: 10px;
+    margin: 5px 0;
+
+    border: none;
+    border-bottom: solid 5px lightsteelblue;
+    border-radius: 10px;
+
+    box-shadow: 0 0 5px black;
     
 }
 .selected-topic-reset-button
@@ -143,17 +187,7 @@
 
     cursor: pointer;
 }
-/* .post-write-form-select-topic
-{
-    font-size: 15pt;
 
-    padding: 5px 10px;
-
-    border-radius: 10px;
-
-    outline: none;
-    border: none;
-} */
 .post-write-form-input-group
 {
     width: 100%;
@@ -264,19 +298,6 @@
     box-shadow: inset 0 0 20px black;
 
     position: relative;
-}
-.select-topic-logo
-{
-    width: 40px;
-    border-radius: 5px;
-    border: 1px solid white;
-
-}
-.search-result-topic-logo
-{
-    width: 80px;
-    border-radius: 10px;
-    border: 4px solid white;
 }
 .topic-logo-foreground
 {

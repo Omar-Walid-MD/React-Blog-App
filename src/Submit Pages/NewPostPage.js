@@ -148,7 +148,7 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser})
                             {
                                 newPost.topic !=="" ?
                                 <div className="selected-topic-container flex-row">
-                                    <TopicLogo bgImg={GetTopicFromId(newPost.topic).logo.bgImg} bgColor={GetTopicFromId(newPost.topic).logo.bgColor} fgImg={GetTopicFromId(newPost.topic).logo.fgImg} fgColor={GetTopicFromId(newPost.topic).logo.fgColor} width={40} />
+                                    <TopicLogo bgImg={GetTopicFromId(newPost.topic).logo.bgImg} bgColor={GetTopicFromId(newPost.topic).logo.bgColor} fgImg={GetTopicFromId(newPost.topic).logo.fgImg} fgColor={GetTopicFromId(newPost.topic).logo.fgColor} width={60} />
                                     <div className="select-topic-info flex-column">
                                         <p className="select-topic-info-title">{GetTopicFromId(newPost.topic).title}</p>
                                         <p className="select-topic-info-members">{GetTopicFromId(newPost.topic).members} members</p>
@@ -157,10 +157,12 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser})
                                 </div>
                                 :
                                 <div className="post-write-form-select-topic-open flex-center">
-                                    <h2>--Select Topic--</h2>
+                                    <div className="post-write-form-select-topic-open-label flex-center">--Select Topic--</div>
                                     <div className="post-write-form-select-topic-menu flex-row">
                                         <div className="post-write-form-select-topic-menu-section">
-                                            <h2>Joined Topics:</h2>
+                                            <div className="post-write-form-select-topic-menu-label-container">
+                                                <h2>Joined Topics:</h2>
+                                            </div>
                                             <div className="post-write-form-select-topic-results">
                                             {
                                                 topics && topics.filter((topic)=>currentUser.subbedTopics.includes(topic.id)).map((topic)=>
@@ -172,8 +174,10 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser})
                                             </div>
                                         </div>
                                         <div className="post-write-form-select-topic-menu-section">
-                                            <h2>Search Topics:</h2>
-                                            <input type="search" value={searchTopic} onChange={handleSearchTopic} />
+                                            <div className="post-write-form-select-topic-menu-label-container">
+                                                <h2>Search Topics:</h2>
+                                                <input className="post-write-form-select-topic-search" type="search" value={searchTopic} onChange={handleSearchTopic} />
+                                            </div>
                                             <div className="post-write-form-select-topic-results">
                                             {
                                                 topics && searchTopic!=="" && GetSearchResults(searchTopic).map((topic)=>
