@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import Header from "./Header"
+
+import Header from "../Main Page/Header";
+import TopicLogo from "../Main Page/TopicLogo";
+
 import "./WritePage.css"
 
 
@@ -16,10 +19,7 @@ function SelectTopic({topic, newPost, setNewPost})
 
     return (
         <button className="select-topic-button flex-row" onClick={handlePostTopic}>
-            <div className="select-topic-logo topic-logo-background flex-center" style={{backgroundImage: 'url(' + require("./img/topic-logo/bg" + topic.logo.bgImg + ".png") + ')', backgroundColor: topic.logo.bgColor}}>
-                <div className="topic-logo-foreground-shadow" style={{backgroundImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')'}}></div>
-                <div className="topic-logo-foreground" style={{maskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', WebkitMaskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', backgroundColor: topic.logo.fgColor}}></div>
-            </div>
+            <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={40} />
             <div className="select-topic-info flex-column">
                 <p className="select-topic-info-title">{topic.title}</p>
                 <p className="select-topic-info-members">{topic.members} members</p>
@@ -28,7 +28,7 @@ function SelectTopic({topic, newPost, setNewPost})
 }
 
 
-function WritePage({handlePostList, topics, currentUser, setCurrentUser})
+function NewPostPage({handlePostList, topics, currentUser, setCurrentUser})
 {
     const navigate = useNavigate();
 
@@ -148,10 +148,7 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
                             {
                                 newPost.topic !=="" ?
                                 <div className="selected-topic-container flex-row">
-                                    <div className="select-topic-logo topic-logo-background flex-center" style={{backgroundImage: 'url(' + require("./img/topic-logo/bg" + GetTopicFromId(newPost.topic).logo.bgImg + ".png") + ')', backgroundColor: GetTopicFromId(newPost.topic).logo.bgColor}}>
-                                        <div className="topic-logo-foreground-shadow" style={{backgroundImage: 'url(' + require("./img/topic-logo/fg" + GetTopicFromId(newPost.topic).logo.fgImg + ".png") + ')'}}></div>
-                                        <div className="topic-logo-foreground" style={{maskImage: 'url(' + require("./img/topic-logo/fg" + GetTopicFromId(newPost.topic).logo.fgImg + ".png") + ')', WebkitMaskImage: 'url(' + require("./img/topic-logo/fg" + GetTopicFromId(newPost.topic).logo.fgImg + ".png") + ')', backgroundColor: GetTopicFromId(newPost.topic).logo.fgColor}}></div>
-                                    </div>
+                                    <TopicLogo bgImg={GetTopicFromId(newPost.topic).logo.bgImg} bgColor={GetTopicFromId(newPost.topic).logo.bgColor} fgImg={GetTopicFromId(newPost.topic).logo.fgImg} fgColor={GetTopicFromId(newPost.topic).logo.fgColor} width={40} />
                                     <div className="select-topic-info flex-column">
                                         <p className="select-topic-info-title">{GetTopicFromId(newPost.topic).title}</p>
                                         <p className="select-topic-info-members">{GetTopicFromId(newPost.topic).members} members</p>
@@ -215,4 +212,4 @@ function WritePage({handlePostList, topics, currentUser, setCurrentUser})
     );
 }
 
-export default WritePage;
+export default NewPostPage;

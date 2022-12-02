@@ -1,7 +1,8 @@
 import {useState, useEffect, useRef} from "react"
 import { Link, useParams, useLocation } from "react-router-dom";
 import axios from 'axios';
-import "./PostPage.css"
+
+import "../Post Page/PostPage.css"
 
 
 function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddReply})

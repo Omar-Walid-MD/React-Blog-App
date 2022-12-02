@@ -1,14 +1,19 @@
 import {useState, useEffect } from "react"
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import MainPage from "./MainPage";
-import WritePage from "./WritePage";
-import PostPage from "./PostPage";
-import './MainPage.css';
-import RegisterPage from "./RegisterPage";
-import LoginPage from "./LoginPage";
-import UserActivityPage from "./UserActivityPage";
-import SavedPage from "./SavedPage";
-import CreateTopicPage from "./CreateTopicPage";
+
+import MainPage from "./Main Page/MainPage";
+import PostPage from "./Post Page/PostPage";
+
+import RegisterPage from "./Account Pages/RegisterPage";
+import LoginPage from "./Account Pages/LoginPage";
+
+import UserActivityPage from "./User Pages/UserActivityPage";
+import SavedPage from "./User Pages/SavedPage";
+
+import WritePage from "./Submit Pages/NewPostPage";
+import CreateTopicPage from "./Submit Pages/NewTopicPage";
+
+import './Main Page/MainPage.css';
 
 
 

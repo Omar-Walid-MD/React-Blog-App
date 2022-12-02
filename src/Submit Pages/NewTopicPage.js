@@ -2,12 +2,12 @@ import {useState, useEffect, useRef} from "react"
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-import Header from "./Header";
-import Post from "./Post";
+import Header from "../Main Page/Header";
+import TopicLogo from "../Main Page/TopicLogo";
 
 import './WritePage.css';
 
-function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
+function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
 {
 
     const navigate = useNavigate();
@@ -134,16 +134,13 @@ function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
                         <div className="post-write-form-input-group">
                             <div className="post-write-post-to-form-row flex-row">
                                 <div className="create-topic-form-topic-logo flex-column">
-                                    <div className="topic-logo-background flex-center" style={{backgroundImage: 'url(' + require("./img/topic-logo/bg" + topicLogo.bgImg + ".png") + ')', backgroundColor: topicLogo.bgColor}}>
-                                        <div className="topic-logo-foreground-shadow" style={{backgroundImage: 'url(' + require("./img/topic-logo/fg" + topicLogo.fgImg + ".png") + ')'}}></div>
-                                        <div className="topic-logo-foreground" style={{maskImage: 'url(' + require("./img/topic-logo/fg" + topicLogo.fgImg + ".png") + ')', WebkitMaskImage: 'url(' + require("./img/topic-logo/fg" + topicLogo.fgImg + ".png") + ')', backgroundColor: topicLogo.fgColor}}></div>
-                                    </div>
+                                <TopicLogo bgImg={topicLogo.bgImg} bgColor={topicLogo.bgColor} fgImg={topicLogo.fgImg} fgColor={topicLogo.fgColor} width={150} />
                                     <div className="topic-logo-options-container flex-column">
                                         <div className="topic-logo-options-row flex-row">
                                             <div className="topic-logo-image-options flex-row">
                                                 {
                                                     [...Array(bgImages).keys()].map((n)=>
-                                                    <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={n+1} style={{backgroundImage: 'url(' + require("./img/topic-logo/bg"+(n+1)+".png") + ')'}} onClick={function(event){handleTopicLogo(event)}} key={"bg-option-"+n}></button>
+                                                    <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/topic-logo/bg"+(n+1)+".png") + ')'}} onClick={function(event){handleTopicLogo(event)}} key={"bg-option-"+n}></button>
                                                     )
                                                 }
                                             </div>
@@ -153,7 +150,7 @@ function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
                                             <div className="topic-logo-image-options flex-row">
                                                 {
                                                     [...Array(fgImages).keys()].map((n)=>
-                                                    <button className="topic-logo-image-button flex-center" type="button" name="fgImg" value={n+1} style={{backgroundImage: 'url(' + require("./img/topic-logo/fg"+(n+1)+".png") + ')'}} onClick={function(event){handleTopicLogo(event)}} key={"fg-option-"+n}></button>
+                                                    <button className="topic-logo-image-button flex-center" type="button" name="fgImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/topic-logo/fg"+(n+1)+".png") + ')'}} onClick={function(event){handleTopicLogo(event)}} key={"fg-option-"+n}></button>
                                                     )
                                                 }
                                             </div>
@@ -176,4 +173,4 @@ function CreateTopicPage({currentUser,setCurrentUser, topics, setTopics})
       );
 }
 
-export default CreateTopicPage;
+export default NewTopicPage;

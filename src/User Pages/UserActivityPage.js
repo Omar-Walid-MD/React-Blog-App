@@ -1,13 +1,14 @@
-import {useState, useEffect, useRef} from "react"
-import { Link, useParams, useLocation } from "react-router-dom";
+import {useState, useEffect} from "react"
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
-import Header from "./Header";
+
+import Header from "../Main Page/Header";
 import Post from "./Post";
 import Comment from "./Comment";
 
-import "./PostPage.css"
-import './MainPage.css';
+import "../Post Page/PostPage.css"
+import '../Main Page/MainPage.css';
 import "./UserActivityPage.css"
 
 
@@ -220,7 +221,7 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
 }
 
 
-function SavedPage({posts, topics, currentUser, setCurrentUser})
+function UserActivityPage({posts, topics, currentUser, setCurrentUser})
 {
 
     const [currentTab,setCurrentTab] = useState("overview");
@@ -249,8 +250,7 @@ function SavedPage({posts, topics, currentUser, setCurrentUser})
         contents = comments.map((comment)=>({...comment,type: "comment"}));
       }
 
-      console.log(currentUser.savedPosts);
-      return contents.filter((content)=>currentUser.savedPosts.includes(content.id));
+      return contents.filter((content)=>content.user===currentUser.username);
     }
 
     function SortContent(contents)
@@ -265,7 +265,6 @@ function SavedPage({posts, topics, currentUser, setCurrentUser})
         return res.json()
       })
       .then((data)=>{
-      //   console.log(data);
       setComments(data);
       })
   
@@ -285,7 +284,8 @@ function SavedPage({posts, topics, currentUser, setCurrentUser})
               {
                 comments && posts && SortContent(GetContent(currentTab)).map((content)=>
                  
-                   content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                  content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                 
                  )
               }
               </div>
@@ -295,4 +295,4 @@ function SavedPage({posts, topics, currentUser, setCurrentUser})
       );
 }
 
-export default SavedPage;
+export default UserActivityPage;

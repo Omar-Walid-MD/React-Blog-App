@@ -2,8 +2,11 @@
 import { useEffect, useState } from "react";
 import {Link, useLocation} from "react-router-dom";
 
+import TopicLogo from "./TopicLogo";
+
 function Header({topics, currentUser, setCurrentUser})
 {
+  const imgPath = "../img/topic-logo";
 
   let location = useLocation();
 
@@ -22,7 +25,6 @@ function Header({topics, currentUser, setCurrentUser})
 
   function LogOut(e)
   {
-
     setCurrentUser(null);
     localStorage.setItem('currentUser', JSON.stringify(null));
 
@@ -49,10 +51,13 @@ function Header({topics, currentUser, setCurrentUser})
                         {
                           GetSearchResults(searchValue).length > 0 ?
 
-                          GetSearchResults(searchValue).map((searchResult)=>
-                          <Link to={"/topic/"+searchResult.id} className="topic-result-container flex-column" key={searchResult.id}>
-                            <h2 className="topic-result-title">{searchResult.title}</h2>
-                            <p className="topic-result-members">{searchResult.members} Members</p>
+                          GetSearchResults(searchValue).map((topic)=>
+                          <Link to={"/topic/"+topic.id} className="topic-result-container flex-row" key={topic.id}>
+                             <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={100} />
+                            <div className="topic-result-info">
+                              <h2 className="topic-result-title">{topic.title}</h2>
+                              <p className="topic-result-members">{topic.members} Members</p>
+                            </div>
                           </Link>
                           )
                           : <h1 className="topic-results-empty">No results for "{searchValue}"</h1>
@@ -70,7 +75,7 @@ function Header({topics, currentUser, setCurrentUser})
             <div className="navbar-options-loggedin flex-row">
               <div className="navbar-profile-menu flex-center">
                 <input className="navbar-profile-checkbox hidden-checkbox" id="navbar-profile-checkbox" type="checkbox" />
-                <label htmlFor="navbar-profile-checkbox" className="navbar-profile-button flex-center"><img className="navbar-profile-icon" src={require("./img/profile-icon.png")} /></label>
+                <label htmlFor="navbar-profile-checkbox" className="navbar-profile-button flex-center"><img className="navbar-profile-icon" src={require("../img/profile-icon.png")} /></label>
                 <div className="navbar-profile-dropdown-container">
                   <h1>{currentUser.username}</h1>
                   <div className="split-line"></div>

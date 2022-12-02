@@ -1,8 +1,10 @@
-import './MainPage.css';
 import {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 
+import TopicLogo from "../Main Page/TopicLogo";
+
+import '../Main Page/MainPage.css';
 
 function Post({post,currentUser,setCurrentUser})
 {
@@ -234,9 +236,8 @@ function Post({post,currentUser,setCurrentUser})
           {
             topic &&
             <div className="flex-row">
-              <Link to={"/topic/"+topic.id} className="post-topic-logo-background flex-center" style={{backgroundImage: 'url(' + require("./img/topic-logo/bg" + topic.logo.bgImg + ".png") + ')', backgroundColor: topic.logo.bgColor}}>
-                  <div className="topic-logo-foreground-shadow" style={{backgroundImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')'}}></div>
-                  <div className="topic-logo-foreground" style={{maskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', WebkitMaskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', backgroundColor: topic.logo.fgColor}}></div>
+              <Link to={"/topic/"+topic.id}>
+                <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={60} />
               </Link>
               <p className="post-topic-title">{topic.title}</p>
             </div>

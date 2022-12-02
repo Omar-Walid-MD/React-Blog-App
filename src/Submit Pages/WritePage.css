@@ -272,6 +272,12 @@
     border: 1px solid white;
 
 }
+.search-result-topic-logo
+{
+    width: 80px;
+    border-radius: 10px;
+    border: 4px solid white;
+}
 .topic-logo-foreground
 {
     width: 70%; aspect-ratio: 1;

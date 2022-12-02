@@ -2,11 +2,12 @@ import {useState, useEffect} from "react"
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
 
-import Header from "./Header";
-import Post from "./Post";
+import Header from "../Main Page/Header";
+import Post from "../User Pages/Post";
+import TopicLogo from "./TopicLogo";
 
 import './MainPage.css';
-import "./WritePage.css";
+import "../Submit Pages/WritePage.css";
 
 function MainPage({posts, topics, currentUser, setCurrentUser})
 {
@@ -112,10 +113,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
               <div className="side-column">
                 <div className="side-column-topic-container">
                   <div className="side-column-topic-overview">
-                    <div className="topic-logo-background flex-center" style={{backgroundImage: 'url(' + require("./img/topic-logo/bg" + topic.logo.bgImg + ".png") + ')', backgroundColor: topic.logo.bgColor}}>
-                        <div className="topic-logo-foreground-shadow" style={{backgroundImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')'}}></div>
-                        <div className="topic-logo-foreground" style={{maskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', WebkitMaskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', backgroundColor: topic.logo.fgColor}}></div>
-                    </div>
+                    <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={150} />
                     <h1 className="side-column-topic-title">{topic.title}</h1>
                     <p className="side-column-topic-desc">{topic.description}</p>
                   </div>

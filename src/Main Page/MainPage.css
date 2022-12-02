@@ -136,6 +136,10 @@
 {
     padding: 10px;
 }
+.topic-search-result
+{
+    width: 20px;
+}
 .topic-results-empty
 {
     text-align: center;
@@ -161,11 +165,12 @@
 {
     background-color: rgba(176, 196, 222, 0.5);
 }
-.topic-result-title
+.topic-result-info
 {
-    margin: 0;
+    margin-left: 20px;
+    width: 100%;
 }
-.topic-result-members
+.topic-result-info > *
 {
     margin: 0;
 }
