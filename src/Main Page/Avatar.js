@@ -8,7 +8,7 @@ function Avatar({bgImg,bgColor,baseColor,accImg,accColor,width})
         return width/20 + "px";
     }
     return (
-        <div className="avatar-background flex-center"  style={{backgroundImage: bgImg > 0 && 'url(' + require("../img/avatar/bg"+bgImg+".png") + ')', backgroundColor: bgColor, width: width + "px"}}>
+        <div className="avatar-background flex-center"  style={{backgroundImage: bgImg > 0 && 'url(' + require("../img/avatar/bg"+bgImg+".png") + ')', backgroundColor: bgColor, width: width + "px", borderWidth: GetBorderWidth(width)}}>
             <div className="avatar-base-shadow" style={{backgroundImage: 'url(' + require("../img/avatar/base.png") + ')'}}></div>
             <div className="avatar-base" style={{maskImage: 'url(' + require("../img/avatar/base.png") + ')', WebkitMaskImage: 'url(' + require("../img/avatar/base.png") + ')', backgroundColor: baseColor}}></div>
             <div className="avatar-accessory-shadow" style={{backgroundImage: accImg > 0 && 'url(' + require("../img/avatar/a"+accImg+".png")}}></div>

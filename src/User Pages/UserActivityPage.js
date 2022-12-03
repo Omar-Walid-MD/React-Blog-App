@@ -9,6 +9,7 @@ import Post from "./Post";
 import "../Post Page/PostPage.css"
 import '../Main Page/MainPage.css';
 import "./UserActivityPage.css"
+import Avatar from "../Main Page/Avatar";
 
 
 function UserComment({posts, comment, currentUser, setCurrentUser})
@@ -308,6 +309,15 @@ function UserActivityPage({posts, topics, currentUser, setCurrentUser})
               }
               </div>
             </div>
+            {
+              user &&
+              <div className="side-column">
+                <div className="side-column-container flex-column">
+                  <Avatar bgImg={user.avatar.bgImg} bgColor={user.avatar.bgColor} baseColor={user.avatar.baseColor} accImg={user.avatar.accImg} accColor={user.avatar.accColor} width={200} />
+                  <h1>{user.username}</h1>
+                </div>
+              </div>
+            }
           </div>
         </div>
       );

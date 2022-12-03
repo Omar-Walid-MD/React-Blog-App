@@ -77,7 +77,7 @@ function Header({topics, currentUser, setCurrentUser})
               <div className="navbar-profile-menu flex-center">
                 <input className="navbar-profile-checkbox hidden-checkbox" id="navbar-profile-checkbox" type="checkbox" />
                 <label htmlFor="navbar-profile-checkbox" className="navbar-profile-button">
-                  <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} width={75} />
+                  <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} width={60} />
                 </label>
                 <div className="navbar-profile-dropdown-container">
                   <div className="navbar-profile-dropdown-profile-info flex-column">

@@ -119,7 +119,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
             {
              topic &&
               <div className="side-column">
-                <div className="side-column-topic-container">
+                <div className="side-column-container">
                   <div className="side-column-topic-overview">
                     <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={150} />
                     <h1 className="side-column-topic-title">{topic.title}</h1>

@@ -3,10 +3,12 @@ import { Link, useParams, useLocation } from "react-router-dom";
 import axios from 'axios';
 
 import "../Post Page/PostPage.css"
+import Avatar from "../Main Page/Avatar";
 
 
 function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddReply})
 {
+    const [user,setUser] = useState();
 
     const [voteState,setVoteState] = useState(CheckUserVote());
     const [likes,setLikes] = useState(comment.likes);
@@ -143,7 +145,6 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
 
     function handleSave()
     {
-        console.log("yea");
         setSaved(prev => !prev);
 
         let updatedUser = currentUser;
@@ -192,16 +193,39 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
     function FormatText(replyText)
     {
         let replyTextSplit = replyText.split(' ').map((word)=> word[0]==='@' ? <Link className="user-tag">{word}&nbsp;</Link> : word+" ");
-        console.log(replyTextSplit);
         return replyTextSplit;
     }
 
+    useEffect(()=>{
+        if(!user)
+        {
+            fetch('http://localhost:8000/users/'+comment.user.id)
+            .then(res => {
+            return res.json()
+            })
+            .then((data)=>{
+            setUser(data);
+            console.log(data);
+            })
+        }
+    },[comment]);
+
 
     return (
-        <div className="post-page-comment-content-container" id={comment.id}>
-            <p className="post-page-comment-info">By <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}</Link> at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
-            <p className="post-page-comment-text" ref={SetCommentRef(comment.id)} parentcommentid={comment.parentComment} reply="true">{FormatText(comment.text)}</p>
-
+        <div className="post-page-comment-content-container" id={comment.id} ref={SetCommentRef(comment.id)}>
+            <div className="post-page-comment-wrapper flex-row">
+                <div className="post-page-comment-avatar">
+                {
+                    user &&
+                    <Avatar bgImg={user.avatar.bgImg} bgColor={user.avatar.bgColor} baseColor={user.avatar.baseColor} accImg={user.avatar.accImg} accColor={user.avatar.accColor} width={65} />
+                }
+                </div>
+                <div className="post-page-comment-content flex-column">
+                    <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}&nbsp; </Link>{new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()}</p>
+                    <p className="post-page-comment-text">{FormatText(comment.text)}</p>
+                </div>
+            </div>
+            
             <div className="comment-bottom-bar flex-row">
                 <div className="comment-options flex-row">
                 <div className="comment-votes-container flex-row">
@@ -221,6 +245,7 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
 
 function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setComments, replyList})
 {
+    const [user,setUser] = useState();
 
     const [newReply,setNewReply] = useState("");
 
@@ -413,7 +438,6 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
 
     function handleSave()
     {
-        console.log("yea");
         setSaved(prev => !prev);
 
         let updatedUser = currentUser;
@@ -462,14 +486,12 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
     function FormatText(replyText)
     {
         let replyTextSplit = replyText.split(' ').map((word)=> word[0]==='@' ? <Link className="user-tag">{word}&nbsp;</Link> : word+" ");
-        console.log(replyTextSplit);
         return replyTextSplit;
     }
 
     
     function AutoResize(event)
     {
-        console.log(event.target.getAttribute("minheight"))
         event.target.style.minHeight = 0;
         event.target.style.minHeight = "max(" + event.target.getAttribute("minheight") + "px,"+(event.target.scrollHeight) + "px)" ;
     }
@@ -485,13 +507,37 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
         return result;
     }
 
+    useEffect(()=>{
+        if(!user)
+        {
+            fetch('http://localhost:8000/users/'+comment.user.id)
+            .then(res => {
+            return res.json()
+            })
+            .then((data)=>{
+            setUser(data);
+            console.log(data);
+            })
+        }
+    },[comment]);
+
 
     return (
         <div className="post-page-comment-container">
             <input id={"reply-checkbox-"+comment.id} type="checkbox" className="post-page-comment-reply-checkbox hidden-checkbox"/>        
             <div className="post-page-comment-content-container" id={comment.id} ref={SetCommentRef(comment.id)}>
-                <p className="post-page-comment-info">By <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}</Link> at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
-                <p className="post-page-comment-text">{FormatText(comment.text)}</p>
+                <div className="post-page-comment-wrapper flex-row">
+                    <div className="post-page-comment-avatar">
+                    {
+                        user &&
+                        <Avatar bgImg={user.avatar.bgImg} bgColor={user.avatar.bgColor} baseColor={user.avatar.baseColor} accImg={user.avatar.accImg} accColor={user.avatar.accColor} width={65} />
+                    }
+                    </div>
+                    <div className="post-page-comment-content flex-column">
+                        <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}&nbsp; </Link>{new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()}</p>
+                        <p className="post-page-comment-text">{FormatText(comment.text)}</p>
+                    </div>
+                </div>
 
                 <div className="comment-bottom-bar flex-row">
                     <div className="comment-options flex-row">
