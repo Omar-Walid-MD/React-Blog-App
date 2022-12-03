@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import {Link, useLocation} from "react-router-dom";
+import Avatar from "./Avatar";
 
 import TopicLogo from "./TopicLogo";
 
@@ -75,15 +76,25 @@ function Header({topics, currentUser, setCurrentUser})
             <div className="navbar-options-loggedin flex-row">
               <div className="navbar-profile-menu flex-center">
                 <input className="navbar-profile-checkbox hidden-checkbox" id="navbar-profile-checkbox" type="checkbox" />
-                <label htmlFor="navbar-profile-checkbox" className="navbar-profile-button flex-center"><img className="navbar-profile-icon" src={require("../img/profile-icon.png")} /></label>
+                <label htmlFor="navbar-profile-checkbox" className="navbar-profile-button">
+                  <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} width={75} />
+                </label>
                 <div className="navbar-profile-dropdown-container">
-                  <h1>{currentUser.username}</h1>
+                  <div className="navbar-profile-dropdown-profile-info flex-column">
+                    <h1>{currentUser.username}</h1>
+                    <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} width={150} />
+                    <Link className="navbar-profile-dropdown-edit-profile-link flex-center"><i className='bx bx-edit'></i></Link>
+                  </div>
+                  <br></br>
                   <div className="split-line"></div>
                   <Link to={"/user/"+currentUser.id} className="navbar-profile-dropdown-link">Activity</Link>
                   <Link to="/saved" className="navbar-profile-dropdown-link">Saved</Link>
+                  <div className="split-line"></div>
+                  <br></br>
+                  <button className="navbar-button" onClick={LogOut}>Log Out</button>
+                  <br></br>
                 </div>
               </div>
-                <button className="navbar-button" onClick={LogOut}>Log Out</button>
               </div> 
             : <div className="navbar-options flex-row">
                 <Link to="/register" className="navbar-button">Register</Link>

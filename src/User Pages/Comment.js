@@ -199,7 +199,7 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
 
     return (
         <div className="post-page-comment-content-container" id={comment.id}>
-            <p className="post-page-comment-info">By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
+            <p className="post-page-comment-info">By <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}</Link> at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
             <p className="post-page-comment-text" ref={SetCommentRef(comment.id)} parentcommentid={comment.parentComment} reply="true">{FormatText(comment.text)}</p>
 
             <div className="comment-bottom-bar flex-row">
@@ -490,7 +490,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
         <div className="post-page-comment-container">
             <input id={"reply-checkbox-"+comment.id} type="checkbox" className="post-page-comment-reply-checkbox hidden-checkbox"/>        
             <div className="post-page-comment-content-container" id={comment.id} ref={SetCommentRef(comment.id)}>
-                <p className="post-page-comment-info">By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
+                <p className="post-page-comment-info">By <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}</Link> at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
                 <p className="post-page-comment-text">{FormatText(comment.text)}</p>
 
                 <div className="comment-bottom-bar flex-row">

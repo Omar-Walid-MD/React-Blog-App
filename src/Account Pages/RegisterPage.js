@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useNavigate, Link } from 'react-router-dom';
+import Avatar from "../Main Page/Avatar";
 import "./RegisterPage.css";
 
 function RegisterPage({userList, handleUserList, handleUser})
@@ -13,13 +14,37 @@ function RegisterPage({userList, handleUserList, handleUser})
     });
 
     const [avatar,setAvatar] = useState({
+        bgImg: 0,
         bgColor:  "#969696",
         baseColor: "#000000",
-        acc: 0,
+        accImg: 0,
         accColor: "#ffffff"
     });
 
-    const acc = 4   ;
+    const bg = 3; const acc = 6;
+
+    const usernameAdj = [
+        "Abnormal","Adorable","Adventurous","Agile","Ambitious","Awesome",
+        "Beautiful","Bizzare","Bold","Bright",
+        "Cautious","Cheery","Classic","Cool",
+        "Dazzling","Different","Delightful",
+        "Earnest","Exotic","Fabulous","Faithful","Fast","Funny",
+        "Generous","Goofy","Hard","Humble",
+        "Intense","Irregular","Joyful","Keen","Loud","Loving",
+        "Mature","Odd","Open","Playful","Popular","Quick","Quirky",
+        "Radical","Radiant","Reckless","Sharp","Solid","Special","Strong",
+        "Talented","Twisted","Unique","Upbeat","Vibrant","Warm","Zealous"
+    ];
+
+    const usernameNoun = [
+        "Ant","Apple","Aurora","Banana","Beam","Boy","Brother",
+        "Caravan","Cat","Crayon","Daughter","Doctor","Dog","Dress",
+        "Egg","Energy","Fish","Flower","Forest","Gold","Grass","Honey","Horse",
+        "Insect","Jelly","Juice","King","Kite","Lamp","Lion","Lunch","Monkey",
+        "Nail","Needle","Night","Orange","Oyster","Parrot","Pencil","Pizza","Potato",
+        "Queen","Quill","Rainbow","Rose","School","Shoe","Stone","Sugar",
+        "Teacher","Tomato","Truck","Umbrella","Van","Vulture","Whale","Zebra"
+    ];
 
     const [confirmPassword,setConfirmPassword] = useState("");
 
@@ -50,6 +75,16 @@ function RegisterPage({userList, handleUserList, handleUser})
         console.log(avatar);
     }
 
+    function RandomizeUsername()
+    {
+        let username = usernameAdj[Math.floor(Math.random() * usernameAdj.length)] + usernameNoun[Math.floor(Math.random() * usernameNoun.length)] + makeId(3);
+
+         setNewUser({
+             ...newUser,
+             username: username
+         });
+    }
+
     function RegisterUser(e)
     {
         e.preventDefault();
@@ -71,6 +106,7 @@ function RegisterPage({userList, handleUserList, handleUser})
             let userToAdd = {
                 ...newUser,
                 id: "user-"+makeId(10),
+                avatar: avatar,
                 subbedTopics: [],
                 likes: [],
                 dislikes: [],
@@ -155,12 +191,7 @@ function RegisterPage({userList, handleUserList, handleUser})
                             <div className="register-avatar flex-column">
 
                                 {/* Here is the avatar */}
-                                <div className="avatar-background flex-center" style={{backgroundColor: avatar.bgColor, width: 150 + "px"}}>
-                                    <div className="avatar-base-shadow" style={{backgroundImage: 'url(' + require("../img/avatar/base.png") + ')'}}></div>
-                                    <div className="avatar-base" style={{maskImage: 'url(' + require("../img/avatar/base.png") + ')', WebkitMaskImage: 'url(' + require("../img/avatar/base.png") + ')', backgroundColor: avatar.baseColor}}></div>
-                                    <div className="avatar-accessory-shadow" style={{backgroundImage: 'url(' + require("../img/avatar/a"+avatar.acc+".png")}}></div>
-                                    <div className="avatar-accessory" style={{backgroundImage: 'url(' + require("../img/avatar/a"+avatar.acc+".png"), WebkitMaskImage: 'url(' + require("../img/avatar/a"+avatar.acc+".png"), backgroundColor: avatar.accColor}}></div>
-                                </div>
+                                <Avatar bgImg={avatar.bgImg} bgColor={avatar.bgColor} baseColor={avatar.baseColor} accImg={avatar.accImg} accColor={avatar.accColor} width={150} />
                                 <div className="register-avatar-options-container flex-column">
                                     <div className="register-avatar-options-row flex-row">
                                         <input className="register-avatar-color-option" type="color" name={"bgColor"} value={avatar.bgColor} onChange={HandleAvatar} />
@@ -171,10 +202,21 @@ function RegisterPage({userList, handleUserList, handleUser})
                                     <div className="register-avatar-options-row flex-row">
                                         <div className="register-avatar-image-options flex-row">
                                             {
-                                                [...Array(acc).keys()].map((n)=>
-                                                <button className="topic-logo-image-button flex-center" type="button" name="acc" value={n} style={{backgroundImage: 'url(' + require("../img/avatar/a"+(n)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"bg-option-"+n}></button>
+                                                [...Array(bg).keys()].map((b)=>
+                                                <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={b+1} style={{backgroundImage: 'url(' + require("../img/avatar/bg"+(b+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"bg-option-"+b+1}></button>
                                                 )
                                             }
+                                            <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"bg-option-0"}></button>
+                                        </div>
+                                    </div>
+                                    <div className="register-avatar-options-row flex-row">
+                                        <div className="register-avatar-image-options flex-row">
+                                            {
+                                                [...Array(acc).keys()].map((n)=>
+                                                <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/avatar/a"+(n+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"acc-option-"+n+1}></button>
+                                                )
+                                            }
+                                            <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"acc-option-0"}></button>
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +224,10 @@ function RegisterPage({userList, handleUserList, handleUser})
                             </div>
                         </div>
                         <div className="register-form-input-section flex-column">
-                            <input className="register-form-input" type="text" placeholder="Enter Username" name="username" value={newUser.username} required onChange={handleNewUser}/>
+                            <div>
+                                <input className="register-form-input" type="text" placeholder="Enter Username" name="username" value={newUser.username} required onChange={handleNewUser}/>
+                                <button className="register-form-randomize-username-button" type="button" onClick={function(){RandomizeUsername()}}>Randomize!</button>
+                            </div>
                             <input className="register-form-input" type="email" placeholder="Enter Email" name="email" value={newUser.email} required onChange={handleNewUser}/>
                             <input className="register-form-input" type="password" placeholder="Enter Password" name="password" value={newUser.password} required onChange={handleNewUser}/>
                             <input className="register-form-input" type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} required onChange={HandleconfirmPassword}/>

@@ -240,7 +240,7 @@ function Post({post,currentUser,setCurrentUser})
               <p className="post-topic-title">{topic.title}</p>
             </Link>
           }
-          <p className="post-date">posted by <Link to={"/user/"+post.user.id}>{post.user}</Link> at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
+          <p className="post-date">posted by <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
         </div>
         <Link to={"/post/"+post.id} className="post-link"> 
           <h1 className="post-title">{post.title}</h1>

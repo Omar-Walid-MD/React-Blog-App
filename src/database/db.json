@@ -5,6 +5,14 @@
       "email": "omar.madinah49@yahoo.com",
       "password": "123",
       "id": "user-4499347254",
+      "avatar":
+      {
+        "accColor": "#5cfcff",
+        "accImg": "1",
+        "baseColor": "#781212",
+        "bgColor": "#a8f1ff",
+        "bgImg": "1"
+      },
       "subbedTopics": [
         "topic-8781529897",
         "topic-8911298389",
@@ -115,11 +123,10 @@
       "id": "post-6629843829",
       "likes": 0,
       "dislikes": 0,
-      "user":
-        {
-          "username": "OmarWalid",
-          "id": "user-4499347254"
-        },
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "comments": [],
       "date": 1666469790686
     },
@@ -130,11 +137,10 @@
       "id": "post-9512697362",
       "likes": 0,
       "dislikes": 0,
-      "user":
-        {
-          "username": "OmarWalid",
-          "id": "user-4499347254"
-        },
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "comments": [],
       "date": 1666469930849
     },
@@ -145,11 +151,10 @@
       "id": "post-4581794152",
       "likes": 2,
       "dislikes": 0,
-      "user":
-        {
-          "username": "OmarWalid",
-          "id": "user-4499347254"
-        },
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "comments": [],
       "date": 1666594508630
     },
@@ -160,11 +165,10 @@
       "id": "post-4756244164",
       "likes": 1,
       "dislikes": 0,
-      "user":
-        {
-          "username": "OmarWalid",
-          "id": "user-4499347254"
-        },
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "comments": [],
       "date": 1666801905615
     },
@@ -175,11 +179,10 @@
       "id": "post-8394453844",
       "likes": 0,
       "dislikes": 1,
-      "user":
-        {
-          "username": "OmarWalid",
-          "id": "user-4499347254"
-        },
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "comments": [],
       "date": 1667838809980
     },
@@ -190,11 +193,10 @@
       "id": "post-2622658512",
       "likes": 0,
       "dislikes": 0,
-      "user":
-        {
-          "username": "OmarWalid",
-          "id": "user-4499347254"
-        },
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "comments": [],
       "date": 1669667641935
     },
@@ -214,7 +216,10 @@
     {
       "id": "comment-4487479368",
       "text": "Nice!",
-      "user": "OmarWalid",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "post": "post-4581794152",
       "date": 1666594710355,
       "likes": 0,
@@ -224,7 +229,10 @@
     {
       "id": "comment-9868731288",
       "text": "Reply to me",
-      "user": "OmarWalid",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "post": "post-4756244164",
       "date": 1667837233313,
       "likes": 0,
@@ -234,7 +242,10 @@
     {
       "id": "comment-4864453441",
       "text": "Reply to me",
-      "user": "OmarWalid",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "post": "post-4756244164",
       "date": 1667837256335,
       "likes": 0,
@@ -244,7 +255,10 @@
     {
       "id": "comment-2742192696",
       "text": "@OmarWalid Hello",
-      "user": "OmarWalid",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "post": "post-4756244164",
       "date": 1667838548517,
       "likes": 0,
@@ -254,7 +268,10 @@
     {
       "id": "comment-7733864914",
       "text": "@OmarWalid hope this works...",
-      "user": "OmarWalid",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "post": "post-4756244164",
       "date": 1669739060541,
       "likes": 0,
@@ -264,7 +281,10 @@
     {
       "id": "comment-1279849249",
       "text": "@OmarWalid great",
-      "user": "OmarWalid",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
       "post": "post-2622658512",
       "date": 1669739153212,
       "likes": 0,

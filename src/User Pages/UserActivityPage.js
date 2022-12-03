@@ -201,7 +201,7 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
     <div className="activity-page-comment-container">
       <div className="activity-page-comment-link-padding">
         <Link to={"/post/"+linkPost.id} state={{targetCommentId: comment.id}} className="activity-page-comment-link">
-          <p className="activity-page-comment-info">By {comment.user} at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
+          <p className="activity-page-comment-info">By <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}</Link> at {new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()} </p>
           <p className="activity-page-comment-post">On "{linkPost.title}"</p>
           <p className="activity-page-comment-text">{comment.text}</p>
         </Link>
@@ -254,7 +254,7 @@ function UserActivityPage({posts, topics, currentUser, setCurrentUser})
         contents = comments.map((comment)=>({...comment,type: "comment"}));
       }
 
-      return contents.filter((content)=>content.user===user.username);
+      return contents.filter((content)=>content.user.id===user.id);
     }
 
     function SortContent(contents)
