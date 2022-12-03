@@ -200,6 +200,47 @@ function Post({post,currentUser,setCurrentUser})
     return (post.body.length > 800);
   }
 
+  function CalculateTime()
+    {
+        let timeDifference =  new Date() - new Date(post.date);
+
+        var years = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25));
+        var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25/12));
+        var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        if(years > 0)
+        {
+            return years + (years > 1 ? " years" : " year") + " ago";
+        }
+        else if(months > 0)
+        {
+            return months + (months > 1 ? " months" : " month") + " ago";
+        }
+        else if(days > 0)
+        {
+            return days + (days > 1 ? " days" : " day") + " ago";
+        }
+        else if(hours > 0)
+        {
+            return hours + (hours > 1 ? " hours" : " hour") + " ago";
+        }
+        else if(minutes > 0)
+        {
+            return minutes + (minutes > 1 ? " minutes" : " minute") + " ago";
+        }
+        else if(seconds > 5)
+        {
+            return seconds + (seconds > 1 ? " seconds" : " second") + " ago";
+        }
+        else
+        {
+            return "Now";
+        }
+    }
+
 
 
   useEffect(()=>{
@@ -240,7 +281,7 @@ function Post({post,currentUser,setCurrentUser})
               <p className="post-topic-title">{topic.title}</p>
             </Link>
           }
-          <p className="post-date">posted by <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
+          <p className="post-date">posted by <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> {CalculateTime()}</p>
         </div>
         <Link to={"/post/"+post.id} className="post-link"> 
           <h1 className="post-title">{post.title}</h1>

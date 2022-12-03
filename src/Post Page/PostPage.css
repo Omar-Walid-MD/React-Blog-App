@@ -40,7 +40,10 @@
 }
 .post-page-post-date
 {
+    color: plum;
+    
     font-size: 12pt;
+    font-weight: 500;
 }
 .post-page-post-title
 {
@@ -247,6 +250,7 @@
 {
     color: plum;
     font-size: 10pt;
+    font-weight: 500;
 
     margin: 0;
 }

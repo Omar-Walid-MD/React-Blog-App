@@ -196,6 +196,47 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
         return replyTextSplit;
     }
 
+    function CalculateTime()
+    {
+        let timeDifference =  new Date() - new Date(comment.date);
+
+        var years = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25));
+        var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25/12));
+        var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        if(years > 0)
+        {
+            return years + (years > 1 ? " years" : " year") + " ago";
+        }
+        else if(months > 0)
+        {
+            return months + (months > 1 ? " months" : " month") + " ago";
+        }
+        else if(days > 0)
+        {
+            return days + (days > 1 ? " days" : " day") + " ago";
+        }
+        else if(hours > 0)
+        {
+            return hours + (hours > 1 ? " hours" : " hour") + " ago";
+        }
+        else if(minutes > 0)
+        {
+            return minutes + (minutes > 1 ? " minutes" : " minute") + " ago";
+        }
+        else if(seconds > 5)
+        {
+            return seconds + (seconds > 1 ? " seconds" : " second") + " ago";
+        }
+        else
+        {
+            return "Now";
+        }
+    }
+
     useEffect(()=>{
         if(!user)
         {
@@ -221,11 +262,11 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
                 }
                 </div>
                 <div className="post-page-comment-content flex-column">
-                    <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}&nbsp; </Link>{new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()}</p>
+                    <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}&nbsp; </Link>{CalculateTime()}</p>
                     <p className="post-page-comment-text">{FormatText(comment.text)}</p>
                 </div>
             </div>
-            
+
             <div className="comment-bottom-bar flex-row">
                 <div className="comment-options flex-row">
                 <div className="comment-votes-container flex-row">
@@ -399,7 +440,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
             let replyToAdd = {
                 id: "comment-"+makeId(10),
                 text: newReply,
-                user: currentUser.username,
+                user: {username: currentUser.username,id: currentUser.id},
                 post: comment.post,
                 date: Date.now(),
                 likes: 0,
@@ -489,6 +530,47 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
         return replyTextSplit;
     }
 
+    function CalculateTime()
+    {
+        let timeDifference =  new Date() - new Date(comment.date);
+
+        var years = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25));
+        var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25/12));
+        var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        if(years > 0)
+        {
+            return years + (years > 1 ? " years" : " year") + " ago";
+        }
+        else if(months > 0)
+        {
+            return months + (months > 1 ? " months" : " month") + " ago";
+        }
+        else if(days > 0)
+        {
+            return days + (days > 1 ? " days" : " day") + " ago";
+        }
+        else if(hours > 0)
+        {
+            return hours + (hours > 1 ? " hours" : " hour") + " ago";
+        }
+        else if(minutes > 0)
+        {
+            return minutes + (minutes > 1 ? " minutes" : " minute") + " ago";
+        }
+        else if(seconds > 5)
+        {
+            return seconds + (seconds > 1 ? " seconds" : " second") + " ago";
+        }
+        else
+        {
+            return "Now";
+        }
+    }
+
     
     function AutoResize(event)
     {
@@ -510,6 +592,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
     useEffect(()=>{
         if(!user)
         {
+            console.log(comment.user)
             fetch('http://localhost:8000/users/'+comment.user.id)
             .then(res => {
             return res.json()
@@ -534,7 +617,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
                     }
                     </div>
                     <div className="post-page-comment-content flex-column">
-                        <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}&nbsp; </Link>{new Date(comment.date).toDateString()} {new Date(comment.date).toLocaleTimeString()}</p>
+                        <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}&nbsp; </Link>{CalculateTime()}</p>
                         <p className="post-page-comment-text">{FormatText(comment.text)}</p>
                     </div>
                 </div>

@@ -49,7 +49,7 @@ function PostPage({topics, currentUser, setCurrentUser})
             let commentToAdd = {
                 id: "comment-"+makeId(10),
                 text: newComment,
-                user: currentUser.username,
+                user: {username: currentUser.username,id: currentUser.id},
                 post: postId,
                 date: Date.now(),
                 likes: 0,
@@ -207,34 +207,34 @@ function PostPage({topics, currentUser, setCurrentUser})
     }
 
     function handleSave()
-  {
-    console.log("yea");
-    setSaved(prev => !prev);
-
-    let updatedUser = currentUser;
-
-    if(updatedUser.savedPosts.includes(post.id))
     {
-      updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==post.id);
+        console.log("yea");
+        setSaved(prev => !prev);
+
+        let updatedUser = currentUser;
+
+        if(updatedUser.savedPosts.includes(post.id))
+        {
+        updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==post.id);
+        }
+        else
+        {
+        updatedUser.savedPosts = [...updatedUser.savedPosts,post.id];
+        }
+
+        axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+        )
+        .then(resp =>{
+            console.log("Updated User Saved Posts");
+            localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+            setCurrentUser(updatedUser);
+        }).catch(error => {
+            console.log(error);
+        });
+
+
     }
-    else
-    {
-      updatedUser.savedPosts = [...updatedUser.savedPosts,post.id];
-    }
-
-    axios.put('http://localhost:8000/users/'+updatedUser.id,
-      updatedUser
-    )
-    .then(resp =>{
-        console.log("Updated User Saved Posts");
-        localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-        setCurrentUser(updatedUser);
-    }).catch(error => {
-        console.log(error);
-    });
-
-
-  }
 
     function CheckUserVote()
     {
@@ -314,6 +314,47 @@ function PostPage({topics, currentUser, setCurrentUser})
             block: 'center',
             inline: 'center'
         });
+    }
+
+    function CalculateTime()
+    {
+        let timeDifference =  new Date() - new Date(post.date);
+
+        var years = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25));
+        var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25/12));
+        var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        if(years > 0)
+        {
+            return years + (years > 1 ? " years" : " year") + " ago";
+        }
+        else if(months > 0)
+        {
+            return months + (months > 1 ? " months" : " month") + " ago";
+        }
+        else if(days > 0)
+        {
+            return days + (days > 1 ? " days" : " day") + " ago";
+        }
+        else if(hours > 0)
+        {
+            return hours + (hours > 1 ? " hours" : " hour") + " ago";
+        }
+        else if(minutes > 0)
+        {
+            return minutes + (minutes > 1 ? " minutes" : " minute") + " ago";
+        }
+        else if(seconds > 5)
+        {
+            return seconds + (seconds > 1 ? " seconds" : " second") + " ago";
+        }
+        else
+        {
+            return "Now";
+        }
     }
 
     function makeId(length)
@@ -397,7 +438,7 @@ function PostPage({topics, currentUser, setCurrentUser})
                                 //     <div className="topic-logo-foreground" style={{maskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', WebkitMaskImage: 'url(' + require("./img/topic-logo/fg" + topic.logo.fgImg + ".png") + ')', backgroundColor: topic.logo.fgColor}}></div>
                                 // </Link>
                                 }
-                                <p className="post-page-post-date">posted by <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
+                                <p className="post-page-post-date">posted by <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> {CalculateTime()}</p>
                                 <h1 className="post-page-post-title">{post.title}</h1>
                                 <p className="post-page-post-body">{post.body}</p>
                             </div>        

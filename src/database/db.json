@@ -5,8 +5,7 @@
       "email": "omar.madinah49@yahoo.com",
       "password": "123",
       "id": "user-4499347254",
-      "avatar":
-      {
+      "avatar": {
         "accColor": "#5cfcff",
         "accImg": "1",
         "baseColor": "#781212",
@@ -276,6 +275,71 @@
       },
       "post": "post-2622658512",
       "date": 1669739153212,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-1698995821",
+      "text": "Hello",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670100305850,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-7394546354",
+      "text": "Hope it works now",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670100641607,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-1698995821"
+    },
+    {
+      "id": "comment-5413572296",
+      "text": "Hello to you",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670100715430,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-1698995821"
+    },
+    {
+      "id": "comment-7139783619",
+      "text": "1 minute ago",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670100892372,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-3325521549",
+      "text": "This comment is older than the website",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1421117522318,
       "likes": 0,
       "dislikes": 0,
       "parentComment": "none"
