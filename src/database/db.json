@@ -31,6 +31,22 @@
         "comment-8291228199",
         "post-4756244164"
       ]
+    },
+    {
+      "username": "test",
+      "email": "test@somemail.com",
+      "password": "eee",
+      "id": "user-1445876688",
+      "subbedTopics": [],
+      "likes": [
+        "post-4581794152"
+      ],
+      "dislikes": [
+        "post-8394453844"
+      ],
+      "savedPosts": [
+        "post-6629843829"
+      ]
     }
   ],
   "topics": [
@@ -99,7 +115,11 @@
       "id": "post-6629843829",
       "likes": 0,
       "dislikes": 0,
-      "user": "OmarWalid",
+      "user":
+        {
+          "username": "OmarWalid",
+          "id": "user-4499347254"
+        },
       "comments": [],
       "date": 1666469790686
     },
@@ -110,7 +130,11 @@
       "id": "post-9512697362",
       "likes": 0,
       "dislikes": 0,
-      "user": "OmarWalid",
+      "user":
+        {
+          "username": "OmarWalid",
+          "id": "user-4499347254"
+        },
       "comments": [],
       "date": 1666469930849
     },
@@ -119,9 +143,13 @@
       "body": "I made the submit button only active when no input remains empty.",
       "topic": "topic-9186347593",
       "id": "post-4581794152",
-      "likes": 1,
+      "likes": 2,
       "dislikes": 0,
-      "user": "OmarWalid",
+      "user":
+        {
+          "username": "OmarWalid",
+          "id": "user-4499347254"
+        },
       "comments": [],
       "date": 1666594508630
     },
@@ -132,7 +160,11 @@
       "id": "post-4756244164",
       "likes": 1,
       "dislikes": 0,
-      "user": "OmarWalid",
+      "user":
+        {
+          "username": "OmarWalid",
+          "id": "user-4499347254"
+        },
       "comments": [],
       "date": 1666801905615
     },
@@ -142,8 +174,12 @@
       "topic": "topic-9186347593",
       "id": "post-8394453844",
       "likes": 0,
-      "dislikes": 0,
-      "user": "OmarWalid",
+      "dislikes": 1,
+      "user":
+        {
+          "username": "OmarWalid",
+          "id": "user-4499347254"
+        },
       "comments": [],
       "date": 1667838809980
     },
@@ -154,9 +190,24 @@
       "id": "post-2622658512",
       "likes": 0,
       "dislikes": 0,
-      "user": "OmarWalid",
+      "user":
+        {
+          "username": "OmarWalid",
+          "id": "user-4499347254"
+        },
       "comments": [],
       "date": 1669667641935
+    },
+    {
+      "title": "New user here",
+      "body": "fix any problems",
+      "topic": "topic-9186347593",
+      "id": "post-1318382834",
+      "likes": 0,
+      "dislikes": 0,
+      "user": "test",
+      "comments": [],
+      "date": 1670007825062
     }
   ],
   "comments": [

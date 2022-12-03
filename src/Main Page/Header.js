@@ -79,7 +79,7 @@ function Header({topics, currentUser, setCurrentUser})
                 <div className="navbar-profile-dropdown-container">
                   <h1>{currentUser.username}</h1>
                   <div className="split-line"></div>
-                  <Link to="/activity" className="navbar-profile-dropdown-link">Activity</Link>
+                  <Link to={"/user/"+currentUser.id} className="navbar-profile-dropdown-link">Activity</Link>
                   <Link to="/saved" className="navbar-profile-dropdown-link">Saved</Link>
                 </div>
               </div>

@@ -17,6 +17,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
 
     function GetPostsForTopic(topic)
     {
+      console.log(posts);
       return topic ? posts.filter((post)=>post.topic===topic.id) : posts.filter((post)=>currentUser.subbedTopics.includes(post.topic));
     }
 

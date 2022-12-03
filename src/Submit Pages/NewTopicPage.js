@@ -134,7 +134,7 @@ function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
                         <div className="post-write-form-input-group">
                             <div className="post-write-post-to-form-row flex-row">
                                 <div className="create-topic-form-topic-logo flex-column">
-                                <TopicLogo bgImg={topicLogo.bgImg} bgColor={topicLogo.bgColor} fgImg={topicLogo.fgImg} fgColor={topicLogo.fgColor} width={150} />
+                                    <TopicLogo bgImg={topicLogo.bgImg} bgColor={topicLogo.bgColor} fgImg={topicLogo.fgImg} fgColor={topicLogo.fgColor} width={150} />
                                     <div className="topic-logo-options-container flex-column">
                                         <div className="topic-logo-options-row flex-row">
                                             <div className="topic-logo-image-options flex-row">

@@ -80,7 +80,7 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser})
                 id: "post-" + makeId(10),
                 likes: 0,
                 dislikes: 0,
-                user: currentUser.username,
+                user: {username: currentUser.username, id: currentUser.id},
                 comments: [],
                 date: Date.now()
             }

@@ -1,11 +1,10 @@
 import {useState, useEffect} from "react"
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import axios from 'axios';
 
 
 import Header from "../Main Page/Header";
 import Post from "./Post";
-import Comment from "./Comment";
 
 import "../Post Page/PostPage.css"
 import '../Main Page/MainPage.css';
@@ -14,6 +13,7 @@ import "./UserActivityPage.css"
 
 function UserComment({posts, comment, currentUser, setCurrentUser})
 {
+  
   const linkPost = (posts.filter((post)=>post.id===comment.post)[0]);
 
   const [voteState,setVoteState] = useState(CheckUserVote());
@@ -150,33 +150,33 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
   }
 
   function handleSave()
-{
-  console.log("yea");
-  setSaved(prev => !prev);
-
-  let updatedUser = currentUser;
-
-  if(updatedUser.savedPosts.includes(comment.id))
   {
-    updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==comment.id);
-  }
-  else
-  {
-    updatedUser.savedPosts = [...updatedUser.savedPosts,comment.id];
-  }
+    console.log("yea");
+    setSaved(prev => !prev);
 
-  axios.put('http://localhost:8000/users/'+updatedUser.id,
-    updatedUser
-  )
-  .then(resp =>{
-      console.log("Updated User Saved Posts");
-      localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-      setCurrentUser(updatedUser);
-  }).catch(error => {
-      console.log(error);
-  });
+    let updatedUser = currentUser;
 
-}
+    if(updatedUser.savedPosts.includes(comment.id))
+    {
+      updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==comment.id);
+    }
+    else
+    {
+      updatedUser.savedPosts = [...updatedUser.savedPosts,comment.id];
+    }
+
+    axios.put('http://localhost:8000/users/'+updatedUser.id,
+      updatedUser
+    )
+    .then(resp =>{
+        console.log("Updated User Saved Posts");
+        localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+        setCurrentUser(updatedUser);
+    }).catch(error => {
+        console.log(error);
+    });
+
+  }
 
 
   function CheckUserVote()
@@ -224,6 +224,10 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
 function UserActivityPage({posts, topics, currentUser, setCurrentUser})
 {
 
+    let userId = useParams().id;
+
+    const [user,setUser] = useState();
+
     const [currentTab,setCurrentTab] = useState("overview");
 
     const [comments,setComments] = useState();
@@ -250,13 +254,27 @@ function UserActivityPage({posts, topics, currentUser, setCurrentUser})
         contents = comments.map((comment)=>({...comment,type: "comment"}));
       }
 
-      return contents.filter((content)=>content.user===currentUser.username);
+      return contents.filter((content)=>content.user===user.username);
     }
 
     function SortContent(contents)
     {
         return contents.sort().slice().reverse();
     }
+
+    useEffect(()=>{
+      
+      if(!user)
+      {
+        fetch('http://localhost:8000/users/'+userId)
+        .then(res => {
+          return res.json()
+        })
+        .then((data)=>{
+        setUser(data);
+        })
+      }
+    },[userId]);
 
     useEffect(()=>{
 
@@ -282,9 +300,9 @@ function UserActivityPage({posts, topics, currentUser, setCurrentUser})
               </div>
               <div className="activity-page-content-container">
               {
-                comments && posts && SortContent(GetContent(currentTab)).map((content)=>
+                user && comments && posts && SortContent(GetContent(currentTab)).map((content)=>
                  
-                  content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                  content.type==="post" ? <Post post={content} key={content.id} currentUser={user} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id} currentUser={user} setCurrentUser={setCurrentUser}/>
                  
                  )
               }

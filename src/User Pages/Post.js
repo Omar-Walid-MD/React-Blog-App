@@ -231,25 +231,25 @@ function Post({post,currentUser,setCurrentUser})
 
   return(     
     <div className="post-container flex-column">
-      <Link to={"/post/"+post.id} className="post-info">
+      <div className="post-info">
         <div className="post-info-top-row flex-row">
           {
             topic &&
-            <div className="flex-row">
-              <Link to={"/topic/"+topic.id}>
-                <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={60} />
-              </Link>
+            <Link to={"/topic/"+topic.id} className="post-info-topic-link flex-row">
+              <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={60} />
               <p className="post-topic-title">{topic.title}</p>
-            </div>
+            </Link>
           }
-          <p className="post-date">posted by {post.user} at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
+          <p className="post-date">posted by <Link to={"/user/"+post.user.id}>{post.user}</Link> at {new Date(post.date).toDateString()} {new Date(post.date).toLocaleTimeString()}</p>
         </div>
-        <h1 className="post-title">{post.title}</h1>
-        <p className="post-body">{post.body}</p>
+        <Link to={"/post/"+post.id} className="post-link"> 
+          <h1 className="post-title">{post.title}</h1>
+          <p className="post-body">{post.body}</p>
+        </Link>
         {
           GetPostLength() && <div className="post-long-shadow"></div>
         }
-      </Link>
+      </div>
       <div className="post-bottom-bar flex-row">
         <div className="post-options flex-row">
           <div className="post-votes-container flex-row">

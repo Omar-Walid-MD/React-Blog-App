@@ -12,6 +12,15 @@ function RegisterPage({userList, handleUserList, handleUser})
         password: "",
     });
 
+    const [avatar,setAvatar] = useState({
+        bgColor:  "#969696",
+        baseColor: "#000000",
+        acc: 0,
+        accColor: "#ffffff"
+    });
+
+    const acc = 4   ;
+
     const [confirmPassword,setConfirmPassword] = useState("");
 
     const [warning,setWarning] = useState("");
@@ -29,6 +38,16 @@ function RegisterPage({userList, handleUserList, handleUser})
     function HandleconfirmPassword(event)
     {
         setConfirmPassword(event.target.value)
+    }
+
+    function HandleAvatar(event)
+    {
+        setAvatar({
+            ...avatar,
+            [event.target.name]: event.target.value
+        });
+
+        console.log(avatar);
     }
 
     function RegisterUser(e)
@@ -51,7 +70,11 @@ function RegisterPage({userList, handleUserList, handleUser})
 
             let userToAdd = {
                 ...newUser,
-                id: "user-"+makeId(10)
+                id: "user-"+makeId(10),
+                subbedTopics: [],
+                likes: [],
+                dislikes: [],
+                savedPosts: []
             }
     
             fetch('http://localhost:8000/users',{
@@ -59,7 +82,8 @@ function RegisterPage({userList, handleUserList, handleUser})
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(userToAdd)
             }).then(()=>{
-                console.log("New Post Added.");
+                console.log("New User Added.");
+                localStorage.setItem('currentUser', JSON.stringify(userToAdd));
                 handleUserList(prevList => [...prevList,userToAdd]);
                 handleUser(newUser);
             })
@@ -126,11 +150,43 @@ function RegisterPage({userList, handleUserList, handleUser})
             <div className="page-container flex-center" header="none">
                 <form className="register-form-container flex-column" ref={RegisterForm} onSubmit={RegisterUser}>
                     <h1 className="register-form-label">Register New User</h1>
-                    <div className="register-form-input-group flex-column">
-                        <input className="register-form-input" type="text" placeholder="Enter Username" name="username" value={newUser.username} required onChange={handleNewUser}/>
-                        <input className="register-form-input" type="email" placeholder="Enter Email" name="email" value={newUser.email} required onChange={handleNewUser}/>
-                        <input className="register-form-input" type="password" placeholder="Enter Password" name="password" value={newUser.password} required onChange={handleNewUser}/>
-                        <input className="register-form-input" type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} required onChange={HandleconfirmPassword}/>
+                    <div className="resgister-form-input-group flex-row">
+                        <div className="register-form-input-section flex-column">
+                            <div className="register-avatar flex-column">
+
+                                {/* Here is the avatar */}
+                                <div className="avatar-background flex-center" style={{backgroundColor: avatar.bgColor, width: 150 + "px"}}>
+                                    <div className="avatar-base-shadow" style={{backgroundImage: 'url(' + require("../img/avatar/base.png") + ')'}}></div>
+                                    <div className="avatar-base" style={{maskImage: 'url(' + require("../img/avatar/base.png") + ')', WebkitMaskImage: 'url(' + require("../img/avatar/base.png") + ')', backgroundColor: avatar.baseColor}}></div>
+                                    <div className="avatar-accessory-shadow" style={{backgroundImage: 'url(' + require("../img/avatar/a"+avatar.acc+".png")}}></div>
+                                    <div className="avatar-accessory" style={{backgroundImage: 'url(' + require("../img/avatar/a"+avatar.acc+".png"), WebkitMaskImage: 'url(' + require("../img/avatar/a"+avatar.acc+".png"), backgroundColor: avatar.accColor}}></div>
+                                </div>
+                                <div className="register-avatar-options-container flex-column">
+                                    <div className="register-avatar-options-row flex-row">
+                                        <input className="register-avatar-color-option" type="color" name={"bgColor"} value={avatar.bgColor} onChange={HandleAvatar} />
+                                        <input className="register-avatar-color-option" type="color" name={"baseColor"} value={avatar.baseColor} onChange={HandleAvatar} />
+                                        <input className="register-avatar-color-option" type="color" name={"accColor"} value={avatar.accColor} onChange={HandleAvatar} />
+
+                                    </div>
+                                    <div className="register-avatar-options-row flex-row">
+                                        <div className="register-avatar-image-options flex-row">
+                                            {
+                                                [...Array(acc).keys()].map((n)=>
+                                                <button className="topic-logo-image-button flex-center" type="button" name="acc" value={n} style={{backgroundImage: 'url(' + require("../img/avatar/a"+(n)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"bg-option-"+n}></button>
+                                                )
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div className="register-form-input-section flex-column">
+                            <input className="register-form-input" type="text" placeholder="Enter Username" name="username" value={newUser.username} required onChange={handleNewUser}/>
+                            <input className="register-form-input" type="email" placeholder="Enter Email" name="email" value={newUser.email} required onChange={handleNewUser}/>
+                            <input className="register-form-input" type="password" placeholder="Enter Password" name="password" value={newUser.password} required onChange={handleNewUser}/>
+                            <input className="register-form-input" type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} required onChange={HandleconfirmPassword}/>
+                        </div>
                     </div>
                     {
                         warning !== "" &&
