@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import {Link, useLocation} from "react-router-dom";
 import Avatar from "./Avatar";
+import Notif from "./Notif";
 
 import TopicLogo from "./TopicLogo";
 
@@ -54,7 +55,7 @@ function Header({topics, currentUser, setCurrentUser})
 
                           GetSearchResults(searchValue).map((topic)=>
                           <Link to={"/topic/"+topic.id} className="topic-result-container flex-row" key={topic.id}>
-                             <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={100} />
+                             <TopicLogo topicLogo={topic.logo} width={100} />
                             <div className="topic-result-info">
                               <h2 className="topic-result-title">{topic.title}</h2>
                               <p className="topic-result-members">{topic.members} Members</p>
@@ -74,6 +75,19 @@ function Header({topics, currentUser, setCurrentUser})
           {
             currentUser ? 
             <div className="navbar-options-loggedin flex-row">
+              <div className="navbar-notif-menu flex-center">
+                <input type="checkbox" className="navbar-notif-checkbox hidden-checkbox" id="navbar-notif-checkbox"/>
+                <label htmlFor="navbar-notif-checkbox" className="navbar-notif-button">
+                  <i className='bx bx-bell'></i>
+                </label>
+                <div className="navbar-notif-dropdown-container">
+                  {
+                    currentUser.notifs.map((notif)=>
+                    <Notif type={notif.type} userId={notif.user} commentId={notif.comment} postId={notif.post} topicId={notif.topic} />
+                    )
+                  }
+                </div>
+              </div>
               <div className="navbar-profile-menu flex-center">
                 <input className="navbar-profile-checkbox hidden-checkbox" id="navbar-profile-checkbox" type="checkbox" />
                 <label htmlFor="navbar-profile-checkbox" className="navbar-profile-button">

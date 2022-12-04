@@ -110,7 +110,8 @@ function RegisterPage({userList, handleUserList, handleUser})
                 subbedTopics: [],
                 likes: [],
                 dislikes: [],
-                savedPosts: []
+                savedPosts: [],
+                notifs: []
             }
     
             fetch('http://localhost:8000/users',{

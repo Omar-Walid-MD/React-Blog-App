@@ -140,7 +140,6 @@
     border: 2px solid black;
 
 }
-
 .register-avatar-image-options::-webkit-scrollbar-thumb
 {
     background-color: white;
@@ -148,8 +147,6 @@
     border-radius: 5px;
     
     border: 2px solid black;
-
-    
 }
 .register-avatar-image-button
 {

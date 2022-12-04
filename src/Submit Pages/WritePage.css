@@ -106,7 +106,25 @@
 
     padding-right: 20px;
 
-    overflow-y: scroll;
+    overflow-y: auto;
+}
+.post-write-form-select-topic-results::-webkit-scrollbar
+{
+    background-color: grey;
+    height: 10px;
+
+    border-radius: 5px;
+    
+    border: 2px solid black;
+
+}
+.post-write-form-select-topic-results::-webkit-scrollbar-thumb
+{
+    background-color: white;
+
+    border-radius: 5px;
+    
+    border: 2px solid black;
 }
 .select-topic-button
 {

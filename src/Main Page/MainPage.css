@@ -228,9 +228,9 @@
 }
 .navbar-options-loggedin
 {
-    width: 200px;
+    width: 120px; height: 100%;
 
-    margin-right: 50px;
+    margin-right: 100px;
 }
 .navbar-button
 {
@@ -257,6 +257,98 @@
     background-color: rgb(238, 233, 255);
     transform: scale(1.25);
 }
+
+
+
+.navbar-notif-menu
+{
+    height: 100%;
+
+    position: relative;
+}
+.navbar-notif-button
+{
+    font-size: 25pt;
+
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
+}
+.navbar-notif-button:hover
+{
+    transform: scale(1.25);
+}
+.navbar-notif-dropdown-container
+{
+    width: 350px; height: fit-content;
+    max-height: 400px;
+
+    background-color: rebeccapurple;
+
+    border-radius: 20px;
+
+    margin-top: 5px;
+
+    position: absolute;
+    top: 100%;
+
+    overflow-y: scroll;
+
+    transform-origin: top;
+    transform: scaleY(0);
+
+    transition: transform 0.2s ease-in-out;
+}
+.navbar-notif-checkbox:checked ~.navbar-notif-dropdown-container
+{
+    transform: scaleY(1);
+}
+.notification-container
+{
+    background-color: rgb(125, 75, 170);
+
+    border-radius: 10px;
+
+    margin: 10px;
+    padding: 10px;
+
+    align-items: flex-start;
+}
+.notification-content
+{
+    width: 90%;
+
+    margin-left: 10px;
+
+    align-items: flex-start;
+}
+.notification-topic
+{
+    color: plum;
+
+    font-size: 14pt;
+    font-weight: 500;
+
+    margin-bottom: 5px;
+}
+.notification-username
+{
+    color: lightskyblue;
+}
+.notification-reply
+{
+    margin: 15px 0 12px 0;
+}
+.notification-post
+{
+    color: navajowhite;
+    font-size: 13pt;
+    font-weight: 500;
+
+    margin: 10px 0;
+}
+
+
 .navbar-profile-menu
 {
     position: relative;
@@ -375,6 +467,10 @@
     color: plum;
     transform: scale(1.1);
 }
+
+
+
+
 .page-container
 {
     width: 100%; min-height: 100vh;
@@ -715,6 +811,5 @@
 {
     color: plum;
 }
-
 
 

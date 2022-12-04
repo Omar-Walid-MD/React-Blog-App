@@ -19,7 +19,7 @@ function SelectTopic({topic, newPost, setNewPost})
 
     return (
         <button className="select-topic-button flex-row" onClick={handlePostTopic}>
-            <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={40} />
+            <TopicLogo topicLogo={topic.logo} width={40} />
             <div className="select-topic-info flex-column">
                 <p className="select-topic-info-title">{topic.title}</p>
                 <p className="select-topic-info-members">{topic.members} members</p>
@@ -148,7 +148,7 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser})
                             {
                                 newPost.topic !=="" ?
                                 <div className="selected-topic-container flex-row">
-                                    <TopicLogo bgImg={GetTopicFromId(newPost.topic).logo.bgImg} bgColor={GetTopicFromId(newPost.topic).logo.bgColor} fgImg={GetTopicFromId(newPost.topic).logo.fgImg} fgColor={GetTopicFromId(newPost.topic).logo.fgColor} width={60} />
+                                    <TopicLogo topicLogo={GetTopicFromId(newPost.topic).logo} width={60} />
                                     <div className="select-topic-info flex-column">
                                         <p className="select-topic-info-title">{GetTopicFromId(newPost.topic).title}</p>
                                         <p className="select-topic-info-members">{GetTopicFromId(newPost.topic).members} members</p>

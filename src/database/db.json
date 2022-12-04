@@ -37,23 +37,55 @@
         "comment-2935444123",
         "comment-8291228199",
         "post-4756244164"
+      ],
+      "notifs": [
+        {
+          "type": "comment",
+          "user": "user-1466759493",
+          "comment": "comment-7836671447",
+          "post": "post-8394453844",
+          "topic": "topic-9186347593"
+        },
+        {
+          "type": "comment",
+          "user": "user-1466759493",
+          "comment": "comment-7411917819",
+          "post": "post-2622658512",
+          "topic": "topic-1211381976"
+        },
+        {
+          "type": "tag",
+          "user": "user-1466759493",
+          "comment": "comment-7517764195",
+          "post": "post-6368489845",
+          "topic": "topic-9186347593"
+        },
+        {
+          "type": "reply",
+          "user": "user-1466759493",
+          "comment": "comment-5629185937",
+          "post": "post-4756244164",
+          "topic": "topic-8781529897"
+        }
       ]
     },
     {
-      "username": "test",
-      "email": "test@somemail.com",
-      "password": "eee",
-      "id": "user-1445876688",
+      "username": "VibrantTomato769",
+      "email": "tomato@tom.com",
+      "password": "tomato",
+      "id": "user-1466759493",
+      "avatar": {
+        "bgImg": "1",
+        "bgColor": "#81ee83",
+        "baseColor": "#4a3dff",
+        "accImg": "3",
+        "accColor": "#99e0ff"
+      },
       "subbedTopics": [],
-      "likes": [
-        "post-4581794152"
-      ],
-      "dislikes": [
-        "post-8394453844"
-      ],
-      "savedPosts": [
-        "post-6629843829"
-      ]
+      "likes": [],
+      "dislikes": [],
+      "savedPosts": [],
+      "notifs": []
     }
   ],
   "topics": [
@@ -198,6 +230,20 @@
       },
       "comments": [],
       "date": 1669667641935
+    },
+    {
+      "title": "I will tag you here",
+      "body": "Hopefully you find my comment",
+      "topic": "topic-9186347593",
+      "id": "post-6368489845",
+      "likes": 0,
+      "dislikes": -1,
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "comments": [],
+      "date": 1670190859497
     }
   ],
   "comments": [
@@ -343,6 +389,214 @@
       "likes": 0,
       "dislikes": 0,
       "parentComment": "none"
+    },
+    {
+      "id": "comment-6343429999",
+      "text": "Notice my comment",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-8394453844",
+      "date": 1670188955129,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-3677849172",
+      "text": "Please work this time",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-8394453844",
+      "date": 1670189642993,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-1375361646",
+      "text": "Hello",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-8394453844",
+      "date": 1670189703518,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-2815149816",
+      "text": "Please",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-8394453844",
+      "date": 1670189755039,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-7349823398",
+      "text": "Here",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-8394453844",
+      "date": 1670189790509,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-4148627123",
+      "text": "here",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-8394453844",
+      "date": 1670189872735,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-7836671447",
+      "text": "This time",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-8394453844",
+      "date": 1670189997406,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-2518343777",
+      "text": "@OmarWalid come here @Hello",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-6368489845",
+      "date": 1670191244355,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-9783818731",
+      "text": "Huh?",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-6368489845",
+      "date": 1670191902856,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-4123586187",
+      "text": "Okay let's see",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670191980938,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-7411917819",
+      "text": "Can I?",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-2622658512",
+      "date": 1670192100744,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-9548364563",
+      "text": "Hello?",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-2622658512",
+      "date": 1670192155714,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-1698995821"
+    },
+    {
+      "id": "comment-7967219832",
+      "text": "Helloooo",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-6368489845",
+      "date": 1670192252631,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-9878677941",
+      "text": "@OmarWalid",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-6368489845",
+      "date": 1670192597349,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-7517764195",
+      "text": "@OmarWalid I'll tag you",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-6368489845",
+      "date": 1670192820351,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-5629185937",
+      "text": "Hello",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-4756244164",
+      "date": 1670193576214,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-9868731288"
     }
   ]
 }

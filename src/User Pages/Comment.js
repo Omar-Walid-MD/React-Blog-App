@@ -14,7 +14,7 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
     const [likes,setLikes] = useState(comment.likes);
     const [dislikes,setDislikes] = useState(comment.dislikes);
 
-    const [saved,setSaved] = useState(currentUser.savedPosts.includes(comment.id));
+    const [saved,setSaved] = useState(currentUser && currentUser.savedPosts.includes(comment.id));
 
     function handleVote(newVoteState)
     {
@@ -238,6 +238,7 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
     }
 
     useEffect(()=>{
+
         if(!user)
         {
             fetch('http://localhost:8000/users/'+comment.user.id)
@@ -246,10 +247,14 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
             })
             .then((data)=>{
             setUser(data);
-            console.log(data);
+            // console.log(data);
             })
         }
+
+        
+
     },[comment]);
+
 
 
     return (
@@ -290,13 +295,16 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
 
     const [newReply,setNewReply] = useState("");
 
+    const [post,setPost] = useState();
+    const [topic,setTopic] = useState();
+
     const [voteState,setVoteState] = useState(CheckUserVote());
     const [likes,setLikes] = useState(comment.likes);
     const [dislikes,setDislikes] = useState(comment.dislikes);
 
     const [replies,setReplies] = useState(replyList);
 
-    const [saved,setSaved] = useState(currentUser.savedPosts.includes(comment.id));
+    const [saved,setSaved] = useState(currentUser && currentUser.savedPosts.includes(comment.id));
 
     function handleVote(newVoteState)
     {
@@ -455,9 +463,50 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
             }).then(()=>{
                 console.log("New Reply Added.");
                 setNewReply("");
-        setComments(prev => [...prev,replyToAdd]);
-            })
+                setComments(prev => [...prev,replyToAdd]);
+            });
+
+            if(currentUser.id!==comment.user.id)
+            {
+                fetch('http://localhost:8000/users/'+comment.user.id)
+                .then(res => {
+                return res.json()
+                })
+                .then((targetUser)=>{
+
+                    let newNotif = {
+                        type: "reply",
+                        user: currentUser.id,
+                        comment: replyToAdd.id,
+                        post: post.id,
+                        topic: topic.id
+                    }
+    
+                    SendNotif(newNotif,targetUser);
+                });
+
+            }
+
         }
+    }
+
+    function SendNotif(newNotif,targetUser)
+    {
+        let notifs = [...targetUser.notifs,newNotif];
+    
+        let updatedUser = {
+            ...targetUser,
+            notifs: notifs
+        }
+
+        axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+        )
+        .then(resp =>{
+            console.log("Updated Target User Notifs");
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
 
@@ -590,18 +639,40 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
     }
 
     useEffect(()=>{
+
         if(!user)
         {
-            console.log(comment.user)
+            // console.log(comment.user)
             fetch('http://localhost:8000/users/'+comment.user.id)
             .then(res => {
             return res.json()
             })
             .then((data)=>{
             setUser(data);
-            console.log(data);
+            // console.log(data);
             })
         }
+
+        if(!post)
+        {
+            fetch('http://localhost:8000/posts/'+comment.post)
+            .then(res => {
+            return res.json()
+            })
+            .then((post)=>{
+            setPost(post);
+
+                fetch('http://localhost:8000/topics/'+post.topic)
+                .then(res => {
+                return res.json()
+                })
+                .then((topic)=>{
+                setTopic(topic);
+                })
+
+            })
+        }
+
     },[comment]);
 
 

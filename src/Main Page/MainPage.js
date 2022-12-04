@@ -17,14 +17,13 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
 
     function GetPostsForTopic(topic)
     {
-      console.log(posts);
-      if(currentUser.subbedTopics)
+      if(currentUser)
       {
         return topic ? posts.filter((post)=>post.topic===topic.id) : posts.filter((post)=>currentUser.subbedTopics.includes(post.topic));
       }
       else
       {
-        return [];
+        return topic ? posts.filter((post)=>post.topic===topic.id) : [];
       }
     }
 
@@ -35,7 +34,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
 
     function IsTopicSubbed(topicId)
     {
-      return currentUser.subbedTopics.includes(topicId);
+      return currentUser && currentUser.subbedTopics.includes(topicId);
     }
 
     function SetTopicSubbed(topicId)
@@ -110,7 +109,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
               </div>
               <div className="main-column-post-group">
               {
-                currentUser && posts && GetPostsForTopic(topic).length>0 ? sortPosts(GetPostsForTopic(topic)).map((post)=>
+                posts && GetPostsForTopic(topic).length>0 ? sortPosts(GetPostsForTopic(topic)).map((post)=>
                   <Post post={post} currentUser={currentUser} setCurrentUser={setCurrentUser} key={"post"+post.id} />
                 ) : <div className="blog-empty-label flex-center"><h1>No Posts Available</h1></div>
               }
@@ -121,7 +120,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
               <div className="side-column">
                 <div className="side-column-container">
                   <div className="side-column-topic-overview">
-                    <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={150} />
+                    <TopicLogo topicLogo={topic.logo} width={150} />
                     <h1 className="side-column-topic-title">{topic.title}</h1>
                     <p className="side-column-topic-desc">{topic.description}</p>
                   </div>

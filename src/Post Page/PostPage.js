@@ -9,7 +9,7 @@ import TopicLogo from "../Main Page/TopicLogo";
 import '../Main Page/MainPage.css';
 import "./PostPage.css";
 
-function PostPage({topics, currentUser, setCurrentUser})
+function PostPage({topics, currentUser, setCurrentUser,users})
 {
 
     let postId = useParams().id;
@@ -65,14 +65,104 @@ function PostPage({topics, currentUser, setCurrentUser})
                 console.log("New Comment Added.");
                 setNewComment("");
                 setComments(prev => [...prev,commentToAdd]);
-            })
+            });
+
+            if(currentUser.id!==post.user.id)
+            {
+                fetch('http://localhost:8000/users/'+post.user.id)
+                .then(res => {
+                return res.json()
+                })
+                .then((targetUser)=>{
+
+                    let newNotif = {
+                        type: "comment",
+                        user: currentUser.id,
+                        comment: commentToAdd.id,
+                        post: post.id,
+                        topic: topic.id
+                    }
+    
+                    SendNotif(newNotif,targetUser);
+                });
+
+            }
+
+            if(GetTags(commentToAdd.text))
+            {
+                let tags = GetTags(commentToAdd.text);
+
+                let tagNotifs = [];
+
+                for (let i = 0; i < tags.length; i++)
+                {
+                    const tag = tags[i];
+                    tagNotifs.push(GetUserFromName(tag));
+                }
+
+                for (let i = 0; i < tagNotifs.length; i++)
+                {
+                    const targetUser = tagNotifs[i];
+                    
+                    let newNotif = {
+                        type: "tag",
+                        user: currentUser.id,
+                        comment: commentToAdd.id,
+                        post: post.id,
+                        topic: topic.id
+                    };
+
+                    SendNotif(newNotif,targetUser);
+                    
+                }
+            }
         }
+    }
+
+    function GetTags(commentText)
+    {
+        let textSplit = commentText.split(' ').filter((word)=> word[0]==='@').map((word)=>word.slice(1,word.length));
+        return textSplit.length>0 ? textSplit : null;
+    }
+
+    function GetUserFromName(username)
+    {
+        for (let i = 0; i < users.length; i++)
+        {
+            const user = users[i];
+
+            console.log(username);
+            if(user.username===username)
+            {
+                console.log(user);
+                return user;
+            }
+            
+        }
+    }
+
+    function SendNotif(newNotif,targetUser)
+    {
+        let notifs = [...targetUser.notifs,newNotif];
+    
+        let updatedUser = {
+            ...targetUser,
+            notifs: notifs
+        }
+
+        axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+        )
+        .then(resp =>{
+            console.log("Updated Target User Notifs");
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     
     function AutoResize(event)
     {
-        console.log(event.target.getAttribute("minheight"))
         event.target.style.minHeight = 0;
         event.target.style.minHeight = "max(" + event.target.getAttribute("minheight") + "px,"+(event.target.scrollHeight) + "px)" ;
     }
@@ -261,17 +351,16 @@ function PostPage({topics, currentUser, setCurrentUser})
 
     function GetMainComments(commentList)
     {
-        return commentList.filter((comment)=>comment.post===postId && comment.parentComment==="none");
+        return commentList.filter((comment)=>comment.post===postId && comment.parentComment==="none").reverse();
     }
 
     function GetCommentReplies(commentId,commentList)
     {
-        return commentList.filter((comment)=>comment.post===postId && comment.parentComment===commentId);
+        return commentList.filter((comment)=>comment.post===postId && comment.parentComment===commentId).reverse();
     }
 
     function SetTargetComment(commentId)
     {
-        console.log(targetCommentId===commentId);
         return targetCommentId===commentId ? targetComment : null;
     }
 
@@ -403,7 +492,6 @@ function PostPage({topics, currentUser, setCurrentUser})
         {
             setVoteState(CheckUserVote());
             setSaved(currentUser.savedPosts.includes(post.id));
-            console.log("happens here");
             fetch('http://localhost:8000/topics/'+post.topic)
             .then(res => {
             return res.json()
@@ -484,7 +572,7 @@ function PostPage({topics, currentUser, setCurrentUser})
              <div className="post-page-side-column">
                 <div className="side-column-container">
                     <div className="side-column-topic-overview">
-                    <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={150} />
+                    <TopicLogo topicLogo={topic.logo} width={150} />
                     <h1 className="side-column-topic-title">{topic.title}</h1>
                     <p className="side-column-topic-desc">{topic.description}</p>
                     </div>

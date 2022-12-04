@@ -277,7 +277,7 @@ function Post({post,currentUser,setCurrentUser})
           {
             topic &&
             <Link to={"/topic/"+topic.id} className="post-info-topic-link flex-row">
-              <TopicLogo bgImg={topic.logo.bgImg} bgColor={topic.logo.bgColor} fgImg={topic.logo.fgImg} fgColor={topic.logo.fgColor} width={60} />
+              <TopicLogo topicLogo={topic.logo} width={60} />
               <p className="post-topic-title">{topic.title}</p>
             </Link>
           }

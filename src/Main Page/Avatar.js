@@ -4,7 +4,6 @@ function Avatar({bgImg,bgColor,baseColor,accImg,accColor,width})
 {
     function GetBorderWidth(width)
     {
-        console.log("width: " + width)
         return width/20 + "px";
     }
     return (

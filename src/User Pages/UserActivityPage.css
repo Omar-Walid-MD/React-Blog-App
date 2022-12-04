@@ -82,7 +82,9 @@
 .activity-page-comment-info
 {
     color: plum;
+    
     font-size: 10pt;
+    font-weight: 500;
 }
 .activity-page-comment-post
 {
