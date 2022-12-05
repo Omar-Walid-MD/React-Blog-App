@@ -356,7 +356,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
 
     function GetCommentReplies(commentId,commentList)
     {
-        return commentList.filter((comment)=>comment.post===postId && comment.parentComment===commentId).reverse();
+        return commentList.filter((comment)=>comment.post===postId && comment.parentComment===commentId);
     }
 
     function SetTargetComment(commentId)

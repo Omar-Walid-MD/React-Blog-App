@@ -85,7 +85,29 @@
       "likes": [],
       "dislikes": [],
       "savedPosts": [],
-      "notifs": []
+      "notifs": [
+        {
+          "type": "reply",
+          "user": "user-4499347254",
+          "comment": "comment-4572666536",
+          "post": "post-2622658512",
+          "topic": "topic-1211381976"
+        },
+        {
+          "type": "reply",
+          "user": "user-4499347254",
+          "comment": "comment-9163368912",
+          "post": "post-2622658512",
+          "topic": "topic-1211381976"
+        },
+        {
+          "type": "reply",
+          "user": "user-4499347254",
+          "comment": "comment-8983525792",
+          "post": "post-2622658512",
+          "topic": "topic-1211381976"
+        }
+      ]
     }
   ],
   "topics": [
@@ -597,6 +619,175 @@
       "likes": 0,
       "dislikes": 0,
       "parentComment": "comment-9868731288"
+    },
+    {
+      "id": "comment-7195275931",
+      "text": "I see...",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670265237896,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-1698995821"
+    },
+    {
+      "id": "comment-4572666536",
+      "text": "@VibrantTomato769 Hello",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670265418880,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-9548364563"
+    },
+    {
+      "id": "comment-9163368912",
+      "text": "@VibrantTomato769 Hello!",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670265462262,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-9548364563"
+    },
+    {
+      "id": "comment-8983525792",
+      "text": "@VibrantTomato769 This time, hello",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670265599156,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-1698995821"
+    },
+    {
+      "id": "comment-6675415677",
+      "text": "Hellooo",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670265780740,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-1698995821"
+    },
+    {
+      "id": "comment-5645159349",
+      "text": "Here",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670265797360,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-1698995821"
+    },
+    {
+      "id": "comment-9722782524",
+      "text": "Neww",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670265911382,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-1698995821"
+    },
+    {
+      "id": "comment-6885328377",
+      "text": "EE",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670265925070,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-1698995821"
+    },
+    {
+      "id": "comment-5343695933",
+      "text": "ee",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670265966006,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-1698995821"
+    },
+    {
+      "id": "comment-9978851341",
+      "text": "Here is better",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670265995208,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-4123586187"
+    },
+    {
+      "id": "comment-3411564511",
+      "text": "I agree",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670266006380,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-4123586187"
+    },
+    {
+      "id": "comment-3987224889",
+      "text": "Yea I guess",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670266111422,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-4123586187"
+    },
+    {
+      "id": "comment-8319753158",
+      "text": "hmmm",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-2622658512",
+      "date": 1670266130280,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-4123586187"
     }
   ]
 }

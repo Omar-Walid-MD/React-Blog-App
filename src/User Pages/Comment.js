@@ -6,15 +6,24 @@ import "../Post Page/PostPage.css"
 import Avatar from "../Main Page/Avatar";
 
 
-function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddReply})
+function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, post, topic, setComments})
 {
     const [user,setUser] = useState();
+
+    const [newReply,setNewReply] = useState();
 
     const [voteState,setVoteState] = useState(CheckUserVote());
     const [likes,setLikes] = useState(comment.likes);
     const [dislikes,setDislikes] = useState(comment.dislikes);
 
     const [saved,setSaved] = useState(currentUser && currentUser.savedPosts.includes(comment.id));
+
+    const replyInput = useRef();
+
+    function handleReply(event)
+    {
+        setNewReply(event.target.value);
+    }
 
     function handleVote(newVoteState)
     {
@@ -190,6 +199,101 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
         
     }
 
+    function submitReply(event)
+    {
+        event.preventDefault();
+
+        if(newReply!=="")
+        {
+
+            let replyToAdd = {
+                id: "comment-"+makeId(10),
+                text: newReply,
+                user: {username: currentUser.username,id: currentUser.id},
+                post: comment.post,
+                date: Date.now(),
+                likes: 0,
+                dislikes: 0,
+                parentComment: comment.parentComment
+            }
+
+            fetch('http://localhost:8000/comments',{
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(replyToAdd)
+            }).then(()=>{
+                console.log("New Reply Added.");
+                setNewReply("");
+                setComments(prev => [...prev,replyToAdd]);
+            });
+
+            if(currentUser.id!==comment.user.id)
+            {
+                fetch('http://localhost:8000/users/'+comment.user.id)
+                .then(res => {
+                return res.json()
+                })
+                .then((targetUser)=>{
+
+                    let newNotif = {
+                        type: "reply",
+                        user: currentUser.id,
+                        comment: replyToAdd.id,
+                        post: post.id,
+                        topic: topic.id
+                    }
+    
+                    SendNotif(newNotif,targetUser);
+
+                });
+                
+            }
+            
+            // let replyElement = document.querySelector("#"+replyToAdd.id);
+            // console.log(replyElement);
+
+        }
+    }
+
+    function SendNotif(newNotif,targetUser)
+    {
+        let notifs = [...targetUser.notifs,newNotif];
+    
+        let updatedUser = {
+            ...targetUser,
+            notifs: notifs
+        }
+
+        axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+        )
+        .then(resp =>{
+            console.log("Updated Target User Notifs");
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+    function MentionReply(userMention)
+    {
+        replyInput.current.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+        
+        setNewReply(comment.user.id!==currentUser.id ? "@"+userMention+" " : "");
+
+        replyInput.current.focus();
+
+    }
+
+    function AutoResize(event)
+    {
+        event.target.style.minHeight = 0;
+        event.target.style.minHeight = "max(" + event.target.getAttribute("minheight") + "px,"+(event.target.scrollHeight) + "px)" ;
+    }
+
     function FormatText(replyText)
     {
         let replyTextSplit = replyText.split(' ').map((word)=> word[0]==='@' ? <Link className="user-tag">{word}&nbsp;</Link> : word+" ");
@@ -237,6 +341,16 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
         }
     }
 
+    function makeId(length)
+    {
+        let result = "";
+        let chars = "123456789";
+        for (var i = 0; i < length; i++) {
+        result += chars[Math.floor(Math.random() * 9)];
+        }
+        return result;
+    }
+
     useEffect(()=>{
 
         if(!user)
@@ -258,32 +372,47 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, AddRe
 
 
     return (
-        <div className="post-page-comment-content-container" id={comment.id} ref={SetCommentRef(comment.id)}>
-            <div className="post-page-comment-wrapper flex-row">
-                <div className="post-page-comment-avatar">
-                {
-                    user &&
-                    <Avatar bgImg={user.avatar.bgImg} bgColor={user.avatar.bgColor} baseColor={user.avatar.baseColor} accImg={user.avatar.accImg} accColor={user.avatar.accColor} width={65} />
-                }
+        <div className="post-page-reply-container">
+            <div className="post-page-comment-content-container" id={comment.id} ref={SetCommentRef(comment.id)}>
+                <div className="post-page-comment-wrapper flex-row">
+                    <div className="post-page-comment-avatar">
+                    {
+                        user &&
+                        <Avatar bgImg={user.avatar.bgImg} bgColor={user.avatar.bgColor} baseColor={user.avatar.baseColor} accImg={user.avatar.accImg} accColor={user.avatar.accColor} width={65} />
+                    }
+                    </div>
+                    <div className="post-page-comment-content flex-column">
+                        <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}&nbsp; </Link>{CalculateTime()}</p>
+                        <p className="post-page-comment-text">{FormatText(comment.text)}</p>
+                    </div>
                 </div>
-                <div className="post-page-comment-content flex-column">
-                    <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}&nbsp; </Link>{CalculateTime()}</p>
-                    <p className="post-page-comment-text">{FormatText(comment.text)}</p>
+
+                <div className="comment-bottom-bar flex-row">
+                    <div className="comment-options flex-row">
+                    <div className="comment-votes-container flex-row">
+                        <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
+                        <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
+                    </div>
+                    <label htmlFor={"post-page-reply-checkbox-"+comment.id} className="comment-reply-button flex-row" onClick={function(){MentionReply(comment.user.username)}}><i className='bx bxs-comment-detail comment-icon'></i>Reply</label>
+                    <button className="comment-save-button flex-row" saved={saved ? "true" : "false"}  onClick={handleSave}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+                    </div>
                 </div>
+
+
+                <div className="reply-pointer-line"></div>
+                <div className="post-page-comment-replies-line" replyopen="true" last={last}></div>
             </div>
 
-            <div className="comment-bottom-bar flex-row">
-                <div className="comment-options flex-row">
-                <div className="comment-votes-container flex-row">
-                    <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
-                    <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
+            <input type="checkbox" className="post-page-reply-checkbox hidden-checkbox" id={"post-page-reply-checkbox-"+comment.id} />
+            <form className="post-page-write-reply-form flex-row" onSubmit={submitReply}>
+                <textarea className="post-page-write-reply-input" placeholder="Write your reply..." ref={replyInput} minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
+                <div className="post-page-write-reply-buttons flex-column">
+
+                    <input className="post-page-write-reply-submit" type="submit" value="Reply" />
+                    <label htmlFor={"post-page-reply-checkbox-"+comment.id} className="post-page-write-reply-submit">Cancel</label>
                 </div>
-                <button className="comment-reply-button flex-row" onClick={function(){AddReply(comment.user)}}><i className='bx bxs-comment-detail comment-icon'></i>Reply</button>
-                <button className="comment-save-button flex-row" saved={saved ? "true" : "false"}  onClick={handleSave}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
-                </div>
-            </div>
-            <div className="reply-pointer-line"></div>
-            <div className="post-page-comment-replies-line" last={last}></div>
+            </form>
+            
         </div>
            
     )
@@ -510,21 +639,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
     }
 
 
-    const replyInput = useRef();
-
-    function MentionReply(userMention)
-    {
-        replyInput.current.scrollIntoView({
-            behavior: 'auto',
-            block: 'center',
-            inline: 'center'
-        });
-
-        setNewReply("@"+userMention+" ");
-
-        replyInput.current.focus();
-
-    }
+    
 
     function handleSave()
     {
@@ -707,15 +822,14 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
             <div className="post-page-comment-replies-container">
                 <div className="post-page-comment-replies-section reply-margin flex-column">
                     <form className="post-page-write-reply-form flex-row" onSubmit={submitReply}>
-                        <textarea className="post-page-write-reply-input" ref={replyInput} placeholder="Write your reply..." minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
+                        <textarea className="post-page-write-reply-input" placeholder="Write your reply..." minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
                         <input className="post-page-write-reply-submit" type="submit" value="Reply" />
                         <div className="post-page-comment-replies-line" first="true"></div>
-
                     </form>
                     <div>
                         {
                             replyList && replyList.map((reply,index)=>
-                            <Reply comment={reply} SetCommentRef={SetCommentRef} currentUser={currentUser} setCurrentUser={setCurrentUser} AddReply={MentionReply} key={reply.id} last={index===replyList.length-1 ? "true" : "false"} />
+                            <Reply comment={reply} SetCommentRef={SetCommentRef} currentUser={currentUser} setCurrentUser={setCurrentUser} post={post} topic={topic} setComments={setComments} key={reply.id} last={index===replyList.length-1 ? "true" : "false"} />
                             )
                         }
                     </div>

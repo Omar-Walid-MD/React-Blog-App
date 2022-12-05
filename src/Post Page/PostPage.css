@@ -452,6 +452,11 @@
 
     overflow: visible;
 }
+.post-page-write-reply-buttons
+{
+    height: 100px;
+    align-items: flex-end;
+}
 .post-page-write-reply-submit
 {
     color: purple;
@@ -486,7 +491,12 @@
 {
     transform: rotate(180deg);
 }
+.post-page-reply-container
+{
+    height: fit-content;
 
+    position: relative;
+}
 .post-page-comment-replies-line
 {
     width: 10px; height: calc(100% + 40px);
@@ -495,20 +505,24 @@
 
     position: absolute;
     bottom: 0; left: -90px;
+
+    /* border: 2px solid black; */
     
+}
+.post-page-comment-replies-line[replyopen="true"]
+{
+    height: calc(200% + 45px);
+    bottom: -50%;
 }
 .post-page-comment-replies-line[last="true"]
 {
-
-    height: calc(50% + 40px);
+    height: calc(200% + 40px);
     bottom: 49%;
 }
 .post-page-comment-replies-line[first="true"]
 {
-
     height: 100%;
 }
-
 .reply-pointer-line
 {
     height: 10px; width: 90px;
@@ -520,7 +534,14 @@
     position: absolute;
     top: 50%; right: 100%;
 }
-
+.post-page-reply-checkbox +.post-page-write-reply-form
+{
+    display: none;
+}
+.post-page-reply-checkbox:checked +.post-page-write-reply-form
+{
+    display: flex;
+}
 .user-tag
 {
     color: lightskyblue;
