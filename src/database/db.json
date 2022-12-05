@@ -106,6 +106,13 @@
           "comment": "comment-8983525792",
           "post": "post-2622658512",
           "topic": "topic-1211381976"
+        },
+        {
+          "type": "reply",
+          "user": "user-4499347254",
+          "comment": "comment-1877653352",
+          "post": "post-4756244164",
+          "topic": "topic-8781529897"
         }
       ]
     }
@@ -788,6 +795,19 @@
       "likes": 0,
       "dislikes": 0,
       "parentComment": "comment-4123586187"
+    },
+    {
+      "id": "comment-1877653352",
+      "text": "@VibrantTomato769 ",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-4756244164",
+      "date": 1670267387266,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "comment-9868731288"
     }
   ]
 }

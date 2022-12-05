@@ -6,7 +6,7 @@ import "../Post Page/PostPage.css"
 import Avatar from "../Main Page/Avatar";
 
 
-function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, post, topic, setComments})
+function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, post, topic, setComments, users})
 {
     const [user,setUser] = useState();
 
@@ -296,8 +296,31 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, post,
 
     function FormatText(replyText)
     {
-        let replyTextSplit = replyText.split(' ').map((word)=> word[0]==='@' ? <Link className="user-tag">{word}&nbsp;</Link> : word+" ");
+        let replyTextSplit = replyText.split(' ').map((word)=> word[0]==='@' ? <Link to={"/user/" + GetUserFromName(word.slice(1,word.length)).id} className="user-tag">{word}&nbsp;</Link> : word+" ");
         return replyTextSplit;
+    }
+
+    function GetUserFromName(username)
+    {
+        if(users)
+        {
+            for (let i = 0; i < users.length; i++)
+            {
+                const user = users[i];
+    
+                console.log(username);
+                if(user.username===username)
+                {
+                    console.log(user);
+                    return user;
+                }
+                
+            }
+        }
+        else
+        {
+            return null;
+        }
     }
 
     function CalculateTime()
@@ -418,7 +441,7 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, post,
     )
 }
 
-function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setComments, replyList})
+function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setComments, replyList, users})
 {
     const [user,setUser] = useState();
 
@@ -690,8 +713,24 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
 
     function FormatText(replyText)
     {
-        let replyTextSplit = replyText.split(' ').map((word)=> word[0]==='@' ? <Link className="user-tag">{word}&nbsp;</Link> : word+" ");
+        let replyTextSplit = replyText.split(' ').map((word)=> word[0]==='@' ? <Link to={"/user/" + GetUserFromName(word.slice(1,word.length)).id} className="user-tag">{word}&nbsp;</Link> : word+" ");
         return replyTextSplit;
+    }
+
+    function GetUserFromName(username)
+    {
+        for (let i = 0; i < users.length; i++)
+        {
+            const user = users[i];
+
+            console.log(username);
+            if(user.username===username)
+            {
+                console.log(user);
+                return user;
+            }
+            
+        }
     }
 
     function CalculateTime()
@@ -829,7 +868,7 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
                     <div>
                         {
                             replyList && replyList.map((reply,index)=>
-                            <Reply comment={reply} SetCommentRef={SetCommentRef} currentUser={currentUser} setCurrentUser={setCurrentUser} post={post} topic={topic} setComments={setComments} key={reply.id} last={index===replyList.length-1 ? "true" : "false"} />
+                            <Reply comment={reply} SetCommentRef={SetCommentRef} currentUser={currentUser} setCurrentUser={setCurrentUser} post={post} topic={topic} setComments={setComments} key={reply.id} last={index===replyList.length-1 ? "true" : "false"} users={users} />
                             )
                         }
                     </div>

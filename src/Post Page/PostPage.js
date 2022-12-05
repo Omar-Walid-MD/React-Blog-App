@@ -555,7 +555,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                             <div className="post-page-comments-section">
                                 {
                                     comments && GetMainComments(comments).length > 0 ? GetMainComments(comments).map((comment)=>
-                                    <Comment comment={comment} key={comment.id} SetCommentRef={SetTargetComment} currentUser={currentUser} setCurrentUser={setCurrentUser} setComments={setComments} replyList={GetCommentReplies(comment.id,comments)} />
+                                    <Comment comment={comment} key={comment.id} SetCommentRef={SetTargetComment} currentUser={currentUser} setCurrentUser={setCurrentUser} setComments={setComments} replyList={GetCommentReplies(comment.id,comments)} users={users} />
                                     )
                                     : <h1 className="post-page-comments-section-empty-label">No comments yet</h1>
                                 }
