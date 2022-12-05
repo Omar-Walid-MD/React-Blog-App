@@ -25,6 +25,12 @@ function Header({topics, currentUser, setCurrentUser})
     return topics.filter((topic)=>topic.title.toLowerCase().includes(searchValue.toLowerCase()));
   }
 
+  function GetNofitications(currentUser)
+  {
+    console.log(currentUser.notifs);
+    return currentUser.notifs.slice().reverse();
+  }
+
   function LogOut(e)
   {
     setCurrentUser(null);
@@ -82,7 +88,7 @@ function Header({topics, currentUser, setCurrentUser})
                 </label>
                 <div className="navbar-notif-dropdown-container">
                   {
-                    currentUser.notifs.map((notif)=>
+                    GetNofitications(currentUser).map((notif)=>
                     <Notif type={notif.type} userId={notif.user} commentId={notif.comment} postId={notif.post} topicId={notif.topic} />
                     )
                   }

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 import Header from "../Main Page/Header";
 import TopicLogo from "../Main Page/TopicLogo";
@@ -28,7 +29,7 @@ function SelectTopic({topic, newPost, setNewPost})
 }
 
 
-function NewPostPage({handlePostList, topics, currentUser, setCurrentUser})
+function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users})
 {
     const navigate = useNavigate();
 
@@ -92,7 +93,36 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser})
             }).then(()=>{
                 console.log("New Post Added.");
                 handlePostList(prevList => [...prevList,postToAdd])
-            })
+            });
+
+            if(GetTags(postToAdd.body))
+            {
+                let tags = GetTags(postToAdd.body);
+
+                let tagNotifs = [];
+
+                for (let i = 0; i < tags.length; i++)
+                {
+                    const tag = tags[i];
+                    tagNotifs.push(GetUserFromName(tag));
+                }
+
+                for (let i = 0; i < tagNotifs.length; i++)
+                {
+                    const targetUser = tagNotifs[i];
+                    
+                    let newNotif = {
+                        type: "post-tag",
+                        user: currentUser.id,
+                        comment: "",
+                        post: postToAdd.id,
+                        topic: postToAdd.topic
+                    };
+
+                    SendNotif(newNotif,targetUser);
+                    
+                }
+            }
     
             navigate("/post/"+postToAdd.id,{state: {submittedPost: postToAdd, submittedTopic: postToAdd.topic}});
             return
@@ -102,6 +132,47 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser})
             console.log("Topic invalid")
         }
 
+    }
+
+    function GetTags(commentText)
+    {
+        let textSplit = commentText.split(' ').filter((word)=> word[0]==='@').map((word)=>word.slice(1,word.length));
+        return textSplit.length>0 ? textSplit : null;
+    }
+
+    function GetUserFromName(username)
+    {
+        for (let i = 0; i < users.length; i++)
+        {
+            const user = users[i];
+
+            console.log(username);
+            if(user.username===username)
+            {
+                console.log(user);
+                return user;
+            }
+            
+        }
+    }
+
+    function SendNotif(newNotif,targetUser)
+    {
+        let notifs = [...targetUser.notifs,newNotif];
+    
+        let updatedUser = {
+            ...targetUser,
+            notifs: notifs
+        }
+
+        axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+        )
+        .then(resp =>{
+            console.log("Updated Target User Notifs");
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     function NotReadyToSubmit()

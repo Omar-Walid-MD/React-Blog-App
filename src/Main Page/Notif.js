@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import "./MainPage.css";
+import { Link, useParams, useLocation } from "react-router-dom";
+
 import TopicLogo from "./TopicLogo";
+import "./MainPage.css";
 
 function Notif({type,userId,commentId,postId,topicId})
 {
@@ -64,7 +66,7 @@ function Notif({type,userId,commentId,postId,topicId})
     },[userId,commentId, postId, topicId]);
 
     return (
-        <div className="notification-container flex-row">
+        <Link to={"/post/"+postId} className="notification-container flex-row">
         {
             topic && <TopicLogo topicLogo={topic.logo} width={40}/>
         }
@@ -73,8 +75,10 @@ function Notif({type,userId,commentId,postId,topicId})
                 <div className="notification-topic">{topic.title}</div>
             {
                 
-                type==="tag"
+                type==="comment-tag"
                 ? <div><b className="notification-username">{user.username}</b> has <b>mentioned</b> you in a comment on: <p className="notification-post">"{post.title}"</p></div>
+                : type==="post-tag"
+                ? <div><b className="notification-username">{user.username}</b> has <b>mentioned</b> you on: <p className="notification-post">"{post.title}"</p></div>
                 : type==="reply"
                 ? <div><b className="notification-username">{user.username}</b> has <b>replied</b> to you: <h3 className="notification-reply">"{comment.text}"</h3> on: <p className="notification-post">"{post.title}"</p></div>
                 : type==="comment"
@@ -83,7 +87,7 @@ function Notif({type,userId,commentId,postId,topicId})
             }
             </div>
         }
-        </div>
+        </Link>
     )
 }
 

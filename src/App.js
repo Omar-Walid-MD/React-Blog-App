@@ -71,7 +71,7 @@ function App()
   return (
     <Routes>
       <Route path="/" element={<MainPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-      <Route path="/write" element={<WritePage topics={topics} handlePostList={setPosts} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/write" element={<WritePage topics={topics} handlePostList={setPosts} currentUser={currentUser} setCurrentUser={setCurrentUser} users={users} />} />
       <Route path="/post/:id" element={<PostPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} users={users} />} />
 
       <Route path="/new-topic" element={<CreateTopicPage currentUser={currentUser} topics={topics} setCurrentUser={setCurrentUser} topics={topics} setTopics={setTopics} />} />

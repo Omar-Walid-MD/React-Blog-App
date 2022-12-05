@@ -105,7 +105,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                     const targetUser = tagNotifs[i];
                     
                     let newNotif = {
-                        type: "tag",
+                        type: "comment-tag",
                         user: currentUser.id,
                         comment: commentToAdd.id,
                         post: post.id,
@@ -351,7 +351,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
 
     function GetMainComments(commentList)
     {
-        return commentList.filter((comment)=>comment.post===postId && comment.parentComment==="none").reverse();
+        return commentList.filter((comment)=>comment.post===postId && comment.parentComment==="none").slice().reverse();
     }
 
     function GetCommentReplies(commentId,commentList)
@@ -403,6 +403,35 @@ function PostPage({topics, currentUser, setCurrentUser,users})
             block: 'center',
             inline: 'center'
         });
+    }
+
+    function FormatText(postText)
+    {
+        let postTextSplit = postText.split(' ').map((word)=> word[0]==='@' ? <Link to={"/user/" + GetUserFromName(word.slice(1,word.length)).id} className="user-tag">{word}&nbsp;</Link> : word+" ");
+        return postTextSplit;
+    }
+
+    function GetUserFromName(username)
+    {
+        if(users)
+        {
+            for (let i = 0; i < users.length; i++)
+            {
+                const user = users[i];
+    
+                console.log(username);
+                if(user.username===username)
+                {
+                    console.log(user);
+                    return user;
+                }
+                
+            }
+        }
+        else
+        {
+            return {id: "undefined"};
+        }
     }
 
     function CalculateTime()
@@ -528,7 +557,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                                 }
                                 <p className="post-page-post-date">posted by <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> {CalculateTime()}</p>
                                 <h1 className="post-page-post-title">{post.title}</h1>
-                                <p className="post-page-post-body">{post.body}</p>
+                                <p className="post-page-post-body">{FormatText(post.body)}</p>
                             </div>        
                         </div>
                         <div className="post-page-post-bottom-bar flex-row">

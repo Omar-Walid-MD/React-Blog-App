@@ -319,7 +319,7 @@ function Reply({comment, SetCommentRef, currentUser, setCurrentUser, last, post,
         }
         else
         {
-            return null;
+            return {id: "undefined"};
         }
     }
 
@@ -731,6 +731,8 @@ function Comment({comment, SetCommentRef, currentUser, setCurrentUser, setCommen
             }
             
         }
+
+        return {id: "undefined"};
     }
 
     function CalculateTime()

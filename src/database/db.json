@@ -54,7 +54,7 @@
           "topic": "topic-1211381976"
         },
         {
-          "type": "tag",
+          "type": "comment-tag",
           "user": "user-1466759493",
           "comment": "comment-7517764195",
           "post": "post-6368489845",
@@ -113,6 +113,13 @@
           "comment": "comment-1877653352",
           "post": "post-4756244164",
           "topic": "topic-8781529897"
+        },
+        {
+          "type": "post-tag",
+          "user": "user-4499347254",
+          "comment": "",
+          "post": "post-6369769999",
+          "topic": "topic-9943383413"
         }
       ]
     }
@@ -273,6 +280,34 @@
       },
       "comments": [],
       "date": 1670190859497
+    },
+    {
+      "title": "How are you?\n",
+      "body": "VibrantTomato769 come here!",
+      "topic": "topic-9943383413",
+      "id": "post-8528389514",
+      "likes": 0,
+      "dislikes": 0,
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "comments": [],
+      "date": 1670270180021
+    },
+    {
+      "title": "Umm",
+      "body": "Oh sorry @VibrantTomato769 come here!",
+      "topic": "topic-9943383413",
+      "id": "post-6369769999",
+      "likes": 0,
+      "dislikes": 0,
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "comments": [],
+      "date": 1670270251097
     }
   ],
   "comments": [

@@ -285,14 +285,14 @@
 
     background-color: rebeccapurple;
 
-    border-radius: 20px;
+    border-radius: 20px 5px 5px 20px;
 
     margin-top: 5px;
 
     position: absolute;
     top: 100%;
 
-    overflow-y: scroll;
+    overflow-y: auto;
 
     transform-origin: top;
     transform: scaleY(0);
@@ -303,9 +303,36 @@
 {
     transform: scaleY(1);
 }
+.navbar-notif-dropdown-container::-webkit-scrollbar
+{
+    height: 10px;
+    background-color: transparent;
+    height: 10px;
+
+    border-radius: 20px 0 0 20px;
+    
+
+}
+.navbar-notif-dropdown-container::-webkit-scrollbar-track
+{
+    background: plum;
+
+    border-radius: 5px;
+    border: 4px solid rebeccapurple;
+    
+}
+.navbar-notif-dropdown-container::-webkit-scrollbar-thumb
+{
+    background-color: rgb(72, 37, 107);
+
+    border-radius: 5px;
+}
 .notification-container
 {
     background-color: rgb(125, 75, 170);
+
+    color: white;
+    text-decoration: none;
 
     border-radius: 10px;
 
