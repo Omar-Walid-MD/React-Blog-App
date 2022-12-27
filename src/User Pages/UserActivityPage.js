@@ -342,11 +342,12 @@ function UserActivityPage({posts, topics, currentUser, setCurrentUser})
               </div>
               <div className="activity-page-content-container">
               {
-                user && comments && posts && SortContent(GetContent(currentTab)).map((content)=>
-                 
+                user && comments && posts ? SortContent(GetContent(currentTab)).length > 0 ?
+                SortContent(GetContent(currentTab)).map((content)=>
                   content.type==="post" ? <Post post={content} key={content.id} currentUser={user} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id} currentUser={user} setCurrentUser={setCurrentUser}/>
-                 
                  )
+                 : <div className="blog-empty-label flex-center"><h1>No Content Available</h1></div>
+                 : <div className="blog-empty-label flex-center"><img src={require("../img/loading.png")} /></div>
               }
               </div>
             </div>

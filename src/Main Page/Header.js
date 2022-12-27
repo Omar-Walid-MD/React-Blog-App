@@ -135,7 +135,7 @@ function Header({topics, currentUser, setCurrentUser})
               <div className="navbar-notif-menu flex-center">
                 <input type="checkbox" className="navbar-notif-checkbox hidden-checkbox" id="navbar-notif-checkbox" ref={notifCheckbox}/>
                 <label htmlFor="navbar-notif-checkbox" className="navbar-notif-button" onClick={function(){if(!notifCheckbox.current.checked) SetNotifSeen(currentUser)}}>
-                  <i className='bx bx-bell'></i>
+                  <i className={"bx " + (NewNotifCount(currentUser) > 0 ? "bxs-bell" : "bx-bell")}></i>
                   {
                     NewNotifCount(currentUser) > 0 &&
                     <div className="notification-bell-label flex-center">{NewNotifCount(currentUser)}</div>

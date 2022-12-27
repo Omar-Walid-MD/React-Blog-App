@@ -319,11 +319,11 @@ function PostPage({topics, currentUser, setCurrentUser,users})
 
         if(updatedUser.savedPosts.includes(post.id))
         {
-        updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==post.id);
+            updatedUser.savedPosts = updatedUser.savedPosts.filter((savedPost)=>savedPost!==post.id);
         }
         else
         {
-        updatedUser.savedPosts = [...updatedUser.savedPosts,post.id];
+            updatedUser.savedPosts = [...updatedUser.savedPosts,post.id];
         }
 
         axios.put('http://localhost:8000/users/'+updatedUser.id,
@@ -631,8 +631,10 @@ function PostPage({topics, currentUser, setCurrentUser,users})
              <div className="post-page-side-column">
                 <div className="side-column-container">
                     <div className="side-column-topic-overview">
-                    <TopicLogo topicLogo={topic.logo} width={150} />
-                    <h1 className="side-column-topic-title">{topic.title}</h1>
+                    <Link to={"/topic/"+topic.id}>
+                        <TopicLogo topicLogo={topic.logo} width={150} />
+                        <h1 className="side-column-topic-title">{topic.title}</h1>
+                    </Link>
                     <p className="side-column-topic-desc">{topic.description}</p>
                     </div>
                     <div className="side-column-topic-status flex-row">

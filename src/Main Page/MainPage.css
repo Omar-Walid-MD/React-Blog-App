@@ -599,6 +599,16 @@
 
     color: rebeccapurple;
 }
+@keyframes loading {
+    0% {transform: rotateZ(0deg);}
+    100% {transform: rotateZ(360deg);}
+}
+.blog-empty-label > img
+{
+    height: 200px;
+
+    animation: loading 1s infinite linear;
+}
 .post-container
 {
     color: white;
@@ -818,6 +828,12 @@
     margin-left: 50px;
 
 }
+.side-column-topic-title
+{
+    color: white;
+    text-decoration: none;
+}
+
 .side-column-topic-desc
 {
     font-size: 15pt;

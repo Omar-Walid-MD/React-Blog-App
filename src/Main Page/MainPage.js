@@ -129,9 +129,10 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
               </div>
               <div className="main-column-post-group">
               {
-                posts && GetPostsForTopic(topic).length>0 ? sortPosts(GetPostsForTopic(topic)).map((post)=>
+                posts ? GetPostsForTopic(topic).length>0 ? sortPosts(GetPostsForTopic(topic)).map((post)=>
                   <Post post={post} currentUser={currentUser} setCurrentUser={setCurrentUser} key={"post"+post.id} />
                 ) : <div className="blog-empty-label flex-center"><h1>No Posts Available</h1></div>
+                : <div className="blog-empty-label flex-center"><img src={require("../img/loading.png")} /></div>
               }
               </div>
             </div>
