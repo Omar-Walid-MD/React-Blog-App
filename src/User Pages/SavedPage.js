@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Header from "../Main Page/Header";
 import Post from "./Post";
-import Comment from "./Comment";
+import Comment from "../Post Page/Comment";
 
 import "../Post Page/PostPage.css"
 import '../Main Page/MainPage.css';

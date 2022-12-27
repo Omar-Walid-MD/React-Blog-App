@@ -516,7 +516,7 @@
 }
 .post-page-comment-replies-line[last="true"]
 {
-    height: calc(200% + 40px);
+    height: calc(100% + 45px);
     bottom: 49%;
 }
 .post-page-comment-replies-line[first="true"]

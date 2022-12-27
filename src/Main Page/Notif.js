@@ -66,7 +66,7 @@ function Notif({type,userId,commentId,postId,topicId})
     },[userId,commentId, postId, topicId]);
 
     return (
-        <Link to={"/post/"+postId} className="notification-container flex-row">
+        <Link to={"/post/"+postId}  target="_blank" className="notification-container flex-row">
         {
             topic && <TopicLogo topicLogo={topic.logo} width={40}/>
         }
