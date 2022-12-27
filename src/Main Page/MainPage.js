@@ -15,6 +15,16 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
 
     const [topic,setTopic] = useState(null);
 
+    const [buttonLock,setButtonLock] = useState(false);
+
+    function lockButtons()
+    {
+        setButtonLock(true);
+        setTimeout(() => {
+            setButtonLock(false);
+        }, 100);
+    }
+
     function GetPostsForTopic(topic)
     {
       if(currentUser)
@@ -45,12 +55,10 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
       if(IsTopicSubbed(topicId))
       {
         newSubbedTopics = currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId);
-        console.log(currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId));
       }
       else
       {
         newSubbedTopics = [...currentUser.subbedTopics,topicId];
-        console.log("uh oh");
       }
 
       let updatedUser = {
@@ -58,8 +66,6 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
         subbedTopics: newSubbedTopics
       }
       
-      // console.log(updatedUser.subbedTopics)
-
       axios.put('http://localhost:8000/users/'+updatedUser.id,
         updatedUser
       )
@@ -67,6 +73,20 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
           console.log("Updated User Subs");
           localStorage.setItem('currentUser', JSON.stringify(updatedUser));
           setCurrentUser(updatedUser);
+      }).catch(error => {
+          console.log(error);
+      });
+
+      let updatedTopic = {
+        ...topic,
+        members: topic.members + (newSubbedTopics.includes(topic.id) ? 1 : -1)
+      }
+
+      axios.put('http://localhost:8000/topics/'+topic.id,
+        updatedTopic
+      )
+      .then(resp =>{
+          setTopic(updatedTopic);
       }).catch(error => {
           console.log(error);
       });
@@ -126,7 +146,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
                   </div>
                   <div className="side-column-topic-status flex-row">
                     <p className="side-column-topic-members">{topic.members} members</p>
-                    <button className="side-column-topic-sub-button" subbed={IsTopicSubbed(topicId) ? "true" : "false"} onClick={function(){SetTopicSubbed(topicId)}}>{IsTopicSubbed(topicId) ? "Unsubscribe" : "Subscribe"}</button>
+                    <button className="side-column-topic-sub-button" subbed={IsTopicSubbed(topicId) ? "true" : "false"} onClick={function(){if(!buttonLock){SetTopicSubbed(topicId); lockButtons();}}}>{IsTopicSubbed(topicId) ? "Unsubscribe" : "Subscribe"}</button>
                   </div>
                     <p className="side-column-topic-date">Created on {new Date(topic.date).toDateString()}</p>
                 </div>

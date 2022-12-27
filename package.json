@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "concurrently npm:run:*",
-    "run:server": "npx json-server --watch src/database/db.json --port 8000",
+    "run:server": "npx json-server --watch src/database/db.json --port 8000 --host 127.0.0.1",
     "run:react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

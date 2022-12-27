@@ -17,6 +17,16 @@ function Post({post,currentUser,setCurrentUser})
   const [topic,setTopic] = useState();
 
   const [saved,setSaved] = useState();
+
+  const [buttonLock,setButtonLock] = useState(false);
+
+  function lockButtons()
+  {
+      setButtonLock(true);
+      setTimeout(() => {
+          setButtonLock(false);
+      }, 100);
+  }
   
   function handleVote(newVoteState)
   {
@@ -294,11 +304,11 @@ function Post({post,currentUser,setCurrentUser})
       <div className="post-bottom-bar flex-row">
         <div className="post-options flex-row">
           <div className="post-votes-container flex-row">
-            <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
-            <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
+            <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
+            <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
           </div>
           <Link to={"/post/"+post.id} className="comment-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>({commentsCount})</Link>
-          <button className="save-button flex-row" saved={saved ? "true" : "false"}  onClick={handleSave}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+          <button className="save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
         </div>
       </div>
 

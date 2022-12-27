@@ -88,8 +88,8 @@ function Header({topics, currentUser, setCurrentUser})
                 </label>
                 <div className="navbar-notif-dropdown-container">
                   {
-                    GetNofitications(currentUser).map((notif)=>
-                    <Notif type={notif.type} userId={notif.user} commentId={notif.comment} postId={notif.post} topicId={notif.topic} />
+                    GetNofitications(currentUser).map((notif,index)=>
+                    <Notif type={notif.type} userId={notif.user} commentId={notif.comment} postId={notif.post} topicId={notif.topic} key={"notif-"+index} />
                     )
                   }
                 </div>

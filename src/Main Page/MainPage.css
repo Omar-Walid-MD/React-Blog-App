@@ -315,17 +315,17 @@
 }
 .navbar-notif-dropdown-container::-webkit-scrollbar-track
 {
-    background: plum;
+    background-color: rgb(72, 37, 107);
 
     border-radius: 5px;
-    border: 4px solid rebeccapurple;
+    border: 0px solid rebeccapurple;
     
 }
 .navbar-notif-dropdown-container::-webkit-scrollbar-thumb
 {
-    background-color: rgb(72, 37, 107);
-
-    border-radius: 5px;
+    background: plum;
+    border: 5px solid rgb(72, 37, 107);
+    border-radius: 10px;
 }
 .notification-container
 {
@@ -374,7 +374,6 @@
 
     margin: 10px 0;
 }
-
 
 .navbar-profile-menu
 {
