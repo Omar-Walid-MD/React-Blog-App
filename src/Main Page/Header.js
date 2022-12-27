@@ -1,8 +1,9 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {Link, useLocation} from "react-router-dom";
 import Avatar from "./Avatar";
 import Notif from "./Notif";
+import axios from 'axios';
 
 import TopicLogo from "./TopicLogo";
 
@@ -13,6 +14,8 @@ function Header({topics, currentUser, setCurrentUser})
   let location = useLocation();
 
   const [searchValue,setSearchValue] = useState("");
+
+  const notifCheckbox = useRef();
 
   function handleSearchValue(event)
   {
@@ -29,6 +32,56 @@ function Header({topics, currentUser, setCurrentUser})
   {
     console.log(currentUser.notifs);
     return currentUser.notifs.slice().reverse();
+  }
+
+  function NewNotifCount(currentUser)
+  {
+    let s = currentUser.notifs.filter((notif)=>notif.state==="new").length;
+    console.log("s: " + s);
+    return s>9 ? "9+" : s;
+  }
+
+  function SetNotifSeen(currentUser)
+  {
+    if(currentUser.notifs.some(function(notif){return notif.state==="new"}))
+    {
+      let updatedUser = {
+        ...currentUser,
+        notifs: currentUser.notifs.map((notif) => notif.state==="new" ? {...notif,state:"seen"} : notif)
+      }
+
+      axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+      )
+      .then(resp =>{
+          localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+          setCurrentUser(updatedUser);
+      }).catch(error => {
+          console.log(error);
+      });
+
+    }
+  }
+
+  function SetNotifRead(currentUser,notif)
+  {
+    if(notif.state!=="read")
+    {
+      let updatedUser = {
+        ...currentUser,
+        notifs: currentUser.notifs.map((notifInList) => notifInList.id===notif.id ? {...notif,state:"read"} : notifInList)
+      }
+
+      axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+      )
+      .then(resp =>{
+          localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+          setCurrentUser(updatedUser);
+      }).catch(error => {
+          console.log(error);
+      });
+    }
   }
 
   function LogOut(e)
@@ -49,9 +102,7 @@ function Header({topics, currentUser, setCurrentUser})
         <header className="navbar flex-row">
             <Link to="/" className="navbar-logo">BLOGGEST</Link>
             <div className="navbar-search-container flex-center">
-              <input className="navbar-search-input" type="search" placeholder="Search for topics..." value={searchValue} onChange={handleSearchValue} />
-              
-                
+              <input className="navbar-search-input" type="search" placeholder="Search for topics..." value={searchValue} onChange={handleSearchValue} />          
                   {
                     searchValue!=="" &&
                     <div className="navbar-search-dropdown">
@@ -82,15 +133,21 @@ function Header({topics, currentUser, setCurrentUser})
             currentUser ? 
             <div className="navbar-options-loggedin flex-row">
               <div className="navbar-notif-menu flex-center">
-                <input type="checkbox" className="navbar-notif-checkbox hidden-checkbox" id="navbar-notif-checkbox"/>
-                <label htmlFor="navbar-notif-checkbox" className="navbar-notif-button">
+                <input type="checkbox" className="navbar-notif-checkbox hidden-checkbox" id="navbar-notif-checkbox" ref={notifCheckbox}/>
+                <label htmlFor="navbar-notif-checkbox" className="navbar-notif-button" onClick={function(){if(!notifCheckbox.current.checked) SetNotifSeen(currentUser)}}>
                   <i className='bx bx-bell'></i>
-                </label>
-                <div className="navbar-notif-dropdown-container">
                   {
+                    NewNotifCount(currentUser) > 0 &&
+                    <div className="notification-bell-label flex-center">{NewNotifCount(currentUser)}</div>
+                  }
+                </label>
+                <div className="navbar-notif-dropdown-container" empty={GetNofitications(currentUser).length > 0 ? "false" : "true"}>
+                  {
+                    GetNofitications(currentUser).length > 0 ?
                     GetNofitications(currentUser).map((notif,index)=>
-                    <Notif type={notif.type} userId={notif.user} commentId={notif.comment} postId={notif.post} topicId={notif.topic} key={"notif-"+index} />
+                    <Notif notif={notif} key={"notif-"+index} currentUser={currentUser} setRead={SetNotifRead} />
                     )
+                    : <h1>No notifications</h1>
                   }
                 </div>
               </div>

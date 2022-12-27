@@ -87,6 +87,8 @@ function PostPage({topics, currentUser, setCurrentUser,users})
 
                     let newNotif = {
                         type: "comment",
+                        state: "new",
+                        id: makeId(5),
                         user: currentUser.id,
                         comment: commentToAdd.id,
                         post: post.id,
@@ -116,6 +118,8 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                     
                     let newNotif = {
                         type: "comment-tag",
+                        state: "new",
+                        id: makeId(5),
                         user: currentUser.id,
                         comment: commentToAdd.id,
                         post: post.id,
@@ -387,18 +391,41 @@ function PostPage({topics, currentUser, setCurrentUser,users})
       if(IsTopicSubbed(topicId))
       {
         newSubbedTopics = currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId);
-        console.log(currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId));
       }
       else
       {
         newSubbedTopics = [...currentUser.subbedTopics,topicId];
-        console.log("uh oh");
       }
 
       let updatedUser = {
         ...currentUser,
         subbedTopics: newSubbedTopics
       }
+      
+      axios.put('http://localhost:8000/users/'+updatedUser.id,
+        updatedUser
+      )
+      .then(resp =>{
+          console.log("Updated User Subs");
+          localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+          setCurrentUser(updatedUser);
+      }).catch(error => {
+          console.log(error);
+      });
+
+      let updatedTopic = {
+        ...topic,
+        members: topic.members + (newSubbedTopics.includes(topic.id) ? 1 : -1)
+      }
+
+      axios.put('http://localhost:8000/topics/'+topic.id,
+        updatedTopic
+      )
+      .then(resp =>{
+          setTopic(updatedTopic);
+      }).catch(error => {
+          console.log(error);
+      });
     }
 
     function ScrollToComment()
@@ -610,7 +637,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                     </div>
                     <div className="side-column-topic-status flex-row">
                     <p className="side-column-topic-members">{topic.members} members</p>
-                    <button className="side-column-topic-sub-button" subbed={IsTopicSubbed(topic.id) ? "true" : "false"} onClick={function(){if(!buttonLock){SetTopicSubbed(topic.id); lockButtons();}}}>{IsTopicSubbed(topic.id) ? "Unsubscribe" : "Subscribe"}</button>
+                    <button className="side-column-topic-sub-button" subbed={IsTopicSubbed(topic.id) ? "true" : "false"} onClick={function(){console.log("yupy");if(!buttonLock){SetTopicSubbed(topic.id); lockButtons();}}}>{IsTopicSubbed(topic.id) ? "Unsubscribe" : "Subscribe"}</button>
                     </div>
                     <p className="side-column-topic-date">Created on {new Date(topic.date).toDateString()}</p>
                 </div>

@@ -4,7 +4,7 @@ import { Link, useParams, useLocation } from "react-router-dom";
 import TopicLogo from "./TopicLogo";
 import "./MainPage.css";
 
-function Notif({type,userId,commentId,postId,topicId})
+function Notif({notif,currentUser,setRead})
 {
     const [user,setUser] = useState();
     const [comment,setComment] = useState();
@@ -15,7 +15,7 @@ function Notif({type,userId,commentId,postId,topicId})
 
         if(!user)
         {
-            fetch('http://localhost:8000/users/'+userId)
+            fetch('http://localhost:8000/users/'+notif.user)
             .then(res => {
             return res.json()
             })
@@ -29,7 +29,7 @@ function Notif({type,userId,commentId,postId,topicId})
         if(!comment)
         {
 
-            fetch('http://localhost:8000/comments/'+commentId)
+            fetch('http://localhost:8000/comments/'+notif.comment)
             .then(res => {
             return res.json()
             })
@@ -41,7 +41,7 @@ function Notif({type,userId,commentId,postId,topicId})
 
         if(!post)
         {
-            fetch('http://localhost:8000/posts/'+postId)
+            fetch('http://localhost:8000/posts/'+notif.post)
             .then(res => {
             return res.json()
             })
@@ -53,7 +53,7 @@ function Notif({type,userId,commentId,postId,topicId})
 
         if(!topic)
         {
-            fetch('http://localhost:8000/topics/'+topicId)
+            fetch('http://localhost:8000/topics/'+notif.topic)
             .then(res => {
             return res.json()
             })
@@ -63,10 +63,10 @@ function Notif({type,userId,commentId,postId,topicId})
             });
         };
 
-    },[userId,commentId, postId, topicId]);
+    },[notif]);
 
     return (
-        <Link to={"/post/"+postId}  target="_blank" className="notification-container flex-row">
+        <Link to={"/post/"+notif.post}  target="_blank" read={notif.state==="read" ? "true" : "false"} className="notification-container flex-row" onClick={function(){setRead(currentUser,notif)}}>
         {
             topic && <TopicLogo topicLogo={topic.logo} width={40}/>
         }
@@ -75,13 +75,13 @@ function Notif({type,userId,commentId,postId,topicId})
                 <div className="notification-topic">{topic.title}</div>
             {
                 
-                type==="comment-tag"
+                notif.type==="comment-tag"
                 ? <div><b className="notification-username">{user.username}</b> has <b>mentioned</b> you in a comment on: <p className="notification-post">"{post.title}"</p></div>
-                : type==="post-tag"
+                : notif.type==="post-tag"
                 ? <div><b className="notification-username">{user.username}</b> has <b>mentioned</b> you on: <p className="notification-post">"{post.title}"</p></div>
-                : type==="reply"
+                : notif.type==="reply"
                 ? <div><b className="notification-username">{user.username}</b> has <b>replied</b> to you: <h3 className="notification-reply">"{comment.text}"</h3> on: <p className="notification-post">"{post.title}"</p></div>
-                : type==="comment"
+                : notif.type==="comment"
                 && <div><b className="notification-username">{user.username}</b> has <b>commented</b> on your post: <p className="notification-post">"{post.title}"</p></div>
 
             }

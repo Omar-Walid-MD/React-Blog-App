@@ -43,32 +43,22 @@
       ],
       "notifs": [
         {
-          "type": "comment",
-          "user": "user-1466759493",
-          "comment": "comment-7836671447",
-          "post": "post-8394453844",
-          "topic": "topic-9186347593"
-        },
-        {
-          "type": "comment",
-          "user": "user-1466759493",
-          "comment": "comment-7411917819",
-          "post": "post-2622658512",
-          "topic": "topic-1211381976"
-        },
-        {
           "type": "comment-tag",
+          "state": "read",
+          "id": "25644",
           "user": "user-1466759493",
-          "comment": "comment-7517764195",
+          "comment": "comment-9718618387",
           "post": "post-6368489845",
           "topic": "topic-9186347593"
         },
         {
-          "type": "reply",
+          "type": "comment",
+          "state": "read",
+          "id": "74142",
           "user": "user-1466759493",
-          "comment": "comment-5629185937",
-          "post": "post-4756244164",
-          "topic": "topic-8781529897"
+          "comment": "comment-8483594772",
+          "post": "post-4581794152",
+          "topic": "topic-9186347593"
         }
       ]
     },
@@ -84,68 +74,13 @@
         "accImg": "3",
         "accColor": "#99e0ff"
       },
-      "subbedTopics": [],
+      "subbedTopics": [
+        "topic-9186347593"
+      ],
       "likes": [],
       "dislikes": [],
       "savedPosts": [],
-      "notifs": [
-        {
-          "type": "reply",
-          "user": "user-4499347254",
-          "comment": "comment-4572666536",
-          "post": "post-2622658512",
-          "topic": "topic-1211381976"
-        },
-        {
-          "type": "reply",
-          "user": "user-4499347254",
-          "comment": "comment-9163368912",
-          "post": "post-2622658512",
-          "topic": "topic-1211381976"
-        },
-        {
-          "type": "reply",
-          "user": "user-4499347254",
-          "comment": "comment-8983525792",
-          "post": "post-2622658512",
-          "topic": "topic-1211381976"
-        },
-        {
-          "type": "reply",
-          "user": "user-4499347254",
-          "comment": "comment-1877653352",
-          "post": "post-4756244164",
-          "topic": "topic-8781529897"
-        },
-        {
-          "type": "post-tag",
-          "user": "user-4499347254",
-          "comment": "",
-          "post": "post-6369769999",
-          "topic": "topic-9943383413"
-        },
-        {
-          "type": "reply",
-          "user": "user-4499347254",
-          "comment": "comment-2414153737",
-          "post": "post-2622658512",
-          "topic": "topic-1211381976"
-        },
-        {
-          "type": "reply",
-          "user": "user-4499347254",
-          "comment": "comment-9351848119",
-          "post": "post-2622658512",
-          "topic": "topic-1211381976"
-        },
-        {
-          "type": "reply",
-          "user": "user-4499347254",
-          "comment": "comment-1976757211",
-          "post": "post-2622658512",
-          "topic": "topic-1211381976"
-        }
-      ]
+      "notifs": []
     }
   ],
   "topics": [
@@ -160,7 +95,7 @@
         "fgColor": "#56ebf5"
       },
       "posts": [],
-      "members": 0,
+      "members": 1,
       "date": 1666467538107
     },
     {
@@ -1400,6 +1335,32 @@
       "likes": 0,
       "dislikes": 0,
       "parentComment": "comment-7257351551"
+    },
+    {
+      "id": "comment-9718618387",
+      "text": "@OmarWalid hello",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-6368489845",
+      "date": 1672146275035,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-8483594772",
+      "text": "wow",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-4581794152",
+      "date": 1672146692341,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
     }
   ]
 }

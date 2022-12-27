@@ -124,11 +124,7 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
                   updatedUser.dislikes = newVoteState==="dislike" ?  [...updatedUser.dislikes,comment.id] : updatedUser.dislikes;
           
               }
-          }
-      
-          // updatedUser.likes = [];
-          // updatedUser.dislikes = [];
-      
+          }      
       
           axios.put('http://localhost:8000/users/'+updatedUser.id,
               updatedUser

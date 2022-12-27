@@ -89,9 +89,7 @@ function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToRep
                 likes: newLikes,
                 dislikes: newDislikes,
             }
-        
-            // const axios = require('axios');
-        
+                
             axios.put('http://localhost:8000/comments/'+updatedComment.id,
                 updatedComment
             )
@@ -249,6 +247,8 @@ function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToRep
 
                     let newNotif = {
                         type: "reply",
+                        state: "new",
+                        id: makeId(5),
                         user: currentUser.id,
                         comment: replyToAdd.id,
                         post: post.id,

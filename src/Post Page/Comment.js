@@ -209,6 +209,8 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
 
                     let newNotif = {
                         type: "reply",
+                        state: "new",
+                        id: makeId(5),
                         user: currentUser.id,
                         comment: replyToAdd.id,
                         post: post.id,
@@ -318,17 +320,18 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
 
     function GetUserFromName(username)
     {
-        for (let i = 0; i < users.length; i++)
+        if(users)
         {
-            const user = users[i];
-
-            console.log(username);
-            if(user.username===username)
+            for (let i = 0; i < users.length; i++)
             {
-                console.log(user);
-                return user;
+                const user = users[i];
+    
+                if(user.username===username)
+                {
+                    return user;
+                }
+                
             }
-            
         }
 
         return {id: "undefined"};
