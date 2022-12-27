@@ -1374,82 +1374,30 @@
       "parentComment": "comment-6633558516"
     },
     {
-      "id": "comment-2979757254",
-      "text": "Fix this please",
+      "id": "comment-7257351551",
+      "text": "Let's commit",
       "user": {
         "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-6369769999",
-      "date": 1672131129160,
+      "date": 1672133080038,
       "likes": 0,
       "dislikes": 0,
       "parentComment": "none"
     },
     {
-      "id": "comment-8592818262",
-      "text": "What? oh...",
+      "id": "comment-5777471219",
+      "text": "sure",
       "user": {
         "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-6369769999",
-      "date": 1672131137880,
+      "date": 1672133084507,
       "likes": 0,
       "dislikes": 0,
-      "parentComment": "comment-2979757254"
-    },
-    {
-      "id": "comment-8759991961",
-      "text": "Reply fix test",
-      "user": {
-        "username": "OmarWalid",
-        "id": "user-4499347254"
-      },
-      "post": "post-6369769999",
-      "date": 1672131485159,
-      "likes": 0,
-      "dislikes": 0,
-      "parentComment": "none"
-    },
-    {
-      "id": "comment-4753526587",
-      "text": "Reply 1",
-      "user": {
-        "username": "OmarWalid",
-        "id": "user-4499347254"
-      },
-      "post": "post-6369769999",
-      "date": 1672131494903,
-      "likes": 0,
-      "dislikes": 0,
-      "parentComment": "comment-8759991961"
-    },
-    {
-      "id": "comment-1169346624",
-      "text": "Reply 2",
-      "user": {
-        "username": "OmarWalid",
-        "id": "user-4499347254"
-      },
-      "post": "post-6369769999",
-      "date": 1672131504251,
-      "likes": 0,
-      "dislikes": 0,
-      "parentComment": "comment-8759991961"
-    },
-    {
-      "id": "comment-7951622567",
-      "text": "Reply 3",
-      "user": {
-        "username": "OmarWalid",
-        "id": "user-4499347254"
-      },
-      "post": "post-6369769999",
-      "date": 1672131525501,
-      "likes": 0,
-      "dislikes": 0,
-      "parentComment": "comment-8759991961"
+      "parentComment": "comment-7257351551"
     }
   ]
 }

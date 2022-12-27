@@ -6,7 +6,7 @@ import Avatar from "../Main Page/Avatar";
 
 import "../Post Page/PostPage.css"
 
-function Reply({comment, SetCommentRef, targetCommentId, SetReplyRef, ScrollToReply, currentUser, setCurrentUser, last, post, topic, setComments, users})
+function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToReply, currentUser, setCurrentUser, last, post, topic, setComments, users})
 {
     const [user,setUser] = useState();
 
@@ -226,7 +226,7 @@ function Reply({comment, SetCommentRef, targetCommentId, SetReplyRef, ScrollToRe
                 setNewReply("");
                 setComments(prev => [...prev,replyToAdd]);
 
-                ScrollToReply(replyToAdd);
+                setTargetReplyId(replyToAdd.id);
             });
 
             if(currentUser.id!==comment.user.id)
@@ -250,9 +250,6 @@ function Reply({comment, SetCommentRef, targetCommentId, SetReplyRef, ScrollToRe
                 });
                 
             }
-            
-            // let replyElement = document.querySelector("#"+replyToAdd.id);
-            // console.log(replyElement);
 
         }
     }
@@ -392,6 +389,14 @@ function Reply({comment, SetCommentRef, targetCommentId, SetReplyRef, ScrollToRe
         
 
     },[comment]);
+
+    useEffect(()=>{
+        if(targetReply.current)
+        {
+            ScrollToReply();
+        }
+
+    },[])
 
 
 

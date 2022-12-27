@@ -187,8 +187,7 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
                 setNewReply("");
                 setComments(prev => [...prev,replyToAdd]);
 
-                
-                ScrollToReply(replyToAdd);
+                setTargetReplyId(replyToAdd.id);
             });
 
             if(currentUser.id!==comment.user.id)
@@ -287,34 +286,19 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
 
     function SetReplyRef(replyId)
     {
-        console.log("is it the target: " + targetReplyId===replyId);
         return targetReplyId===replyId ? targetReply : null;
     }
 
     //Needs to be fixed
-    function ScrollToReply(replyToAdd)
+    function ScrollToReply()
     {
-        console.log(targetReply.current);
-        setTargetReplyId(replyToAdd.id);
 
-        // while(!targetReply.current)
-        // {
-        //     setTimeout(() => {}, 100);
-        // }
-
-        // setTimeout(() => {}, 500);
-
-        // targetReply.current.scrollIntoView({
-        //     behavior: 'smooth',
-        //     block: 'center',
-        //     inline: 'center'
-        // });
-
-        document.querySelector("#"+replyToAdd.id).scrollIntoView({
+        targetReply.current.scrollIntoView({
             behavior: 'smooth',
             block: 'center',
             inline: 'center'
         });
+
     }
 
     function FormatText(replyText)
@@ -476,7 +460,7 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
                     <div>
                         {
                             replyList && replyList.map((reply,index)=>
-                            <Reply comment={reply} SetCommentRef={SetCommentRef} targetCommentId={targetCommentId} SetReplyRef={SetReplyRef} ScrollToReply={ScrollToReply} currentUser={currentUser} setCurrentUser={setCurrentUser} post={post} topic={topic} setComments={setComments} key={reply.id} last={index===replyList.length-1 ? "true" : "false"} users={users} />
+                            <Reply comment={reply} targetReply={targetReply} setTargetReplyId={setTargetReplyId} SetReplyRef={SetReplyRef} ScrollToReply={ScrollToReply} currentUser={currentUser} setCurrentUser={setCurrentUser} post={post} topic={topic} setComments={setComments} key={reply.id} last={index===replyList.length-1 ? "true" : "false"} users={users} />
                             )
                         }
                     </div>
