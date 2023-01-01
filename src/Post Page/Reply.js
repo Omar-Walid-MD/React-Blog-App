@@ -431,8 +431,14 @@ function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToRep
                         <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
                         <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                     </div>
-                    <label htmlFor={"post-page-reply-checkbox-"+comment.id} className="comment-reply-button flex-row" onClick={function(){MentionReply(comment.user.username)}}><i className='bx bxs-comment-detail comment-icon'></i>Reply</label>
-                    <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+                    {
+                        currentUser &&
+                        <label htmlFor={"post-page-reply-checkbox-"+comment.id} className="comment-reply-button flex-row" onClick={function(){MentionReply(comment.user.username)}}><i className='bx bxs-comment-detail comment-icon'></i>Reply</label>
+                    }
+                    {
+                        currentUser &&
+                        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+                    }
                     </div>
                 </div>
 

@@ -308,7 +308,10 @@ function Post({post,currentUser,setCurrentUser})
             <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
           </div>
           <Link to={"/post/"+post.id} className="comment-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>({commentsCount})</Link>
-          <button className="save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+          {
+            currentUser &&
+            <button className="save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+          }
         </div>
       </div>
 

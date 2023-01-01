@@ -21,7 +21,7 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
   const [likes,setLikes] = useState(comment.likes);
   const [dislikes,setDislikes] = useState(comment.dislikes);
 
-  const [saved,setSaved] = useState(currentUser.savedPosts.includes(comment.id));
+  const [saved,setSaved] = useState(currentUser && currentUser.savedPosts.includes(comment.id));
 
   const [buttonLock,setButtonLock] = useState(false);
 
@@ -265,7 +265,10 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
           <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
         </div>
         <Link to={"/post/"+linkPost.id} state={{targetCommentId: comment.id}} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>Reply</Link>
-        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+        {
+            currentUser &&
+            <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+        }
         </div>
       </div> 
     </div>
@@ -354,7 +357,7 @@ function UserActivityPage({posts, topics, currentUser, setCurrentUser})
               {
                 user && comments && posts ? SortContent(GetContent(currentTab)).length > 0 ?
                 SortContent(GetContent(currentTab)).map((content)=>
-                  content.type==="post" ? <Post post={content} key={content.id} currentUser={user} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id} currentUser={user} setCurrentUser={setCurrentUser}/>
+                  content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                  )
                  : <div className="blog-empty-label flex-center"><h1>No Content Available</h1></div>
                  : <div className="blog-empty-label flex-center"><img src={require("../img/loading.png")} /></div>

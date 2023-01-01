@@ -6,7 +6,6 @@ import "./RegisterPage.css";
 function RegisterPage({userList, handleUserList, handleUser})
 {
     const location = useLocation();
-
     const { prevPath } = location.state || {};
 
     const navigate = useNavigate();

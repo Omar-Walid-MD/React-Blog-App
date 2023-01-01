@@ -96,7 +96,7 @@ function Header({topics, currentUser, setCurrentUser})
   useEffect(()=>{
     setSearchValue("");
     console.log("oops");
-  },[location])
+  },[location]);
 
     return (
         <header className="navbar flex-row">
@@ -123,7 +123,11 @@ function Header({topics, currentUser, setCurrentUser})
                         }
                       </div>
                       <div className="navbar-create-topic-tab-container">
-                        <Link to={"/new-topic"} className="navbar-create-topic-link flex-row"><div className="navbar-create-topic-circle flex-center"><i className='bx bx-plus-medical add-icon'></i></div>Create New Topic</Link>
+                        {
+                          currentUser ?
+                          <Link to={"/new-topic"} className="navbar-create-topic-link flex-row"><div className="navbar-create-topic-circle flex-center"><i className='bx bx-plus-medical add-icon'></i></div>Create New Topic</Link>
+                          : <div>You must be logged in to create a new topic</div>
+                        }
                       </div>
                   </div>
                   }
@@ -153,7 +157,7 @@ function Header({topics, currentUser, setCurrentUser})
               </div>
               <div className="navbar-profile-menu flex-center">
                 <input className="navbar-profile-checkbox hidden-checkbox" id="navbar-profile-checkbox" type="checkbox" />
-                <label htmlFor="navbar-profile-checkbox" className="navbar-profile-button">
+                <label htmlFor="navbar-profile-checkbox" className="navbar-profile-button flex-center">
                   <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} width={60} />
                 </label>
                 <div className="navbar-profile-dropdown-container">
@@ -175,7 +179,7 @@ function Header({topics, currentUser, setCurrentUser})
               </div> 
             : <div className="navbar-options flex-row">
                 <Link to="/register" state={{prevPath: location.pathname}} className="navbar-button">Register</Link>
-                <Link to="/login" className="navbar-button">Log In</Link>
+                <Link to="/login" state={{prevPath: location.pathname}} className="navbar-button">Log In</Link>
               </div>
             
           }

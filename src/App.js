@@ -59,13 +59,11 @@ function App()
 
     setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
 
-    
-
-
     console.log("reload");
 
-
   },[navigate.pathname]);
+
+  console.log(currentUser);
 
 
   return (

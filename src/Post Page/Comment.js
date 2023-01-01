@@ -458,17 +458,30 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
                         <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                     </div>
                     <label htmlFor={"reply-checkbox-"+comment.id} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>Replies({replyList.length})<i className='bx bxs-down-arrow reply-arrow-icon'></i></label>
-                    <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+                    {
+                        currentUser &&
+                        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+                    }
                     </div>
                 </div>
             </div>
             <div className="post-page-comment-replies-container">
                 <div className="post-page-comment-replies-section reply-margin flex-column">
-                    <form className="post-page-write-reply-form flex-row" onSubmit={submitReply}>
-                        <textarea className="post-page-write-reply-input" placeholder="Write your reply..." minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
-                        <input className="post-page-write-reply-submit" type="submit" value="Reply" />
-                        <div className="post-page-comment-replies-line" first="true"></div>
-                    </form>
+                    {
+                        currentUser ?
+                        <form className="post-page-write-reply-form flex-row" onSubmit={submitReply}>
+                            <textarea className="post-page-write-reply-input" placeholder="Write your reply..." minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
+                            <input className="post-page-write-reply-submit" type="submit" value="Reply" />
+                            <div className="post-page-comment-replies-line" first="true"></div>
+                        </form>
+                        :
+                        <form className="post-page-write-reply-form flex-row">
+                           <div className="post-page-comment-logged-out-warning">
+                                You must be logged in to reply!
+                            </div>
+                            <div className="post-page-comment-replies-line" first="true"></div>
+                        </form>
+                    }
                     <div>
                         {
                             replyList && replyList.map((reply,index)=>

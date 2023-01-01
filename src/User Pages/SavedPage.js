@@ -289,10 +289,11 @@ function SavedPage({posts, topics, currentUser, setCurrentUser})
               </div>
               <div className="activity-page-content-container">
               {
-                comments && posts ? SortContent(GetContent(currentTab)).length > 0 ? SortContent(GetContent(currentTab)).map((content)=>
+                currentUser ? comments && posts ? SortContent(GetContent(currentTab)).length > 0 ? SortContent(GetContent(currentTab)).map((content)=>
                   content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser}/>)
                  : <div className="blog-empty-label flex-center"><h1>No Content Available</h1></div>
                  : <div className="blog-empty-label flex-center"><img src={require("../img/loading.png")} /></div>
+                 : <div className="blog-empty-label flex-center"><h1>Must be logged in to view content</h1></div>
               }
               </div>
             </div>

@@ -1,10 +1,13 @@
 import {useState, useRef} from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate, Link, useLocation} from "react-router-dom";
 import "./LoginPage.css";
 
 function LoginPage({userList,handleUser})
 {
     const navigate = useNavigate();
+
+    const location = useLocation();
+    const { prevPath } = location.state || {};
 
     const [loginInfo,setLoginInfo] = useState({
         email: "",
@@ -36,7 +39,7 @@ function LoginPage({userList,handleUser})
                 
                     localStorage.setItem('currentUser', JSON.stringify(userList[i]));
                     handleUser(userList[i]);
-                    navigate("/");
+                    navigate(prevPath || "/");
                     return;
                 }
                 else
@@ -100,7 +103,7 @@ function LoginPage({userList,handleUser})
 
     return (
         <div className="main-page">
-            <div className="page-container flex-center" header="none">
+            <div className="account-page-container page-container flex-center" header="none">
                 <form className="login-form-container flex-column" ref={LoginForm} onSubmit={Login}>
                     <h1 className="login-form-label">Log in</h1>
                     <div className="login-form-input-group flex-column">
@@ -113,6 +116,7 @@ function LoginPage({userList,handleUser})
                     }
                     <input className="login-form-submit" type="submit" value="Log in" disabled={readyToSubmit()} />
                 </form>
+                <Link className="back-button" to={prevPath || "/"}>Back</Link>
             </div>
         </div>
       );

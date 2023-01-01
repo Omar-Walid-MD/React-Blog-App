@@ -380,52 +380,55 @@ function PostPage({topics, currentUser, setCurrentUser,users})
 
     function IsTopicSubbed(topicId)
     {
-      return currentUser.subbedTopics.includes(topicId);
+      return currentUser && currentUser.subbedTopics.includes(topicId);
     }
 
     function SetTopicSubbed(topicId)
     {
+        if(currentUser)
+        {
 
-      let newSubbedTopics = [];
-
-      if(IsTopicSubbed(topicId))
-      {
-        newSubbedTopics = currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId);
-      }
-      else
-      {
-        newSubbedTopics = [...currentUser.subbedTopics,topicId];
-      }
-
-      let updatedUser = {
-        ...currentUser,
-        subbedTopics: newSubbedTopics
-      }
-      
-      axios.put('http://localhost:8000/users/'+updatedUser.id,
-        updatedUser
-      )
-      .then(resp =>{
-          console.log("Updated User Subs");
-          localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-          setCurrentUser(updatedUser);
-      }).catch(error => {
-          console.log(error);
-      });
-
-      let updatedTopic = {
-        ...topic,
-        members: topic.members + (newSubbedTopics.includes(topic.id) ? 1 : -1)
-      }
-
-      axios.put('http://localhost:8000/topics/'+topic.id,
-        updatedTopic
-      )
-      .then(resp =>{
-          setTopic(updatedTopic);
-      }).catch(error => {
-          console.log(error);
-      });
+            let newSubbedTopics = [];
+    
+            if(IsTopicSubbed(topicId))
+            {
+                newSubbedTopics = currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId);
+            }
+            else
+            {
+                newSubbedTopics = [...currentUser.subbedTopics,topicId];
+            }
+    
+            let updatedUser = {
+                ...currentUser,
+                subbedTopics: newSubbedTopics
+            }
+            
+            axios.put('http://localhost:8000/users/'+updatedUser.id,
+                updatedUser
+            )
+            .then(resp =>{
+                console.log("Updated User Subs");
+                localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+                setCurrentUser(updatedUser);
+            }).catch(error => {
+                console.log(error);
+            });
+    
+            let updatedTopic = {
+                ...topic,
+                members: topic.members + (newSubbedTopics.includes(topic.id) ? 1 : -1)
+            }
+    
+            axios.put('http://localhost:8000/topics/'+topic.id,
+                updatedTopic
+            )
+            .then(resp =>{
+                setTopic(updatedTopic);
+            }).catch(error => {
+                console.log(error);
+            });
+        }
     }
 
     function ScrollToComment()
@@ -555,8 +558,12 @@ function PostPage({topics, currentUser, setCurrentUser,users})
     useEffect(()=>{
         if(post && currentUser) 
         {
-            setVoteState(CheckUserVote());
-            setSaved(currentUser.savedPosts.includes(post.id));
+            if(currentUser)
+            {
+                setVoteState(CheckUserVote());
+                setSaved(currentUser.savedPosts.includes(post.id));
+            }
+
             fetch('http://localhost:8000/topics/'+post.topic)
             .then(res => {
             return res.json()
@@ -573,6 +580,8 @@ function PostPage({topics, currentUser, setCurrentUser,users})
     useEffect(()=>{
         if(targetComment.current) ScrollToComment();
     },[targetComment.current]);
+
+    console.log(topic);
 
     return (
         <div className="main-page">
@@ -596,8 +605,11 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                                     <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
                                     <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                                 </div>
-                                <button className="save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
-                            </div>
+                                {
+                                    currentUser &&
+                                    <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+                                }                            
+                                </div>
                         </div>
                         <div className="post-page-comments-section-container">
                             {

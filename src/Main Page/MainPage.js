@@ -131,7 +131,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
               {
                 posts ? GetPostsForTopic(topic).length>0 ? sortPosts(GetPostsForTopic(topic)).map((post)=>
                   <Post post={post} currentUser={currentUser} setCurrentUser={setCurrentUser} key={"post"+post.id} />
-                ) : <div className="blog-empty-label flex-center"><h1>No Posts Available</h1></div>
+                ) : <div className="blog-empty-label flex-center"><h1>Must be logged in to view posts</h1></div>
                 : <div className="blog-empty-label flex-center"><img src={require("../img/loading.png")} /></div>
               }
               </div>

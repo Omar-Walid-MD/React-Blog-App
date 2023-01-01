@@ -23,7 +23,8 @@
         "post-6423576815",
         "post-4581794152",
         "post-4756244164",
-        "post-6369769999"
+        "post-6369769999",
+        "post-6368489845"
       ],
       "dislikes": [
         "comment-6624387775",
@@ -31,8 +32,7 @@
         "comment-2935444123",
         "comment-7761549247",
         "comment-7378843647",
-        "post-2364728155",
-        "post-6368489845"
+        "post-2364728155"
       ],
       "savedPosts": [
         "post-2364728155",
@@ -240,8 +240,8 @@
       "body": "Hopefully you find my comment",
       "topic": "topic-9186347593",
       "id": "post-6368489845",
-      "likes": 0,
-      "dislikes": 1,
+      "likes": 1,
+      "dislikes": 0,
       "user": {
         "username": "VibrantTomato769",
         "id": "user-1466759493"
