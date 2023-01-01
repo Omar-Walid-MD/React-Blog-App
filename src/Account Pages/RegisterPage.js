@@ -1,10 +1,14 @@
 import { useState, useRef } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import Avatar from "../Main Page/Avatar";
 import "./RegisterPage.css";
 
 function RegisterPage({userList, handleUserList, handleUser})
 {
+    const location = useLocation();
+
+    const { prevPath } = location.state || {};
+
     const navigate = useNavigate();
 
     const [newUser,setNewUser] = useState({
@@ -13,13 +17,16 @@ function RegisterPage({userList, handleUserList, handleUser})
         password: "",
     });
 
-    const [avatar,setAvatar] = useState({
+    const [avaterWindow,setAvatarWindow] = useState(false);
+
+    const avatarDefault = {
         bgImg: 0,
         bgColor:  "#969696",
         baseColor: "#000000",
         accImg: 0,
         accColor: "#ffffff"
-    });
+    };
+    const [avatar,setAvatar] = useState(avatarDefault);
 
     const bg = 3; const acc = 6;
 
@@ -69,10 +76,8 @@ function RegisterPage({userList, handleUserList, handleUser})
     {
         setAvatar({
             ...avatar,
-            [event.target.name]: event.target.value
+            [event.target.name]: avatar[event.target.name]===event.target.value ? avatarDefault[event.target.name] : event.target.value
         });
-
-        console.log(avatar);
     }
 
     function RandomizeUsername()
@@ -125,7 +130,7 @@ function RegisterPage({userList, handleUserList, handleUser})
                 handleUser(newUser);
             })
     
-            navigate("/");
+            navigate(prevPath || "/");
             return;
         }
         else
@@ -184,49 +189,19 @@ function RegisterPage({userList, handleUserList, handleUser})
 
     return (
         <div className="main-page">
-            <div className="page-container flex-center" header="none">
+            <div className="account-page-container page-container flex-center" header="none">
                 <form className="register-form-container flex-column" ref={RegisterForm} onSubmit={RegisterUser}>
                     <h1 className="register-form-label">Register New User</h1>
                     <div className="resgister-form-input-group flex-row">
                         <div className="register-form-input-section flex-column">
-                            <div className="register-avatar flex-column">
-
-                                {/* Here is the avatar */}
+                            <div className="register-avatar flex-center">
+                                <button className="register-avatar-open-button" type="button" onClick={function(){setAvatarWindow(true)}}>Edit Avatar</button>
                                 <Avatar bgImg={avatar.bgImg} bgColor={avatar.bgColor} baseColor={avatar.baseColor} accImg={avatar.accImg} accColor={avatar.accColor} width={150} />
-                                <div className="register-avatar-options-container flex-column">
-                                    <div className="register-avatar-options-row flex-row">
-                                        <input className="register-avatar-color-option" type="color" name={"bgColor"} value={avatar.bgColor} onChange={HandleAvatar} />
-                                        <input className="register-avatar-color-option" type="color" name={"baseColor"} value={avatar.baseColor} onChange={HandleAvatar} />
-                                        <input className="register-avatar-color-option" type="color" name={"accColor"} value={avatar.accColor} onChange={HandleAvatar} />
-
-                                    </div>
-                                    <div className="register-avatar-options-row flex-row">
-                                        <div className="register-avatar-image-options flex-row">
-                                            {
-                                                [...Array(bg).keys()].map((b)=>
-                                                <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={b+1} style={{backgroundImage: 'url(' + require("../img/avatar/bg"+(b+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"bg-option-"+b+1}></button>
-                                                )
-                                            }
-                                            <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"bg-option-0"}></button>
-                                        </div>
-                                    </div>
-                                    <div className="register-avatar-options-row flex-row">
-                                        <div className="register-avatar-image-options flex-row">
-                                            {
-                                                [...Array(acc).keys()].map((n)=>
-                                                <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/avatar/a"+(n+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"acc-option-"+n+1}></button>
-                                                )
-                                            }
-                                            <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"acc-option-0"}></button>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                         <div className="register-form-input-section flex-column">
                             <div>
-                                <input className="register-form-input" type="text" placeholder="Enter Username" name="username" value={newUser.username} required onChange={handleNewUser}/>
+                                <input className="register-form-input" type="text" placeholder="Enter Username" name="username" maxLength="20" value={newUser.username} required onChange={handleNewUser}/>
                                 <button className="register-form-randomize-username-button" type="button" onClick={function(){RandomizeUsername()}}>Randomize!</button>
                             </div>
                             <input className="register-form-input" type="email" placeholder="Enter Email" name="email" value={newUser.email} required onChange={handleNewUser}/>
@@ -240,6 +215,47 @@ function RegisterPage({userList, handleUserList, handleUser})
                     }
                     <input className="register-form-submit" type="submit" value="Register" disabled={readyToSubmit()} />
                 </form>
+                <Link className="back-button" to={prevPath || "/"}>Back</Link>
+
+                {
+                    avaterWindow &&
+                    <div className="window-overlay flex-center">
+                        <div className="register-avatar-options-container flex-column">
+                            <h1>User Avatar</h1>
+                            <div className="flex-row width-full">
+                                <div className="register-avatar-preview">
+                                    <Avatar bgImg={avatar.bgImg} bgColor={avatar.bgColor} baseColor={avatar.baseColor} accImg={avatar.accImg} accColor={avatar.accColor} width={150} />
+                                </div>
+                                <div className="register-avatar-options-row flex-row">
+                                    <input className="register-avatar-color-option" type="color" name={"bgColor"} value={avatar.bgColor} onChange={HandleAvatar} />
+                                    <input className="register-avatar-color-option" type="color" name={"baseColor"} value={avatar.baseColor} onChange={HandleAvatar} />
+                                    <input className="register-avatar-color-option" type="color" name={"accColor"} value={avatar.accColor} onChange={HandleAvatar} />
+                                </div>
+                            </div>
+                            <div className="register-avatar-options-row flex-row">
+                                <div className="register-avatar-image-options flex-row">
+                                    {
+                                        [...Array(bg).keys()].map((b)=>
+                                        <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={b+1} style={{backgroundImage: 'url(' + require("../img/avatar/bg"+(b+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"bg-option-"+b+1}></button>
+                                        )
+                                    }
+                                    <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"bg-option-0"}></button>
+                                </div>
+                            </div>
+                            <div className="register-avatar-options-row flex-row">
+                                <div className="register-avatar-image-options flex-row">
+                                    {
+                                        [...Array(acc).keys()].map((n)=>
+                                        <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/avatar/a"+(n+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"acc-option-"+n+1}></button>
+                                        )
+                                    }
+                                    <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"acc-option-0"}></button>
+                                </div>
+                            </div>
+                            <button className="register-avatar-close-button flex-center" onClick={function(){setAvatarWindow(false)}}><i className='bx bx-check'></i></button>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
       );

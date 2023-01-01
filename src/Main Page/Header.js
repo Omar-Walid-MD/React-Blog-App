@@ -158,7 +158,7 @@ function Header({topics, currentUser, setCurrentUser})
                 </label>
                 <div className="navbar-profile-dropdown-container">
                   <div className="navbar-profile-dropdown-profile-info flex-column">
-                    <h1>{currentUser.username}</h1>
+                    <h1 className="navbar-profile-username">{currentUser.username}</h1>
                     <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} width={150} />
                     <Link className="navbar-profile-dropdown-edit-profile-link flex-center"><i className='bx bx-edit'></i></Link>
                   </div>
@@ -174,7 +174,7 @@ function Header({topics, currentUser, setCurrentUser})
               </div>
               </div> 
             : <div className="navbar-options flex-row">
-                <Link to="/register" className="navbar-button">Register</Link>
+                <Link to="/register" state={{prevPath: location.pathname}} className="navbar-button">Register</Link>
                 <Link to="/login" className="navbar-button">Log In</Link>
               </div>
             

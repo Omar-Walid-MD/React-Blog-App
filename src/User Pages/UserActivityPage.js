@@ -23,6 +23,16 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
 
   const [saved,setSaved] = useState(currentUser.savedPosts.includes(comment.id));
 
+  const [buttonLock,setButtonLock] = useState(false);
+
+  function lockButtons()
+  {
+      setButtonLock(true);
+      setTimeout(() => {
+          setButtonLock(false);
+      }, 100);
+  }
+
   function handleVote(newVoteState)
   {
       if(currentUser)
@@ -251,11 +261,11 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
       <div className="activity-page-comment-bottom-bar flex-row">
         <div className="comment-options flex-row">
         <div className="comment-votes-container flex-row">
-            <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){handleVote("like")}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
-            <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){handleVote("dislike")}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
+          <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
+          <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
         </div>
         <Link to={"/post/"+linkPost.id} state={{targetCommentId: comment.id}} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>Reply</Link>
-        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"}  onClick={handleSave}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
         </div>
       </div> 
     </div>
