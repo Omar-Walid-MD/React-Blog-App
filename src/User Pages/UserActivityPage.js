@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react"
 import { Link, useLocation, useParams } from "react-router-dom";
 import axios from 'axios';
-
+import { useTranslation } from "react-i18next";
 
 import Header from "../Main Page/Header";
 import Post from "./Post";
@@ -14,7 +14,8 @@ import Avatar from "../Main Page/Avatar";
 
 function UserComment({posts, comment, currentUser, setCurrentUser})
 {
-  
+  const [tr,il8n] = useTranslation();
+
   const linkPost = (posts.filter((post)=>post.id===comment.post)[0]);
 
   const [voteState,setVoteState] = useState(CheckUserVote());
@@ -253,8 +254,8 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
     <div className="activity-page-comment-container">
       <div className="activity-page-comment-link-padding">
         <Link to={"/post/"+linkPost.id} state={{targetCommentId: comment.id}} className="activity-page-comment-link">
-          <p className="activity-page-comment-info">By <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}</Link> {CalculateTime()}</p>
-          <p className="activity-page-comment-post">On "{linkPost.title}"</p>
+          <p className="activity-page-comment-info">{tr("userPages.by")} <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}</Link> {CalculateTime()}</p>
+          <p className="activity-page-comment-post">{tr("userPages.on")} "{linkPost.title}"</p>
           <p className="activity-page-comment-text">{comment.text}</p>
         </Link>
       </div>
@@ -264,10 +265,10 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
           <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
           <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
         </div>
-        <Link to={"/post/"+linkPost.id} state={{targetCommentId: comment.id}} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>Reply</Link>
+        <Link to={"/post/"+linkPost.id} state={{targetCommentId: comment.id}} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>{tr("comment.reply")}</Link>
         {
             currentUser &&
-            <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+            <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
         }
         </div>
       </div> 
@@ -278,6 +279,7 @@ function UserComment({posts, comment, currentUser, setCurrentUser})
 
 function UserActivityPage({posts, topics, currentUser, setCurrentUser})
 {
+    const [tr,il8n] = useTranslation();
 
     let userId = useParams().id;
 
@@ -349,9 +351,9 @@ function UserActivityPage({posts, topics, currentUser, setCurrentUser})
           <div className="page-container flex-center">
             <div className="main-column flex-column">
               <div className="activity-page-option-row flex-row">
-                <button className="activity-page-option-button" name="overview" current={currentTab === "overview" ? "true" : "false"} onClick={handleCurrentTab} >Overview</button>
-                <button className="activity-page-option-button" name="posts" current={currentTab === "posts" ? "true" : "false"} onClick={handleCurrentTab} >Posts</button>
-                <button className="activity-page-option-button" name="comments" current={currentTab === "comments" ? "true" : "false"} onClick={handleCurrentTab} >Comments</button>
+                <button className="activity-page-option-button" name="overview" current={currentTab === "overview" ? "true" : "false"} onClick={handleCurrentTab} >{tr("userPages.overview")}</button>
+                <button className="activity-page-option-button" name="posts" current={currentTab === "posts" ? "true" : "false"} onClick={handleCurrentTab} >{tr("userPages.posts")}</button>
+                <button className="activity-page-option-button" name="comments" current={currentTab === "comments" ? "true" : "false"} onClick={handleCurrentTab} >{tr("userPages.comments")}</button>
               </div>
               <div className="activity-page-content-container">
               {
@@ -359,7 +361,7 @@ function UserActivityPage({posts, topics, currentUser, setCurrentUser})
                 SortContent(GetContent(currentTab)).map((content)=>
                   content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <UserComment comment={content} posts={posts} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                  )
-                 : <div className="blog-empty-label flex-center"><h1>No Content Available</h1></div>
+                 : <div className="blog-empty-label flex-center"><h1>{tr("userPages.noContent")}</h1></div>
                  : <div className="blog-empty-label flex-center"><img src={require("../img/loading.png")} /></div>
               }
               </div>

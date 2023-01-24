@@ -1,5 +1,7 @@
 import {useState, useEffect, useRef} from "react"
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import axios from 'axios';
 
 import Header from "../Main Page/Header";
@@ -9,6 +11,7 @@ import './WritePage.css';
 
 function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
 {
+    const [tr,il8n] = useTranslation();
 
     const navigate = useNavigate();
 
@@ -130,7 +133,7 @@ function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
             <div className="page-container flex-center">
                 <div className="main-column flex-column">
                     <form className="post-write-form-container flex-column" ref={CreateTopicForm} onSubmit={submitTopic}>
-                        <h1 className="post-write-form-label">Create a new topic</h1>
+                        <h1 className="post-write-form-label">{tr("newTopicPage.createTopic")}</h1>
                         <div className="post-write-form-input-group">
                             <div className="post-write-post-to-form-row flex-row">
                                 <div className="create-topic-form-topic-logo flex-column">
@@ -159,12 +162,12 @@ function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
                                     </div>
 
                                 </div>
-                                <input className="create-topic-form-title-input" type="text" name="title" placeholder="Your interesting topic..." value={newTopic.title} onChange={handleTopic} required />
+                                <input className="create-topic-form-title-input" type="text" name="title" placeholder={tr("newTopicPage.enterTitle")} value={newTopic.title} onChange={handleTopic} required />
                             </div>
-                            <textarea className="post-write-form-body-input" name="description" maxLength={150}  placeholder="A brief description of your topic..." value={newTopic.description} onChange={handleTopic} required ></textarea>
+                            <textarea className="post-write-form-body-input" name="description" maxLength={150} placeholder={tr("newTopicPage.enterBody")} value={newTopic.description} onChange={handleTopic} required ></textarea>
                         </div>
                         <div className="post-write-form-submit-container">
-                            <input className="post-write-form-submit" type="submit" disabled={readyToSubmit()} />
+                            <input className="post-write-form-submit" type="submit" value={tr("newTopicPage.submit")} disabled={readyToSubmit()} />
                         </div>
                     </form>
                 </div>

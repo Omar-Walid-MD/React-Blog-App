@@ -1,0 +1,87 @@
+{
+    "mainPage":
+    {
+        "writePost": "Write a post!",
+        "mustBeLoggedIn": "Must be logged in to view posts",
+        "members": "Members",
+        "sub": "Subscribe",
+        "unsub": "Unsubscribe",
+        "createdOn": "Created On"
+    },
+    "header":
+    {
+        "searchForTopics": "Search for topics...",
+        "noResults": "No results for",
+        "createTopic": "Create a new Topic",
+        "mustBeLoggedIn": "You must be logged in to create a new topic",
+        "noNotifs": "No notifications",
+        "clearALL": "Clear All",
+        "markAllRead": "Mark All as Read",
+        "activity": "Activity",
+        "saved": "Saved",
+        "logOut": "Log Out",
+        "register": "Register",
+        "logIn": "Log In"
+    },
+    "post":
+    {
+        "postedBy": "Posted by",
+        "saved": "Saved",
+        "save": "Save",
+        "writeComment": "Write your comment",
+        "comment": "Comment",
+        "mustBeLoggedInToComment": "You must be logged in to comment!",
+        "noComments": "No comments yet..."
+    },
+    "comment":
+    {
+        "replies": "Replies",
+        "writeReply": "Write your Reply...",
+        "reply": "Reply",
+        "cancel": "Cancel",
+        "mustBeLoggedInToReply": "You must be logged in to reply!"
+    },
+    "newPostPage":
+    {
+        "submitTo": "Submit Post to: ",
+        "select": "--Select Topic--",
+        "joinedTopics": "Joined Topics:",
+        "searchTopics": "Search Topics:",
+        "enterTitle": "Enter Title",
+        "enterBody": "Enter Body",
+        "submit": "submit"
+    },
+    "newTopicPage":
+    {
+        "createTopic": "Create a new Topic",
+        "enterTitle": "Your interesting topic...",
+        "enterBody": "A brief description of your topic...",
+        "submit": "Submit"
+    },
+    "userPages":
+    {
+        "overview": "Overview",
+        "posts": "Posts",
+        "comments": "Comments",
+        "by": "By",
+        "on": "On",
+        "noContent": "No Content Available",
+        "mustBeLoggedInToView": "Must be logged in to view content"
+    },
+    "accountPages":
+    {
+        "logIn": "Log in",
+        "enterEmail": "Enter Email",
+        "enterPassword": "Enter Password",
+
+        "registerNewUser": "Register New User",
+        "register": "Register",
+        "enterUsername": "Enter Username",
+        "randomize": "Randomize!",
+        "confirmPassword": "Confirm Password",
+        "editAvatar": "Edit Avatar",
+        "userAvatar": "User Avatar",
+
+        "back": "Back"
+    }
+}

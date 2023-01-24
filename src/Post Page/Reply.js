@@ -1,5 +1,7 @@
 import {useState, useEffect, useRef} from "react"
 import { Link, useParams, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import axios from 'axios';
 
 import Avatar from "../Main Page/Avatar";
@@ -8,6 +10,8 @@ import "../Post Page/PostPage.css"
 
 function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToReply, currentUser, setCurrentUser, last, post, topic, setComments, users})
 {
+    const [tr,il8n] = useTranslation();
+
     const [user,setUser] = useState();
 
     const [newReply,setNewReply] = useState();
@@ -433,11 +437,11 @@ function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToRep
                     </div>
                     {
                         currentUser &&
-                        <label htmlFor={"post-page-reply-checkbox-"+comment.id} className="comment-reply-button flex-row" onClick={function(){MentionReply(comment.user.username)}}><i className='bx bxs-comment-detail comment-icon'></i>Reply</label>
+                        <label htmlFor={"post-page-reply-checkbox-"+comment.id} className="comment-reply-button flex-row" onClick={function(){MentionReply(comment.user.username)}}><i className='bx bxs-comment-detail comment-icon'></i>{tr("comment.reply")}</label>
                     }
                     {
                         currentUser &&
-                        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+                        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
                     }
                     </div>
                 </div>
@@ -449,11 +453,11 @@ function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToRep
 
             <input type="checkbox" className="post-page-reply-checkbox hidden-checkbox" id={"post-page-reply-checkbox-"+comment.id} />
             <form className="post-page-write-reply-form flex-row" onSubmit={submitReply}>
-                <textarea className="post-page-write-reply-input" placeholder="Write your reply..." ref={replyInput} minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
+                <textarea className="post-page-write-reply-input" placeholder={tr("comment.writeReply")} ref={replyInput} minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
                 <div className="post-page-write-reply-buttons flex-column">
 
-                    <input className="post-page-write-reply-submit" type="submit" value="Reply" />
-                    <label htmlFor={"post-page-reply-checkbox-"+comment.id} className="post-page-write-reply-submit">Cancel</label>
+                    <input className="post-page-write-reply-submit" type="submit" value={tr("comment.reply")} />
+                    <label htmlFor={"post-page-reply-checkbox-"+comment.id} className="post-page-write-reply-submit">{tr("comment.cancel")}</label>
                 </div>
             </form>
             

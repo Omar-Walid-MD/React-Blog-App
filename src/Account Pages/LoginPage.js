@@ -1,9 +1,13 @@
 import {useState, useRef} from "react";
 import { useNavigate, Link, useLocation} from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import "./LoginPage.css";
 
 function LoginPage({userList,handleUser})
 {
+    const [tr,il8n] = useTranslation();
+
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -105,15 +109,15 @@ function LoginPage({userList,handleUser})
         <div className="main-page">
             <div className="account-page-container page-container flex-center" header="none">
                 <form className="login-form-container flex-column" ref={LoginForm} onSubmit={Login}>
-                    <h1 className="login-form-label">Log in</h1>
+                    <h1 className="login-form-label">{tr("accountPages.logIn")}</h1>
                     <div className="login-form-input-group flex-column">
                         <div className="register-form-input-container">
                             <input className="register-form-input" type="text" name="email" value={loginInfo.email} required onChange={handleLoginInfo} autocomplete="false"/>
-                            <div className="register-form-input-label">Enter Email</div>
+                            <div className="register-form-input-label">{tr("accountPages.enterEmail")}</div>
                         </div>
                         <div className="register-form-input-container">
                             <input className="register-form-input" type="password" name="password" value={loginInfo.password} required onChange={handleLoginInfo}/>
-                            <div className="register-form-input-label">Enter Password</div>
+                            <div className="register-form-input-label">{tr("accountPages.enterPassword")}</div>
                         </div>
                         {/* <input className="login-form-input" type="email" placeholder="Enter Email" name="email" value={loginInfo.email} onChange={handleLoginInfo} required/>
                         <input className="login-form-input" type="password" placeholder="Enter Password" name="password" value={loginInfo.password} onChange={handleLoginInfo} required/> */}
@@ -122,9 +126,9 @@ function LoginPage({userList,handleUser})
                         warning !== "" &&
                         <p className="login-form-warning" onAnimationEnd={ResetWarningAnimation} ref={warningElement} animate="true">{warning}</p>
                     }
-                    <input className="login-form-submit" type="submit" value="Log in" disabled={readyToSubmit()} />
+                    <input className="login-form-submit" type="submit" value={tr("accountPages.logIn")} disabled={readyToSubmit()} />
                 </form>
-                <Link className="back-button" to={prevPath || "/"}>Back</Link>
+                <Link className="back-button" to={prevPath || "/"}>{tr("accountPages.back")}</Link>
             </div>
         </div>
       );

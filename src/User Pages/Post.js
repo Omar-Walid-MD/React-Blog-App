@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import axios from 'axios';
+import { useTranslation } from "react-i18next";
 
 import TopicLogo from "../Main Page/TopicLogo";
 
@@ -8,6 +9,7 @@ import '../Main Page/MainPage.css';
 
 function Post({post,currentUser,setCurrentUser})
 {
+  const [tr,il8n] = useTranslation();
 
   const [voteState,setVoteState] = useState(CheckUserVote());
   const [likes,setLikes] = useState(post.likes);
@@ -291,7 +293,7 @@ function Post({post,currentUser,setCurrentUser})
               <p className="post-topic-title">{topic.title}</p>
             </Link>
           }
-          <p className="post-date">posted by <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> {CalculateTime()}</p>
+          <p className="post-date">{tr("post.postedBy")} <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> {CalculateTime()}</p>
         </div>
         <Link to={"/post/"+post.id} className="post-link"> 
           <h1 className="post-title">{post.title}</h1>
@@ -310,7 +312,7 @@ function Post({post,currentUser,setCurrentUser})
           <Link to={"/post/"+post.id} className="comment-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>({commentsCount})</Link>
           {
             currentUser &&
-            <button className="save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}}><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+            <button className="save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}}><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
           }
         </div>
       </div>

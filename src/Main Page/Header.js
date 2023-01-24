@@ -1,6 +1,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import {Link, useLocation} from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import Avatar from "./Avatar";
 import Notif from "./Notif";
 import axios from 'axios';
@@ -9,6 +11,8 @@ import TopicLogo from "./TopicLogo";
 
 function Header({topics, currentUser, setCurrentUser})
 {
+  const [tr,il8n] = useTranslation();
+
   const imgPath = "../img/topic-logo";
 
   let location = useLocation();
@@ -127,7 +131,7 @@ function Header({topics, currentUser, setCurrentUser})
         <header className="navbar flex-row">
             <Link to="/" className="navbar-logo">BLOGGEST</Link>
             <div className="navbar-search-container flex-center">
-              <input className="navbar-search-input" type="search" placeholder="Search for topics..." value={searchValue} onChange={handleSearchValue} />          
+              <input className="navbar-search-input" type="search" placeholder={tr("header.searchForTopics")} value={searchValue} onChange={handleSearchValue} />          
                   {
                     searchValue!=="" &&
                     <div className="navbar-search-dropdown">
@@ -140,18 +144,18 @@ function Header({topics, currentUser, setCurrentUser})
                              <TopicLogo topicLogo={topic.logo} width={100} />
                             <div className="topic-result-info">
                               <h2 className="topic-result-title">{topic.title}</h2>
-                              <p className="topic-result-members">{topic.members} Members</p>
+                              <p className="topic-result-members">{topic.members} {tr("mainPage.members")}</p>
                             </div>
                           </Link>
                           )
-                          : <h1 className="topic-results-empty">No results for "{searchValue}"</h1>
+                          : <h1 className="topic-results-empty">{tr("header.noResults")} "{searchValue}"</h1>
                         }
                       </div>
                       <div className="navbar-create-topic-tab-container">
                         {
                           currentUser ?
-                          <Link to={"/new-topic"} className="navbar-create-topic-link flex-row"><div className="navbar-create-topic-circle flex-center"><i className='bx bx-plus-medical add-icon'></i></div>Create New Topic</Link>
-                          : <div>You must be logged in to create a new topic</div>
+                          <Link to={"/new-topic"} className="navbar-create-topic-link flex-row"><div className="navbar-create-topic-circle flex-center"><i className='bx bx-plus-medical add-icon'></i></div>{tr("header.createTopic")}</Link>
+                          : <div>{tr("header.mustBeLoggedIn")}</div>
                         }
                       </div>
                   </div>
@@ -182,7 +186,7 @@ function Header({topics, currentUser, setCurrentUser})
                     </div>
                     :
                     <div className="navbar-notif-dropdown-empty flex-column">
-                      <h1>No notifications</h1>
+                      <h1>{tr("header.noNotifs")}</h1>
                       <div className="empty-notif-img"></div>
                     </div>
                     
@@ -190,10 +194,10 @@ function Header({topics, currentUser, setCurrentUser})
                   {
                     GetNofitications(currentUser).length > 0 &&
                     <div className="navbar-notif-dropdown-bottom flex-row">
-                      <button className="navbar-notif-dropdown-bottom-button" onClick={function(){ClearAllNotif(currentUser)}}>Clear All</button>
+                      <button className="navbar-notif-dropdown-bottom-button" onClick={function(){ClearAllNotif(currentUser)}}>{tr("header.clearAll")}</button>
                       {
                         GetNofitications(currentUser).some((notif)=>{return notif.state==="read"}).length > 0 &&
-                        <button className="navbar-notif-dropdown-bottom-button" onClick={function(){SetAllNotifRead(currentUser)}}>Mark All as Read</button>
+                        <button className="navbar-notif-dropdown-bottom-button" onClick={function(){SetAllNotifRead(currentUser)}}>{tr("header.markAllRead")}</button>
                       }
                     </div>
                   }
@@ -212,18 +216,18 @@ function Header({topics, currentUser, setCurrentUser})
                   </div>
                   <br></br>
                   <div className="split-line"></div>
-                  <Link to={"/user/"+currentUser.id} className="navbar-profile-dropdown-link">Activity</Link>
-                  <Link to="/saved" className="navbar-profile-dropdown-link">Saved</Link>
+                  <Link to={"/user/"+currentUser.id} className="navbar-profile-dropdown-link">{tr("header.activity")}</Link>
+                  <Link to="/saved" className="navbar-profile-dropdown-link">{tr("header.saved")}</Link>
                   <div className="split-line"></div>
                   <br></br>
-                  <button className="navbar-button" onClick={LogOut}>Log Out</button>
+                  <button className="navbar-button" onClick={LogOut}>{tr("header.logOut")}</button>
                   <br></br>
                 </div>
               </div>
               </div> 
             : <div className="navbar-options flex-row">
-                <Link to="/register" state={{prevPath: location.pathname}} className="navbar-button">Register</Link>
-                <Link to="/login" state={{prevPath: location.pathname}} className="navbar-button">Log In</Link>
+                <Link to="/register" state={{prevPath: location.pathname}} className="navbar-button">{tr("header.register")}</Link>
+                <Link to="/login" state={{prevPath: location.pathname}} className="navbar-button">{tr("header.logIn")}</Link>
               </div>
             
           }

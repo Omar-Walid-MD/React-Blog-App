@@ -1,15 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
 import axios from 'axios';
 
 import Header from "../Main Page/Header";
 import TopicLogo from "../Main Page/TopicLogo";
+import i18next from "i18next";
 
 import "./WritePage.css"
 
 
 function SelectTopic({topic, newPost, setNewPost})
 {
+    const [tr,il8n] = useTranslation();
+
     function handlePostTopic()
     {
         setNewPost({
@@ -23,7 +28,7 @@ function SelectTopic({topic, newPost, setNewPost})
             <TopicLogo topicLogo={topic.logo} width={40} />
             <div className="select-topic-info flex-column">
                 <p className="select-topic-info-title">{topic.title}</p>
-                <p className="select-topic-info-members">{topic.members} members</p>
+                <p className="select-topic-info-members">{topic.members} {tr("mainPage.members")}</p>
             </div>
         </button>);
 }
@@ -31,6 +36,8 @@ function SelectTopic({topic, newPost, setNewPost})
 
 function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users})
 {
+    const [tr,il8n] = useTranslation();
+
     const navigate = useNavigate();
 
     const { topicForPost } = useLocation().state;
@@ -214,7 +221,7 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
                 <div className="main-column flex-column">
                     <form className="post-write-form-container flex-column" onSubmit={submitPost}>
                         <div className="post-write-form-row flex-row">
-                            <h1 className="post-write-form-label">Submit Post to: </h1>
+                            <h1 className="post-write-form-label">{tr("newPostPage.submitTo")} </h1>
                             <div className="post-write-form-select-topic-container flex-center">
                             {
                                 newPost.topic !=="" ?
@@ -222,17 +229,17 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
                                     <TopicLogo topicLogo={GetTopicFromId(newPost.topic).logo} width={60} />
                                     <div className="select-topic-info flex-column">
                                         <p className="select-topic-info-title">{GetTopicFromId(newPost.topic).title}</p>
-                                        <p className="select-topic-info-members">{GetTopicFromId(newPost.topic).members} members</p>
+                                        <p className="select-topic-info-members">{GetTopicFromId(newPost.topic).members} {tr("mainPage.members")}</p>
                                     </div>
                                     <button className="selected-topic-reset-button flex-center" name="topic" value="" onClick={function(event){handlePost(event)}}><i className='bx bx-x-circle'></i></button>
                                 </div>
                                 :
                                 <div className="post-write-form-select-topic-open flex-center">
-                                    <div className="post-write-form-select-topic-open-label flex-center">--Select Topic--</div>
+                                    <div className="post-write-form-select-topic-open-label flex-center">{tr("newPostPage.select")}</div>
                                     <div className="post-write-form-select-topic-menu flex-row">
                                         <div className="post-write-form-select-topic-menu-section">
                                             <div className="post-write-form-select-topic-menu-label-container">
-                                                <h2>Joined Topics:</h2>
+                                                <h2>{tr("newPostPage.joinedTopics")}</h2>
                                             </div>
                                             <div className="post-write-form-select-topic-results">
                                             {
@@ -246,7 +253,7 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
                                         </div>
                                         <div className="post-write-form-select-topic-menu-section">
                                             <div className="post-write-form-select-topic-menu-label-container">
-                                                <h2>Search Topics:</h2>
+                                                <h2>{tr("newPostPage.searchTopics")}</h2>
                                                 <input className="post-write-form-select-topic-search" type="search" value={searchTopic} onChange={handleSearchTopic} />
                                             </div>
                                             <div className="post-write-form-select-topic-results">
@@ -273,12 +280,12 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
                             </select> */}
                         </div>
                         <div className="post-write-form-input-group">
-                            <textarea className="post-write-form-title-input" type="text" name="title" placeholder="Enter Title" minheight={50} value={newPost.title} onChange={handlePost} onInput={AutoResize} required></textarea>
+                            <textarea className="post-write-form-title-input" type="text" name="title" placeholder={tr("newPostPage.enterTitle")} minheight={50} value={newPost.title} onChange={handlePost} onInput={AutoResize} required></textarea>
                             
-                            <textarea className="post-write-form-body-input" name="body" placeholder="Enter Body" minheight={200} value={newPost.body} onChange={handlePost} onInput={AutoResize} required></textarea>
+                            <textarea className="post-write-form-body-input" name="body" placeholder={tr("newPostPage.enterBody")} minheight={200} value={newPost.body} onChange={handlePost} onInput={AutoResize} required></textarea>
                         </div>
                         <div className="post-write-form-submit-container">
-                            <input className="post-write-form-submit" type="submit" disabled={NotReadyToSubmit()} />
+                            <input className="post-write-form-submit" type="submit" value={tr("newPostPage.submit")} disabled={NotReadyToSubmit()} />
                         </div>
                     </form>
                 </div>

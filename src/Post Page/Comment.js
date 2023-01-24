@@ -1,5 +1,7 @@
 import {useState, useEffect, useRef} from "react"
 import { Link, useParams, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import axios from 'axios';
 
 import Reply from "./Reply";
@@ -10,6 +12,8 @@ import "../Post Page/PostPage.css"
 
 function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurrentUser, setComments, replyList, users})
 {
+    const [tr,il8n] = useTranslation();
+
     const [user,setUser] = useState();
 
     const [newReply,setNewReply] = useState("");
@@ -457,10 +461,10 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
                         <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
                         <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                     </div>
-                    <label htmlFor={"reply-checkbox-"+comment.id} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>Replies({replyList.length})<i className='bx bxs-down-arrow reply-arrow-icon'></i></label>
+                    <label htmlFor={"reply-checkbox-"+comment.id} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>{tr("comment.replies")}({replyList.length})<i className='bx bxs-down-arrow reply-arrow-icon'></i></label>
                     {
                         currentUser &&
-                        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+                        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
                     }
                     </div>
                 </div>
@@ -470,14 +474,14 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
                     {
                         currentUser ?
                         <form className="post-page-write-reply-form flex-row" onSubmit={submitReply}>
-                            <textarea className="post-page-write-reply-input" placeholder="Write your reply..." minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
-                            <input className="post-page-write-reply-submit" type="submit" value="Reply" />
+                            <textarea className="post-page-write-reply-input" placeholder={tr("comment.writeReply")} minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
+                            <input className="post-page-write-reply-submit" type="submit" value={tr("comment.reply")} />
                             <div className="post-page-comment-replies-line" first="true"></div>
                         </form>
                         :
                         <form className="post-page-write-reply-form flex-row">
                            <div className="post-page-logged-out-warning" type="reply">
-                                You must be logged in to reply!
+                                {tr("comment.mustBeLoggedInToReply")}
                             </div>
                             <div className="post-page-comment-replies-line" first="true"></div>
                         </form>

@@ -1,0 +1,87 @@
+{
+    "mainPage":
+    {
+        "writePost": "أكتب منشورا",
+        "mustBeLoggedIn": "يجب تسجيل الدخول لرؤية المنشورات",
+        "members": "أعضاء",
+        "sub": "اشتراك",
+        "unsub": "إلغاء الاشتراك",
+        "createdOn": "صنع يوم"
+    },
+    "header":
+    {
+        "searchForTopics": "...ابحث عن مواضيع",
+        "noResults": "لا نتائج توافق",
+        "createTopic": "انشاء موضوع جديد",
+        "mustBeLoggedIn": "يجب تسجيل الدخول لإنشاء موضوع جديد",
+        "noNotifs": "لا إشعارات",
+        "clearALL": "مسح الجميع",
+        "markAllRead": "حدد الجميع ك \"مقورء\"",
+        "activity": "نشاطي",
+        "saved": "المحفوظات",
+        "logOut": "تسجيل الخروج",
+        "register": "إنشاء حساب",
+        "logIn": "تسجيل الدخول"
+    },
+    "post":
+    {
+        "postedBy": "تم النشر من قبل",
+        "saved": "تم الحفظ",
+        "save": "حفظ",
+        "writeComment": "اكتب تعليقك",
+        "comment": "تعليق",
+        "mustBeLoggedInToComment": "يجب تسجيل الدخول للتعليق",
+        "noComments": "لا تعليقات..."
+    },
+    "comment":
+    {
+        "replies": "الردود",
+        "writeReply": "اكتب ردا",
+        "reply": "رد",
+        "cancel": "إلغاء",
+        "mustBeLoggedInToReply": "يجب تسجيل الدخول للرد"
+    },
+    "newPostPage":
+    {
+        "submitTo": "كتابة منشور في",
+        "select": "--اختر الموضوع--",
+        "joinedTopics": "مواضيع تم متابعتها:",
+        "searchTopics": "ابحث عن مواضيع:",
+        "enterTitle": "ادخل العنوان",
+        "enterBody": "ادخل النص",
+        "submit": "نشر"
+    },
+    "newTopicPage":
+    {
+        "createTopic": "انشاء موضوع جديد",
+        "enterTitle": "ادخل عنوان الموضوع",
+        "enterBody": "ادخل موجز عن الموضوع",
+        "submit": "إنشاء"
+    },
+    "userPages":
+    {
+        "overview": "عام",
+        "posts": "منشورات",
+        "comments": "تعليقات",
+        "by": "تم النشر من قبل",
+        "on": "من",
+        "noContent": "لا يوجد محتوى",
+        "mustBeLoggedInToView": "يجب تسجيل الدخول لرؤية المحتوى"
+    },
+    "accountPages":
+    {
+        "logIn": "تسجيل الدخول",
+        "enterEmail": "ادخل البريد الالكتروني",
+        "enterPassword": "ادخل كلمة المرور",
+
+        "registerNewUser": "إنشاء حساب جديد",
+        "register": "إنشاء",
+        "enterUsername": "ادخل إسم المستخدم",
+        "randomize": "عشوائي",
+        "confirmPassword": "تأكيد كلمة المرور",
+        "editAvatar": "تعديل الصورة الرمزية",
+        "userAvatar": "الصورة الرمزية",
+
+        "back": "رجوع"
+    }
+}

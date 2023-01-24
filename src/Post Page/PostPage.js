@@ -1,5 +1,6 @@
 import {useState, useEffect, useRef} from "react"
 import { Link, useParams, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import axios from 'axios';
 
 import Header from "../Main Page/Header";
@@ -11,6 +12,7 @@ import "./PostPage.css";
 
 function PostPage({topics, currentUser, setCurrentUser,users})
 {
+    const [tr,il8n] = useTranslation();
 
     let postId = useParams().id;
 
@@ -594,7 +596,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                         <div className="post-page-post-container flex-column">
                             <div className="post-info">
                                
-                                <p className="post-page-post-date">posted by <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> {CalculateTime()}</p>
+                                <p className="post-page-post-date">{tr("post.postedBy")} <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> {CalculateTime()}</p>
                                 <h1 className="post-page-post-title">{post.title}</h1>
                                 <p className="post-page-post-body">{FormatText(post.body)}</p>
                             </div>        
@@ -607,7 +609,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                                 </div>
                                 {
                                     currentUser &&
-                                    <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? "Saved" : "Save"}</button>
+                                    <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
                                 }                            
                                 </div>
                         </div>
@@ -615,12 +617,12 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                             {
                                 currentUser ?
                                 <form className="post-page-write-comment-form flex-column" onSubmit={submitComment}>
-                                    <textarea className="post-page-write-comment-input" placeholder="Write your comment..." minheight={100} value={newComment} onChange={handleComment} onInput={AutoResize}></textarea>
-                                    <input className="post-page-write-comment-submit" type="submit" value="Comment" />
+                                    <textarea className="post-page-write-comment-input" placeholder={tr("post.writeComment")} minheight={100} value={newComment} onChange={handleComment} onInput={AutoResize}></textarea>
+                                    <input className="post-page-write-comment-submit" type="submit" value={tr("post.comment")} />
                                 </form>
                                 :
                                 <div className="post-page-logged-out-warning" type="comment">
-                                    You must be logged in to comment!
+                                    {tr("mustBeLoggedInToComment")}
                                 </div>
                             }
                             <div className="post-page-comments-section">
@@ -628,14 +630,12 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                                     comments && GetMainComments(comments).length > 0 ? GetMainComments(comments).map((comment)=>
                                     <Comment comment={comment} key={comment.id} SetCommentRef={SetTargetComment} targetCommentId={targetCommentId} currentUser={currentUser} setCurrentUser={setCurrentUser} setComments={setComments} replyList={GetCommentReplies(comment.id,comments)} users={users} />
                                     )
-                                    : <h1 className="post-page-comments-section-empty-label">No comments yet</h1>
+                                    : <h1 className="post-page-comments-section-empty-label">{tr("noComments")}</h1>
                                 }
                             </div>
                         </div>
                     
                 </div>
-
-                
             }
 
             {
@@ -650,10 +650,10 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                     <p className="side-column-topic-desc">{topic.description}</p>
                     </div>
                     <div className="side-column-topic-status flex-row">
-                    <p className="side-column-topic-members">{topic.members} members</p>
-                    <button className="side-column-topic-sub-button" subbed={IsTopicSubbed(topic.id) ? "true" : "false"} onClick={function(){console.log("yupy");if(!buttonLock){SetTopicSubbed(topic.id); lockButtons();}}}>{IsTopicSubbed(topic.id) ? "Unsubscribe" : "Subscribe"}</button>
+                    <p className="side-column-topic-members">{topic.members} {tr("mainPage.members")}</p>
+                    <button className="side-column-topic-sub-button" subbed={IsTopicSubbed(topic.id) ? "true" : "false"} onClick={function(){console.log("yupy");if(!buttonLock){SetTopicSubbed(topic.id); lockButtons();}}}>{IsTopicSubbed(topic.id) ? tr("mainPage.unsub") : tr("mainPage.sub")}</button>
                     </div>
-                    <p className="side-column-topic-date">Created on {new Date(topic.date).toDateString()}</p>
+                    <p className="side-column-topic-date">{tr("mainPage.createdOn")} {new Date(topic.date).toDateString()}</p>
                 </div>
              </div>
             }

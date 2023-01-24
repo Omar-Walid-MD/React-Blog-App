@@ -1,10 +1,14 @@
 import { useState, useRef } from "react";
 import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
 import Avatar from "../Main Page/Avatar";
 import "./RegisterPage.css";
 
 function RegisterPage({userList, handleUserList, handleUser})
 {
+    const [tr,il8n] = useTranslation();
+
     const location = useLocation();
     const { prevPath } = location.state || {};
 
@@ -190,11 +194,11 @@ function RegisterPage({userList, handleUserList, handleUser})
         <div className="main-page">
             <div className="account-page-container page-container flex-center" header="none">
                 <form className="register-form-container flex-column" ref={RegisterForm} onSubmit={RegisterUser}>
-                    <h1 className="register-form-label">Register New User</h1>
+                    <h1 className="register-form-label">{tr("accountPages.registerNewUser")}</h1>
                     <div className="resgister-form-input-group flex-row">
                         <div className="register-form-input-section flex-column">
                             <div className="register-avatar flex-center">
-                                <button className="register-avatar-open-button" type="button" onClick={function(){setAvatarWindow(true)}}>Edit Avatar</button>
+                                <button className="register-avatar-open-button" type="button" onClick={function(){setAvatarWindow(true)}}>{tr("accountPages.editAvatar")}</button>
                                 <Avatar bgImg={avatar.bgImg} bgColor={avatar.bgColor} baseColor={avatar.baseColor} accImg={avatar.accImg} accColor={avatar.accColor} width={150} />
                             </div>
                         </div>
@@ -202,24 +206,24 @@ function RegisterPage({userList, handleUserList, handleUser})
                             <div>
                                 <div className="register-form-input-container">
                                     <input className="register-form-input" type="text" name="username" maxLength="20" value={newUser.username} required onChange={handleNewUser}/>
-                                    <div className="register-form-input-label">Enter Username</div>
+                                    <div className="register-form-input-label">{tr("accountPages.enterUsername")}</div>
                                 </div>
-                                <button className="register-form-randomize-username-button" type="button" onClick={function(){RandomizeUsername()}}>Randomize!</button>
+                                <button className="register-form-randomize-username-button" type="button" onClick={function(){RandomizeUsername()}}>{tr("accountPages.randomize")}</button>
                             </div>
 
                             <div className="register-form-input-container">
                                 <input className="register-form-input" type="email" name="email" value={newUser.email} required onChange={handleNewUser}/>
-                                <div className="register-form-input-label">Enter Email</div>
+                                <div className="register-form-input-label">{tr("accountPages.enterEmail")}</div>
                             </div>
 
                             <div className="register-form-input-container">
                                 <input className="register-form-input" type="password" name="password" value={newUser.password} required onChange={handleNewUser}/>
-                                <div className="register-form-input-label">Enter Password</div>
+                                <div className="register-form-input-label">{tr("accountPages.enterPassword")}</div>
                             </div>                            
                             
                             <div className="register-form-input-container">
                                 <input className="register-form-input" type="password" name="confirmPassword" value={confirmPassword} required onChange={HandleconfirmPassword}/>
-                                <div className="register-form-input-label">Confirm Password</div>
+                                <div className="register-form-input-label">{tr("accountPages.confirmPassword")}</div>
                             </div>
                         </div>
                     </div>
@@ -227,15 +231,15 @@ function RegisterPage({userList, handleUserList, handleUser})
                         warning !== "" &&
                         <p className="login-form-warning" onAnimationEnd={ResetWarningAnimation} ref={warningElement} animate="true">{warning}</p>
                     }
-                    <input className="register-form-submit" type="submit" value="Register" disabled={readyToSubmit()} />
+                    <input className="register-form-submit" type="submit" value={tr("accountPages.register")} disabled={readyToSubmit()} />
                 </form>
-                <Link className="back-button" to={prevPath || "/"}>Back</Link>
+                <Link className="back-button" to={prevPath || "/"}>{tr("accountPages.back")}</Link>
 
                 {
                     avaterWindow &&
                     <div className="window-overlay flex-center">
                         <div className="register-avatar-options-container flex-column">
-                            <h1>User Avatar</h1>
+                            <h1>{tr("accountPages.userAvatar")}</h1>
                             <div className="flex-row width-full">
                                 <div className="register-avatar-preview">
                                     <Avatar bgImg={avatar.bgImg} bgColor={avatar.bgColor} baseColor={avatar.baseColor} accImg={avatar.accImg} accColor={avatar.accColor} width={150} />
