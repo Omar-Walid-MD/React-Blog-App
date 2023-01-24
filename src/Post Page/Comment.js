@@ -476,7 +476,7 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
                         </form>
                         :
                         <form className="post-page-write-reply-form flex-row">
-                           <div className="post-page-comment-logged-out-warning">
+                           <div className="post-page-logged-out-warning" type="reply">
                                 You must be logged in to reply!
                             </div>
                             <div className="post-page-comment-replies-line" first="true"></div>

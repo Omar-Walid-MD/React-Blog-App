@@ -107,8 +107,16 @@ function LoginPage({userList,handleUser})
                 <form className="login-form-container flex-column" ref={LoginForm} onSubmit={Login}>
                     <h1 className="login-form-label">Log in</h1>
                     <div className="login-form-input-group flex-column">
-                        <input className="login-form-input" type="email" placeholder="Enter Email" name="email" value={loginInfo.email} onChange={handleLoginInfo} required/>
-                        <input className="login-form-input" type="password" placeholder="Enter Password" name="password" value={loginInfo.password} onChange={handleLoginInfo} required/>
+                        <div className="register-form-input-container">
+                            <input className="register-form-input" type="text" name="email" value={loginInfo.email} required onChange={handleLoginInfo} autocomplete="false"/>
+                            <div className="register-form-input-label">Enter Email</div>
+                        </div>
+                        <div className="register-form-input-container">
+                            <input className="register-form-input" type="password" name="password" value={loginInfo.password} required onChange={handleLoginInfo}/>
+                            <div className="register-form-input-label">Enter Password</div>
+                        </div>
+                        {/* <input className="login-form-input" type="email" placeholder="Enter Email" name="email" value={loginInfo.email} onChange={handleLoginInfo} required/>
+                        <input className="login-form-input" type="password" placeholder="Enter Password" name="password" value={loginInfo.password} onChange={handleLoginInfo} required/> */}
                     </div>
                     {
                         warning !== "" &&

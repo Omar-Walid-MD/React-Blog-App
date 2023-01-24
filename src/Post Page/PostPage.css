@@ -182,7 +182,7 @@
     background-color: plum;
     transform: scale(1.1);
 }
-.post-page-comment-logged-out-warning
+.post-page-logged-out-warning[type="comment"]
 {
 
     font-size: 20pt;
@@ -195,6 +195,17 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 
     border-radius: 20px;
+    
+    padding: 20px;
+}
+.post-page-logged-out-warning[type="reply"]
+{
+
+    font-size: 20pt;
+    font-weight: 500;
+    text-align: center;
+
+    color: plum;
     
     padding: 20px;
 }
@@ -286,14 +297,13 @@
 }
 .comment-options
 {
-    width: 380px;
-
+    /* width: 380px; */
 }
 .comment-votes-container
 {
-    width: 30%;
+    width: 50%;
 
-    padding-right: 10px;
+    margin-inline-end: 10px;
 }
 
 .comment-voting-button
@@ -347,6 +357,7 @@
     transition: transform 0.1s ease-in-out ;
 
     margin-bottom: 5px;
+    margin-inline-end: 10px;
     
 }
 .comment-reply-button:hover

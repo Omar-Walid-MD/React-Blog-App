@@ -14,6 +14,7 @@ import WritePage from "./Submit Pages/NewPostPage";
 import CreateTopicPage from "./Submit Pages/NewTopicPage";
 
 import './Main Page/MainPage.css';
+import EditProfilePage from "./Account Pages/EditProfilePage";
 
 
 
@@ -63,8 +64,6 @@ function App()
 
   },[navigate.pathname]);
 
-  console.log(currentUser);
-
 
   return (
     <Routes>
@@ -77,6 +76,7 @@ function App()
 
       <Route path="/register" element={<RegisterPage userList={users} handleUserList={setUsers} handleUser={setCurrentUser} />} />
       <Route path="/login" element={<LoginPage userList={users} handleUser={setCurrentUser} />} />
+      <Route path="/edit-profile" element={<EditProfilePage userList={users} handleUserList={setUsers} currentUser={currentUser} handleUser={setCurrentUser} />} />
 
       <Route path="/user/:id" element={<UserActivityPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
       <Route path="/saved" element={<SavedPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />

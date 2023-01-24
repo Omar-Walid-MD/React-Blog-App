@@ -556,7 +556,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
     },[postId]);
 
     useEffect(()=>{
-        if(post && currentUser) 
+        if(post) 
         {
             if(currentUser)
             {
@@ -619,7 +619,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                                     <input className="post-page-write-comment-submit" type="submit" value="Comment" />
                                 </form>
                                 :
-                                <div className="post-page-comment-logged-out-warning">
+                                <div className="post-page-logged-out-warning" type="comment">
                                     You must be logged in to comment!
                                 </div>
                             }

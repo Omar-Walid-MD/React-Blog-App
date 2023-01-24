@@ -41,35 +41,7 @@
         "post-2622658512",
         "post-4756244164"
       ],
-      "notifs": [
-        {
-          "type": "comment-tag",
-          "state": "read",
-          "id": "25644",
-          "user": "user-1466759493",
-          "comment": "comment-9718618387",
-          "post": "post-6368489845",
-          "topic": "topic-9186347593"
-        },
-        {
-          "type": "comment",
-          "state": "read",
-          "id": "74142",
-          "user": "user-1466759493",
-          "comment": "comment-8483594772",
-          "post": "post-4581794152",
-          "topic": "topic-9186347593"
-        },
-        {
-          "type": "comment",
-          "state": "read",
-          "id": "23624",
-          "user": "user-1466759493",
-          "comment": "comment-5874879828",
-          "post": "post-8394453844",
-          "topic": "topic-9186347593"
-        }
-      ]
+      "notifs": []
     },
     {
       "username": "VibrantTomato769",

@@ -66,12 +66,12 @@ function Notif({notif,currentUser,setRead})
     },[notif]);
 
     return (
-        <Link to={"/post/"+notif.post}  target="_blank" read={notif.state==="read" ? "true" : "false"} className="notification-container flex-row" onClick={function(){setRead(currentUser,notif)}}>
+        <div to={"/post/"+notif.post}  target="_blank" read={notif.state==="read" ? "true" : "false"} className="notification-container flex-row">
         {
             topic && <TopicLogo topicLogo={topic.logo} width={40}/>
         }
         {   user && comment && post && topic &&
-            <div className="notification-content flex-column">
+            <Link to={"/post/"+notif.post}  target="_blank"  className="notification-content flex-column" onClick={function(){setRead(currentUser,notif)}}>
                 <div className="notification-topic">{topic.title}</div>
             {
                 
@@ -85,9 +85,13 @@ function Notif({notif,currentUser,setRead})
                 && <div><b className="notification-username">{user.username}</b> has <b>commented</b> on your post: <p className="notification-post">"{post.title}"</p></div>
 
             }
-            </div>
+            </Link>
         }
-        </Link>
+        {
+            notif.state!=="read" &&
+            <button className="notification-mark-as-read-button flex-center" onClick={function(){setRead(currentUser,notif)}}><i className='bx bx-check-double'></i></button>
+        }
+        </div>
     )
 }
 

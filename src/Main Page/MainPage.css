@@ -134,7 +134,7 @@ scrollbar-width: none;  /* Firefox */
 
     font-size: 15pt;
 
-    padding: 5px;
+    padding: 10px;
 
     border-radius: 10px;
 
@@ -325,74 +325,114 @@ scrollbar-width: none;  /* Firefox */
 .navbar-notif-dropdown-container
 {
     width: 350px; height: fit-content;
-    max-height: 400px;
 
     background-color: rebeccapurple;
 
-    border-radius: 20px 5px 5px 20px;
+    border-radius: 20px;
 
     margin-top: 5px;
 
     position: absolute;
     top: 100%;
 
-    overflow-y: auto;
-
     transform-origin: top;
     transform: scaleY(0);
 
     transition: transform 0.2s ease-in-out;
 }
-.navbar-notif-checkbox:checked ~.navbar-notif-dropdown-container
-{
-    transform: scaleY(1);
-}
-.navbar-notif-dropdown-container::-webkit-scrollbar
-{
-    height: 10px;
-    background-color: transparent;
-    height: 10px;
-
-    border-radius: 20px 0 0 20px;
-}
-.navbar-notif-dropdown-container::-webkit-scrollbar-track
-{
-    background-color: rgb(72, 37, 107);
-
-    border-radius: 5px;
-    border: 0px solid rebeccapurple;
-    
-}
-.navbar-notif-dropdown-container::-webkit-scrollbar-thumb
-{
-    background: plum;
-    border: 5px solid rgb(72, 37, 107);
-    border-radius: 10px;
-}
 .navbar-notif-dropdown-container[empty="true"]
 {
-    height: 200px;
+    height: 350px;
 
     border-radius: 20px;
 
     display: flex;
     justify-content: center; align-items: center;
 }
+.navbar-notif-dropdown-notifs
+{
+    width: fit-content; height: fit-content;
+    max-height: 400px;
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 10px;
+    padding: 10px;
+    gap: 10px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.navbar-notif-checkbox:checked ~.navbar-notif-dropdown-container
+{
+    transform: scaleY(1);
+}
+.navbar-notif-dropdown-notifs::-webkit-scrollbar
+{
+    height: 10px;
+    background-color: transparent;
+
+    border-radius: 20px 0 0 20px;
+}
+.navbar-notif-dropdown-notifs::-webkit-scrollbar-track
+{
+    background-color: rgb(72, 37, 107);
+    border-radius: 20px;
+}
+.navbar-notif-dropdown-notifs::-webkit-scrollbar-thumb
+{
+    background: plum;
+    border: 5px solid rgb(72, 37, 107);
+    border-radius: 10px;
+}
+.navbar-notif-dropdown-bottom
+{
+    width: 100%; height: 50px;
+    background-color: rgb(72, 37, 107);
+
+    padding: 0 20px;
+
+    border-radius: 0 0 20px 20px;
+}
+.navbar-notif-dropdown-bottom-button
+{
+    background-color: transparent;
+    color: white;
+
+    font-size: 12.5pt;
+
+    border: none; outline: none;
+
+    /* transform-origin: center; */
+
+    transition: all 0.1s ease-in-out;
+}
+.navbar-notif-dropdown-bottom-button:hover
+{
+    color: plum;
+    transform: scale(1.1);
+}
+.navbar-notif-dropdown-empty > .empty-notif-img
+{
+    height: 200px; aspect-ratio: 1;
+
+    background-image: url("../img/no-notifs.png");
+    background-size: cover;
+}
 .notification-container
 {
     background-color: rgb(125, 75, 170);
 
-    color: white;
-    text-decoration: none;
-
     border-radius: 10px;
 
-    margin: 10px;
     padding: 10px;
 
     align-items: flex-start;
 
     transition: transform 0.1s ease-in-out;
+
+    position: relative;
 }
 .notification-container[read="false"]
 {
@@ -405,6 +445,9 @@ scrollbar-width: none;  /* Firefox */
 .notification-content
 {
     width: 90%;
+
+    color: white;
+    text-decoration: none;
 
     margin-left: 10px;
 
@@ -435,7 +478,30 @@ scrollbar-width: none;  /* Firefox */
 
     margin: 10px 0;
 }
+.notification-mark-as-read-button
+{
+    width: 30px; height: 30px;
 
+    font-size: 20pt;
+
+    background-color: transparent;
+    color: white;
+
+    margin: 10px;
+    border: none; outline: none;
+
+    position: absolute;
+    bottom: 0; right: 0;
+
+    transition: all 0.1s ease-in-out;
+
+    pointer-events: all;
+}
+.notification-mark-as-read-button:hover
+{
+    color: plum;
+    transform: scale(1.2);
+}
 .navbar-profile-menu
 {
     position: relative;
@@ -752,13 +818,13 @@ scrollbar-width: none;  /* Firefox */
 }
 .post-options
 {
-    width: 50%;
+   
 }
 .post-votes-container
 {
     width: 130px;
+    margin-inline-end: 20px;
 }
-
 .voting-button
 {
     font-size: 15pt;
@@ -806,6 +872,7 @@ scrollbar-width: none;  /* Firefox */
     transition: transform 0.1s ease-in-out ;
 
     margin-bottom: 5px;
+    margin-inline-end: 20px;
     
 }
 .comment-button:hover

@@ -84,6 +84,31 @@ function Header({topics, currentUser, setCurrentUser})
     }
   }
 
+  function SetAllNotifRead(currentUser)
+  {
+    currentUser.notifs.forEach(notif => {
+      SetNotifRead(currentUser,notif)
+    });
+  }
+
+  function ClearAllNotif(currentUser)
+  {
+    let updatedUser = {
+      ...currentUser,
+      notifs: []
+    };
+
+    axios.put('http://localhost:8000/users/'+updatedUser.id,
+      updatedUser
+    )
+    .then(resp =>{
+        localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+        setCurrentUser(updatedUser);
+    }).catch(error => {
+        console.log(error);
+    });
+  }
+
   function LogOut(e)
   {
     setCurrentUser(null);
@@ -148,10 +173,29 @@ function Header({topics, currentUser, setCurrentUser})
                 <div className="navbar-notif-dropdown-container" empty={GetNofitications(currentUser).length > 0 ? "false" : "true"}>
                   {
                     GetNofitications(currentUser).length > 0 ?
-                    GetNofitications(currentUser).map((notif,index)=>
-                    <Notif notif={notif} key={"notif-"+index} currentUser={currentUser} setRead={SetNotifRead} />
-                    )
-                    : <h1>No notifications</h1>
+                    <div className="navbar-notif-dropdown-notifs">
+                      {
+                        GetNofitications(currentUser).map((notif,index)=>
+                        <Notif notif={notif} key={"notif-"+index} currentUser={currentUser} setRead={SetNotifRead} />
+                        )
+                      }
+                    </div>
+                    :
+                    <div className="navbar-notif-dropdown-empty flex-column">
+                      <h1>No notifications</h1>
+                      <div className="empty-notif-img"></div>
+                    </div>
+                    
+                  }
+                  {
+                    GetNofitications(currentUser).length > 0 &&
+                    <div className="navbar-notif-dropdown-bottom flex-row">
+                      <button className="navbar-notif-dropdown-bottom-button" onClick={function(){ClearAllNotif(currentUser)}}>Clear All</button>
+                      {
+                        GetNofitications(currentUser).some((notif)=>{return notif.state==="read"}).length > 0 &&
+                        <button className="navbar-notif-dropdown-bottom-button" onClick={function(){SetAllNotifRead(currentUser)}}>Mark All as Read</button>
+                      }
+                    </div>
                   }
                 </div>
               </div>
@@ -164,7 +208,7 @@ function Header({topics, currentUser, setCurrentUser})
                   <div className="navbar-profile-dropdown-profile-info flex-column">
                     <h1 className="navbar-profile-username">{currentUser.username}</h1>
                     <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} width={150} />
-                    <Link className="navbar-profile-dropdown-edit-profile-link flex-center"><i className='bx bx-edit'></i></Link>
+                    <Link to="/edit-profile" className="navbar-profile-dropdown-edit-profile-link flex-center"><i className='bx bx-edit'></i></Link>
                   </div>
                   <br></br>
                   <div className="split-line"></div>
