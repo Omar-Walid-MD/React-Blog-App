@@ -42,7 +42,17 @@
         "post-4756244164",
         "post-6369769999"
       ],
-      "notifs": []
+      "notifs": [
+        {
+          "type": "comment",
+          "state": "read",
+          "id": "13723",
+          "user": "user-1466759493",
+          "comment": "comment-7584393387",
+          "post": "post-8394453844",
+          "topic": "topic-9186347593"
+        }
+      ]
     },
     {
       "username": "VibrantTomato769",
@@ -1353,6 +1363,19 @@
       },
       "post": "post-8394453844",
       "date": 1672147060508,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-7584393387",
+      "text": "Hello",
+      "user": {
+        "username": "VibrantTomato769",
+        "id": "user-1466759493"
+      },
+      "post": "post-8394453844",
+      "date": 1674685389055,
       "likes": 0,
       "dislikes": 0,
       "parentComment": "none"

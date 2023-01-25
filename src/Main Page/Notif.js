@@ -68,7 +68,10 @@ function Notif({notif,currentUser,setRead})
     return (
         <div to={"/post/"+notif.post}  target="_blank" read={notif.state==="read" ? "true" : "false"} className="notification-container flex-row">
         {
-            topic && <TopicLogo topicLogo={topic.logo} width={40}/>
+            topic && 
+            <div className="notification-topic-logo flex-center">
+                <TopicLogo topicLogo={topic.logo} width={40}/>
+            </div>
         }
         {   user && comment && post && topic &&
             <Link to={"/post/"+notif.post}  target="_blank"  className="notification-content flex-column" onClick={function(){setRead(currentUser,notif)}}>

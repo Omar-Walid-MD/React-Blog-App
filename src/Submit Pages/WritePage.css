@@ -31,7 +31,7 @@
 
     border-radius: 10px;
 
-    margin-left: 20px;
+    margin-inline-start: 20px;
 }
 .post-write-form-select-topic-open
 {
@@ -214,7 +214,6 @@
 
 .post-write-form-title-input
 {
-    font-family: sans-serif;
     font-size: 18pt;
     
     min-width: 100%; max-width: 100%;
@@ -230,7 +229,6 @@
 
 .post-write-form-body-input
 {
-    font-family: sans-serif;
     font-size: 15pt;
 
     min-width: 100%; max-width: 100%;
@@ -301,6 +299,29 @@
 {
     position: relative;
 }
+.create-topic-form-topic-logo-open-button
+{
+    width: 90%; height: 90%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+
+    font-size: 15pt;
+
+    border: none; outline: none;
+    
+    position: absolute;
+
+    transition: opacity 0.1s ease-in-out;
+    
+    opacity: 0;
+
+    z-index: 1;
+}
+.create-topic-form-topic-logo:hover .create-topic-form-topic-logo-open-button
+{
+    opacity: 1;
+}
 .topic-logo-background
 {
     width: 150px; aspect-ratio: 1;
@@ -345,32 +366,30 @@
 }
 .topic-logo-options-container
 {
-    width: 500px; height: 300px;
+    width: 600px;
 
     background-color: darkslateblue;
+    color: white;
 
-    padding: 35px 20px;
+    padding: 20px;
+
+    gap: 20px;
 
     border-radius: 20px;
 
     box-shadow: 0 0 20px black;
 
-    position: absolute;
-    top: 100%;
-
-    transform-origin: top;
-    transform: scaleY(0);
+    position: relative;
 
     transition: all 0.1s ease-in-out;
 }
-
 .topic-logo-options-row
 {
     width: 100%; height: 100px;
 }
 .topic-logo-image-options
 {
-    width: 75%; height: 100%;
+    width: 100%; height: 100%;
 
     background-color: black;
 
@@ -379,6 +398,24 @@
     border-radius: 10px;
 
     overflow-x: scroll;
+}
+.topic-logo-image-options::-webkit-scrollbar
+{
+    background-color: grey;
+    height: 10px;
+
+    border-radius: 5px;
+    
+    border: 2px solid black;
+
+}
+.topic-logo-image-options::-webkit-scrollbar-thumb
+{
+    background-color: white;
+
+    border-radius: 5px;
+    
+    border: 2px solid black;
 }
 .topic-logo-image-button
 {
@@ -399,11 +436,13 @@
 {
     transform: scale(1.1);
 }
+.topic-logo-color-option-row
+{
+    gap: 10px;
+}
 .topic-logo-color-option
 {
-    width: 20%; height: 100%;
-
-    /* background-color: red; */
+    width: 100px; height: 100px;
 }
 
 .create-topic-form-topic-logo:hover .topic-logo-options-container

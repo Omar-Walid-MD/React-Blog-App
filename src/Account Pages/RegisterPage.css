@@ -36,7 +36,7 @@
 {
     width: 90%; height: 90%;
 
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
 
     font-size: 15pt;
@@ -124,13 +124,14 @@
 }
 .register-avatar-options-container
 {
-    width: 600px; height: 600px;
+    width: 600px;
 
     background-color: darkslateblue;
     color: white;
 
     padding: 20px;
-    padding-bottom: 75px;
+
+    gap: 20px;
 
     border-radius: 20px;
 
@@ -201,24 +202,27 @@
 {
     width: 100px; height: 100px;
 }
-.register-avatar-close-button
+.register-avatar-save-button
 {
-    aspect-ratio: 1;
+    font-size: 20pt;
+    font-weight: 700;
+    text-decoration: none;
 
-    background-color: darkslateblue;
-    color: white;
+    outline: none;
+    border: none;
 
-    font-size: 25pt;
+    background-color: white;
+    color: purple;
 
-    box-shadow: 0 0 10px black;
+    padding: 5px 10px;
     border-radius: 10px;
+    transition: all 0.2s ease-in-out;
 
-    margin: 10px;
-
-    border: none; outline: none;
-
-    position: absolute;
-    bottom: 0; right: 0;
+    cursor: pointer;
+}
+.register-avatar-save-button:hover
+{
+    transform: scale(1.1);
 }
 
 

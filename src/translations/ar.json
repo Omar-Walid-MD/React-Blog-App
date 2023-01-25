@@ -15,7 +15,7 @@
         "createTopic": "انشاء موضوع جديد",
         "mustBeLoggedIn": "يجب تسجيل الدخول لإنشاء موضوع جديد",
         "noNotifs": "لا إشعارات",
-        "clearALL": "مسح الجميع",
+        "clearAll": "مسح الجميع",
         "markAllRead": "حدد الجميع ك \"مقورء\"",
         "activity": "نشاطي",
         "saved": "المحفوظات",
@@ -44,7 +44,7 @@
     "newPostPage":
     {
         "submitTo": "كتابة منشور في",
-        "select": "--اختر الموضوع--",
+        "select": "(اختر الموضوع)",
         "joinedTopics": "مواضيع تم متابعتها:",
         "searchTopics": "ابحث عن مواضيع:",
         "enterTitle": "ادخل العنوان",

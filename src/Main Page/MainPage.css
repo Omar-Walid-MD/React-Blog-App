@@ -1,6 +1,11 @@
 *
 {
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body
+{
+    overflow-x: hidden;
 }
 body[lng="ar"]
 {
@@ -28,7 +33,7 @@ button
 }
 .split-line
 {
-    width: 100%; height: 5px;
+    width: 100%; height: 0.3em;
 
     background-color: white;
 }
@@ -43,9 +48,10 @@ button
 
     background-color: rgba(41, 34, 80, 0.75);
 
-    z-index: 1;
+    z-index: 2;
 
-    position: absolute;
+    position: fixed;
+    top: 0; left: 0;
 }
 .float-right
 {
@@ -74,19 +80,24 @@ scrollbar-width: none;  /* Firefox */
 
 
 
+    /* NAVBAR */
+
 .navbar
 {
-    width: 100%; height: 80px;
+    width: 100%;
 
+    font-size: 1em;
+    
     color: white;
     background-color: darkslateblue;
+
     position: fixed;
     top: 0;
 
     /* box-shadow: 0 0 40px rgb(62, 76, 138); */
-    box-shadow: 0 0 40px lightblue;
+    box-shadow: 0 0 3em lightblue;
 
-    padding: 0 20px;
+    padding: 0.6rem 3rem;
 
     z-index: 2;
 
@@ -107,7 +118,7 @@ scrollbar-width: none;  /* Firefox */
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-    font-size: 30pt;
+    font-size: 2em;
     font-weight: 900;
     text-decoration: none;
 
@@ -129,18 +140,19 @@ scrollbar-width: none;  /* Firefox */
 {
     width: 50%; height: 100%;
 
+    margin: 0 1rem;
+
     position: relative;
 }
 .navbar-search-input
 {
     width: 100%;
-    height: 40px;
 
-    font-size: 15pt;
+    font-size: 1.5em;
 
-    padding: 10px;
+    padding: 0.3em 0.5em;
 
-    border-radius: 10px;
+    border-radius: 2em;
 
     border: none;
     outline: none;
@@ -151,9 +163,9 @@ scrollbar-width: none;  /* Firefox */
 
     background-color: darkslateblue;
 
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 1.2em 1.2em;
 
-    box-shadow: 0 20px 15px 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 1.2em 1em 0.6em rgba(0, 0, 0, 0.6);
 
     position: absolute;
     top: calc(100%);
@@ -166,11 +178,7 @@ scrollbar-width: none;  /* Firefox */
 }
 .navbar-search-results
 {
-    padding: 10px;
-}
-.topic-search-result
-{
-    width: 20px;
+    padding: 0.5em;
 }
 .topic-results-empty
 {
@@ -184,10 +192,10 @@ scrollbar-width: none;  /* Firefox */
     text-decoration: none;
 
     border-bottom: solid 5px lightsteelblue;
-    border-radius: 10px;
+    border-radius: 0.6em;
 
-    padding: 10px;
-    margin: 5px 0;
+    padding: 0.5em;
+    margin: 0.2em 0;
 
     align-items: flex-start;
 
@@ -199,18 +207,17 @@ scrollbar-width: none;  /* Firefox */
 }
 .topic-result-info
 {
-    margin-left: 20px;
+    margin-inline-start: 1.2em;
     width: 100%;
 }
 .topic-result-info > *
 {
     margin: 0;
 }
-
 .navbar-create-topic-tab-container
 {
     background-color: rebeccapurple;
-    padding: 20px;
+    padding: 1.2em;
 }
 .navbar-create-topic-link
 {
@@ -218,7 +225,7 @@ scrollbar-width: none;  /* Firefox */
 
     color: white;
     
-    font-size: 15pt;
+    font-size: 1em;
     text-decoration: none;
 
     transition: all 0.1s ease-in-out;
@@ -226,13 +233,13 @@ scrollbar-width: none;  /* Firefox */
 }
 .navbar-create-topic-circle
 {
-    height: 50px; aspect-ratio: 1;
+    height: 3em; aspect-ratio: 1;
 
     background-color: white;
 
     border-radius: 50%;
 
-    margin-right: 20px;
+    margin-inline-end: 1.2em;
 
     transition: all 0.1s ease-in-out;
 
@@ -240,9 +247,7 @@ scrollbar-width: none;  /* Firefox */
 .navbar-create-topic-circle > .add-icon
 {
     color: purple;
-    font-size: 25pt;
-
-    margin-top: 2px;
+    font-size: 2em;
 }
 .navbar-create-topic-link:hover
 {
@@ -254,28 +259,22 @@ scrollbar-width: none;  /* Firefox */
 }
 .navbar-options
 {
-    width: 250px;
+    height: 100%;
 
-    margin-right: 50px;
-}
-.navbar-options-loggedin
-{
-    width: 120px; height: 100%;
-
-    margin-right: 100px;
+    gap: 2em;
 }
 .navbar-button
 {
-    font-size: 15pt;
+    font-size: 1.2em;
     font-weight: 700;
     text-decoration: none;
+    text-align: center;
 
     color: purple;
     background-color: white;
 
-
-    padding: 5px 15px;
-    border-radius: 10px;
+    padding: 0.3em 0.9em;
+    border-radius: 0.5em;
 
     border: none;
     outline: none;
@@ -289,18 +288,15 @@ scrollbar-width: none;  /* Firefox */
     background-color: rgb(238, 233, 255);
     transform: scale(1.25);
 }
-
-
-
 .navbar-notif-menu
 {
-    height: 100%;
+    align-self: stretch;
 
     position: relative;
 }
 .navbar-notif-button
 {
-    font-size: 30pt;
+    font-size: 2.5em;
 
     cursor: pointer;
 
@@ -316,28 +312,27 @@ scrollbar-width: none;  /* Firefox */
 {
     background-color: red;
 
-    width: 25px; aspect-ratio: 1;
+    height: 1.2em; aspect-ratio: 1;
 
-    font-size: 10pt;
+    font-size: 0.5em;
     font-weight: 800;
 
     border-radius: 50%;
 
     position: absolute;
-    top: 0; right: -10px
+    top: 0; right: -0.3em;
 }
 .navbar-notif-dropdown-container
 {
-    width: 350px; height: fit-content;
-
     background-color: rebeccapurple;
 
-    border-radius: 20px;
+    font-size: 1em;
 
-    margin-top: 5px;
+    border-radius: 1.2em;
+    box-shadow: 0 0 2.5em rgba(0, 0, 0, 0.5);
 
     position: absolute;
-    top: 100%;
+    top: calc(100% + 1em); left: -100%;
 
     transform-origin: top;
     transform: scaleY(0);
@@ -346,13 +341,15 @@ scrollbar-width: none;  /* Firefox */
 }
 .navbar-notif-dropdown-container[empty="true"]
 {
-    height: 350px;
-
-    border-radius: 20px;
+    width: 350px; height: 350px;
 
     display: flex;
     justify-content: center; align-items: center;
 }
+/* .navbar-notif-dropdown-container[empty="true"] .navbar-notif-dropdown-notifs
+{
+    
+} */
 .navbar-notif-dropdown-notifs
 {
     width: fit-content; height: fit-content;
@@ -361,9 +358,9 @@ scrollbar-width: none;  /* Firefox */
     display: flex;
     flex-direction: column;
 
-    margin: 10px;
-    padding: 10px;
-    gap: 10px;
+    margin: 0.4em;
+    padding: 0.4em;
+    gap: 0.6em;
 
     overflow-y: auto;
     overflow-x: hidden;
@@ -374,37 +371,37 @@ scrollbar-width: none;  /* Firefox */
 }
 .navbar-notif-dropdown-notifs::-webkit-scrollbar
 {
-    height: 10px;
+    height: 0.6em;
     background-color: transparent;
 
-    border-radius: 20px 0 0 20px;
+    border-radius: 1.2em 0 0 1.2em;
 }
 .navbar-notif-dropdown-notifs::-webkit-scrollbar-track
 {
     background-color: rgb(72, 37, 107);
-    border-radius: 20px;
+    border-radius: 1.2em;
 }
 .navbar-notif-dropdown-notifs::-webkit-scrollbar-thumb
 {
     background: plum;
-    border: 5px solid rgb(72, 37, 107);
-    border-radius: 10px;
+    border: 0.3em solid rgb(72, 37, 107);
+    border-radius: 0.6em;
 }
 .navbar-notif-dropdown-bottom
 {
-    width: 100%; height: 50px;
+    width: 100%;
     background-color: rgb(72, 37, 107);
 
-    padding: 0 20px;
+    padding: 0.6em 1.2em;
 
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 1.2em 1.2em;
 }
 .navbar-notif-dropdown-bottom-button
 {
     background-color: transparent;
     color: white;
 
-    font-size: 12.5pt;
+    font-size: 1em;
 
     border: none; outline: none;
 
@@ -417,9 +414,15 @@ scrollbar-width: none;  /* Firefox */
     color: plum;
     transform: scale(1.1);
 }
+.navbar-notif-dropdown-empty
+{
+    height: 100%;
+
+    padding-bottom: 2em;
+}
 .navbar-notif-dropdown-empty > .empty-notif-img
 {
-    height: 200px; aspect-ratio: 1;
+    height: 100%; aspect-ratio: 1;
 
     background-image: url("../img/no-notifs.png");
     background-size: cover;
@@ -428,9 +431,11 @@ scrollbar-width: none;  /* Firefox */
 {
     background-color: rgb(125, 75, 170);
 
-    border-radius: 10px;
+    font-size: 1em;
 
-    padding: 10px;
+    border-radius: 0.6em;
+
+    padding: 0.6em;
 
     align-items: flex-start;
 
@@ -453,18 +458,22 @@ scrollbar-width: none;  /* Firefox */
     color: white;
     text-decoration: none;
 
-    margin-left: 10px;
+    margin-inline-start: 0.6em;
 
     align-items: flex-start;
+}
+.notification-topic-logo
+{
+    width: 3em;
 }
 .notification-topic
 {
     color: plum;
 
-    font-size: 14pt;
+    font-size: 1.2em;
     font-weight: 500;
 
-    margin-bottom: 5px;
+    margin-bottom: 0.2em;
 }
 .notification-username
 {
@@ -472,26 +481,24 @@ scrollbar-width: none;  /* Firefox */
 }
 .notification-reply
 {
-    margin: 15px 0 12px 0;
+    margin: 1em 0 1em 0;
 }
 .notification-post
 {
     color: navajowhite;
-    font-size: 13pt;
+    font-size: 1em;
     font-weight: 500;
 
-    margin: 10px 0;
+    margin: 0.6em 0;
 }
 .notification-mark-as-read-button
 {
-    width: 30px; height: 30px;
-
-    font-size: 20pt;
+    font-size: 1.6em;
 
     background-color: transparent;
     color: white;
 
-    margin: 10px;
+    margin: 0.6em;
     border: none; outline: none;
 
     position: absolute;
@@ -508,6 +515,8 @@ scrollbar-width: none;  /* Firefox */
 }
 .navbar-profile-menu
 {
+    height: 100%;
+
     position: relative;
 }
 .navbar-profile-checkbox
@@ -523,7 +532,7 @@ scrollbar-width: none;  /* Firefox */
     
     border-radius: 50%;
 
-    box-shadow: 0 0 15px 5px rgba(35, 30, 65, 0.5);
+    box-shadow: 0 0 1em 0.3em rgba(35, 30, 65, 0.5);
 
     overflow: hidden;
 
@@ -544,20 +553,18 @@ scrollbar-width: none;  /* Firefox */
 }
 .navbar-profile-dropdown-container
 {
-    width: 250px;
-
     background-color: rebeccapurple;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-size: 1em;
 
-    border-radius: 20px;
+    padding: 0.2em 2em;
 
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    border-radius: 1.2em;
+
+    box-shadow: 0 0 2.5em rgba(0, 0, 0, 0.5);
 
     position: absolute;
-    top: calc(100% + 15px);
+    top: calc(100% + 1em); left: 0;
 
     visibility: hidden;
 
@@ -573,25 +580,32 @@ scrollbar-width: none;  /* Firefox */
 }
 .navbar-profile-dropdown-profile-info
 {
+    width: 150px;
     position: relative;
+}
+.navbar-profile-avatar
+{
+    width: 100%;
 }
 .navbar-profile-username
 {
-    font-size: 17pt;
+    font-size: 1.4em
 }
 .navbar-profile-dropdown-edit-profile-link
 {
-    width: 40px; aspect-ratio: 1;
+    aspect-ratio: 1;
 
-    font-size: 20pt;
+    font-size: 1.8em;
     font-weight: 700;
     text-decoration: none;
 
     color: purple;
     background-color: white;
 
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
     border-radius: 50%;
+
+    padding: 0.2em;
 
     border: none;
     outline: none;
@@ -599,7 +613,7 @@ scrollbar-width: none;  /* Firefox */
     transition: all 0.2s ease-in-out;
 
     position: absolute;
-    bottom: 5px; right: 5px;
+    bottom: 5%; right: 5%;
 
     cursor: pointer;
 }
@@ -612,11 +626,11 @@ scrollbar-width: none;  /* Firefox */
 {
     color: white;
 
-    font-size: 15pt;
+    font-size: 1.2em;
     font-weight: 500;
     text-decoration: none;
 
-    margin: 10px 0;
+    margin: 0.6em 0;
 
     transition: all 0.1s ease-in-out;
 }
@@ -631,7 +645,7 @@ scrollbar-width: none;  /* Firefox */
 
 .page-container
 {
-    width: 100%; min-height: 100vh;
+    width: 100vw; min-height: 100vh;
 
     /* background-color: lightsteelblue; */
     background: linear-gradient(rgb(199, 210, 224),rgb(135, 173, 223));
@@ -713,7 +727,7 @@ scrollbar-width: none;  /* Firefox */
     color: white;
     background-color: rebeccapurple;
 
-    box-shadow: 0 10px 20px rgb(91, 91, 128);
+    box-shadow: 0 0.6em 1.2em rgb(91, 91, 128);
 
     border-radius: 20px;
 
@@ -818,16 +832,16 @@ scrollbar-width: none;  /* Firefox */
 
     background-color: rgb(72, 37, 107);
 
+
     padding: 20px;
 }
 .post-options
 {
-   
+    gap: 20px;
 }
 .post-votes-container
 {
-    width: 130px;
-    margin-inline-end: 20px;
+    gap: 10px;
 }
 .voting-button
 {
@@ -851,8 +865,7 @@ scrollbar-width: none;  /* Firefox */
 .voting-icon
 {
     font-size: 20pt;
-    margin-right: 5px;
-
+    margin-inline-end: 5px;
 }
 .voting-button[vote="like"]
 {
@@ -875,9 +888,7 @@ scrollbar-width: none;  /* Firefox */
 
     transition: transform 0.1s ease-in-out ;
 
-    margin-bottom: 5px;
-    margin-inline-end: 20px;
-    
+    margin-bottom: 5px;    
 }
 .comment-button:hover
 {
@@ -886,7 +897,7 @@ scrollbar-width: none;  /* Firefox */
 .comment-icon
 {
     font-size: 20pt;
-    margin: 5px 5px 0 0;
+    padding-inline-end: 5px;
 }
 .save-button
 {
@@ -925,7 +936,7 @@ scrollbar-width: none;  /* Firefox */
     border-radius: 20px;
 
     padding: 20px;
-    margin-left: 50px;
+    margin-inline-start: 50px;
 
 }
 .side-column-topic-title
@@ -988,3 +999,66 @@ scrollbar-width: none;  /* Firefox */
 }
 
 
+
+    /* MEDIA QUERIES */
+@media (max-width:750px)
+{
+    .navbar
+    {
+        font-size: 0.7em;
+        padding: 0.6rem 1.5rem;
+    }
+    .navbar-profile-button
+    {
+        height: 40px;
+    }
+    .navbar-notif-dropdown-container
+    {
+        width: 200px;
+    }
+    .navbar-notif-dropdown-container[empty="true"]
+    {
+        width: 200px; height: 200px;
+    }
+    .navbar-profile-dropdown-profile-info
+    {
+        width: 120px;
+    }
+    .topic-result-logo
+    {
+        width: 60px;
+    }
+}
+
+@media (max-width:500px)
+{
+    .navbar
+    {
+        font-size: 0.4em;
+        padding: 0.3rem 0.8rem;
+    }
+    .navbar-profile-button
+    {
+        height: 30px;
+    }
+    .navbar-notif-dropdown-container
+    {
+        width: 80px;
+    }
+    .navbar-notif-dropdown-container[empty="true"]
+    {
+        width: 80px; height: 80px;
+    }
+    .navbar-profile-dropdown-profile-info
+    {
+        width: 80px;
+    }
+    .topic-result-logo
+    {
+        width: 20px;
+    }
+    .notification-container
+    {
+        flex-direction: column;
+    }
+}

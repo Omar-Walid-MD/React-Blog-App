@@ -29,6 +29,7 @@ function RegisterPage({userList, handleUserList, handleUser})
         accImg: 0,
         accColor: "#ffffff"
     };
+
     const [avatar,setAvatar] = useState(avatarDefault);
 
     const bg = 3; const acc = 6;
@@ -270,7 +271,7 @@ function RegisterPage({userList, handleUserList, handleUser})
                                     <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"acc-option-0"}></button>
                                 </div>
                             </div>
-                            <button className="register-avatar-close-button flex-center" onClick={function(){setAvatarWindow(false)}}><i className='bx bx-check'></i></button>
+                            <button className="register-avatar-save-button flex-center" onClick={function(){setAvatarWindow(false)}}>{tr("post.save")}</button>
                         </div>
                     </div>
                 }

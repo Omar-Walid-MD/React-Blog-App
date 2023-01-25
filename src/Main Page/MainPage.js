@@ -131,14 +131,14 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
                   <Link className="write-post-button" to={"/write"} state={{topicForPost: topicId}}>{tr("mainPage.writePost")}</Link>
                 }
               </div>
-              <div className="main-column-post-group">
+              {/* <div className="main-column-post-group">
               {
                 posts ? GetPostsForTopic(topic).length>0 ? sortPosts(GetPostsForTopic(topic)).map((post)=>
                   <Post post={post} currentUser={currentUser} setCurrentUser={setCurrentUser} key={"post"+post.id} />
                 ) : <div className="blog-empty-label flex-center"><h1>{tr("mainPage.mustBeLoggedIn")}</h1></div>
                 : <div className="blog-empty-label flex-center"><img src={require("../img/loading.png")} /></div>
               }
-              </div>
+              </div> */}
             </div>
             {
              topic &&

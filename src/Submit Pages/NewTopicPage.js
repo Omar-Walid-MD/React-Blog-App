@@ -28,6 +28,8 @@ function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
         fgColor: "#ffffff"
     });
 
+    const [topicLogoWindow,setTopicLogoWindow] = useState(false);
+
     const bgImages = 5; const fgImages = 40;
     
     function handleTopic(event)
@@ -136,31 +138,9 @@ function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
                         <h1 className="post-write-form-label">{tr("newTopicPage.createTopic")}</h1>
                         <div className="post-write-form-input-group">
                             <div className="post-write-post-to-form-row flex-row">
-                                <div className="create-topic-form-topic-logo flex-column">
+                                <div className="create-topic-form-topic-logo flex-center">
+                                    <button className="create-topic-form-topic-logo-open-button" type="button" onClick={function(){setTopicLogoWindow(true)}}>{tr("accountPages.editAvatar")}</button>
                                     <TopicLogo topicLogo={topicLogo} width={150} />
-                                    <div className="topic-logo-options-container flex-column">
-                                        <div className="topic-logo-options-row flex-row">
-                                            <div className="topic-logo-image-options flex-row">
-                                                {
-                                                    [...Array(bgImages).keys()].map((n)=>
-                                                    <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/topic-logo/bg"+(n+1)+".png") + ')'}} onClick={function(event){handleTopicLogo(event)}} key={"bg-option-"+n}></button>
-                                                    )
-                                                }
-                                            </div>
-                                            <input className="topic-logo-color-option" type="color" name={"bgColor"} onChange={handleTopicLogo} />
-                                        </div>
-                                        <div className="topic-logo-options-row flex-row">
-                                            <div className="topic-logo-image-options flex-row">
-                                                {
-                                                    [...Array(fgImages).keys()].map((n)=>
-                                                    <button className="topic-logo-image-button flex-center" type="button" name="fgImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/topic-logo/fg"+(n+1)+".png") + ')'}} onClick={function(event){handleTopicLogo(event)}} key={"fg-option-"+n}></button>
-                                                    )
-                                                }
-                                            </div>
-                                            <input className="topic-logo-color-option" type="color" name={"fgColor"} onChange={handleTopicLogo} />
-                                        </div>
-                                    </div>
-
                                 </div>
                                 <input className="create-topic-form-title-input" type="text" name="title" placeholder={tr("newTopicPage.enterTitle")} value={newTopic.title} onChange={handleTopic} required />
                             </div>
@@ -171,6 +151,42 @@ function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
                         </div>
                     </form>
                 </div>
+                {
+                    topicLogoWindow &&
+                    <div className="window-overlay flex-center">
+                        <div className="topic-logo-options-container flex-column">
+                            <h1>{tr("accountPages.userAvatar")}</h1>
+                            <div className="flex-row width-full">
+                                <div className="topic-logo-preview">
+                                    <TopicLogo topicLogo={topicLogo} width={150} />
+                                </div>
+                                <div className="topic-logo-color-option-row flex-row">
+                                    <input className="topic-logo-color-option" type="color" name={"bgColor"} onChange={handleTopicLogo} />
+                                    <input className="topic-logo-color-option" type="color" name={"fgColor"} onChange={handleTopicLogo} />
+                                </div>
+                            </div>
+                            <div className="topic-logo-options-row flex-row">
+                                <div className="topic-logo-image-options flex-row">
+                                    {
+                                        [...Array(bgImages).keys()].map((n)=>
+                                        <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/topic-logo/bg"+(n+1)+".png") + ')'}} onClick={function(event){handleTopicLogo(event)}} key={"bg-option-"+n}></button>
+                                        )
+                                    }
+                                </div>
+                            </div>
+                            <div className="topic-logo-options-row flex-row">
+                                <div className="topic-logo-image-options flex-row">
+                                    {
+                                        [...Array(fgImages).keys()].map((n)=>
+                                        <button className="topic-logo-image-button flex-center" type="button" name="fgImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/topic-logo/fg"+(n+1)+".png") + ')'}} onClick={function(event){handleTopicLogo(event)}} key={"fg-option-"+n}></button>
+                                        )
+                                    }
+                                </div>
+                            </div>
+                            <button className="register-avatar-save-button flex-center" onClick={function(){setTopicLogoWindow(false)}}>{tr("post.save")}</button>
+                        </div>
+                    </div>
+                }                            
             </div>
         </div>
       );

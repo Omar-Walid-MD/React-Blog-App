@@ -15,7 +15,7 @@
         "createTopic": "Create a new Topic",
         "mustBeLoggedIn": "You must be logged in to create a new topic",
         "noNotifs": "No notifications",
-        "clearALL": "Clear All",
+        "clearAll": "Clear All",
         "markAllRead": "Mark All as Read",
         "activity": "Activity",
         "saved": "Saved",
@@ -44,7 +44,7 @@
     "newPostPage":
     {
         "submitTo": "Submit Post to: ",
-        "select": "--Select Topic--",
+        "select": "(Select Topic)",
         "joinedTopics": "Joined Topics:",
         "searchTopics": "Search Topics:",
         "enterTitle": "Enter Title",
