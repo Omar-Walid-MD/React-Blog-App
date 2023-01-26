@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 
 import TopicLogo from "./TopicLogo";
+
+import "./logo.css";
 import "./MainPage.css";
 
 function Notif({notif,currentUser,setRead})
@@ -67,15 +69,16 @@ function Notif({notif,currentUser,setRead})
 
     return (
         <div to={"/post/"+notif.post}  target="_blank" read={notif.state==="read" ? "true" : "false"} className="notification-container flex-row">
-        {
+        {/* {
             topic && 
-            <div className="notification-topic-logo flex-center">
-                <TopicLogo topicLogo={topic.logo} width={40}/>
-            </div>
-        }
+            <TopicLogo topicLogo={topic.logo}/>
+        } */}
         {   user && comment && post && topic &&
             <Link to={"/post/"+notif.post}  target="_blank"  className="notification-content flex-column" onClick={function(){setRead(currentUser,notif)}}>
-                <div className="notification-topic">{topic.title}</div>
+                <div className="notification-header flex-row">
+                    <TopicLogo topicLogo={topic.logo}/>
+                    <div className="notification-topic">{topic.title}</div>
+                </div>
             {
                 
                 notif.type==="comment-tag"

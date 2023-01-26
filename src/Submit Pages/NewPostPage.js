@@ -11,7 +11,7 @@ import i18next from "i18next";
 import "./WritePage.css"
 
 
-function SelectTopic({topic, newPost, setNewPost})
+function SelectTopic({topic, newPost, setNewPost, setSelectTopicWindow})
 {
     const [tr,il8n] = useTranslation();
 
@@ -20,12 +20,14 @@ function SelectTopic({topic, newPost, setNewPost})
         setNewPost({
             ...newPost,
             topic: topic.id
-        })
+        });
+
+        setSelectTopicWindow(false)
     }
 
     return (
         <button className="select-topic-button flex-row" onClick={handlePostTopic}>
-            <TopicLogo topicLogo={topic.logo} width={40} />
+            <TopicLogo topicLogo={topic.logo} />
             <div className="select-topic-info flex-column">
                 <p className="select-topic-info-title">{topic.title}</p>
                 <p className="select-topic-info-members">{topic.members} {tr("mainPage.members")}</p>
@@ -41,6 +43,8 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
     const navigate = useNavigate();
 
     const { topicForPost } = useLocation().state;
+
+    const [selectTopicWindow, setSelectTopicWindow] = useState(false);
 
     const [newPost,setNewPost] = useState({
         title: "",
@@ -211,7 +215,7 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
     }
 
     useEffect(()=>{
-        console.log(newPost);
+        // console.log(newPost);
     },[topicForPost]);
 
     return (
@@ -224,9 +228,9 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
                             <h1 className="post-write-form-label">{tr("newPostPage.submitTo")} </h1>
                             <div className="post-write-form-select-topic-container flex-center">
                             {
-                                newPost.topic !=="" ?
+                                topics && newPost.topic !=="" ?
                                 <div className="selected-topic-container flex-row">
-                                    <TopicLogo topicLogo={GetTopicFromId(newPost.topic).logo} width={60} />
+                                    <TopicLogo topicLogo={GetTopicFromId(newPost.topic).logo} />
                                     <div className="select-topic-info flex-column">
                                         <p className="select-topic-info-title">{GetTopicFromId(newPost.topic).title}</p>
                                         <p className="select-topic-info-members">{GetTopicFromId(newPost.topic).members} {tr("mainPage.members")}</p>
@@ -235,49 +239,10 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
                                 </div>
                                 :
                                 <div className="post-write-form-select-topic-open flex-center">
-                                    <div className="post-write-form-select-topic-open-label flex-center">{tr("newPostPage.select")}</div>
-                                    <div className="post-write-form-select-topic-menu flex-row">
-                                        <div className="post-write-form-select-topic-menu-section">
-                                            <div className="post-write-form-select-topic-menu-label-container">
-                                                <h2>{tr("newPostPage.joinedTopics")}</h2>
-                                            </div>
-                                            <div className="post-write-form-select-topic-results">
-                                            {
-                                                topics && topics.filter((topic)=>currentUser.subbedTopics.includes(topic.id)).map((topic)=>
-                                                <div>
-                                                    <SelectTopic topic={topic} newPost={newPost} setNewPost={setNewPost}/>
-                                                </div>
-                                                )
-                                            }
-                                            </div>
-                                        </div>
-                                        <div className="post-write-form-select-topic-menu-section">
-                                            <div className="post-write-form-select-topic-menu-label-container">
-                                                <h2>{tr("newPostPage.searchTopics")}</h2>
-                                                <input className="post-write-form-select-topic-search" type="search" value={searchTopic} onChange={handleSearchTopic} />
-                                            </div>
-                                            <div className="post-write-form-select-topic-results">
-                                            {
-                                                topics && searchTopic!=="" && GetSearchResults(searchTopic).map((topic)=>
-                                                <div>
-                                                    <SelectTopic topic={topic} newPost={newPost} setNewPost={setNewPost}/>
-                                                </div>
-                                                )
-                                            }
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button className="post-write-form-select-topic-open-button flex-center" type="button" onClick={function(){setSelectTopicWindow(true)}}>({tr("newPostPage.select")})</button>
                                 </div>
                             }
                             </div>
-                            {/* <select className="post-write-form-select-topic" name="topic" value={newPost.topic} onChange={handlePost} required>
-                                <option value={""}>--Select Topic--</option>
-                                {
-                                    topics && topics.map((topic)=>
-                                    <option value={topic.id} key={topic.id}>{topic.title}</option>
-                                    )
-                                }
-                            </select> */}
                         </div>
                         <div className="post-write-form-input-group">
                             <textarea className="post-write-form-title-input" type="text" name="title" placeholder={tr("newPostPage.enterTitle")} minheight={50} value={newPost.title} onChange={handlePost} onInput={AutoResize} required></textarea>
@@ -289,6 +254,47 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
                         </div>
                     </form>
                 </div>
+                {
+                    selectTopicWindow &&
+                    <div className="window-overlay flex-center">
+                        <div className="post-write-form-select-topic-menu flex-column">
+                            <h1>{tr("newPostPage.select")}</h1>
+                            <div className="post-write-form-select-topic-menu-section-group flex-row">
+                                <div className="post-write-form-select-topic-menu-section">
+                                    <div className="post-write-form-select-topic-menu-label-container">
+                                        <h2>{tr("newPostPage.joinedTopics")}</h2>
+                                    </div>
+                                    <div className="post-write-form-select-topic-results">
+                                    {
+                                        topics && topics.filter((topic)=>currentUser.subbedTopics.includes(topic.id)).map((topic)=>
+                                        <div>
+                                            <SelectTopic topic={topic} newPost={newPost} setNewPost={setNewPost} setSelectTopicWindow={setSelectTopicWindow}/>
+                                        </div>
+                                        )
+                                    }
+                                    </div>
+                                </div>
+                                <div className="post-write-form-select-topic-menu-section">
+                                    <div className="post-write-form-select-topic-menu-label-container">
+                                        <h2>{tr("newPostPage.searchTopics")}</h2>
+                                        <input className="post-write-form-select-topic-search" type="search" value={searchTopic} onChange={handleSearchTopic} />
+                                    </div>
+                                    <div className="post-write-form-select-topic-results">
+                                    {
+                                        topics && searchTopic!=="" && GetSearchResults(searchTopic).map((topic)=>
+                                        <div>
+                                            <SelectTopic topic={topic} newPost={newPost} setNewPost={setNewPost} setSelectTopicWindow={setSelectTopicWindow}/>
+                                        </div>
+                                        )
+                                    }
+                                    </div>
+                                </div>
+                            </div>
+                            <button className="button post-write-form-select-topic-menu-close" onClick={function(){setSelectTopicWindow(false)}}>{tr("newPostPage.close")}</button>
+                        </div>
+                    </div>
+
+                }
             </div>
         </div>
     );

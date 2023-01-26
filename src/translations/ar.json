@@ -44,12 +44,13 @@
     "newPostPage":
     {
         "submitTo": "كتابة منشور في",
-        "select": "(اختر الموضوع)",
+        "select": "اختر الموضوع",
         "joinedTopics": "مواضيع تم متابعتها:",
         "searchTopics": "ابحث عن مواضيع:",
         "enterTitle": "ادخل العنوان",
         "enterBody": "ادخل النص",
-        "submit": "نشر"
+        "submit": "نشر",
+        "close": "إغلاق"
     },
     "newTopicPage":
     {

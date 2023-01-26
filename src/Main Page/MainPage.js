@@ -145,7 +145,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
               <div className="side-column">
                 <div className="side-column-container flex-column">
                   <div className="side-column-topic-overview flex-column">
-                    {/* <TopicLogo topicLogo={topic.logo} width={150} /> */}
+                    <TopicLogo topicLogo={topic.logo}/>
                     <div>
                       <h1 className="side-column-topic-title">{topic.title}</h1>
                       <p className="side-column-topic-desc">{topic.description}</p>

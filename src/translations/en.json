@@ -44,12 +44,13 @@
     "newPostPage":
     {
         "submitTo": "Submit Post to: ",
-        "select": "(Select Topic)",
+        "select": "Select Topic",
         "joinedTopics": "Joined Topics:",
         "searchTopics": "Search Topics:",
         "enterTitle": "Enter Title",
         "enterBody": "Enter Body",
-        "submit": "submit"
+        "submit": "submit",
+        "close": "Close"
     },
     "newTopicPage":
     {

@@ -9,6 +9,9 @@ import axios from 'axios';
 
 import TopicLogo from "./TopicLogo";
 
+import './Navbar.css';
+import './MainPage.css'; 
+
 function Navbar({topics, currentUser, setCurrentUser})
 {
   const [tr,il8n] = useTranslation();
@@ -166,14 +169,12 @@ function Navbar({topics, currentUser, setCurrentUser})
 
                           GetSearchResults(searchValue).map((topic)=>
                             <Link to={"/topic/"+topic.id} className="topic-result-container flex-row" key={topic.id}>
-                            <div className="topic-result-logo flex-center">
-                              <TopicLogo topicLogo={topic.logo} width={100} />
-                            </div>
-                            <div className="topic-result-info">
-                              <h2 className="topic-result-title">{topic.title}</h2>
-                              <p className="topic-result-members">{topic.members} {tr("mainPage.members")}</p>
-                            </div>
-                          </Link>
+                              <TopicLogo topicLogo={topic.logo}/>
+                              <div className="topic-result-info">
+                                <h2 className="topic-result-title">{topic.title}</h2>
+                                <p className="topic-result-members">{topic.members} {tr("mainPage.members")}</p>
+                              </div>
+                            </Link>
                           )
                           : <h1 className="topic-results-empty">{tr("header.noResults")} "{searchValue}"</h1>
                         }
@@ -233,14 +234,12 @@ function Navbar({topics, currentUser, setCurrentUser})
               <div className="navbar-profile-menu flex-center">
                 <input className="navbar-profile-checkbox hidden-checkbox" id="navbar-profile-checkbox" type="checkbox" ref={profileCheckbox}/>
                 <label htmlFor="navbar-profile-checkbox" className="navbar-profile-button flex-center" onClick={HandleWindows}>
-                  <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} width={60} />
+                  <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} />
                 </label>
                 <div className="navbar-profile-dropdown-container flex-column">
                   <div className="navbar-profile-dropdown-profile-info flex-column">
                     <h1 className="navbar-profile-username">{currentUser.username}</h1>
-                    <div className="navbar-profile-avatar flex-center">
-                      <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} width={150} />
-                    </div>
+                    <Avatar bgImg={currentUser.avatar.bgImg} bgColor={currentUser.avatar.bgColor} baseColor={currentUser.avatar.baseColor} accImg={currentUser.avatar.accImg} accColor={currentUser.avatar.accColor} />
                     <Link to="/edit-profile" className="navbar-profile-dropdown-edit-profile-link flex-center"><i className='bx bx-edit'></i></Link>
                   </div>
                   <br></br>

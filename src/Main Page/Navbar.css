@@ -1,0 +1,577 @@
+/* NAVBAR */
+
+.navbar
+{
+    width: 100%;
+
+    font-size: 1em;
+    
+    color: white;
+    background-color: darkslateblue;
+
+    position: fixed;
+    top: 0;
+
+    box-shadow: 0 0 3em lightblue;
+
+    padding: 0.6rem 3rem;
+
+    z-index: 2;
+
+}
+
+@keyframes navbar-logo-hover {
+
+    0% {color: lightsteelblue;}
+
+    50% {color: rgb(226, 239, 255);}
+
+    100% {color: lightsteelblue;}
+    
+}
+.navbar-logo
+{
+    color: lightsteelblue;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    font-size: 2.2em;
+    font-weight: 900;
+    text-decoration: none;
+
+    text-align: center;
+
+    text-shadow: 0 0.3em 0.6em rgb(26, 28, 82);
+
+    transition: all 0.2s ease-in;
+
+}
+.navbar-logo:hover
+{
+    transform: scale(1.1);
+    color: lightsteelblue;
+
+    animation: navbar-logo-hover 0.5s 0.2s ease-in-out forwards;
+}
+.navbar-search-container
+{
+    width: 50%; height: 100%;
+
+    margin: 0 1rem;
+
+    position: relative;
+}
+.navbar-search-input
+{
+    width: 100%;
+
+    font-size: 1.5em;
+
+    padding: 0.3em 0.5em;
+
+    border-radius: 2em;
+
+    border: none;
+    outline: none;
+}
+.navbar-search-dropdown
+{
+    width: 100%;
+
+    background-color: darkslateblue;
+
+    border-radius: 0 0 1.2em 1.2em;
+
+    box-shadow: 0 1.2em 1em 0.6em rgba(0, 0, 0, 0.6);
+
+    position: absolute;
+    top: calc(100%);
+
+    overflow: hidden;
+}
+.navbar-search-input:focus +.navbar-search-dropdown
+{
+    display: block;
+}
+.navbar-search-results
+{
+    padding: 0.5em;
+}
+.topic-results-empty
+{
+    text-align: center;
+}
+.topic-result-container
+{
+    color: white;
+    background-color: rgb(102, 91, 173);
+
+    text-decoration: none;
+
+    border-bottom: solid 0.4em lightsteelblue;
+    border-radius: 0.6em;
+
+    padding: 0.5em;
+    margin: 0.2em 0;
+
+    align-items: flex-start;
+
+    transition: all 0.1s ease-in-out;
+}
+.topic-result-container:hover
+{
+    background-color: rgba(176, 196, 222, 0.5);
+}
+.topic-result-container > .topic-logo-container
+{
+    font-size: 0.5em;
+}
+.topic-result-info
+{
+    margin-inline-start: 1.2em;
+    width: 100%;
+}
+.topic-result-info > *
+{
+    margin: 0;
+}
+.navbar-create-topic-tab-container
+{
+    background-color: rebeccapurple;
+    padding: 1.2em;
+}
+.navbar-create-topic-link
+{
+    width: fit-content;
+
+    color: white;
+    
+    font-size: 1em;
+    text-decoration: none;
+
+    transition: all 0.1s ease-in-out;
+    
+}
+.navbar-create-topic-circle
+{
+    height: 3em; aspect-ratio: 1;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    margin-inline-end: 1.2em;
+
+    transition: all 0.1s ease-in-out;
+
+}
+.navbar-create-topic-circle > .add-icon
+{
+    color: purple;
+    font-size: 2em;
+}
+.navbar-create-topic-link:hover
+{
+    color: plum;
+}
+.navbar-create-topic-link:hover .navbar-create-topic-circle
+{
+    background-color: plum;
+}
+.navbar-options
+{
+    height: 100%;
+
+    gap: 1em;
+}
+.navbar-button
+{
+    font-size: 1em;
+}
+.navbar-notif-menu
+{
+    align-self: stretch;
+
+    position: relative;
+}
+.navbar-notif-button
+{
+    font-size: 2.5em;
+
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
+
+    position: relative;
+}
+.navbar-notif-button:hover
+{
+    transform: scale(1.25);
+}
+.notification-bell-label
+{
+    background-color: red;
+
+    height: 1.2em; aspect-ratio: 1;
+
+    font-size: 0.5em;
+    font-weight: 800;
+
+    border-radius: 50%;
+
+    position: absolute;
+    top: 0; right: -0.3em;
+}
+.navbar-notif-dropdown-container
+{
+    width: 20em;
+
+    background-color: rebeccapurple;
+
+    font-size: 1em;
+
+    border-radius: 1.2em;
+    box-shadow: 0 0 2.5em rgba(0, 0, 0, 0.5);
+
+    position: absolute;
+    top: calc(100% + 1em); left: -100%;
+
+    transform-origin: top;
+    transform: scaleY(0);
+
+    transition: transform 0.2s ease-in-out;
+}
+.navbar-notif-dropdown-container[empty="true"]
+{
+    width: 20em; height: 20em;
+
+    display: flex;
+    justify-content: center; align-items: center;
+}
+.navbar-notif-dropdown-notifs
+{
+    width: fit-content; height: fit-content;
+    max-height: 400px;
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 0.4em;
+    padding: 0.4em;
+    gap: 0.6em;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.navbar-notif-checkbox:checked ~.navbar-notif-dropdown-container
+{
+    transform: scaleY(1);
+}
+.navbar-notif-dropdown-notifs::-webkit-scrollbar
+{
+    height: 0.6em;
+    background-color: transparent;
+
+    border-radius: 1.2em 0 0 1.2em;
+}
+.navbar-notif-dropdown-notifs::-webkit-scrollbar-track
+{
+    background-color: rgb(72, 37, 107);
+    border-radius: 1.2em;
+}
+.navbar-notif-dropdown-notifs::-webkit-scrollbar-thumb
+{
+    background: plum;
+    border: 0.3em solid rgb(72, 37, 107);
+    border-radius: 0.6em;
+}
+.navbar-notif-dropdown-bottom
+{
+    width: 100%;
+    background-color: rgb(72, 37, 107);
+
+    padding: 0.6em 1.2em;
+
+    border-radius: 0 0 1.2em 1.2em;
+}
+.navbar-notif-dropdown-bottom-button
+{
+    background-color: transparent;
+    color: white;
+
+    font-size: 1em;
+
+    border: none; outline: none;
+
+    /* transform-origin: center; */
+
+    transition: all 0.1s ease-in-out;
+}
+.navbar-notif-dropdown-bottom-button:hover
+{
+    color: plum;
+    transform: scale(1.1);
+}
+.navbar-notif-dropdown-empty
+{
+    height: 100%;
+
+    padding-bottom: 2em;
+}
+.navbar-notif-dropdown-empty > .empty-notif-img
+{
+    height: 100%; aspect-ratio: 1;
+
+    background-image: url("../img/no-notifs.png");
+    background-size: cover;
+}
+.notification-container
+{
+    background-color: rgb(125, 75, 170);
+
+    font-size: 1em;
+
+    border-radius: 0.6em;
+
+    padding: 0.6em;
+
+    align-items: flex-start;
+
+    transition: transform 0.1s ease-in-out;
+
+    position: relative;
+}
+.notification-container[read="false"]
+{
+    background-color: rgb(130, 110, 190);
+}
+.notification-container:hover
+{
+    transform: scale(1.02);
+}
+.notification-header
+{
+    font-size: 1em;
+    gap: 1em;
+}
+.notification-header > .topic-logo-container
+{
+    font-size: 0.3em;
+}
+.notification-content
+{
+    width: 90%;
+
+    color: white;
+    text-decoration: none;
+
+    margin-inline-start: 0.6em;
+    gap: 0.6em;
+
+    align-items: flex-start;
+}
+.notification-topic-logo
+{
+    width: 3em;
+}
+.notification-topic
+{
+    color: plum;
+
+    font-size: 1.2em;
+    font-weight: 500;
+
+    margin-bottom: 0.2em;
+}
+.notification-username
+{
+    color: lightskyblue;
+}
+.notification-reply
+{
+    margin: 1em 0 1em 0;
+}
+.notification-post
+{
+    color: navajowhite;
+    font-size: 1em;
+    font-weight: 500;
+
+    margin: 0.6em 0;
+}
+.notification-mark-as-read-button
+{
+    font-size: 1.6em;
+
+    background-color: transparent;
+    color: white;
+
+    margin: 0.6em;
+    border: none; outline: none;
+
+    position: absolute;
+    bottom: 0; right: 0;
+
+    transition: all 0.1s ease-in-out;
+
+    pointer-events: all;
+}
+.notification-mark-as-read-button:hover
+{
+    color: plum;
+    transform: scale(1.2);
+}
+.navbar-profile-menu
+{
+    height: 100%;
+
+    position: relative;
+}
+.navbar-profile-checkbox
+{
+    opacity: 0;
+    position: absolute;
+}
+.navbar-profile-button > .avatar-container
+{
+    font-size: 0.8em;
+}
+.navbar-profile-button:hover
+{
+    transform: scale(1.25);
+}
+.navbar-profile-dropdown-container
+{
+    background-color: rebeccapurple;
+
+    font-size: 1em;
+
+    padding: 0.2em 2em;
+
+    border-radius: 1.2em;
+
+    box-shadow: 0 0 2.5em rgba(0, 0, 0, 0.5);
+
+    position: absolute;
+    top: calc(100% + 1em); left: 0;
+
+    visibility: hidden;
+
+    transform-origin: top;
+    transform: scaleY(0);
+
+    transition: all 0.2s ease-in-out;
+}
+.navbar-profile-checkbox:checked ~.navbar-profile-dropdown-container
+{
+    visibility: visible;
+    transform: scaleY(1);
+}
+.navbar-profile-dropdown-profile-info
+{
+    /* width: 20em; */
+    position: relative;
+}
+.navbar-profile-dropdown-profile-info > .avatar-container
+{
+    font-size: 2em;
+}
+.navbar-profile-username
+{
+    font-size: 1.4em
+}
+.navbar-profile-dropdown-edit-profile-link
+{
+    aspect-ratio: 1;
+
+    font-size: 1.8em;
+    font-weight: 700;
+    text-decoration: none;
+
+    color: purple;
+    background-color: white;
+
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+
+    padding: 0.2em;
+
+    border: none;
+    outline: none;
+
+    transition: all 0.2s ease-in-out;
+
+    position: absolute;
+    bottom: 5%; right: 5%;
+
+    cursor: pointer;
+}
+.navbar-profile-dropdown-edit-profile-link:hover
+{
+    background-color: rgb(238, 233, 255);
+    transform: scale(1.25);
+}
+.navbar-profile-dropdown-link
+{
+    color: white;
+
+    font-size: 1.2em;
+    font-weight: 500;
+    text-decoration: none;
+
+    margin: 0.6em 0;
+
+    transition: all 0.1s ease-in-out;
+}
+.navbar-profile-dropdown-link:hover
+{
+    color: plum;
+    transform: scale(1.1);
+}
+
+
+
+    /* MEDIA QUERIES */
+
+@media (max-width:750px)
+{
+    .navbar
+    {
+        font-size: 0.7em;
+        padding: 0.6rem 1.5rem;
+    }
+
+}
+
+@media (max-width:500px)
+{
+    .navbar
+    {
+        font-size: 0.4em;
+        padding: 0.3rem 0.8rem;
+    }
+    .topic-result-container
+    {
+        font-size: 0.6em;
+    }
+    .navbar-notif-dropdown-container
+    {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width:350px)
+{
+    .navbar
+    {
+        padding: 0.3rem 0.3rem;
+    }
+    .navbar-logo
+    {
+        font-size: 1.5em;
+    }
+    .navbar-notif-dropdown-container
+    {
+        font-size: 1em;
+    }
+}

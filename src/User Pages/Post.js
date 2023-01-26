@@ -289,7 +289,7 @@ function Post({post,currentUser,setCurrentUser})
           {
             topic &&
             <Link to={"/topic/"+topic.id} className="post-info-topic-link flex-row">
-              <TopicLogo topicLogo={topic.logo} width={60} />
+              <TopicLogo topicLogo={topic.logo} />
               <p className="post-topic-title">{topic.title}</p>
             </Link>
           }
