@@ -54,8 +54,8 @@ function LoginPage({userList,handleUser})
                 }
             }
         }
-        handleWarning("Email not registered!");
-        console.log("Email not registered");
+        handleWarning("Email not logined!");
+        console.log("Email not logined");
         return;
     }
 
@@ -111,24 +111,22 @@ function LoginPage({userList,handleUser})
                 <form className="login-form-container flex-column" ref={LoginForm} onSubmit={Login}>
                     <h1 className="login-form-label">{tr("accountPages.logIn")}</h1>
                     <div className="login-form-input-group flex-column">
-                        <div className="register-form-input-container">
-                            <input className="register-form-input" type="text" name="email" value={loginInfo.email} required onChange={handleLoginInfo} autocomplete="false"/>
-                            <div className="register-form-input-label">{tr("accountPages.enterEmail")}</div>
+                        <div className="login-form-input-container">
+                            <input className="login-form-input" type="text" name="email" value={loginInfo.email} required onChange={handleLoginInfo} autocomplete="false"/>
+                            <div className="login-form-input-label">{tr("accountPages.enterEmail")}</div>
                         </div>
-                        <div className="register-form-input-container">
-                            <input className="register-form-input" type="password" name="password" value={loginInfo.password} required onChange={handleLoginInfo}/>
-                            <div className="register-form-input-label">{tr("accountPages.enterPassword")}</div>
+                        <div className="login-form-input-container">
+                            <input className="login-form-input" type="password" name="password" value={loginInfo.password} required onChange={handleLoginInfo}/>
+                            <div className="login-form-input-label">{tr("accountPages.enterPassword")}</div>
                         </div>
-                        {/* <input className="login-form-input" type="email" placeholder="Enter Email" name="email" value={loginInfo.email} onChange={handleLoginInfo} required/>
-                        <input className="login-form-input" type="password" placeholder="Enter Password" name="password" value={loginInfo.password} onChange={handleLoginInfo} required/> */}
                     </div>
                     {
                         warning !== "" &&
                         <p className="login-form-warning" onAnimationEnd={ResetWarningAnimation} ref={warningElement} animate="true">{warning}</p>
                     }
-                    <input className="login-form-submit" type="submit" value={tr("accountPages.logIn")} disabled={readyToSubmit()} />
+                    <input className="button login-form-submit" type="submit" value={tr("accountPages.logIn")} disabled={readyToSubmit()} />
                 </form>
-                <Link className="back-button" to={prevPath || "/"}>{tr("accountPages.back")}</Link>
+                <Link className="button back-button" to={prevPath || "/"}>{tr("accountPages.back")}</Link>
             </div>
         </div>
       );
