@@ -9,7 +9,7 @@ import axios from 'axios';
 
 import TopicLogo from "./TopicLogo";
 
-function Header({topics, currentUser, setCurrentUser})
+function Navbar({topics, currentUser, setCurrentUser})
 {
   const [tr,il8n] = useTranslation();
 
@@ -249,14 +249,14 @@ function Header({topics, currentUser, setCurrentUser})
                   <Link to="/saved" className="navbar-profile-dropdown-link">{tr("header.saved")}</Link>
                   <div className="split-line"></div>
                   <br></br>
-                  <button className="navbar-button" onClick={LogOut}>{tr("header.logOut")}</button>
+                  <button className="button navbar-button" onClick={LogOut}>{tr("header.logOut")}</button>
                   <br></br>
                 </div>
               </div>
               </div> 
             : <div className="navbar-options flex-row">
-                <Link to="/register" state={{prevPath: location.pathname}} className="navbar-button">{tr("header.register")}</Link>
-                <Link to="/login" state={{prevPath: location.pathname}} className="navbar-button">{tr("header.logIn")}</Link>
+                <Link to="/register" state={{prevPath: location.pathname}} className="button navbar-button">{tr("header.register")}</Link>
+                <Link to="/login" state={{prevPath: location.pathname}} className="button navbar-button">{tr("header.logIn")}</Link>
               </div>
             
           }
@@ -265,4 +265,4 @@ function Header({topics, currentUser, setCurrentUser})
 
 }
 
-export default Header;
+export default Navbar;

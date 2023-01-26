@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 
-import Header from "../Main Page/Header";
+import Navbar from "./Navbar";
 import Post from "../User Pages/Post";
 import TopicLogo from "./TopicLogo";
 import i18next from "i18next";
@@ -122,38 +122,42 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
 
     return (
         <div className="main-page" lng={i18next.language}>
-          <Header topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          <Navbar topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
           <div className="page-container flex-center">
             <div className="main-column flex-column">
               <div className="blog-sort-container flex-row">
                 {
                   currentUser && 
-                  <Link className="write-post-button" to={"/write"} state={{topicForPost: topicId}}>{tr("mainPage.writePost")}</Link>
+                  <Link className="button write-post-button" to={"/write"} state={{topicForPost: topicId}}>{tr("mainPage.writePost")}</Link>
                 }
               </div>
-              {/* <div className="main-column-post-group">
+              <div className="main-column-post-group">
               {
                 posts ? GetPostsForTopic(topic).length>0 ? sortPosts(GetPostsForTopic(topic)).map((post)=>
                   <Post post={post} currentUser={currentUser} setCurrentUser={setCurrentUser} key={"post"+post.id} />
                 ) : <div className="blog-empty-label flex-center"><h1>{tr("mainPage.mustBeLoggedIn")}</h1></div>
                 : <div className="blog-empty-label flex-center"><img src={require("../img/loading.png")} /></div>
               }
-              </div> */}
+              </div>
             </div>
             {
              topic &&
               <div className="side-column">
-                <div className="side-column-container">
-                  <div className="side-column-topic-overview">
-                    <TopicLogo topicLogo={topic.logo} width={150} />
-                    <h1 className="side-column-topic-title">{topic.title}</h1>
-                    <p className="side-column-topic-desc">{topic.description}</p>
+                <div className="side-column-container flex-column">
+                  <div className="side-column-topic-overview flex-column">
+                    {/* <TopicLogo topicLogo={topic.logo} width={150} /> */}
+                    <div>
+                      <h1 className="side-column-topic-title">{topic.title}</h1>
+                      <p className="side-column-topic-desc">{topic.description}</p>
+                    </div>
                   </div>
-                  <div className="side-column-topic-status flex-row">
-                    <p className="side-column-topic-members">{topic.members} {tr("mainPage.members")}</p>
-                    <button className="side-column-topic-sub-button" subbed={IsTopicSubbed(topicId) ? "true" : "false"} onClick={function(){if(!buttonLock){SetTopicSubbed(topicId); lockButtons();}}}>{IsTopicSubbed(topicId) ? tr("mainPage.unsub") : tr("mainPage.sub")}</button>
-                  </div>
+                  <div className="side-column-topic-info">
+                    <div className="side-column-topic-status flex-row">
+                      <p className="side-column-topic-members">{topic.members} {tr("mainPage.members")}</p>
+                      <button className="button side-column-topic-sub-button" subbed={IsTopicSubbed(topicId) ? "true" : "false"} onClick={function(){if(!buttonLock){SetTopicSubbed(topicId); lockButtons();}}}>{IsTopicSubbed(topicId) ? tr("mainPage.unsub") : tr("mainPage.sub")}</button>
+                    </div>
                     <p className="side-column-topic-date">{tr("mainPage.createdOn")} {new Date(topic.date).toDateString()}</p>
+                  </div>
                 </div>
               </div>
             }

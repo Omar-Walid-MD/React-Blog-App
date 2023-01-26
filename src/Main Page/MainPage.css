@@ -11,10 +11,6 @@ body[lng="ar"]
 {
     direction: rtl;
 }
-button
-{
-    cursor: pointer;
-}
 .flex-center
 {
     display: flex;
@@ -78,6 +74,31 @@ textarea {
 scrollbar-width: none;  /* Firefox */
 }
 
+.button
+{
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+
+    color: purple;
+    background-color: white;
+
+    padding: 0.3em 0.9em;
+    border-radius: 0.5em;
+
+    border: none;
+    outline: none;
+
+    transition: all 0.2s ease-in-out;
+
+    cursor: pointer;
+}
+.button:hover
+{
+    background-color: rgb(238, 233, 255);
+    transform: scale(1.25);
+}
+
 
 
     /* NAVBAR */
@@ -118,7 +139,7 @@ scrollbar-width: none;  /* Firefox */
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-    font-size: 2em;
+    font-size: 2.2em;
     font-weight: 900;
     text-decoration: none;
 
@@ -261,32 +282,11 @@ scrollbar-width: none;  /* Firefox */
 {
     height: 100%;
 
-    gap: 2em;
+    gap: 1em;
 }
 .navbar-button
 {
-    font-size: 1.2em;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-
-    color: purple;
-    background-color: white;
-
-    padding: 0.3em 0.9em;
-    border-radius: 0.5em;
-
-    border: none;
-    outline: none;
-
-    transition: all 0.2s ease-in-out;
-
-    cursor: pointer;
-}
-.navbar-button:hover
-{
-    background-color: rgb(238, 233, 255);
-    transform: scale(1.25);
+    font-size: 1em;
 }
 .navbar-notif-menu
 {
@@ -651,10 +651,15 @@ scrollbar-width: none;  /* Firefox */
     background: linear-gradient(rgb(199, 210, 224),rgb(135, 173, 223));
     background-attachment: fixed;
 
-    padding-top: 80px;
+    /* margin: auto; */
+    padding: 0em 1em;
+    padding-top: 8em;
+    gap: 1em;
     
-
     align-items: flex-start;
+
+    position: absolute;
+    top: 0; left: 0;
 }
 .page-container[header="none"]
 {
@@ -663,10 +668,10 @@ scrollbar-width: none;  /* Firefox */
 }
 .main-column
 {
-    width: 700px;
+    width: min(700px,100vw);
 
-    padding: 50px 0;
-
+    font-size: 1rem;
+    
 }
 .main-column > *
 {
@@ -674,33 +679,17 @@ scrollbar-width: none;  /* Firefox */
 }
 .blog-sort-container
 {
-    height: 80px;
+    font-size: 1em;
 
-    border-radius: 20px;
-    padding: 20px;
+    border-radius: 1.2em;
+    padding: 0.8em;
 
     background-color: darkslateblue;
 
 }
 .write-post-button
 {
-    font-size: 18pt;
-    font-weight: 500;
-    text-decoration: none;
-
-    background-color: white;
-    color: purple;
-
-    padding: 5px 10px;
-    border-radius: 10px;
-    transition: all 0.2s ease-in-out;
-
-    cursor: pointer;
-}
-.write-post-button:hover
-{
-    background-color: rgb(238, 233, 255);
-    transform: scale(1.1);
+    font-size: 1.2em;
 }
 .main-column-post-group
 {
@@ -727,13 +716,15 @@ scrollbar-width: none;  /* Firefox */
     color: white;
     background-color: rebeccapurple;
 
+    font-size: 1em;
+
     box-shadow: 0 0.6em 1.2em rgb(91, 91, 128);
 
-    border-radius: 20px;
+    border-radius: 1.2em;
 
     align-items: flex-start;
 
-    margin-top: 20px;
+    margin-top: 1.2em;
 
     position: relative;
 
@@ -745,7 +736,7 @@ scrollbar-width: none;  /* Firefox */
     color: white;
     text-decoration: none;
 
-    padding: 0 20px;
+    padding: 0 1.2em;
 }
 .post-topic-logo-background
 {
@@ -773,7 +764,7 @@ scrollbar-width: none;  /* Firefox */
 {
     width: fit-content;
     
-    margin: 20px 0;
+    margin: 1.2em 0;
 }
 .post-info-topic-link, .post-link
 {
@@ -789,30 +780,30 @@ scrollbar-width: none;  /* Firefox */
 }
 .post-topic-title
 {
-    font-size: 12pt;
+    font-size: 1.3em;
     font-weight: 700;
 
-    margin: 0 10px;
+    margin: 0 0.6em;
 }
 .post-date
 {
     color: plum;
     
-    font-size: 10pt;
+    font-size: 1em;
     font-weight: 500;
 }
 .post-title
 {
-    font-size: 18pt;
+    font-size: 1.9em;
     margin: 0;
 }
 .post-body
 {
-    font-size: 14pt;
+    font-size: 1.5em;
 
     white-space: pre-line;
 
-    max-height: 300px;
+    max-height: 19em;
     overflow: hidden;
 }
 .post-long-shadow
@@ -824,28 +815,29 @@ scrollbar-width: none;  /* Firefox */
 
     position: absolute;
 
-    bottom: 40px; left: 0;
+    bottom: 2.5em; left: 0;
 }
 .post-bottom-bar
 {
-    width: 100%; height: 30px;
+    width: 100%;
+
+    font-size: 1.6em;
 
     background-color: rgb(72, 37, 107);
 
-
-    padding: 20px;
+    padding: 0.2em 1.2em;
 }
 .post-options
 {
-    gap: 20px;
+    gap: 1.2em;
 }
 .post-votes-container
 {
-    gap: 10px;
+    gap: 0.6em;
 }
 .voting-button
 {
-    font-size: 15pt;
+    font-size: 1em;
 
     color: white;
     background-color: transparent;
@@ -864,14 +856,13 @@ scrollbar-width: none;  /* Firefox */
 }
 .voting-icon
 {
-    font-size: 20pt;
-    margin-inline-end: 5px;
+    font-size: 1.1em !important;
+    margin-inline-end: 0.2em;
 }
 .voting-button[vote="like"]
 {
     color: red;
 }
-
 .voting-button[vote="dislike"]
 {
     color: deepskyblue;
@@ -879,7 +870,7 @@ scrollbar-width: none;  /* Firefox */
 
 .comment-button
 {
-    font-size: 15pt;
+    font-size: 1em;
 
     color: white;
     text-decoration: none;
@@ -888,7 +879,7 @@ scrollbar-width: none;  /* Firefox */
 
     transition: transform 0.1s ease-in-out ;
 
-    margin-bottom: 5px;    
+    margin-bottom: 0.3em;    
 }
 .comment-button:hover
 {
@@ -896,12 +887,12 @@ scrollbar-width: none;  /* Firefox */
 }
 .comment-icon
 {
-    font-size: 20pt;
-    padding-inline-end: 5px;
+    font-size: 1.1em !important;
+    padding-inline-end: 0.3em;
 }
 .save-button
 {
-    font-size: 15pt;
+    font-size: 1em;
 
     color: white;
     background-color: transparent;
@@ -924,19 +915,25 @@ scrollbar-width: none;  /* Firefox */
 
 .side-column
 {
-    margin-top: 50px;
+    width: min(400px,100vw);
+
+    font-size: 1rem;
+
+    padding: 0 3em;
 }
 .side-column-container
 {
-    width: 400px;
+    /* width: min(400px,100%); */
+    width: 100%;
+
+    font-size: 1em;
     
     color: white;
     background-color: darkslateblue;
 
-    border-radius: 20px;
+    border-radius: 1.2em;
 
-    padding: 20px;
-    margin-inline-start: 50px;
+    padding: 1.2em;
 
 }
 .side-column-topic-title
@@ -947,42 +944,36 @@ scrollbar-width: none;  /* Firefox */
 
 .side-column-topic-desc
 {
-    font-size: 15pt;
+    font-size: 1.3em;
     font-weight: 500;
+}
+.side-column-topic-info
+{
+    width: 100%;
 }
 .side-column-topic-status
 {
-    margin: 0 30px;
+    width: 100%;
+    padding: 0 1em;
 }
 .side-column-topic-members
 {
-    font-size: 16pt;
+    font-size: 1.3em;
     font-weight: 500;
 }
 .side-column-topic-sub-button
 {
-    font-size: 15pt;
-    font-weight: 700;
-    text-decoration: none;
-
-    outline: none;
-    border: none;
-
-    background-color: white;
-    color: purple;
-
-    padding: 5px 10px;
-    border-radius: 10px;
-    transition: all 0.2s ease-in-out;
-
-    cursor: pointer;
+    font-size: 1.2em;
 }
 .side-column-topic-sub-button[subbed="true"]
 {
     background-color: purple;
     color: white;
 
-    border: 3px solid white;
+    font-size: 0.85em;
+    padding: 0.3em 0.8em;
+
+    border: 0.2em solid white;
 }
 .side-column-topic-sub-button:hover
 {
@@ -1001,6 +992,45 @@ scrollbar-width: none;  /* Firefox */
 
 
     /* MEDIA QUERIES */
+
+@media (max-width:850px)
+{
+    .page-container
+    {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .main-column
+    {
+        padding: 0 1em;
+    }
+    .side-column
+    {
+        width: min(700px,100vw);
+        font-size: 0.8em;
+        padding: 0 1em;
+    }
+    .side-column-container
+    {
+        width: 100%;
+        gap: 2em;
+        align-items: flex-start;
+    }
+    .side-column-topic-overview
+    {
+        flex-direction: row;
+        gap: 2em;
+    }
+    .side-column-topic-info
+    {
+        width: auto;
+    }
+    .side-column-topic-status
+    {
+        width: auto;
+        gap: 2em;
+    }
+}
 @media (max-width:750px)
 {
     .navbar
@@ -1028,6 +1058,23 @@ scrollbar-width: none;  /* Firefox */
     {
         width: 60px;
     }
+
+    .main-column
+    {
+        font-size: 0.7em;
+    }
+
+    .side-column
+    {
+        font-size: 0.7em;
+    }
+    .side-column-container
+    {
+        gap: 0em;
+    }
+
+    
+    
 }
 
 @media (max-width:500px)
@@ -1060,5 +1107,37 @@ scrollbar-width: none;  /* Firefox */
     .notification-container
     {
         flex-direction: column;
+    }
+
+    .main-column
+    {
+        font-size: 0.5em;
+    }
+    .post-options
+    {
+        gap: 0.8em;
+    }
+    .post-votes-container
+    {
+        gap: 0.3em;
+    }
+
+    .main-column
+    {
+        font-size: 0.5em;
+    }
+
+}
+
+@media (max-width:350px)
+{
+    .main-column
+    {
+        font-size: 0.4em;
+    }
+
+    .side-column
+    {
+        font-size: 0.4em;
     }
 }

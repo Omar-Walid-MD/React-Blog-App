@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import axios from 'axios';
 
-import Header from "../Main Page/Header";
+import Navbar from "../Main Page/Navbar";
 import TopicLogo from "../Main Page/TopicLogo";
 import i18next from "i18next";
 
@@ -216,7 +216,7 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
 
     return (
         <div className="main-page">
-        <Header topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <Navbar topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
             <div className="page-container flex-center">
                 <div className="main-column flex-column">
                     <form className="post-write-form-container flex-column" onSubmit={submitPost}>

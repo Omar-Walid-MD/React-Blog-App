@@ -3,7 +3,7 @@ import { Link, useParams, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 
-import Header from "../Main Page/Header";
+import Navbar from "../Main Page/Navbar";
 import Comment from "./Comment";
 import TopicLogo from "../Main Page/TopicLogo";
 
@@ -587,7 +587,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
 
     return (
         <div className="main-page">
-        <Header topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <Navbar topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
           <div className="page-container flex-center">
             {
                 post &&
