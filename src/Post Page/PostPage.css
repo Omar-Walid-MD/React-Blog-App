@@ -5,10 +5,10 @@
 }
 .post-page-post-container
 {
-    color: white;
-    background-color: rebeccapurple;
+    color: var(--txt);
+    background-color: var(--bdy);
 
-    box-shadow: 0 0.6em 1.2em rgb(91, 91, 128);
+    box-shadow: 0 0.6em 1.2em var(--bdy-dark);
 
     border-radius: 1.2em;
 
@@ -23,14 +23,14 @@
 }
 .post-page-post-info
 {
-    color: white;
+    color: var(--txt);
     text-decoration: none;
 
     padding: 0 1.2em;
 }
 .post-page-post-date
 {
-    color: plum;
+    color: var(--txt-2);
     
     font-size: 1em;
     font-weight: 500;
@@ -49,7 +49,7 @@
 }
 .post-page-bottom-bar
 {
-    box-shadow: 0 0.6em 1.2em rgb(91, 91, 128);
+    box-shadow: 0 0.6em 1.2em var(--bdy-dark);
 
     border-radius: 1.2em;
     margin: 0.6em 0;
@@ -61,9 +61,9 @@
 
     font-size: 1em;
 
-    background-color: rebeccapurple;
+    background-color: var(--bdy);
 
-    box-shadow: 0 0.6em 1.2em rgb(91, 91, 128);
+    box-shadow: 0 0.6em 1.2em var(--bdy-dark);
 
     border-radius: 1.2em;
     
@@ -76,7 +76,8 @@
 
     font-size: 1em;
 
-    background-color: rgb(72, 37, 107);
+    background-color: var(--bdy-dark);
+    /* background-color: var(--bdy-dark); */
 
     box-shadow: 0 0.6em 1.2em rgba(0, 0, 0, 0.5);
 
@@ -116,8 +117,8 @@
     font-weight: 500;
     text-align: center;
 
-    color: plum;
-    background-color: rgb(72, 37, 107);
+    color: var(--txt-2);
+    background-color: var(--bdy-dark);
 
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 
@@ -131,13 +132,13 @@
     font-weight: 500;
     text-align: center;
 
-    color: plum;
+    color: var(--txt-2);
     
     padding: 20px;
 }
 .post-page-comments-section
 {
-    border-top: 0.4em solid rgb(72, 37, 107);
+    border-top: 0.4em solid var(--bdy-dark);
 
     margin: 1.8em 0;
 }
@@ -145,7 +146,7 @@
 {
     width: 100%;
 
-    color: white;
+    color: var(--txt);
     text-align: center;
 
     margin: 3em 0;
@@ -156,8 +157,8 @@
 
     font-size: 0.8em;
 
-    color: white;
-    background-color: rgb(72, 37, 107);
+    color: var(--txt);
+    background-color: var(--bdy-dark);
 
     box-shadow: 0 0.6em 1.2em rgba(0, 0, 0, 0.5);
     border-radius: 1.25em;
@@ -165,7 +166,6 @@
     margin-top: 1.8em;
 
     position: relative;
-
 }
 .post-page-comment-wrapper
 {
@@ -183,7 +183,7 @@
 }
 .post-page-comment-info
 {
-    color: plum;
+    color: var(--txt-2);
     font-size: 1em;
     font-weight: 500;
 
@@ -204,15 +204,13 @@
     white-space: pre-line;
 }
 
-
-
 .comment-bottom-bar
 {
     width: 100%;
 
     font-size: 2em;
 
-    background-color: rgb(50, 30, 75);
+    background-color: var(--bdy-darker);
 
     padding: 0.2em 0.8em;
 
@@ -233,7 +231,7 @@
 {
     font-size: 15pt;
 
-    color: white;
+    color: var(--txt);
     background-color: transparent;
 
     border: none;
@@ -263,7 +261,7 @@
     font-size: 1em;
 
     background-color: transparent;
-    color: white;
+    color: var(--txt);
 
     text-decoration: none;
 
@@ -290,7 +288,7 @@
 {
     font-size: 15pt;
 
-    color: white;
+    color: var(--txt);
     background-color: transparent;
 
     border: none;
@@ -323,11 +321,12 @@
 }
 .post-page-comment-replies-container
 {
-    transform: scaleY(1);
-
+    max-height: 0; height: max-content;
+    
+    transform: scaleY(0);
     transform-origin: top;
 
-    margin-bottom: 5em;
+    /* transition: transform 0.1s ease-in-out; */
 
     position: relative;
 
@@ -344,7 +343,7 @@
 
     font-size: 0.8em;
 
-    background-color: rgb(72, 37, 107);
+    background-color: var(--bdy-dark);
 
     box-shadow: 0 0.6em 1.2em rgba(0, 0, 0, 0.5);
 
@@ -384,13 +383,10 @@
 }
 .post-page-comment-reply-checkbox:checked ~.post-page-comment-replies-container
 {
+    max-height: fit-content;
+    margin-bottom: 5em; 
     transform: scaleY(1);
 }
-.post-page-comment-reply-checkbox:checked ~.post-page-comment-replies-container >.post-page-comment-replies-section
-{
-    height: fit-content;
-}
-
 .post-page-comment-reply-checkbox:checked +.post-page-comment-content-container > .comment-bottom-bar .comment-reply-button .reply-arrow-icon
 {
     transform: rotate(180deg);
@@ -459,7 +455,7 @@ body[lng="ar"] .reply-pointer-line
 
 .user-tag
 {
-    color: lightskyblue;
+    color: var(--usertag);
 
     text-decoration: none;
 
@@ -493,7 +489,7 @@ body[lng="ar"] .reply-pointer-line
 {
     .user-tag:hover
     {
-        color: dodgerblue;
+        color: var(--usertag-hover);
     }
     .comment-reply-button:hover
     {

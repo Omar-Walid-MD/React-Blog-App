@@ -6,13 +6,13 @@
 
     font-size: 1em;
     
-    color: white;
-    background-color: darkslateblue;
+    color: var(--txt);
+    background-color: var(--nav);
 
     position: fixed;
     top: 0;
 
-    box-shadow: 0 0 3em lightblue;
+    box-shadow: 0 0 3em var(--shade);
 
     padding: 0.6rem 3rem;
 
@@ -78,7 +78,7 @@
 {
     width: 100%;
 
-    background-color: darkslateblue;
+    background-color: var(--nav);
 
     border-radius: 0 0 1.2em 1.2em;
 
@@ -103,7 +103,7 @@
 }
 .topic-result-container
 {
-    color: white;
+    color: var(--txt);
     background-color: rgb(102, 91, 173);
 
     text-decoration: none;
@@ -137,14 +137,14 @@
 }
 .navbar-create-topic-tab-container
 {
-    background-color: rebeccapurple;
+    background-color: var(--bdy);
     padding: 1.2em;
 }
 .navbar-create-topic-link
 {
     width: fit-content;
 
-    color: white;
+    color: var(--txt);
     
     font-size: 1em;
     text-decoration: none;
@@ -167,16 +167,16 @@
 }
 .navbar-create-topic-circle > .add-icon
 {
-    color: purple;
+    color: var(--btn-color);
     font-size: 2em;
 }
 .navbar-create-topic-link:hover
 {
-    color: plum;
+    color: var(--txt-2);
 }
 .navbar-create-topic-link:hover .navbar-create-topic-circle
 {
-    background-color: plum;
+    background-color: var(--txt-2);
 }
 .navbar-options
 {
@@ -226,7 +226,7 @@
 {
     width: 20em;
 
-    background-color: rebeccapurple;
+    background-color: var(--bdy);
 
     font-size: 1em;
 
@@ -276,19 +276,19 @@
 }
 .navbar-notif-dropdown-notifs::-webkit-scrollbar-track
 {
-    background-color: rgb(72, 37, 107);
+    background-color: var(--bdy-dark);
     border-radius: 1.2em;
 }
 .navbar-notif-dropdown-notifs::-webkit-scrollbar-thumb
 {
-    background: plum;
-    border: 0.3em solid rgb(72, 37, 107);
+    background: var(--txt-2);
+    border: 0.3em solid var(--bdy-dark);
     border-radius: 0.6em;
 }
 .navbar-notif-dropdown-bottom
 {
     width: 100%;
-    background-color: rgb(72, 37, 107);
+    background-color: var(--bdy-dark);
 
     padding: 0.6em 1.2em;
 
@@ -297,7 +297,7 @@
 .navbar-notif-dropdown-bottom-button
 {
     background-color: transparent;
-    color: white;
+    color: var(--txt);
 
     font-size: 1em;
 
@@ -309,7 +309,7 @@
 }
 .navbar-notif-dropdown-bottom-button:hover
 {
-    color: plum;
+    color: var(--txt-2);
     transform: scale(1.1);
 }
 .navbar-notif-dropdown-empty
@@ -362,7 +362,7 @@
 {
     width: 90%;
 
-    color: white;
+    color: var(--txt);
     text-decoration: none;
 
     margin-inline-start: 0.6em;
@@ -376,7 +376,7 @@
 }
 .notification-topic
 {
-    color: plum;
+    color: var(--txt-2);
 
     font-size: 1.2em;
     font-weight: 500;
@@ -404,7 +404,7 @@
     font-size: 1.6em;
 
     background-color: transparent;
-    color: white;
+    color: var(--txt);
 
     margin: 0.6em;
     border: none; outline: none;
@@ -418,7 +418,7 @@
 }
 .notification-mark-as-read-button:hover
 {
-    color: plum;
+    color: var(--txt-2);
     transform: scale(1.2);
 }
 .navbar-profile-menu
@@ -448,7 +448,7 @@
 }
 .navbar-profile-dropdown-container
 {
-    background-color: rebeccapurple;
+    background-color: var(--bdy);
 
     font-size: 1em;
 
@@ -494,8 +494,8 @@
     font-weight: 700;
     text-decoration: none;
 
-    color: purple;
-    background-color: white;
+    color: var(--btn-color);
+    background-color: var(--btn-bg);
 
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
     border-radius: 50%;
@@ -519,7 +519,7 @@
 }
 .navbar-profile-dropdown-link
 {
-    color: white;
+    color: var(--txt);
 
     font-size: 1.2em;
     font-weight: 500;
@@ -531,7 +531,7 @@
 }
 .navbar-profile-dropdown-link:hover
 {
-    color: plum;
+    color: var(--txt-2);
     transform: scale(1.1);
 }
 

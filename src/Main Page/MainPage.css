@@ -64,14 +64,16 @@ body[lng="ar"]
     width: 100%;
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
-textarea::-webkit-scrollbar {
-display: none;
+textarea::-webkit-scrollbar 
+{
+    display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-textarea {
--ms-overflow-style: none;  /* IE and Edge */
-scrollbar-width: none;  /* Firefox */
+textarea
+{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 *
 {
@@ -79,14 +81,64 @@ scrollbar-width: none;  /* Firefox */
     -webkit-touch-callout: none;
 }
 
+:root
+{
+    --page-bg-1: rgb(199, 210, 224);
+    --page-bg-2: rgb(135, 173, 223);
+    --nav: darkslateblue;
+    --shade: lightblue;
+
+    --bdy: rebeccapurple;
+    --bdy-dark: rgb(72, 37, 107);
+    --bdy-darker: rgb(50, 30, 75);
+
+    --txt: white;
+    --txt-2: plum;
+
+    --btn-bg: white;
+    --btn-color: purple;
+    --btn-active: rgb(145, 130, 200);
+    --btn-hover: rgb(240, 230, 255);
+    --btn-hover-highlight: rgb(185, 0, 185);
+
+    --usertag: lightskyblue;
+    --usertag-hover: dodgerblue;
+    
+}
+
+[theme="dark"]
+{
+    --page-bg-1: rgb(77, 77, 77);
+    --page-bg-2: rgb(73, 73, 73);
+    --nav: black;
+    --shade: lightgrey;
+
+    --bdy: dimgrey;
+    --bdy-dark: rgb(49, 49, 49);
+    --bdy-darker: rgb(15, 15, 15);
+
+    --txt: white;
+    --txt-2: rgb(180, 180, 180);
+
+    --btn-bg: white;
+    --btn-color: rgb(66, 66, 66);
+    --btn-active: rgb(133, 133, 133);
+    --btn-hover: rgb(187, 187, 187);
+    --btn-hover-highlight: rgb(150, 150, 150);
+
+    --usertag: lightskyblue;
+    --usertag-hover: dodgerblue;
+}
+
+
 .button
 {
     font-weight: 700;
     text-decoration: none;
     text-align: center;
 
-    color: purple;
-    background-color: white;
+    color: var(--btn-color);
+    background-color: var(--btn-bg);
 
     padding: 0.3em 0.9em;
     border-radius: 0.5em;
@@ -100,7 +152,7 @@ scrollbar-width: none;  /* Firefox */
 }
 .button:active
 {
-    background-color: rgb(136, 119, 190);
+    background-color: var(--btn-active);
     transform: scale(0.8);
 }
 .page-container
@@ -108,7 +160,7 @@ scrollbar-width: none;  /* Firefox */
     width: 100vw; min-height: 100vh;
 
     /* background-color: lightsteelblue; */
-    background: linear-gradient(rgb(199, 210, 224),rgb(135, 173, 223));
+    background: linear-gradient(var(--page-bg-1),var(--page-bg-2));
     background-attachment: fixed;
 
     /* margin: auto; */
@@ -144,7 +196,7 @@ scrollbar-width: none;  /* Firefox */
     border-radius: 1.2em;
     padding: 0.8em;
 
-    background-color: darkslateblue;
+    background-color: var(--nav);
 
 }
 .write-post-button
@@ -159,7 +211,7 @@ scrollbar-width: none;  /* Firefox */
 {
     width: 100%; height: 500px;
 
-    color: rebeccapurple;
+    color: var(--bdy);
 }
 @keyframes loading {
     0% {transform: rotateZ(0deg);}
@@ -173,12 +225,12 @@ scrollbar-width: none;  /* Firefox */
 }
 .post-container
 {
-    color: white;
-    background-color: rebeccapurple;
+    color: var(--txt);
+    background-color: var(--bdy);
 
     font-size: 1em;
 
-    box-shadow: 0 0.6em 1.2em rgb(91, 91, 128);
+    box-shadow: 0 0.6em 1.2em var(--bdy-dark);
 
     border-radius: 1.2em;
 
@@ -193,33 +245,11 @@ scrollbar-width: none;  /* Firefox */
 }
 .post-info
 {
-    color: white;
+    color: var(--txt);
     text-decoration: none;
 
     padding: 0 1.2em;
 }
-/* .post-topic-logo-background
-{
-    width: 50px; aspect-ratio: 1;
-
-    background-blend-mode: hard-light;
-    
-    background-size: cover;
-
-    border-radius: 10px;
-
-    border: 2.5px solid white;
-
-    box-shadow: inset 0 0 20px black;
-
-    position: relative;
-    
-    transition: all 0.1s ease-in-out;
-}
-.post-topic-logo-background:hover
-{
-    transform: scale(1.25);
-} */
 .post-info-top-row
 {
     width: fit-content;
@@ -228,7 +258,7 @@ scrollbar-width: none;  /* Firefox */
 }
 .post-info-topic-link, .post-link
 {
-    color: white;
+    color: var(--txt);
 
     text-decoration: none;
 
@@ -251,7 +281,7 @@ scrollbar-width: none;  /* Firefox */
 }
 .post-date
 {
-    color: plum;
+    color: var(--txt-2);
     
     font-size: 1em;
     font-weight: 500;
@@ -275,7 +305,7 @@ scrollbar-width: none;  /* Firefox */
     height: 200px; width: 100%;
 
     /* background-color: black; */
-    background-image:  linear-gradient(transparent,rebeccapurple 80%);
+    background-image:  linear-gradient(transparent,var(--bdy) 80%);
 
     position: absolute;
 
@@ -287,7 +317,7 @@ scrollbar-width: none;  /* Firefox */
 
     font-size: 1.6em;
 
-    background-color: rgb(72, 37, 107);
+    background-color: var(--bdy-dark);
 
     padding: 0.2em 1.2em;
 }
@@ -304,7 +334,7 @@ scrollbar-width: none;  /* Firefox */
 {
     font-size: 1em;
 
-    color: white;
+    color: var(--txt);
     background-color: transparent;
 
     border: none;
@@ -334,7 +364,7 @@ scrollbar-width: none;  /* Firefox */
 {
     font-size: 1em;
 
-    color: white;
+    color: var(--txt);
     text-decoration: none;
 
     cursor: pointer;
@@ -354,7 +384,7 @@ scrollbar-width: none;  /* Firefox */
 {
     font-size: 1em;
 
-    color: white;
+    color: var(--txt);
     background-color: transparent;
 
     border: none;
@@ -388,8 +418,8 @@ scrollbar-width: none;  /* Firefox */
 
     font-size: 1em;
     
-    color: white;
-    background-color: darkslateblue;
+    color: var(--txt);
+    background-color: var(--nav);
 
     border-radius: 1.2em;
 
@@ -402,7 +432,7 @@ scrollbar-width: none;  /* Firefox */
 }
 .side-column-topic-title
 {
-    color: white;
+    color: var(--txt);
     text-decoration: none;
 }
 .side-column-topic-desc
@@ -430,8 +460,8 @@ scrollbar-width: none;  /* Firefox */
 }
 .side-column-topic-sub-button[subbed="true"]
 {
-    background-color: purple;
-    color: white;
+    background-color: var(--btn-color);
+    color: var(--txt);
 
     font-size: 0.85em;
     padding: 0.3em 0.8em;
@@ -444,18 +474,9 @@ scrollbar-width: none;  /* Firefox */
 }
 .side-column-topic-date
 {
-    color: plum;
+    color: var(--txt-2);
 }
 
-
-@keyframes popup
-{
-    0% {transform: translateY(12em);}
-    10% {transform: translateY(0%);}
-
-    90% {transform: translateY(0%);}
-    100% {transform: translateY(12em);}
-}
 .popup-container
 {
     position: fixed;
@@ -464,28 +485,27 @@ scrollbar-width: none;  /* Firefox */
     height: 25vh; width: 100vw;
 
     pointer-events: none;
-    /* background-color: red; */
-    /* background-color: rgba(0, 0, 0, 0.2); */
+
+    transition: opacity 0.2s ease-in-out;
 }
+
 .popup
 {
     position: absolute;
     
-    background-color: white;
+    background-color: var(--btn-bg);
 
     font-size: min(20pt,5vw);
 
-    border-radius: 1em;
-    box-shadow: 0 0 10px black;
+    border-radius: 0.8em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
-    padding: 0.1em 1em;
+    padding: 0.5em 1em;
 
     transform: translateY(10em);
 
     transition: transform 0.5s ease-in-out;
 
-
-    /* animation: popup 5s forwards ease-in-out; */
 }
 .popup[active="true"]
 {
@@ -495,6 +515,9 @@ scrollbar-width: none;  /* Firefox */
 {
     font-size: 1em;
     font-weight: 600;
+    color: var(--bdy);
+
+    margin: 0;
 
 }
 
@@ -609,7 +632,7 @@ scrollbar-width: none;  /* Firefox */
 {
     .button:hover
     {
-        background-color: rgb(238, 233, 255);
+        background-color: var(--btn-hover);
         transform: scale(1.25);
     }
     .post-info-topic-link:hover
@@ -622,11 +645,11 @@ scrollbar-width: none;  /* Firefox */
     }
     .side-column-topic-sub-button:hover
     {
-        background-color: rgb(238, 233, 255);
+        background-color: var(--btn-hover);
         transform: scale(1.1);
     }
     .side-column-topic-sub-button[subbed="true"]:hover
     {
-        background-color: rgb(185, 0, 185);
+        background-color: var(--btn-hover-highlight);
     }
 }

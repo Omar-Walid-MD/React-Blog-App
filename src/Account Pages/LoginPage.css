@@ -4,7 +4,7 @@
 
     font-size: 1em;
 
-    background-color: darkslateblue;
+    background-color: var(--nav);
 
     box-shadow: 0 0.6em 1.2em rgba(0, 0, 0, 0.5);
 
@@ -16,7 +16,7 @@
 {
     font-size: 2em;
 
-    color: white;
+    color: var(--txt);
 
     margin: 0.6em;
 }
@@ -77,8 +77,8 @@
 .login-form-input
 {
     width: 100%;
-    background-color: darkslateblue;
-    color: white;
+    background-color: var(--nav);
+    color: var(--txt);
 
     font-size: 1em;
 
@@ -92,7 +92,7 @@
 }
 .login-form-input-label
 {
-    color: white;
+    color: var(--txt);
     font-size: 1em;
 
     margin-inline-start: 0.6em;
@@ -107,7 +107,7 @@
 }
 .login-form-input:focus +.login-form-input-label
 {
-    background-color: darkslateblue;
+    background-color: var(--nav);
 
     font-size: 0.8em;
 
@@ -115,7 +115,7 @@
 }
 .login-form-input:not([value=""]) +.login-form-input-label
 {
-    background-color: darkslateblue;
+    background-color: var(--nav);
 
     font-size: 0.8em;
 
@@ -125,8 +125,8 @@
 .login-form-input:-webkit-autofill:hover,
 .login-form-input:-webkit-autofill:focus,
 .login-form-input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px darkslateblue inset;
-    -webkit-text-fill-color: white !important;
+    -webkit-box-shadow: 0 0 0 30px var(--nav) inset;
+    -webkit-text-fill-color: var(--txt) !important;
 
 }
 
@@ -134,8 +134,8 @@
 {
     font-size: 1.5em;
 
-    background-color: darkslateblue;
-    color: white;
+    background-color: var(--nav);
+    color: var(--txt);
 
     text-decoration: none;
 

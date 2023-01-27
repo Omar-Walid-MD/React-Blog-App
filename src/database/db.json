@@ -13,13 +13,13 @@
         "bgImg": "1"
       },
       "subbedTopics": [
-        "topic-8911298389"
+        "topic-8911298389",
+        "topic-9186347593"
       ],
       "likes": [
         "post-1432977528",
         "post-6423576815",
         "post-4581794152",
-        "post-6368489845",
         "post-6369769999"
       ],
       "dislikes": [
@@ -35,8 +35,7 @@
         "comment-2935444123",
         "comment-8291228199",
         "post-2622658512",
-        "post-6369769999",
-        "post-8394453844"
+        "post-6369769999"
       ],
       "notifs": [
         {
@@ -83,7 +82,7 @@
         "fgColor": "#56ebf5"
       },
       "posts": [],
-      "members": 1,
+      "members": 2,
       "date": 1666467538107
     },
     {
@@ -219,7 +218,7 @@
       "body": "Hopefully you find my comment",
       "topic": "topic-9186347593",
       "id": "post-6368489845",
-      "likes": 1,
+      "likes": 0,
       "dislikes": 0,
       "user": {
         "username": "VibrantTomato769",
