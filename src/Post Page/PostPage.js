@@ -9,6 +9,7 @@ import TopicLogo from "../Main Page/TopicLogo";
 
 import '../Main Page/MainPage.css';
 import "./PostPage.css";
+import PopUpContainer from "../Main Page/PopUp";
 
 function PostPage({topics, currentUser, setCurrentUser,users})
 {
@@ -21,7 +22,6 @@ function PostPage({topics, currentUser, setCurrentUser,users})
     const {submittedPost} = location.state || {};
 
     const targetComment = useRef(null);
-
 
     const [post,setPost] = useState(submittedPost==={} ? null : submittedPost);
     const [topic,setTopic] = useState();
@@ -38,12 +38,24 @@ function PostPage({topics, currentUser, setCurrentUser,users})
 
     const [buttonLock,setButtonLock] = useState(false);
 
+    const [popUps,setPopUps] = useState([]);
+
+    function addPopUp(text)
+    {
+        let newPopUp = {
+            text: text,
+            id: makeId(5),
+            active: false
+        };
+        setPopUps(prev => [...prev,newPopUp]);
+    }
+
     function lockButtons()
     {
         setButtonLock(true);
         setTimeout(() => {
             setButtonLock(false);
-        }, 250);
+        }, 500);
     }
 
     function handleComment(event)
@@ -55,83 +67,92 @@ function PostPage({topics, currentUser, setCurrentUser,users})
     {
         event.preventDefault();
 
-        if(newComment!=="")
+        if(currentUser)
         {
 
-            let commentToAdd = {
-                id: "comment-"+makeId(10),
-                text: newComment,
-                user: {username: currentUser.username,id: currentUser.id},
-                post: postId,
-                date: Date.now(),
-                likes: 0,
-                dislikes: 0,
-                parentComment: "none"
-            }
-
-            fetch('http://localhost:8000/comments',{
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(commentToAdd)
-            }).then(()=>{
-                console.log("New Comment Added.");
-                setNewComment("");
-                setComments(prev => [...prev,commentToAdd]);
-            });
-
-            if(currentUser.id!==post.user.id)
+            if(newComment!=="")
             {
-                fetch('http://localhost:8000/users/'+post.user.id)
-                .then(res => {
-                return res.json()
-                })
-                .then((targetUser)=>{
-
-                    let newNotif = {
-                        type: "comment",
-                        state: "new",
-                        id: makeId(5),
-                        user: currentUser.id,
-                        comment: commentToAdd.id,
-                        post: post.id,
-                        topic: topic.id
+    
+                let commentToAdd = {
+                    id: "comment-"+makeId(10),
+                    text: newComment,
+                    user: {username: currentUser.username,id: currentUser.id},
+                    post: postId,
+                    date: Date.now(),
+                    likes: 0,
+                    dislikes: 0,
+                    parentComment: "none"
+                }
+    
+                fetch('http://localhost:8000/comments',{
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(commentToAdd)
+                }).then(()=>{
+                    console.log("New Comment Added.");
+                    setNewComment("");
+                    setComments(prev => [...prev,commentToAdd]);
+                });
+    
+                if(currentUser.id!==post.user.id)
+                {
+                    fetch('http://localhost:8000/users/'+post.user.id)
+                    .then(res => {
+                    return res.json()
+                    })
+                    .then((targetUser)=>{
+    
+                        let newNotif = {
+                            type: "comment",
+                            state: "new",
+                            id: makeId(5),
+                            user: currentUser.id,
+                            comment: commentToAdd.id,
+                            post: post.id,
+                            topic: topic.id
+                        }
+        
+                        SendNotif(newNotif,targetUser);
+                    });
+    
+                }
+    
+                if(GetTags(commentToAdd.text))
+                {
+                    let tags = GetTags(commentToAdd.text);
+    
+                    let tagNotifs = [];
+    
+                    for (let i = 0; i < tags.length; i++)
+                    {
+                        const tag = tags[i];
+                        tagNotifs.push(GetUserFromName(tag));
                     }
     
-                    SendNotif(newNotif,targetUser);
-                });
-
-            }
-
-            if(GetTags(commentToAdd.text))
-            {
-                let tags = GetTags(commentToAdd.text);
-
-                let tagNotifs = [];
-
-                for (let i = 0; i < tags.length; i++)
-                {
-                    const tag = tags[i];
-                    tagNotifs.push(GetUserFromName(tag));
-                }
-
-                for (let i = 0; i < tagNotifs.length; i++)
-                {
-                    const targetUser = tagNotifs[i];
-                    
-                    let newNotif = {
-                        type: "comment-tag",
-                        state: "new",
-                        id: makeId(5),
-                        user: currentUser.id,
-                        comment: commentToAdd.id,
-                        post: post.id,
-                        topic: topic.id
-                    };
-
-                    SendNotif(newNotif,targetUser);
-                    
+                    for (let i = 0; i < tagNotifs.length; i++)
+                    {
+                        const targetUser = tagNotifs[i];
+                        
+                        let newNotif = {
+                            type: "comment-tag",
+                            state: "new",
+                            id: makeId(5),
+                            user: currentUser.id,
+                            comment: commentToAdd.id,
+                            post: post.id,
+                            topic: topic.id
+                        };
+    
+                        SendNotif(newNotif,targetUser);
+                        
+                    }
                 }
             }
+        }
+        else
+        {
+            addPopUp("Must be logged in to comment!")
+            
         }
     }
 
@@ -147,7 +168,6 @@ function PostPage({topics, currentUser, setCurrentUser,users})
         {
             const user = users[i];
 
-            console.log(username);
             if(user.username===username)
             {
                 console.log(user);
@@ -307,7 +327,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
         }
         else
         {
-            console.log("Must be logged in to vote!");
+            addPopUp("Must be logged in to vote!")
         }
 
     }
@@ -583,12 +603,14 @@ function PostPage({topics, currentUser, setCurrentUser,users})
         if(targetComment.current) ScrollToComment();
     },[targetComment.current]);
 
-    console.log(topic);
+    useEffect(()=>{
+        console.log(popUps);
+    },[popUps])
 
     return (
         <div className="main-page">
-        <Navbar topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
-          <div className="page-container flex-center">
+            <Navbar topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <div className="page-container flex-center">
             {
                 post &&
                 <div className="post-page-main-column main-column flex-column">
@@ -615,20 +637,20 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                         </div>
                         <div className="post-page-comments-section-container">
                             {
-                                currentUser ?
-                                <form className="post-page-write-comment-form flex-column" onSubmit={submitComment}>
+                                // currentUser ?
+                                <form className="post-page-write-comment-form flex-column" onSubmit={(event)=>{event.preventDefault();if(!buttonLock){submitComment(event);lockButtons();}}}>
                                     <textarea className="post-page-write-comment-input" placeholder={tr("post.writeComment")} minheight={100} value={newComment} onChange={handleComment} onInput={AutoResize}></textarea>
                                     <input className="button post-page-write-comment-submit" type="submit" value={tr("post.comment")} />
                                 </form>
-                                :
-                                <div className="post-page-logged-out-warning" type="comment">
-                                    {tr("mustBeLoggedInToComment")}
-                                </div>
+                                // :
+                                // <div className="post-page-logged-out-warning" type="comment">
+                                //     {tr("mustBeLoggedInToComment")}
+                                // </div>
                             }
                             <div className="post-page-comments-section">
                                 {
                                     comments && GetMainComments(comments).length > 0 ? GetMainComments(comments).map((comment)=>
-                                    <Comment comment={comment} key={comment.id} SetCommentRef={SetTargetComment} targetCommentId={targetCommentId} currentUser={currentUser} setCurrentUser={setCurrentUser} setComments={setComments} replyList={GetCommentReplies(comment.id,comments)} users={users} />
+                                    <Comment comment={comment} key={comment.id} SetCommentRef={SetTargetComment} targetCommentId={targetCommentId} currentUser={currentUser} setCurrentUser={setCurrentUser} setComments={setComments} replyList={GetCommentReplies(comment.id,comments)} users={users} addPopUp={addPopUp} />
                                     )
                                     : <h1 className="post-page-comments-section-empty-label">{tr("noComments")}</h1>
                                 }
@@ -660,6 +682,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
               </div>
             }
           </div>
+            <PopUpContainer popUps={popUps} setPopUps={setPopUps} />
         </div>
       );
 }

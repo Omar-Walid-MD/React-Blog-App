@@ -10,7 +10,7 @@ import Avatar from "../Main Page/Avatar";
 import "../Post Page/PostPage.css"
 
 
-function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurrentUser, setComments, replyList, users})
+function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurrentUser, setComments, replyList, users, addPopUp})
 {
     const [tr,il8n] = useTranslation();
 
@@ -163,7 +163,7 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
         }
         else
         {
-            console.log("Must be logged in to vote!");
+            addPopUp("Must be logged in to vote!")
         }
 
     }
@@ -177,57 +177,66 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
     {
         event.preventDefault();
 
-        if(newReply!=="")
+        if(currentUser)
         {
-
-            let replyToAdd = {
-                id: "comment-"+makeId(10),
-                text: newReply,
-                user: {username: currentUser.username,id: currentUser.id},
-                post: comment.post,
-                date: Date.now(),
-                likes: 0,
-                dislikes: 0,
-                parentComment: comment.id
-            }
-
-            fetch('http://localhost:8000/comments',{
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(replyToAdd)
-            }).then(()=>{
-                console.log("New Reply Added.");
-                setNewReply("");
-                setComments(prev => [...prev,replyToAdd]);
-
-                setTargetReplyId(replyToAdd.id);
-            });
-
-            if(currentUser.id!==comment.user.id)
+            if(newReply!=="")
             {
-                fetch('http://localhost:8000/users/'+comment.user.id)
-                .then(res => {
-                return res.json()
-                })
-                .then((targetUser)=>{
-
-                    let newNotif = {
-                        type: "reply",
-                        state: "new",
-                        id: makeId(5),
-                        user: currentUser.id,
-                        comment: replyToAdd.id,
-                        post: post.id,
-                        topic: topic.id
-                    }
     
-                    SendNotif(newNotif,targetUser);
-                    
+                let replyToAdd = {
+                    id: "comment-"+makeId(10),
+                    text: newReply,
+                    user: {username: currentUser.username,id: currentUser.id},
+                    post: comment.post,
+                    date: Date.now(),
+                    likes: 0,
+                    dislikes: 0,
+                    parentComment: comment.id
+                }
+    
+                fetch('http://localhost:8000/comments',{
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(replyToAdd)
+                }).then(()=>{
+                    console.log("New Reply Added.");
+                    setNewReply("");
+                    setComments(prev => [...prev,replyToAdd]);
+    
+                    setTargetReplyId(replyToAdd.id);
                 });
-
+    
+                if(currentUser.id!==comment.user.id)
+                {
+                    fetch('http://localhost:8000/users/'+comment.user.id)
+                    .then(res => {
+                    return res.json()
+                    })
+                    .then((targetUser)=>{
+    
+                        let newNotif = {
+                            type: "reply",
+                            state: "new",
+                            id: makeId(5),
+                            user: currentUser.id,
+                            comment: replyToAdd.id,
+                            post: post.id,
+                            topic: topic.id
+                        }
+        
+                        SendNotif(newNotif,targetUser);
+                        
+                    });
+    
+                }
+    
             }
-
         }
+        else
+        {
+            addPopUp("You must be logged in to reply!")
+        }
+
+        
     }
 
     function SendNotif(newNotif,targetUser)
@@ -457,7 +466,7 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
 
                 <div className="comment-bottom-bar flex-row">
                     <div className="options flex-row">
-                    <div className="comment-votes-container votes-container flex-row">
+                    <div className="votes-container flex-row">
                         <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
                         <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                     </div>
@@ -472,19 +481,19 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
             <div className="post-page-comment-replies-container">
                 <div className="post-page-comment-replies-section reply-margin flex-column">
                     {
-                        currentUser ?
+                        // currentUser ?
                         <form className="post-page-write-reply-form flex-row" onSubmit={submitReply}>
                             <textarea className="post-page-write-reply-input" placeholder={tr("comment.writeReply")} minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
                             <input className="button post-page-write-reply-submit" type="submit" value={tr("comment.reply")} />
                             <div className="post-page-comment-replies-line" first="true"></div>
                         </form>
-                        :
-                        <form className="post-page-write-reply-form flex-row">
-                           <div className="post-page-logged-out-warning" type="reply">
-                                {tr("comment.mustBeLoggedInToReply")}
-                            </div>
-                            <div className="post-page-comment-replies-line" first="true"></div>
-                        </form>
+                        // :
+                        // <form className="post-page-write-reply-form flex-row">
+                        //    <div className="post-page-logged-out-warning" type="reply">
+                        //         {tr("comment.mustBeLoggedInToReply")}
+                        //     </div>
+                        //     <div className="post-page-comment-replies-line" first="true"></div>
+                        // </form>
                     }
                     <div>
                         {

@@ -13,14 +13,12 @@
         "bgImg": "1"
       },
       "subbedTopics": [
-        "topic-8781529897",
         "topic-8911298389"
       ],
       "likes": [
         "post-1432977528",
         "post-6423576815",
         "post-4581794152",
-        "post-4756244164",
         "post-6368489845",
         "post-6369769999"
       ],
@@ -37,7 +35,6 @@
         "comment-2935444123",
         "comment-8291228199",
         "post-2622658512",
-        "post-4756244164",
         "post-6369769999",
         "post-8394453844"
       ],
@@ -180,7 +177,7 @@
       "body": "Today, I saw a cat paying attention to a dog on a little girl's lap. I thought a cat's instinct would make it run away from dogs... But maybe they can just get along?",
       "topic": "topic-8781529897",
       "id": "post-4756244164",
-      "likes": 1,
+      "likes": 0,
       "dislikes": 0,
       "user": {
         "username": "OmarWalid",
@@ -1375,6 +1372,19 @@
       },
       "post": "post-8394453844",
       "date": 1674685389055,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-7667484517",
+      "text": "s",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-4756244164",
+      "date": 1674845376730,
       "likes": 0,
       "dislikes": 0,
       "parentComment": "none"

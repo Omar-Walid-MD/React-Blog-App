@@ -107,13 +107,12 @@
     padding: 0.2em 0.5em;
 
     margin-top: 0.5em;
-
   
 }
 
 .post-page-logged-out-warning[type="comment"]
 {
-    font-size: 20pt;
+    font-size: 1em;
     font-weight: 500;
     text-align: center;
 
@@ -221,9 +220,9 @@
 }
 .comment-options
 {
-    /* width: 380px; */
+    gap: 1.2em;
 }
-.comment-votes-container
+.votes-container
 {
     width: 50%;
 
@@ -277,10 +276,7 @@
     margin-inline-end: 0.6em;
     
 }
-.comment-reply-button:hover
-{
-    transform: scale(1.25);
-}
+
 .reply-arrow-icon
 {
     font-size: 0.8em;
@@ -321,19 +317,21 @@
 {
     margin-inline-start: 5em;
 
-    transform: scale(0.9);
+    font-size: 0.9em;
 
     transform-origin: top;
 }
 .post-page-comment-replies-container
 {
-    height: fit-content; max-height: 0;
-
-    transform: scaleY(0);
+    transform: scaleY(1);
 
     transform-origin: top;
 
+    margin-bottom: 5em;
+
     position: relative;
+
+    /* outline: lime 2px solid; */
 
 }
 .post-page-comment-replies-section
@@ -383,29 +381,16 @@
 .post-page-write-reply-submit
 {
     font-size: 1.5em;
-    /* color: purple;
-    background-color: white;
-
-    font-size: 18pt;
-    font-weight: 600;
-
-    border-radius: 10px;
-
-    border: none;
-    outline: none;
-
-    padding: 7px 10px;
-
-    cursor: pointer;
-
-    transition: all 0.1s ease-in-out; */
 }
 .post-page-comment-reply-checkbox:checked ~.post-page-comment-replies-container
 {
-    max-height: fit-content;
-
     transform: scaleY(1);
 }
+.post-page-comment-reply-checkbox:checked ~.post-page-comment-replies-container >.post-page-comment-replies-section
+{
+    height: fit-content;
+}
+
 .post-page-comment-reply-checkbox:checked +.post-page-comment-content-container > .comment-bottom-bar .comment-reply-button .reply-arrow-icon
 {
     transform: rotate(180deg);
@@ -418,7 +403,7 @@
 }
 .post-page-comment-replies-line
 {
-    width: 1em; height: calc(100% + 40px);
+    width: 1em; height: calc(100% + 4em);
 
     background-color: white;
 
@@ -480,9 +465,9 @@ body[lng="ar"] .reply-pointer-line
 
     transition: color 0.1s ease-in-out;
 }
-.user-tag:hover
+.user-tag:active, .comment-reply-button:active
 {
-    color: dodgerblue;
+    transform: scale(0.9);
 }
 
 
@@ -495,10 +480,23 @@ body[lng="ar"] .reply-pointer-line
     }
    
 }
+
 @media (max-width:350px)
 {
     .comment-bottom-bar
     {
         font-size: 1.4em;
+    }
+}
+
+@media (hover: hover)
+{
+    .user-tag:hover
+    {
+        color: dodgerblue;
+    }
+    .comment-reply-button:hover
+    {
+        transform: scale(1.25);
     }
 }
