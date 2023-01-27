@@ -43,7 +43,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
         setButtonLock(true);
         setTimeout(() => {
             setButtonLock(false);
-        }, 100);
+        }, 250);
     }
 
     function handleComment(event)
@@ -591,7 +591,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
           <div className="page-container flex-center">
             {
                 post &&
-                <div className="post-page-main-column flex-column">
+                <div className="post-page-main-column main-column flex-column">
     
                         <div className="post-page-post-container flex-column">
                             <div className="post-info">
@@ -601,15 +601,15 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                                 <p className="post-page-post-body">{FormatText(post.body)}</p>
                             </div>        
                         </div>
-                        <div className="post-page-post-bottom-bar flex-row">
-                            <div className="post-page-post-options flex-row">
-                                <div className="post-votes-container flex-row">
+                        <div className="post-page-bottom-bar post-bottom-bar flex-row">
+                            <div className="post-options flex-row">
+                                <div className="votes-container flex-row">
                                     <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
                                     <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                                 </div>
                                 {
                                     currentUser &&
-                                    <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
+                                    <button className="save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
                                 }                            
                                 </div>
                         </div>
@@ -618,7 +618,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                                 currentUser ?
                                 <form className="post-page-write-comment-form flex-column" onSubmit={submitComment}>
                                     <textarea className="post-page-write-comment-input" placeholder={tr("post.writeComment")} minheight={100} value={newComment} onChange={handleComment} onInput={AutoResize}></textarea>
-                                    <input className="post-page-write-comment-submit" type="submit" value={tr("post.comment")} />
+                                    <input className="button post-page-write-comment-submit" type="submit" value={tr("post.comment")} />
                                 </form>
                                 :
                                 <div className="post-page-logged-out-warning" type="comment">
@@ -640,22 +640,24 @@ function PostPage({topics, currentUser, setCurrentUser,users})
 
             {
              topic &&
-             <div className="post-page-side-column">
-                <div className="side-column-container">
-                    <div className="side-column-topic-overview">
-                    <Link to={"/topic/"+topic.id}>
-                        <TopicLogo topicLogo={topic.logo} width={150} />
-                        <h1 className="side-column-topic-title">{topic.title}</h1>
-                    </Link>
-                    <p className="side-column-topic-desc">{topic.description}</p>
+              <div className="post-page-side-column side-column">
+                <div className="side-column-container flex-column">
+                  <div className="side-column-topic-overview flex-column">
+                    <TopicLogo topicLogo={topic.logo}/>
+                    <div>
+                      <h1 className="side-column-topic-title">{topic.title}</h1>
+                      <p className="side-column-topic-desc">{topic.description}</p>
                     </div>
+                  </div>
+                  <div className="side-column-topic-info">
                     <div className="side-column-topic-status flex-row">
-                    <p className="side-column-topic-members">{topic.members} {tr("mainPage.members")}</p>
-                    <button className="side-column-topic-sub-button" subbed={IsTopicSubbed(topic.id) ? "true" : "false"} onClick={function(){console.log("yupy");if(!buttonLock){SetTopicSubbed(topic.id); lockButtons();}}}>{IsTopicSubbed(topic.id) ? tr("mainPage.unsub") : tr("mainPage.sub")}</button>
+                      <p className="side-column-topic-members">{topic.members} {tr("mainPage.members")}</p>
+                      <button className="button side-column-topic-sub-button" subbed={IsTopicSubbed(topic.id) ? "true" : "false"} onClick={function(){if(!buttonLock){SetTopicSubbed(topic.id); lockButtons();}}}>{IsTopicSubbed(topic.id) ? tr("mainPage.unsub") : tr("mainPage.sub")}</button>
                     </div>
                     <p className="side-column-topic-date">{tr("mainPage.createdOn")} {new Date(topic.date).toDateString()}</p>
+                  </div>
                 </div>
-             </div>
+              </div>
             }
           </div>
         </div>

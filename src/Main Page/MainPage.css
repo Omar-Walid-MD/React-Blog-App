@@ -287,11 +287,12 @@ scrollbar-width: none;  /* Firefox */
 
     padding: 0.2em 1.2em;
 }
+
 .post-options
 {
     gap: 1.2em;
 }
-.post-votes-container
+.votes-container
 {
     gap: 0.6em;
 }
@@ -463,8 +464,6 @@ scrollbar-width: none;  /* Firefox */
         flex-direction: column-reverse;
         align-items: center;
 
-        
-
         gap: 0;
 
     }
@@ -482,7 +481,7 @@ scrollbar-width: none;  /* Firefox */
     .side-column-container
     {
         width: 100%;
-        gap: 2em;
+        gap: 1em;
         align-items: flex-start;
     }
     .side-column-topic-overview

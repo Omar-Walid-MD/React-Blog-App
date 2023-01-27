@@ -1,30 +1,20 @@
 .post-page-main-column
 {
-    width: 900px;
+    width: min(900px,100vw);
 
-    padding: 50px 0;
-
-}
-.post-page-main-column > *
-{
-    width: 100%;
-}
-.post-page-side-column
-{
-    margin-top: 70px;
 }
 .post-page-post-container
 {
     color: white;
     background-color: rebeccapurple;
 
-    box-shadow: 0 10px 20px rgb(91, 91, 128);
+    box-shadow: 0 0.6em 1.2em rgb(91, 91, 128);
 
-    border-radius: 20px;
+    border-radius: 1.2em;
 
     align-items: flex-start;
 
-    margin-top: 20px;
+    margin-top: 1.2em;
 
     position: relative;
 
@@ -36,155 +26,93 @@
     color: white;
     text-decoration: none;
 
-    padding: 0 20px;
+    padding: 0 1.2em;
 }
 .post-page-post-date
 {
     color: plum;
     
-    font-size: 12pt;
+    font-size: 1em;
     font-weight: 500;
 }
 .post-page-post-title
 {
-    font-size: 25pt;
-    margin: 30px 0;
+    font-size: 2.2em;
+    margin: 1em 0;
 }
 .post-page-post-body
 {
-    font-size: 18pt;
+    font-size: 1.5em;
 
     white-space: pre-line;
 
 }
-.post-page-post-bottom-bar
+.post-page-bottom-bar
 {
-    width: 100%; height: 50px;
+    box-shadow: 0 0.6em 1.2em rgb(91, 91, 128);
 
-    background-color: rgb(72, 37, 107);
-
-    box-shadow: 0 10px 20px rgb(91, 91, 128);
-
-    border-radius: 20px;
-
-    padding: 20px;
-    margin: 20px 0;
+    border-radius: 1.2em;
+    margin: 0.6em 0;
 }
-.post-page-post-options
-{
-    width: 30%;
-}
-.post-page-post-votes-container
-{
-    width: 130px;
-}
-
-.post-page-voting-button
-{
-    font-size: 15pt;
-
-    color: white;
-    background-color: transparent;
-
-    border: none;
-    outline: none;
-
-    cursor: pointer;
-
-    transition: transform 0.post-page-1s ease-in-out ;
-    
-}
-.post-page-voting-button:hover
-{
-    transform: scale(1.post-page-25);
-}
-.post-page-voting-icon
-{
-    font-size: 20pt;
-    margin-right: 5px;
-
-}
-.post-page-voting-button[vote="like"]
-{
-    color: deepskyblue;
-}
-
-.post-page-voting-button[vote="dislike"]
-{
-    color: red;
-}
-
 
 .post-page-comments-section-container
 {
     width: 100%;
 
+    font-size: 1em;
+
     background-color: rebeccapurple;
 
-    box-shadow: 0 10px 20px rgb(91, 91, 128);
+    box-shadow: 0 0.6em 1.2em rgb(91, 91, 128);
 
-    border-radius: 20px;
+    border-radius: 1.2em;
     
-    padding: 20px;
+    padding: 1.2em;
 }
 
 .post-page-write-comment-form
 {
-    width: 50%;
+    width: min(450px,100%);
+
+    font-size: 1em;
 
     background-color: rgb(72, 37, 107);
 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.6em 1.2em rgba(0, 0, 0, 0.5);
 
-    border-radius: 20px;
+    border-radius: 1.2em;
     
-    padding: 20px;
+    padding: 1.2em;
 
     align-items: flex-start
 }
 .post-page-write-comment-input
 {
-    font-family: sans-serif;
-    font-size: 15pt;
+    font-size: 1.8em;
 
     min-width: 100%; max-width: 100%;
-    min-height: 100px; max-height: fit-content;
+    min-height: 4em; max-height: fit-content;
 
-    padding: 5px;
+    padding: 0.3em;
 
-    border-radius: 10px;
+    border-radius: 0.6em;
 
     outline: none;
 }
 .post-page-write-comment-submit
 {
-    color: purple;
-    background-color: white;
-
-    font-size: 18pt;
+    font-size: 1.8em;
     font-weight: 600;
 
-    border-radius: 10px;
+    padding: 0.2em 0.5em;
 
-    border: none;
-    outline: none;
+    margin-top: 0.5em;
 
-    padding: 5px 10px;
-
-    margin-top: 20px;
-
-    cursor: pointer;
-
-    transition: all 0.1s ease-in-out;
+  
 }
-.post-page-write-comment-submit:hover
-{
-    background-color: plum;
-    transform: scale(1.1);
-}
+
 .post-page-logged-out-warning[type="comment"]
 {
-
     font-size: 20pt;
     font-weight: 500;
     text-align: center;
@@ -200,7 +128,6 @@
 }
 .post-page-logged-out-warning[type="reply"]
 {
-
     font-size: 20pt;
     font-weight: 500;
     text-align: center;
@@ -211,13 +138,9 @@
 }
 .post-page-comments-section
 {
-    border-top: 5px solid rgb(72, 37, 107);
+    border-top: 0.4em solid rgb(72, 37, 107);
 
-    margin: 30px 0;
-}
-.post-page-comments-section > *
-{
-    width: fit-content;
+    margin: 1.8em 0;
 }
 .post-page-comments-section-empty-label
 {
@@ -226,74 +149,75 @@
     color: white;
     text-align: center;
 
-    margin: 50px 0;
+    margin: 3em 0;
 }
 .post-page-comment-content-container
 {
-    min-width: 500px; max-width: fit-content;
+    width: min(500px,100%); max-width: fit-content;
+
+    font-size: 0.8em;
 
     color: white;
     background-color: rgb(72, 37, 107);
 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
+    box-shadow: 0 0.6em 1.2em rgba(0, 0, 0, 0.5);
+    border-radius: 1.25em;
     
-    /* overflow: hidden; */
-
-    margin-top: 30px;
+    margin-top: 1.8em;
 
     position: relative;
 
 }
 .post-page-comment-wrapper
 {
-    padding: 25px 30px;
+    padding: 1.6em 1.8em;
 }
 .post-page-comment-content
 {
     width: 90%;
 
-    margin-left: 20px;
+    font-size: 1em;
+
+    margin-inline-start: 2em;
 
     align-items: flex-start;
 }
 .post-page-comment-info
 {
     color: plum;
-    font-size: 10pt;
+    font-size: 1em;
     font-weight: 500;
 
     margin: 0;
 }
 .post-page-comment-info > .user-tag
 {
-    font-size: 13pt;
+    font-size: 1.3em;
     font-weight: 700;
 }
 .post-page-comment-text
 {
-    margin: 10px 0;
-}
-.post-page-comment-text
-{
-    font-size: 15pt;
+    font-size: 2em;
     font-weight: 500;
+    
+    margin: 0.5em 0;
 
     white-space: pre-line;
-
 }
 
 
 
 .comment-bottom-bar
 {
-    width: 100%; height: 30px;
+    width: 100%;
+
+    font-size: 2em;
 
     background-color: rgb(50, 30, 75);
 
-    padding: 20px 10px;
+    padding: 0.2em 0.8em;
 
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 0.6em 0.6em;
 }
 .comment-options
 {
@@ -303,7 +227,7 @@
 {
     width: 50%;
 
-    margin-inline-end: 10px;
+    margin-inline-end: 0.6em;
 }
 
 .comment-voting-button
@@ -321,15 +245,9 @@
     transition: transform 0.1s ease-in-out ;
     
 }
-.comment-voting-button:hover
+/* .comment-voting-button:hover
 {
     transform: scale(1.25);
-}
-.voting-icon
-{
-    font-size: 20pt;
-    margin-right: 5px;
-
 }
 .comment-voting-button[vote="like"]
 {
@@ -339,11 +257,11 @@
 .comment-voting-button[vote="dislike"]
 {
     color: deepskyblue;
-}
+} */
 
 .comment-reply-button
 {
-    font-size: 15pt;
+    font-size: 1em;
 
     background-color: transparent;
     color: white;
@@ -356,29 +274,23 @@
 
     transition: transform 0.1s ease-in-out ;
 
-    margin-bottom: 5px;
-    margin-inline-end: 10px;
+    margin-inline-end: 0.6em;
     
 }
 .comment-reply-button:hover
 {
     transform: scale(1.25);
 }
-.comment-icon
-{
-    font-size: 20pt;
-    margin: 5px 5px 0 0;
-}
 .reply-arrow-icon
 {
-    font-size: 15pt;
-    margin: 5px 0 0 5px;
+    font-size: 0.8em;
+    margin-inline-start: 0.2em;
 
     transform-origin: center;
 
     transition: transform 0.2s ease-in-out;
 }
-.comment-save-button
+/* .comment-save-button
 {
     font-size: 15pt;
 
@@ -400,14 +312,14 @@
 .comment-save-button[saved="true"]
 {
     color: lime;
-}
+} */
 
 
 
 
 .reply-margin
 {
-    margin-left: 100px;
+    margin-inline-start: 5em;
 
     transform: scale(0.9);
 
@@ -430,16 +342,18 @@
 }
 .post-page-write-reply-form
 {
-    width: 800px;
+    width: min(500px,100%);
+
+    font-size: 0.8em;
 
     background-color: rgb(72, 37, 107);
 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.6em 1.2em rgba(0, 0, 0, 0.5);
 
-    border-radius: 20px;
+    border-radius: 1.2em;
     
-    padding: 20px;
-    margin-top: 30px;
+    padding: 1.2em;
+    margin-top: 1.8em;
 
     align-items: flex-end;
 
@@ -448,16 +362,15 @@
 }
 .post-page-write-reply-input
 {
-    font-family: sans-serif;
-    font-size: 15pt;
+    font-size: 1.6em;
 
     height: fit-content;
     min-width: 80%; max-width: 0;
-    min-height: 100px; max-height: fit-content;
+    min-height: 4em; max-height: fit-content;
 
-    padding: 5px;
+    padding: 0.6em;
 
-    border-radius: 10px;
+    border-radius: 0.6em;
 
     outline: none;
 
@@ -465,12 +378,12 @@
 }
 .post-page-write-reply-buttons
 {
-    height: 100px;
     align-items: flex-end;
 }
 .post-page-write-reply-submit
 {
-    color: purple;
+    font-size: 1.5em;
+    /* color: purple;
     background-color: white;
 
     font-size: 18pt;
@@ -485,12 +398,7 @@
 
     cursor: pointer;
 
-    transition: all 0.1s ease-in-out;
-}
-.post-page-write-reply-submit:hover
-{
-    background-color: plum;
-    transform: scale(1.1);
+    transition: all 0.1s ease-in-out; */
 }
 .post-page-comment-reply-checkbox:checked ~.post-page-comment-replies-container
 {
@@ -510,24 +418,26 @@
 }
 .post-page-comment-replies-line
 {
-    width: 10px; height: calc(100% + 40px);
+    width: 1em; height: calc(100% + 40px);
 
     background-color: white;
 
     position: absolute;
-    bottom: 0; left: -90px;
-
-    /* border: 2px solid black; */
-    
+    bottom: 0;
+    left: -4em;
+}
+body[lng="ar"] .post-page-comment-replies-line
+{
+    right: -5em;
 }
 .post-page-comment-replies-line[replyopen="true"]
 {
-    height: calc(200% + 45px);
+    height: calc(200% + 2.8em);
     bottom: -50%;
 }
 .post-page-comment-replies-line[last="true"]
 {
-    height: calc(100% + 45px);
+    height: calc(100% + 2.8em);
     bottom: 49%;
 }
 .post-page-comment-replies-line[first="true"]
@@ -536,14 +446,22 @@
 }
 .reply-pointer-line
 {
-    height: 10px; width: 90px;
+    height: 1em; width: 5em;
 
     background-color: white;
 
     transform-origin: left;
 
     position: absolute;
-    top: 50%; right: 100%;
+    top: 50%;
+}
+body:not([lng=ar]) .reply-pointer-line
+{
+    right: 100%;
+}
+body[lng="ar"] .reply-pointer-line
+{
+    left: 100%;
 }
 .post-page-reply-checkbox +.post-page-write-reply-form
 {
@@ -553,6 +471,7 @@
 {
     display: flex;
 }
+
 .user-tag
 {
     color: lightskyblue;
@@ -564,4 +483,22 @@
 .user-tag:hover
 {
     color: dodgerblue;
+}
+
+
+@media (max-width:850px)
+{
+ 
+    .post-page-side-column
+    {
+        width: min(900px,100vw);
+    }
+   
+}
+@media (max-width:350px)
+{
+    .comment-bottom-bar
+    {
+        font-size: 1.4em;
+    }
 }

@@ -429,11 +429,11 @@ function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToRep
                     </div>
                 </div>
 
-                <div className="comment-bottom-bar flex-row">
-                    <div className="comment-options flex-row">
-                    <div className="comment-votes-container flex-row">
-                        <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
-                        <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
+                <div className="comment-bottom-bar bottom-bar flex-row">
+                    <div className="options flex-row">
+                    <div className="votes-container flex-row">
+                        <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
+                        <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                     </div>
                     {
                         currentUser &&
@@ -441,7 +441,7 @@ function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToRep
                     }
                     {
                         currentUser &&
-                        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
+                        <button className="save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
                     }
                     </div>
                 </div>

@@ -456,15 +456,15 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
                 </div>
 
                 <div className="comment-bottom-bar flex-row">
-                    <div className="comment-options flex-row">
-                    <div className="comment-votes-container flex-row">
-                        <button className="comment-voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
-                        <button className="comment-voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
+                    <div className="options flex-row">
+                    <div className="comment-votes-container votes-container flex-row">
+                        <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}} ><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
+                        <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}} ><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
                     </div>
                     <label htmlFor={"reply-checkbox-"+comment.id} className="comment-reply-button flex-row"><i className='bx bxs-comment-detail comment-icon'></i>{tr("comment.replies")}({replyList.length})<i className='bx bxs-down-arrow reply-arrow-icon'></i></label>
                     {
                         currentUser &&
-                        <button className="comment-save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
+                        <button className="save-button flex-row" saved={saved ? "true" : "false"} onClick={function(){if(!buttonLock){handleSave(); lockButtons();}}} ><i className='bx bxs-save voting-icon'></i>{saved ? tr("post.saved") : tr("post.save")}</button>
                     }
                     </div>
                 </div>
@@ -475,7 +475,7 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
                         currentUser ?
                         <form className="post-page-write-reply-form flex-row" onSubmit={submitReply}>
                             <textarea className="post-page-write-reply-input" placeholder={tr("comment.writeReply")} minheight={100} value={newReply} onInput={AutoResize} onChange={handleReply}></textarea>
-                            <input className="post-page-write-reply-submit" type="submit" value={tr("comment.reply")} />
+                            <input className="button post-page-write-reply-submit" type="submit" value={tr("comment.reply")} />
                             <div className="post-page-comment-replies-line" first="true"></div>
                         </form>
                         :
@@ -496,7 +496,6 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
                 </div>
               
             </div>
-        
            
         </div>
     )

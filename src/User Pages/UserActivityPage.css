@@ -1,13 +1,15 @@
 .activity-page-option-row
 {
-    height: 80px;
+    font-size: 1em;
 
-    border-radius: 20px;
-    padding: 20px;
+    border-radius: 1.2em;
+    padding: 1.2em;
 
     background-color: darkslateblue;
 
     justify-content: flex-start;
+    
+    gap: 1.2em;
 }
 
 .activity-page-option-button
@@ -15,7 +17,7 @@
     color: purple;
     background-color: white;
 
-    font-size: 18pt;
+    font-size: 1.5em;
     font-weight: 600;
 
     border-radius: 10px;
@@ -23,9 +25,7 @@
     border: none;
     outline: none;
 
-    padding: 5px 10px;
-
-    margin-right: 20px;
+    padding: 0.3em 0.6em;
 
     cursor: pointer;
 
@@ -56,7 +56,6 @@
 
 .activity-page-comment-container
 {
-
     color: white;
     background-color: rebeccapurple;
 

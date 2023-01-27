@@ -305,7 +305,7 @@ function Post({post,currentUser,setCurrentUser})
       </div>
       <div className="post-bottom-bar flex-row">
         <div className="post-options flex-row">
-          <div className="post-votes-container flex-row">
+          <div className="votes-container flex-row">
             <button className="voting-button flex-row" vote={voteState==="like" ? "like" : "none"} onClick={function(){if(!buttonLock){handleVote("like"); lockButtons();}}}><i className='bx bxs-like voting-icon'></i>{(likes)}</button>
             <button className="voting-button flex-row" vote={voteState==="dislike" ? "dislike" : "none"} onClick={function(){if(!buttonLock){handleVote("dislike"); lockButtons();}}}><i className='bx bxs-dislike voting-icon' ></i>{(dislikes)}</button>
           </div>
