@@ -81,10 +81,9 @@ textarea
     -webkit-touch-callout: none;
 }
 
-
     /* THEMES */
 
-:root
+[theme="basic"]
 {
     --page-bg-1: rgb(199, 210, 224);
     --page-bg-2: rgb(135, 173, 223);
@@ -139,8 +138,8 @@ textarea
 
 [theme="hazelnut"]
 {
-    --page-bg-1: #262729;
-    --page-bg-2: #232425;
+    --page-bg-1: #3d2000;
+    --page-bg-2: #2b1600;
     --nav: #553416;
     --shade: #e7c1b5;
 
@@ -165,8 +164,8 @@ textarea
 
 [theme="ocean"]
 {
-    --page-bg-1: #102534;
-    --page-bg-2: #0e202c;
+    --page-bg-1: #1b3f57;
+    --page-bg-2: #122a3a;
     --nav: #3971a5;
     --shade: #7ea8cf;
 
@@ -249,8 +248,9 @@ textarea
     background-attachment: fixed;
 
     /* margin: auto; */
-    padding: 0em 1em;
-    padding-top: 8em;
+    padding: 8em 1em 4em 1em;
+    /* padding-top: 8em; */
+    
     gap: 1em;
     
     align-items: flex-start;

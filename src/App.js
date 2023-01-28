@@ -60,11 +60,11 @@ function App()
 
     setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
 
-    console.log("reload");
+    let theme = localStorage.getItem("theme") || "hazelnut";
+    document.body.setAttribute("theme",theme);
+    // console.log("reload");
 
   },[navigate.pathname]);
-
-  document.body.setAttribute("theme","night");
 
   return (
     <Routes>

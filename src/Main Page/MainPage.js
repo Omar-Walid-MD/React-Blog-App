@@ -10,6 +10,7 @@ import i18next from "i18next";
 
 import './MainPage.css';
 import "../Submit Pages/WritePage.css";
+import Footer from "./Footer";
 
 function MainPage({posts, topics, currentUser, setCurrentUser})
 {
@@ -96,6 +97,12 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
       });
     }
 
+    function setLanguage(lang)
+    {
+      i18next.changeLanguage(lang);
+      document.body.setAttribute("lng",lang);
+    }
+
     useEffect(()=>{
 
       window.scrollTo(0,0);
@@ -161,8 +168,8 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
                 </div>
               </div>
             }
-            
           </div>
+          <Footer setLanguage={setLanguage} />
         </div>
       );
 }

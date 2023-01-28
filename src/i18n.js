@@ -26,6 +26,5 @@ i18n
   });
 
 document.body.setAttribute("lng",i18n.language);
-console.log(i18n.language);
 
 export default i18n;
