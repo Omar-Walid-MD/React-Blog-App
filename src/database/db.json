@@ -14,12 +14,12 @@
       },
       "subbedTopics": [
         "topic-8911298389",
-        "topic-9186347593"
+        "topic-9186347593",
+        "topic-8781529897"
       ],
       "likes": [
         "post-1432977528",
         "post-6423576815",
-        "post-4581794152",
         "post-6369769999"
       ],
       "dislikes": [
@@ -110,7 +110,7 @@
       },
       "id": "topic-8781529897",
       "posts": [],
-      "members": 0,
+      "members": 1,
       "date": 1666633088974
     },
     {
@@ -162,7 +162,7 @@
       "body": "I made the submit button only active when no input remains empty.",
       "topic": "topic-9186347593",
       "id": "post-4581794152",
-      "likes": 2,
+      "likes": 1,
       "dislikes": 0,
       "user": {
         "username": "OmarWalid",

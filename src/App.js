@@ -64,7 +64,7 @@ function App()
 
   },[navigate.pathname]);
 
-  // document.body.setAttribute("theme","dark");
+  document.body.setAttribute("theme","night");
 
   return (
     <Routes>

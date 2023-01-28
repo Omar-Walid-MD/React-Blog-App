@@ -250,7 +250,7 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
                             <textarea className="post-write-form-body-input" name="body" placeholder={tr("newPostPage.enterBody")} minheight={200} value={newPost.body} onChange={handlePost} onInput={AutoResize} required></textarea>
                         </div>
                         <div className="post-write-form-submit-container">
-                            <input className="post-write-form-submit" type="submit" value={tr("newPostPage.submit")} disabled={NotReadyToSubmit()} />
+                            <input className="button post-write-form-submit" type="submit" value={tr("newPostPage.submit")} disabled={NotReadyToSubmit()} />
                         </div>
                     </form>
                 </div>

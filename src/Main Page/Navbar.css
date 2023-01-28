@@ -12,7 +12,7 @@
     position: fixed;
     top: 0;
 
-    box-shadow: 0 0 3em var(--shade);
+    box-shadow: 0 0 3em var(--page-bg-1);
 
     padding: 0.6rem 3rem;
 
@@ -80,7 +80,7 @@
 
     background-color: var(--nav);
 
-    border-radius: 0 0 1.2em 1.2em;
+    border-radius: 1.2em;
 
     box-shadow: 0 1.2em 1em 0.6em rgba(0, 0, 0, 0.6);
 
@@ -96,6 +96,10 @@
 .navbar-search-results
 {
     padding: 0.5em;
+    gap: 0.5em;
+
+    display: flex;
+    flex-direction: column;
 }
 .topic-results-empty
 {
@@ -104,15 +108,15 @@
 .topic-result-container
 {
     color: var(--txt);
-    background-color: rgb(102, 91, 173);
+    background-color: var(--bdy-light);
 
     text-decoration: none;
 
-    border-bottom: solid 0.4em lightsteelblue;
+    border-bottom: solid 0.4em var(--shade);
     border-radius: 0.6em;
 
     padding: 0.5em;
-    margin: 0.2em 0;
+    /* margin: 0.2em 0; */
 
     align-items: flex-start;
 
@@ -120,7 +124,7 @@
 }
 .topic-result-container:hover
 {
-    background-color: rgba(176, 196, 222, 0.5);
+    background-color: var(--bdy-lighter);
 }
 .topic-result-container > .topic-logo-container
 {
@@ -327,7 +331,7 @@
 }
 .notification-container
 {
-    background-color: rgb(125, 75, 170);
+    background-color: var(--bdy-light);
 
     font-size: 1em;
 
@@ -514,7 +518,7 @@
 }
 .navbar-profile-dropdown-edit-profile-link:hover
 {
-    background-color: rgb(238, 233, 255);
+    background-color: var(--btn-hover);
     transform: scale(1.25);
 }
 .navbar-profile-dropdown-link

@@ -81,6 +81,9 @@ textarea
     -webkit-touch-callout: none;
 }
 
+
+    /* THEMES */
+
 :root
 {
     --page-bg-1: rgb(199, 210, 224);
@@ -89,6 +92,8 @@ textarea
     --shade: lightblue;
 
     --bdy: rebeccapurple;
+    --bdy-light: rgb(102, 91, 173);
+    --bdy-lighter: rgb(125, 114, 196);
     --bdy-dark: rgb(72, 37, 107);
     --bdy-darker: rgb(50, 30, 75);
 
@@ -106,25 +111,105 @@ textarea
     
 }
 
-[theme="dark"]
+[theme="platinum"]
 {
-    --page-bg-1: rgb(77, 77, 77);
-    --page-bg-2: rgb(73, 73, 73);
-    --nav: black;
+    --page-bg-1: #303030;
+    --page-bg-2: rgb(68, 68, 68);
+    --nav: #3a466b;
     --shade: lightgrey;
 
-    --bdy: dimgrey;
-    --bdy-dark: rgb(49, 49, 49);
-    --bdy-darker: rgb(15, 15, 15);
+    --bdy: #3b4352;
+    --bdy-light: #464f61;
+    --bdy-lighter: #576275;
+    --bdy-dark: #242a35;
+    --bdy-darker: #0d0d13;
 
     --txt: white;
     --txt-2: rgb(180, 180, 180);
 
     --btn-bg: white;
-    --btn-color: rgb(66, 66, 66);
-    --btn-active: rgb(133, 133, 133);
-    --btn-hover: rgb(187, 187, 187);
-    --btn-hover-highlight: rgb(150, 150, 150);
+    --btn-color: rgb(17, 17, 36);
+    --btn-active: rgb(120, 121, 145);
+    --btn-hover: rgb(159, 160, 189);
+    --btn-hover-highlight: rgb(37, 37, 77);
+
+    --usertag: lightskyblue;
+    --usertag-hover: dodgerblue;
+}
+
+[theme="hazelnut"]
+{
+    --page-bg-1: #262729;
+    --page-bg-2: #232425;
+    --nav: #553416;
+    --shade: #e7c1b5;
+
+    --bdy: #b3593e;
+    --bdy-light: #d36847;
+    --bdy-lighter: #dd7d60;
+    --bdy-dark: #8a4530;
+    --bdy-darker: #663222;
+
+    --txt: white;
+    --txt-2: #fac7b7;
+
+    --btn-bg: white;
+    --btn-color: #52291d;
+    --btn-active: #e6af9d;
+    --btn-hover: #ffe1d7;
+    --btn-hover-highlight:#944227;
+
+    --usertag: lightskyblue;
+    --usertag-hover: dodgerblue;
+}
+
+[theme="ocean"]
+{
+    --page-bg-1: #102534;
+    --page-bg-2: #0e202c;
+    --nav: #3971a5;
+    --shade: #7ea8cf;
+
+    --bdy: #3d7a5f;
+    --bdy-light: #4f9172;
+    --bdy-lighter: #72ad92;
+    --bdy-dark: #345545;
+    --bdy-darker: #213d30;
+
+    --txt: white;
+    --txt-2: #79dfaf;
+
+    --btn-bg: white;
+    --btn-color: #066e3e;
+    --btn-active: #728f81;
+    --btn-hover: #a7c0b4;
+    --btn-hover-highlight:#00a357;
+
+    --usertag: lightskyblue;
+    --usertag-hover: dodgerblue;
+}
+
+[theme="night"]
+{
+    --page-bg-1: rgb(20, 20, 20);
+    --page-bg-2: black;
+    --nav: rgb(60, 45, 80);
+    --shade: lightgrey;
+
+    --bdy: rgb(35, 35, 35);
+    --bdy-light: #464f61;
+    --bdy-lighter: #576275;
+    --bdy-dark: #353535;
+    --bdy-darker: rgb(24, 24, 24);
+
+    --txt: white;
+    --txt-2: rgb(180, 180, 180);
+
+    --btn-bg: white;
+    --btn-color: rgb(17, 17, 36);
+    --btn-active: rgb(120, 121, 145);
+    --btn-hover: rgb(159, 160, 189);
+    --btn-hover-highlight: rgb(37, 37, 77);
 
     --usertag: lightskyblue;
     --usertag-hover: dodgerblue;
@@ -198,10 +283,11 @@ textarea
 
     background-color: var(--nav);
 
+    /* box-shadow: 0 0.6em 1.2em var(--bdy-darker); */
 }
 .write-post-button
 {
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 .main-column-post-group
 {
@@ -230,7 +316,7 @@ textarea
 
     font-size: 1em;
 
-    box-shadow: 0 0.6em 1.2em var(--bdy-dark);
+    box-shadow: 0 0.6em 1.2em var(--bdy-darker);
 
     border-radius: 1.2em;
 
@@ -337,6 +423,8 @@ textarea
     color: var(--txt);
     background-color: transparent;
 
+    filter: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.5));
+
     border: none;
     outline: none;
 
@@ -348,7 +436,7 @@ textarea
 
 .voting-icon
 {
-    font-size: 1.1em !important;
+    font-size: 1.1em;
     margin-inline-end: 0.2em;
 }
 .voting-button[vote="like"]
@@ -367,6 +455,8 @@ textarea
     color: var(--txt);
     text-decoration: none;
 
+    filter: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.5));
+
     cursor: pointer;
 
     transition: transform 0.1s ease-in-out ;
@@ -378,14 +468,17 @@ textarea
 {
     font-size: 1.1em;
     padding-inline-end: 0.3em;
-    padding-top: 0.2em;
+    padding-top: 0.3em;
 }
 .save-button
 {
     font-size: 1em;
+    min-width: max-content;
 
     color: var(--txt);
     background-color: transparent;
+
+    filter: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.5));
 
     border: none;
     outline: none;
