@@ -10,6 +10,7 @@ import TopicLogo from "../Main Page/TopicLogo";
 import '../Main Page/MainPage.css';
 import "./PostPage.css";
 import PopUpContainer from "../Main Page/PopUp";
+import TextInput from "../Main Page/TextInput";
 
 function PostPage({topics, currentUser, setCurrentUser,users})
 {
@@ -639,7 +640,8 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                             {
                                 // currentUser ?
                                 <form className="post-page-write-comment-form flex-column" onSubmit={(event)=>{event.preventDefault();if(!buttonLock){submitComment(event);lockButtons();}}}>
-                                    <textarea className="post-page-write-comment-input" placeholder={tr("post.writeComment")} minheight={100} value={newComment} onChange={handleComment} onInput={AutoResize}></textarea>
+                                    {/* <textarea className="post-page-write-comment-input" placeholder={tr("post.writeComment")} minheight={100} value={newComment} onChange={handleComment} onInput={AutoResize}></textarea> */}
+                                    <TextInput type="area" selectorClass="post-page-write-comment-input" inputLabel={tr("post.writeComment")} inputValue={newComment} inputFunc={handleComment} onInput={AutoResize} />
                                     <input className="button post-page-write-comment-submit" type="submit" value={tr("post.comment")} />
                                 </form>
                                 // :

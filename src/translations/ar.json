@@ -1,4 +1,5 @@
 {
+    "logo": "أُنشُر",
     "mainPage":
     {
         "writePost": "أكتب منشورا",
@@ -84,5 +85,11 @@
         "userAvatar": "الصورة الرمزية",
 
         "back": "رجوع"
+    },
+    "warning":
+    {
+        "emailNotRegistered": "البريد الالكتروني ليس مسجلا!",
+        "passwordIncorrect": "كلمة المرور غير صحيحة",
+        "passwordMismatch": "كلمة المرور غير متطابقة"
     }
 }

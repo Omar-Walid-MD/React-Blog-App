@@ -1,7 +1,10 @@
+import { useRef } from "react";
 import "./Footer.css";
 
 function Footer({setLanguage})
 {
+    const langCheckbox = useRef();
+    const themeCheckbox = useRef();
 
     function setTheme(event)
     {
@@ -9,19 +12,32 @@ function Footer({setLanguage})
         document.body.setAttribute("theme",theme);
         localStorage.setItem("theme",theme);
     }
+
+    function HandleWindows(event)
+    {
+        // console.log(event.currentTarget.id);
+        if(event.currentTarget.id==="footer-theme-checkbox")
+        {
+            if(langCheckbox.current.checked) langCheckbox.current.checked = false;
+        }
+        else if(event.currentTarget.id==="footer-lang-checkbox")
+        {
+            if(themeCheckbox.current.checked) themeCheckbox.current.checked = false;
+        }
+    }
     return (
         <footer className="footer flex-row">
             <div className="footer-settings flex-row">
                 <div className="footer-menu flex-center">
-                    <input type="checkbox" className="footer-checkbox hidden-checkbox" id="footer-lang-checkbox"/>
-                    <label htmlFor="footer-lang-checkbox" className="footer-button"><i className='bx bx-world'></i></label>
+                    <input type="checkbox" className="footer-checkbox hidden-checkbox" id="footer-lang-checkbox" ref={langCheckbox} onClick={HandleWindows}/>
+                    <label htmlFor="footer-lang-checkbox" className="footer-button" ><i className='bx bx-world'></i></label>
                     <div className="footer-dropdown flex-column">
                         <button className="footer-lang-button" lang="en" onClick={function(){setLanguage("en")}}>English</button>
                         <button className="footer-lang-button" lang="ar" onClick={function(){setLanguage("ar")}}>العربية</button>
                     </div>
                 </div>
                 <div className="footer-menu flex-center">
-                    <input type="checkbox" className="footer-checkbox hidden-checkbox" id="footer-theme-checkbox"/>
+                    <input type="checkbox" className="footer-checkbox hidden-checkbox" id="footer-theme-checkbox" ref={themeCheckbox} onClick={HandleWindows}/>
                     <label htmlFor="footer-theme-checkbox" className="footer-button"><i className='bx bxs-palette'></i></label>
                     <div className="footer-dropdown flex-column">
                         <button className="footer-theme-button" theme="basic" onClick={setTheme} >Basic</button>

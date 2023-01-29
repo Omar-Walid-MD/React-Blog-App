@@ -91,12 +91,12 @@
 {
     font-size: 1.8em;
 
+    background-color: var(--bdy-dark);
+
     min-width: 100%; max-width: 100%;
     min-height: 4em; max-height: fit-content;
 
     padding: 0.3em;
-
-    border-radius: 0.6em;
 
     outline: none;
 }

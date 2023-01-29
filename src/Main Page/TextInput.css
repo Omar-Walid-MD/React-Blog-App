@@ -1,0 +1,68 @@
+.text-input-container
+{
+    position: relative;
+}
+.text-input
+{
+    width: 100%;
+    background-color: inherit;
+    color: var(--txt);
+
+    font-size: 1em;
+
+    border: 0.1em solid white;
+    border-radius: 0.6em;
+
+    padding: 0.3em 0.6em;
+    margin: 0.6em 0;
+
+    outline: none;
+}
+.text-input-area
+{
+    min-width: 100%; max-width: 100%;
+    min-height: inherit; max-height: fit-content;
+}
+.text-input-label
+{
+    color: var(--txt);
+    font-size: 1em;
+
+    margin-inline-start: 0.6em;
+    padding: 0 0.3em;
+
+    position: absolute;
+    top: 25%;
+
+    pointer-events: none;
+
+    transition: all 0.1s ease-in-out;
+}
+.text-input:focus +.text-input-label
+{
+    background-color: inherit;
+
+    font-size: 0.8em;
+
+    top: 0;
+}
+:is(.text-input-area:not(:empty),.text-input-field:not([value=""])) +.text-input-label
+{
+    background-color: inherit;
+
+    font-size: 0.8em;
+
+    top: 0;
+}
+/* .text-input:not(:empty)
+{
+    background-color: red;
+} */
+.text-input:-webkit-autofill,
+.text-input:-webkit-autofill:hover,
+.text-input:-webkit-autofill:focus,
+.text-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--nav) inset;
+    -webkit-text-fill-color: var(--txt) !important;
+
+}

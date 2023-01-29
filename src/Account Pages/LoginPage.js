@@ -2,6 +2,8 @@ import {useState, useRef} from "react";
 import { useNavigate, Link, useLocation} from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import TextInput from "../Main Page/TextInput";
+
 import "./LoginPage.css";
 
 function LoginPage({userList,handleUser})
@@ -26,6 +28,7 @@ function LoginPage({userList,handleUser})
             ...loginInfo,
             [event.target.name]: event.target.value
         });
+        console.log(event.target);
     }
 
 
@@ -48,22 +51,22 @@ function LoginPage({userList,handleUser})
                 }
                 else
                 {
-                    handleWarning("Password Incorrect!");
+                    handleWarning("passwordIncorrect");
                     console.log("Password Incorrect");
                     return;
                 }
             }
         }
-        handleWarning("Email not logined!");
-        console.log("Email not logined");
+        handleWarning("emailNotRegistered");
+        console.log("Email not registered");
         return;
     }
 
     const warningElement = useRef();
 
-    function handleWarning(warningText)
+    function handleWarning(warningCode)
     {
-        setWarning(warningText);
+        setWarning(tr("warning."+warningCode));
         if(warningElement.current.getAttribute("animate")==="true")
         {
             warningElement.current.setAttribute("animate","false");
@@ -85,7 +88,7 @@ function LoginPage({userList,handleUser})
         if(LoginForm.current)
         {
             allInputs = LoginForm.current.querySelectorAll(":required");
-            console.log([...allInputs].filter((formInput)=>formInput.value==='').length);
+            // console.log([...allInputs].filter((formInput)=>formInput.value==='').length);
             return [...allInputs].filter((formInput)=>formInput.value==='').length > 0;
         }
         else
@@ -111,14 +114,17 @@ function LoginPage({userList,handleUser})
                 <form className="login-form-container flex-column" ref={LoginForm} onSubmit={Login}>
                     <h1 className="login-form-label">{tr("accountPages.logIn")}</h1>
                     <div className="login-form-input-group flex-column">
-                        <div className="login-form-input-container">
+                        {/* <div className="login-form-input-container">
                             <input className="login-form-input" type="text" name="email" value={loginInfo.email} required onChange={handleLoginInfo} autocomplete="false"/>
                             <div className="login-form-input-label">{tr("accountPages.enterEmail")}</div>
-                        </div>
-                        <div className="login-form-input-container">
+                        </div> */}
+                        <TextInput selectorClass="login-input" type="field" inputName="email" inputLabel={tr("accountPages.enterEmail")} inputValue={loginInfo.email} require={true} inputFunc={handleLoginInfo} />
+                        {/* <div className="login-form-input-container">
                             <input className="login-form-input" type="password" name="password" value={loginInfo.password} required onChange={handleLoginInfo}/>
                             <div className="login-form-input-label">{tr("accountPages.enterPassword")}</div>
-                        </div>
+                        </div> */}
+                        <TextInput selectorClass="login-input" type="field" inputName="password" inputLabel={tr("accountPages.enterPassword")} inputValue={loginInfo.password} require={true} inputFunc={handleLoginInfo} />
+
                     </div>
                     {
                         warning !== "" &&

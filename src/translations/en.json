@@ -1,4 +1,5 @@
 {
+    "logo": "OnShare",
     "mainPage":
     {
         "writePost": "Write a post!",
@@ -84,5 +85,11 @@
         "userAvatar": "User Avatar",
 
         "back": "Back"
+    },
+    "warning":
+    {
+        "emailNotRegistered": "Email is not Registered!",
+        "passwordIncorrect": "Password Incorrect",
+        "passwordMismatch": "Password Mismatch"
     }
 }

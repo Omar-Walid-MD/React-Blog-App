@@ -49,8 +49,6 @@ function Navbar({topics, currentUser, setCurrentUser})
     {
       if(notifCheckbox.current.checked) notifCheckbox.current.checked = false;
     }
-    
-
   }
 
   function GetNofitications(currentUser)
@@ -157,7 +155,7 @@ function Navbar({topics, currentUser, setCurrentUser})
 
     return (
         <header className="navbar flex-row">
-            <Link to="/" className="navbar-logo">BLOGGEST</Link>
+            <Link to="/" className="navbar-logo">{tr("logo")}</Link>
             <div className="navbar-search-container flex-center">
               <input className="navbar-search-input" type="search" placeholder={tr("header.searchForTopics")} value={searchValue} onChange={handleSearchValue} />          
                   {
