@@ -9,6 +9,7 @@ import TopicLogo from "../Main Page/TopicLogo";
 import i18next from "i18next";
 
 import "./WritePage.css"
+import Footer from "../Main Page/Footer";
 
 
 function SelectTopic({topic, newPost, setNewPost, setSelectTopicWindow})
@@ -296,6 +297,7 @@ function NewPostPage({handlePostList, topics, currentUser, setCurrentUser, users
 
                 }
             </div>
+            <Footer />
         </div>
     );
 }

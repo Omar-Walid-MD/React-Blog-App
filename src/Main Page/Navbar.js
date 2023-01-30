@@ -10,7 +10,9 @@ import axios from 'axios';
 import TopicLogo from "./TopicLogo";
 
 import './Navbar.css';
-import './MainPage.css'; 
+import './MainPage.css';
+import { ReactComponent as NoNotifs } from '../img/icons/no-notifs.svg';
+import NoNotifIcon from "./NoNotifIcon";
 
 function Navbar({topics, currentUser, setCurrentUser})
 {
@@ -213,7 +215,7 @@ function Navbar({topics, currentUser, setCurrentUser})
                     :
                     <div className="navbar-notif-dropdown-empty flex-column">
                       <h1>{tr("header.noNotifs")}</h1>
-                      <div className="empty-notif-img"></div>
+                        <div className="no-notifs"></div>
                     </div>
                     
                   }

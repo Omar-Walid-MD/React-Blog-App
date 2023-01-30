@@ -327,12 +327,14 @@
 
     padding-bottom: 2em;
 }
-.navbar-notif-dropdown-empty > .empty-notif-img
+.no-notifs
 {
-    height: 100%; aspect-ratio: 1;
+    width: 200%; height: 200%;
+    mask-image: url("../img/icons/no-notifs.svg");
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
 
-    background-image: url("../img/no-notifs.png");
-    background-size: cover;
+    background-color: var(--txt-2);
 }
 .notification-container
 {

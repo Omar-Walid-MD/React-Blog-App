@@ -3,8 +3,7 @@ import { useNavigate, Link, useLocation} from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import TextInput from "../Main Page/TextInput";
-
-import "./LoginPage.css";
+import "./AccountPages.css";
 
 function LoginPage({userList,handleUser})
 {
@@ -112,19 +111,10 @@ function LoginPage({userList,handleUser})
         <div className="main-page">
             <div className="account-page-container page-container flex-center" header="none">
                 <form className="login-form-container flex-column" ref={LoginForm} onSubmit={Login}>
-                    <h1 className="login-form-label">{tr("accountPages.logIn")}</h1>
+                    <h1 className="login-form-title">{tr("accountPages.logIn")}</h1>
                     <div className="login-form-input-group flex-column">
-                        {/* <div className="login-form-input-container">
-                            <input className="login-form-input" type="text" name="email" value={loginInfo.email} required onChange={handleLoginInfo} autocomplete="false"/>
-                            <div className="login-form-input-label">{tr("accountPages.enterEmail")}</div>
-                        </div> */}
-                        <TextInput selectorClass="login-input" type="field" inputName="email" inputLabel={tr("accountPages.enterEmail")} inputValue={loginInfo.email} require={true} inputFunc={handleLoginInfo} />
-                        {/* <div className="login-form-input-container">
-                            <input className="login-form-input" type="password" name="password" value={loginInfo.password} required onChange={handleLoginInfo}/>
-                            <div className="login-form-input-label">{tr("accountPages.enterPassword")}</div>
-                        </div> */}
-                        <TextInput selectorClass="login-input" type="field" inputName="password" inputLabel={tr("accountPages.enterPassword")} inputValue={loginInfo.password} require={true} inputFunc={handleLoginInfo} />
-
+                        <TextInput selectorClass="login-input" containerType="field" inputType="email" inputName="email" inputLabel={tr("accountPages.enterEmail")} inputValue={loginInfo.email} require={true} inputFunc={handleLoginInfo} />
+                        <TextInput selectorClass="login-input" containerType="field" inputType="password" inputName="password" inputLabel={tr("accountPages.enterPassword")} inputValue={loginInfo.password} require={true} inputFunc={handleLoginInfo} />
                     </div>
                     {
                         warning !== "" &&

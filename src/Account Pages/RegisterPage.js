@@ -3,7 +3,8 @@ import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
 import Avatar from "../Main Page/Avatar";
-import "./RegisterPage.css";
+import TextInput from "../Main Page/TextInput";
+import "./AccountPages.css";
 
 function RegisterPage({userList, handleUserList, handleUser})
 {
@@ -194,58 +195,44 @@ function RegisterPage({userList, handleUserList, handleUser})
     return (
         <div className="main-page">
             <div className="account-page-container page-container flex-center" header="none">
-                <form className="register-form-container flex-column" ref={RegisterForm} onSubmit={RegisterUser}>
-                    <h1 className="register-form-label">{tr("accountPages.registerNewUser")}</h1>
-                    <div className="resgister-form-input-group flex-row">
-                        <div className="register-form-input-section flex-column">
+                <form className="login-form-container flex-column" ref={RegisterForm} onSubmit={RegisterUser}>
+                    <h1 className="login-form-title">{tr("accountPages.registerNewUser")}</h1>
+                    <div className="register-form-input-group flex-row">
+                        <div className="login-form-input-section flex-column">
                             <div className="register-avatar flex-center">
                                 <button className="register-avatar-open-button" type="button" onClick={function(){setAvatarWindow(true)}}>{tr("accountPages.editAvatar")}</button>
                                 <Avatar bgImg={avatar.bgImg} bgColor={avatar.bgColor} baseColor={avatar.baseColor} accImg={avatar.accImg} accColor={avatar.accColor} width={150} />
                             </div>
                         </div>
-                        <div className="register-form-input-section flex-column">
+                        <div className="login-form-input-section flex-column">
                             <div>
-                                <div className="register-form-input-container">
-                                    <input className="register-form-input" type="text" name="username" maxLength="20" value={newUser.username} required onChange={handleNewUser}/>
-                                    <div className="register-form-input-label">{tr("accountPages.enterUsername")}</div>
-                                </div>
-                                <button className="register-form-randomize-username-button" type="button" onClick={function(){RandomizeUsername()}}>{tr("accountPages.randomize")}</button>
+                                <TextInput selectorClass="login-input" containerType="field" inputName="username" inputLabel={tr("accountPages.enterUsername")} inputValue={newUser.username} require={true} inputFunc={handleNewUser} />
+                                <button className="button register-form-randomize-username-button" type="button" onClick={function(){RandomizeUsername()}}>{tr("accountPages.randomize")}</button>
                             </div>
 
-                            <div className="register-form-input-container">
-                                <input className="register-form-input" type="email" name="email" value={newUser.email} required onChange={handleNewUser}/>
-                                <div className="register-form-input-label">{tr("accountPages.enterEmail")}</div>
-                            </div>
-
-                            <div className="register-form-input-container">
-                                <input className="register-form-input" type="password" name="password" value={newUser.password} required onChange={handleNewUser}/>
-                                <div className="register-form-input-label">{tr("accountPages.enterPassword")}</div>
-                            </div>                            
-                            
-                            <div className="register-form-input-container">
-                                <input className="register-form-input" type="password" name="confirmPassword" value={confirmPassword} required onChange={HandleconfirmPassword}/>
-                                <div className="register-form-input-label">{tr("accountPages.confirmPassword")}</div>
-                            </div>
+                            <TextInput selectorClass="login-input" containerType="field" inputType="email" inputName="email" inputLabel={tr("accountPages.enterEmail")} inputValue={newUser.email} require={true} inputFunc={handleNewUser} />
+                            <TextInput selectorClass="login-input" containerType="field" inputType="password" inputName="password" inputLabel={tr("accountPages.enterPassword")} inputValue={newUser.password} require={true} inputFunc={handleNewUser} />
+                            <TextInput selectorClass="login-input" containerType="field" inputType="password" inputName="confirmPassword" inputLabel={tr("accountPages.confirmPassword")} inputValue={confirmPassword} require={true} inputFunc={HandleconfirmPassword} />
                         </div>
                     </div>
                     {
                         warning !== "" &&
                         <p className="login-form-warning" onAnimationEnd={ResetWarningAnimation} ref={warningElement} animate="true">{warning}</p>
                     }
-                    <input className="register-form-submit" type="submit" value={tr("accountPages.register")} disabled={readyToSubmit()} />
+                    <input className="button login-form-submit" type="submit" value={tr("accountPages.register")} disabled={readyToSubmit()} />
                 </form>
-                <Link className="back-button" to={prevPath || "/"}>{tr("accountPages.back")}</Link>
+                <Link className="button back-button" to={prevPath || "/"}>{tr("accountPages.back")}</Link>
 
                 {
                     avaterWindow &&
                     <div className="window-overlay flex-center">
                         <div className="register-avatar-options-container flex-column">
                             <h1>{tr("accountPages.userAvatar")}</h1>
-                            <div className="flex-row width-full">
+                            <div className="register-avatar-top-row flex-row">
                                 <div className="register-avatar-preview">
                                     <Avatar bgImg={avatar.bgImg} bgColor={avatar.bgColor} baseColor={avatar.baseColor} accImg={avatar.accImg} accColor={avatar.accColor} width={150} />
                                 </div>
-                                <div className="register-avatar-options-row flex-row">
+                                <div className="register-avatar-color-options-row flex-row">
                                     <input className="register-avatar-color-option" type="color" name={"bgColor"} value={avatar.bgColor} onChange={HandleAvatar} />
                                     <input className="register-avatar-color-option" type="color" name={"baseColor"} value={avatar.baseColor} onChange={HandleAvatar} />
                                     <input className="register-avatar-color-option" type="color" name={"accColor"} value={avatar.accColor} onChange={HandleAvatar} />
@@ -255,23 +242,23 @@ function RegisterPage({userList, handleUserList, handleUser})
                                 <div className="register-avatar-image-options flex-row">
                                     {
                                         [...Array(bg).keys()].map((b)=>
-                                        <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={b+1} style={{backgroundImage: 'url(' + require("../img/avatar/bg"+(b+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"bg-option-"+b+1}></button>
+                                        <button className="register-avatar-image-button flex-center" type="button" name="bgImg" value={b+1} style={{backgroundImage: 'url(' + require("../img/avatar/bg"+(b+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"bg-option-"+b+1}></button>
                                         )
                                     }
-                                    <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"bg-option-0"}></button>
+                                    <button className="register-avatar-image-button flex-center" type="button" name="bgImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"bg-option-0"}></button>
                                 </div>
                             </div>
                             <div className="register-avatar-options-row flex-row">
                                 <div className="register-avatar-image-options flex-row">
                                     {
                                         [...Array(acc).keys()].map((n)=>
-                                        <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/avatar/a"+(n+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"acc-option-"+n+1}></button>
+                                        <button className="register-avatar-image-button flex-center" type="button" name="accImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/avatar/a"+(n+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"acc-option-"+n+1}></button>
                                         )
                                     }
-                                    <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"acc-option-0"}></button>
+                                    <button className="register-avatar-image-button flex-center" type="button" name="accImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"acc-option-0"}></button>
                                 </div>
                             </div>
-                            <button className="register-avatar-save-button flex-center" onClick={function(){setAvatarWindow(false)}}>{tr("post.save")}</button>
+                            <button className="button register-avatar-save-button flex-center" onClick={function(){setAvatarWindow(false)}}>{tr("post.save")}</button>
                         </div>
                     </div>
                 }

@@ -105,8 +105,6 @@
     font-size: 1.8em;
     font-weight: 600;
 
-    padding: 0.2em 0.5em;
-
     margin-top: 0.5em;
   
 }
@@ -407,7 +405,7 @@
     bottom: 0;
     left: -4em;
 }
-body[lng="ar"] .post-page-comment-replies-line
+body[lang="ar"] .post-page-comment-replies-line
 {
     right: -5em;
 }
@@ -436,11 +434,11 @@ body[lng="ar"] .post-page-comment-replies-line
     position: absolute;
     top: 50%;
 }
-body:not([lng=ar]) .reply-pointer-line
+body:not([lang=ar]) .reply-pointer-line
 {
     right: 100%;
 }
-body[lng="ar"] .reply-pointer-line
+body[lang="ar"] .reply-pointer-line
 {
     left: 100%;
 }

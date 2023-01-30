@@ -22,8 +22,11 @@
 }
 .login-form-input-group
 {
-    width: min(250px,90%);
+    /* width: min(250px,90%); */
     margin: 1em 0;
+    gap: 2em;
+
+    align-items: flex-start;
 }
 .login-form-input
 {
@@ -152,16 +155,16 @@
 
 @media (max-width:350px)
 {
-    .login-form-container
+    .account-page-container
     {
         font-size: 0.8em;
     }
-    .login-form-label
+}
+
+@media (max-width:275px)
+{
+    .account-page-container
     {
-        font-size: 1.2em;
-    }
-    .back-button
-    {
-        font-size: 1em;
+        font-size: 0.5em;
     }
 }

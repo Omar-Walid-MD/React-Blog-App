@@ -6,11 +6,13 @@ import axios from 'axios';
 import Navbar from "../Main Page/Navbar";
 import Comment from "./Comment";
 import TopicLogo from "../Main Page/TopicLogo";
+import i18next from "i18next";
 
 import '../Main Page/MainPage.css';
 import "./PostPage.css";
 import PopUpContainer from "../Main Page/PopUp";
 import TextInput from "../Main Page/TextInput";
+import Footer from "../Main Page/Footer";
 
 function PostPage({topics, currentUser, setCurrentUser,users})
 {
@@ -58,6 +60,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
             setButtonLock(false);
         }, 500);
     }
+
 
     function handleComment(event)
     {
@@ -685,6 +688,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
             }
           </div>
             <PopUpContainer popUps={popUps} setPopUps={setPopUps} />
+            <Footer />
         </div>
       );
 }

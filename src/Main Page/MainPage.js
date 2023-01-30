@@ -97,12 +97,6 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
       });
     }
 
-    function setLanguage(lang)
-    {
-      i18next.changeLanguage(lang);
-      document.body.setAttribute("lng",lang);
-    }
-
     useEffect(()=>{
 
       window.scrollTo(0,0);
@@ -132,12 +126,12 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
           <Navbar topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />
           <div className="page-container flex-center">
             <div className="main-column flex-column">
-              <div className="blog-sort-container flex-row">
                 {
-                  currentUser && 
-                  <Link className="button write-post-button" to={"/write"} state={{topicForPost: topicId}}>{tr("mainPage.writePost")}</Link>
+                  currentUser &&
+                  <div className="blog-sort-container flex-row">
+                    <Link className="button write-post-button" to={"/write"} state={{topicForPost: topicId}}>{tr("mainPage.writePost")}</Link>
+                  </div>
                 }
-              </div>
               <div className="main-column-post-group">
               {
                 posts ? GetPostsForTopic(topic).length>0 ? sortPosts(GetPostsForTopic(topic)).map((post)=>
@@ -169,7 +163,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
               </div>
             }
           </div>
-          <Footer setLanguage={setLanguage} />
+          <Footer />
         </div>
       );
 }

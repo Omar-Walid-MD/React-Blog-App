@@ -20,7 +20,8 @@
       "likes": [
         "post-1432977528",
         "post-6423576815",
-        "post-6369769999"
+        "post-6369769999",
+        "post-8394453844"
       ],
       "dislikes": [
         "comment-6624387775",
@@ -37,17 +38,7 @@
         "post-2622658512",
         "post-6369769999"
       ],
-      "notifs": [
-        {
-          "type": "comment",
-          "state": "read",
-          "id": "13723",
-          "user": "user-1466759493",
-          "comment": "comment-7584393387",
-          "post": "post-8394453844",
-          "topic": "topic-9186347593"
-        }
-      ]
+      "notifs": []
     },
     {
       "username": "VibrantTomato769",
@@ -190,7 +181,7 @@
       "body": "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test ",
       "topic": "topic-9186347593",
       "id": "post-8394453844",
-      "likes": 0,
+      "likes": 1,
       "dislikes": 1,
       "user": {
         "username": "OmarWalid",
@@ -1384,6 +1375,19 @@
       },
       "post": "post-4756244164",
       "date": 1674845376730,
+      "likes": 0,
+      "dislikes": 0,
+      "parentComment": "none"
+    },
+    {
+      "id": "comment-1964291713",
+      "text": "Comment Here",
+      "user": {
+        "username": "OmarWalid",
+        "id": "user-4499347254"
+      },
+      "post": "post-4756244164",
+      "date": 1674998304138,
       "likes": 0,
       "dislikes": 0,
       "parentComment": "none"

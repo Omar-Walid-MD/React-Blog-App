@@ -1,0 +1,273 @@
+.account-page-container
+{
+    flex-direction: column;
+}
+.login-form-container
+{
+    width: min(500px,90vw);
+
+    font-size: 1em;
+
+    background-color: var(--nav);
+
+    box-shadow: 0 0.6em 1.2em rgba(0, 0, 0, 0.5);
+
+    border-radius: 1.2em;
+
+    padding: 1.2em;
+}
+.login-form-title
+{
+    font-size: 2em;
+
+    color: var(--txt);
+
+    margin: 0.6em;
+}
+.login-form-input-group
+{
+    margin: 1em 0;
+
+    align-items: flex-start;
+}
+.register-form-input-group
+{
+    gap: 1em;
+
+    align-items: flex-start;
+}
+/* .login-form-input
+{
+    font-size: 1em;
+
+    padding: 0.3em;
+
+    outline: none;
+} */
+.login-form-submit
+{
+    font-size: 1em;
+    
+}
+.login-form-submit:disabled
+{
+    background-color: lightgray;
+    color: rgb(80, 80, 80);
+
+    pointer-events: none;
+}
+
+@keyframes form-warning
+{
+  0% {transform: translateX(0%);}
+  20% {transform: translateX(5%);}
+  80% {transform: translateX(-5%);}
+  100% {transform: translateX(0);}  
+}
+.login-form-warning
+{
+    color: red;
+
+    font-size: 1em;
+    font-weight: 500;
+
+    margin: 0;
+    margin-bottom: 1.2em;
+}
+.login-form-warning[animate="true"]
+{
+    animation: form-warning 0.2s ease-in-out forwards;
+    animation-iteration-count: 3;
+}
+
+.login-form-input-container
+{
+    width: 100%;
+    position: relative;
+}
+.login-input
+{
+    width: 100%;
+    background-color: var(--nav);
+}
+.back-button
+{
+    font-size: 1.5em;
+
+    background-color: var(--nav);
+    color: var(--txt);
+
+    text-decoration: none;
+
+    margin-top: 1em;
+    box-shadow: 0 0.6em 1.2em rgba(0, 0, 0, 0.5);
+
+}
+
+    /* MEDIA QUERIES */
+
+@media (max-width:350px)
+{
+    .account-page-container
+    {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width:275px)
+{
+    .account-page-container
+    {
+        font-size: 0.5em;
+    }
+}
+
+
+
+
+.register-avatar
+{
+    font-size: 1.2em;
+    position: relative;
+}
+.register-form-randomize-username-button
+{
+    font-size: 0.8em;
+    margin-bottom: 0.6em;
+}
+.register-avatar-open-button
+{
+    width: 90%; height: 90%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--txt);
+
+    font-size: 0.8em;
+
+    border-radius: 50%;
+
+    border: none; outline: none;
+    
+    position: absolute;
+
+    cursor: pointer;
+
+    transition: opacity 0.1s ease-in-out;
+    
+    opacity: 0;
+
+    z-index: 1;
+}
+.register-avatar:hover .register-avatar-open-button
+{
+    opacity: 1;
+}
+.register-avatar-options-container
+{
+    width: min(600px,90vw);
+
+    background-color: var(--nav);
+    color: var(--txt);
+
+    padding: 1.2em;
+    gap: 1.2em;
+
+    border-radius: 1.2em;
+
+    box-shadow: 0 0 1.2em black;
+}
+.register-avatar-top-row
+{
+    width: 100%;
+    align-items: flex-end;
+}
+.register-avatar-preview
+{
+    font-size: 1.2em;
+}
+.register-avatar-color-options-row
+{
+    gap: 1em;
+}
+.register-avatar-options-row
+{
+    width: 100%; height: 7em;
+}
+.register-avatar-image-options
+{
+    width: 100%; height: 100%;
+
+    background-color: black;
+
+    padding: 0.4em;
+
+    border-radius: 0.6em;
+
+    overflow-x: scroll;
+}
+.register-avatar-image-options::-webkit-scrollbar
+{
+    background-color: grey;
+    height: 0.6em;
+
+    border-radius: 0.3em;
+    
+    border: 0.1em solid black;
+
+}
+.register-avatar-image-options::-webkit-scrollbar-thumb
+{
+    background-color: white;
+
+    border-radius: 0.3em;
+    
+    border: 0.1em solid black;
+}
+.register-avatar-image-button
+{
+    height: 100%; aspect-ratio: 1;
+
+    font-size: 1em;
+
+    margin: 0 0.6em;
+
+    border: 0.2em outset grey;
+    border-radius: 0.6em;
+
+    background-size: cover;
+
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
+}
+
+.register-avatar-image-button:hover
+{
+    transform: scale(1.1);
+}
+.register-avatar-color-option
+{
+    width: 6em; height: 6em;
+
+    font-size: 1em;
+
+    border: none; outline: none;
+}
+.register-avatar-save-button
+{
+    font-size: 1.5em;
+    font-weight: 700;
+    
+}
+
+
+
+
+
+@media (max-width:500px)
+{
+    .register-avatar-options-container
+    {
+        font-size: 0.7em;
+    }
+}

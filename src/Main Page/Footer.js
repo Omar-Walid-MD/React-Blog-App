@@ -1,10 +1,19 @@
 import { useRef } from "react";
+import i18next from "i18next";
+
 import "./Footer.css";
 
-function Footer({setLanguage})
+function Footer()
 {
     const langCheckbox = useRef();
     const themeCheckbox = useRef();
+
+    function setLanguage(lang)
+    {
+      i18next.changeLanguage(lang);
+      document.body.setAttribute("lang",lang);
+      localStorage.setItem("lang",lang);
+    }
 
     function setTheme(event)
     {
@@ -40,11 +49,11 @@ function Footer({setLanguage})
                     <input type="checkbox" className="footer-checkbox hidden-checkbox" id="footer-theme-checkbox" ref={themeCheckbox} onClick={HandleWindows}/>
                     <label htmlFor="footer-theme-checkbox" className="footer-button"><i className='bx bxs-palette'></i></label>
                     <div className="footer-dropdown flex-column">
-                        <button className="footer-theme-button" theme="basic" onClick={setTheme} >Basic</button>
+                        <button className="footer-theme-button" theme="aurora" onClick={setTheme} >Aurora</button>
                         <button className="footer-theme-button" theme="platinum" onClick={setTheme} >Platinum</button>
                         <button className="footer-theme-button" theme="hazelnut" onClick={setTheme} >Hazelnut</button>
                         <button className="footer-theme-button" theme="ocean" onClick={setTheme} >Ocean</button>
-                        <button className="footer-theme-button" theme="night" onClick={setTheme} >Night</button>
+                        <button className="footer-theme-button" theme="nightfall" onClick={setTheme} >Nightfall</button>
                     </div>
                 </div>
             </div>
