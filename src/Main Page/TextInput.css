@@ -56,10 +56,6 @@
 
     top: 0;
 }
-/* .text-input:not(:empty)
-{
-    background-color: red;
-} */
 .text-input:-webkit-autofill,
 .text-input:-webkit-autofill:hover,
 .text-input:-webkit-autofill:focus,
@@ -67,4 +63,20 @@
     -webkit-box-shadow: 0 0 0 30px var(--nav) inset;
     -webkit-text-fill-color: var(--txt) !important;
 
+}
+
+.text-input-toggle-password-button
+{
+    font-size: 1em;
+    
+    background-color: transparent;
+    color: var(--txt);
+    
+    border: none; outline: none;
+
+    position: absolute;
+    top: 50%; right: 0;
+    transform: translateY(-50%);
+
+    cursor: pointer;
 }
