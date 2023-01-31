@@ -163,7 +163,7 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
         }
         else
         {
-            addPopUp("Must be logged in to vote!")
+            addPopUp(tr("notLoggedIn.toVote"));
         }
 
     }
@@ -233,7 +233,7 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
         }
         else
         {
-            addPopUp("You must be logged in to reply!")
+            addPopUp(tr("notLoggedIn.toReply"));
         }
 
         

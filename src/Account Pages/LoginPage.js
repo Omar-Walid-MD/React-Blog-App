@@ -3,6 +3,8 @@ import { useNavigate, Link, useLocation} from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import TextInput from "../Main Page/TextInput";
+import Footer from "../Main Page/Footer";
+
 import "./AccountPages.css";
 
 function LoginPage({userList,handleUser})
@@ -124,6 +126,7 @@ function LoginPage({userList,handleUser})
                 </form>
                 <Link className="button back-button" to={prevPath || "/"}>{tr("accountPages.back")}</Link>
             </div>
+            <Footer />
         </div>
       );
 }

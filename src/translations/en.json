@@ -73,12 +73,18 @@
     "accountPages":
     {
         "logIn": "Log in",
+        "register": "Register",
+        "registerNewUser": "Register New User",
+
         "enterEmail": "Enter Email",
         "enterPassword": "Enter Password",
-
-        "registerNewUser": "Register New User",
-        "register": "Register",
         "enterUsername": "Enter Username",
+
+        
+        "editEmail": "Edit Email",
+        "editPassword": "Edit Password",
+        "editUsername": "Edit Username",
+
         "randomize": "Randomize!",
         "confirmPassword": "Confirm Password",
         "editAvatar": "Edit Avatar",
@@ -91,5 +97,13 @@
         "emailNotRegistered": "Email is not Registered!",
         "passwordIncorrect": "Password Incorrect",
         "passwordMismatch": "Password Mismatch"
+    },
+    "notLoggedIn":
+    {
+        "toVote": "Must Be Logged in to Vote!",
+        "toSave": "Must Be Logged in to Save!",
+        "toComment": "Must Be Logged in to Comment!",
+        "toReply": "Must Be Logged in to Reply!",
+        "toSub": "Must Be Logged in to Subscribe!"
     }
 }

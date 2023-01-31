@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import Avatar from "../Main Page/Avatar";
 import TextInput from "../Main Page/TextInput";
+import Footer from "../Main Page/Footer";
+
 import "./AccountPages.css";
 
 function RegisterPage({userList, handleUserList, handleUser})
@@ -263,6 +265,7 @@ function RegisterPage({userList, handleUserList, handleUser})
                     </div>
                 }
             </div>
+            <Footer />
         </div>
       );
 }

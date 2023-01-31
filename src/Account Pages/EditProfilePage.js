@@ -1,12 +1,20 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
+import axios from 'axios';
+
 import Avatar from "../Main Page/Avatar";
-import "./RegisterPage.css";
+import TextInput from "../Main Page/TextInput";
+import "./AccountPages.css";
+import Footer from "../Main Page/Footer";
 
 function EditProfilePage({userList, handleUserList, handleUser, currentUser})
 {
     const location = useLocation();
     const { prevPath } = location.state || {};
+
+    const [tr,il8n] = useTranslation();
 
     const navigate = useNavigate();
 
@@ -85,50 +93,53 @@ function EditProfilePage({userList, handleUserList, handleUser, currentUser})
          });
     }
 
-    function RegisterUser(e)
+    function SaveChanges(e)
     {
         e.preventDefault();
 
-        if(newUser.password===confirmPassword)
+        if(confirmPassword==="" || (confirmPassword!=="" && newUser.password===confirmPassword))
         {
-            if(userList.some((function(user){return user.username===newUser.username})))
+            if(userList.some((function(user){return user.username===newUser.username && user.id!==currentUser.id})))
             {
                 handleWarning("Username already taken!");
                 return;
             }
 
-            if(userList.some((function(user){return user.email===newUser.email})))
+            if(userList.some((function(user){return user.email===newUser.email && user.id!==currentUser.id})))
             {
                 handleWarning("Email already registered!");
                 return;
             }
 
-            let userToAdd = {
-                ...newUser,
-                id: "user-"+makeId(10),
-                avatar: avatar,
-                subbedTopics: [],
-                likes: [],
-                dislikes: [],
-                savedPosts: [],
-                notifs: []
-            }
+            console.log(newUser);
     
-            fetch('http://localhost:8000/users',{
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(userToAdd)
-            }).then(()=>{
-                console.log("New User Added.");
-                localStorage.setItem('currentUser', JSON.stringify(userToAdd));
-                handleUserList(prevList => [...prevList,userToAdd]);
+            // fetch('http://localhost:8000/users',{
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify(newUser)
+            // }).then(()=>{
+            //     console.log("New User Added.");
+            //     localStorage.setItem('currentUser', JSON.stringify(newUser));
+            //     handleUserList(prevList => [...prevList,newUser]);
+            //     handleUser(newUser);
+            // })
+
+            axios.put('http://localhost:8000/users/'+newUser.id,
+                newUser
+            )
+            .then(resp =>{
+                console.log("Updated User Profile");
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                handleUserList(prevList => [...prevList,newUser]);
                 handleUser(newUser);
-            })
+            }).catch(error => {
+                console.log(error);
+            });
     
             navigate(prevPath || "/");
             return;
         }
-        else
+        else if(confirmPassword!=="" && newUser.password!==confirmPassword)
         {
             handleWarning("Password confirmation mismatch!");
             return;
@@ -195,36 +206,29 @@ function EditProfilePage({userList, handleUserList, handleUser, currentUser})
             <div className="account-page-container page-container flex-center" header="none">
                 {
                     newUser ?
-                    <form className="register-form-container flex-column" ref={RegisterForm} onSubmit={RegisterUser}>
-                        <h1 className="register-form-label">Edit Profile</h1>
-                        <div className="resgister-form-input-group flex-row">
-                            <div className="register-form-input-section flex-column">
+                    <form className="login-form-container flex-column" ref={RegisterForm} onSubmit={SaveChanges}>
+                        <h1 className="login-form-title">Edit Profile</h1>
+                        <div className="register-form-input-group flex-row">
+                            <div className="login-form-input-section flex-column">
                                 <div className="register-avatar flex-center">
                                     <button className="register-avatar-open-button" type="button" onClick={function(){setAvatarWindow(true)}}>Edit Avatar</button>
                                     <Avatar bgImg={avatar.bgImg} bgColor={avatar.bgColor} baseColor={avatar.baseColor} accImg={avatar.accImg} accColor={avatar.accColor} width={150} />
                                 </div>
                             </div>
-                            <div className="register-form-input-section flex-column">
+                            <div className="login-form-input-section flex-column">
                                 <div>
-                                    <input className="register-form-input" type="text" placeholder="Enter Username" name="username" maxLength="20" value={newUser.username} required onChange={handleNewUser}/>
-                                    <button className="register-form-randomize-username-button" type="button" onClick={function(){RandomizeUsername()}}>Randomize!</button>
+                                    <TextInput selectorClass="login-input" containerType="field" inputName="username" inputLabel={tr("accountPages.editUsername")} inputValue={newUser.username} require={true} inputFunc={handleNewUser} />
+                                    {/* <input className="register-form-input" type="text" placeholder="edit Username" name="username" maxLength="20" value={newUser.username} required onChange={handleNewUser}/> */}
+                                    <button className="button register-form-randomize-username-button" type="button" onClick={function(){RandomizeUsername()}}>Randomize!</button>
                                 </div>
                                 
-                                <div className="register-form-input-container">
-                                    <input className="register-form-input" type="email" name="email" value={newUser.email} required onChange={handleNewUser}/>
-                                    <div className="register-form-input-label">Enter Email</div>
-                                </div>
-                                
-                                <div className="register-form-input-container">
-                                    <input className="register-form-input" type="password" name="password" value={newUser.password} required onChange={handleNewUser}/>
-                                    <div className="register-form-input-label">Enter Password</div>
-                                </div>
+                                <TextInput selectorClass="login-input" containerType="field" inputType="email" inputName="email" inputLabel={tr("accountPages.editEmail")} inputValue={newUser.email} require={true} inputFunc={handleNewUser} />
+                                <TextInput selectorClass="login-input" containerType="field" inputType="password" inputName="password" inputLabel={tr("accountPages.editPassword")} inputValue={newUser.password} require={true} inputFunc={handleNewUser} />
+
                                 {
                                     currentUser.password!==newUser.password &&
-                                    <div className="register-form-input-container">
-                                        <input className="register-form-input" type="password" name="confirmPassword" value={confirmPassword} required onChange={HandleconfirmPassword}/>
-                                        <div className="register-form-input-label">Confirm Password</div>
-                                    </div>
+                                    <TextInput selectorClass="login-input" containerType="field" inputType="password" inputName="confirmPassword" inputLabel={tr("accountPages.confirmPassword")} inputValue={confirmPassword} require={true} inputFunc={HandleconfirmPassword} />
+
                                 }
                             </div>
                         </div>
@@ -232,23 +236,23 @@ function EditProfilePage({userList, handleUserList, handleUser, currentUser})
                             warning !== "" &&
                             <p className="login-form-warning" onAnimationEnd={ResetWarningAnimation} ref={warningElement} animate="true">{warning}</p>
                         }
-                        <input className="register-form-submit" type="submit" value="Save Changes" disabled={readyToSubmit(RegisterForm)} />
+                        <input className="button login-form-submit" type="submit" value="Save Changes" disabled={readyToSubmit(RegisterForm)} />
                     </form>
                     : <div className="blog-empty-label flex-center"><img src={require("../img/loading.png")} /></div>
 
                 }
-                <Link className="back-button" to={prevPath || "/"}>Back</Link>
+                <Link className="button back-button" to={prevPath || "/"}>Back</Link>
 
                 {
                     avaterWindow &&
                     <div className="window-overlay flex-center">
                         <div className="register-avatar-options-container flex-column">
-                            <h1>User Avatar</h1>
-                            <div className="flex-row width-full">
+                            <h1>{tr("accountPages.userAvatar")}</h1>
+                            <div className="register-avatar-top-row flex-row">
                                 <div className="register-avatar-preview">
                                     <Avatar bgImg={avatar.bgImg} bgColor={avatar.bgColor} baseColor={avatar.baseColor} accImg={avatar.accImg} accColor={avatar.accColor} width={150} />
                                 </div>
-                                <div className="register-avatar-options-row flex-row">
+                                <div className="register-avatar-color-options-row flex-row">
                                     <input className="register-avatar-color-option" type="color" name={"bgColor"} value={avatar.bgColor} onChange={HandleAvatar} />
                                     <input className="register-avatar-color-option" type="color" name={"baseColor"} value={avatar.baseColor} onChange={HandleAvatar} />
                                     <input className="register-avatar-color-option" type="color" name={"accColor"} value={avatar.accColor} onChange={HandleAvatar} />
@@ -258,27 +262,28 @@ function EditProfilePage({userList, handleUserList, handleUser, currentUser})
                                 <div className="register-avatar-image-options flex-row">
                                     {
                                         [...Array(bg).keys()].map((b)=>
-                                        <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={b+1} style={{backgroundImage: 'url(' + require("../img/avatar/bg"+(b+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"bg-option-"+b+1}></button>
+                                        <button className="register-avatar-image-button flex-center" type="button" name="bgImg" value={b+1} style={{backgroundImage: 'url(' + require("../img/avatar/bg"+(b+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"bg-option-"+b+1}></button>
                                         )
                                     }
-                                    <button className="topic-logo-image-button flex-center" type="button" name="bgImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"bg-option-0"}></button>
+                                    <button className="register-avatar-image-button flex-center" type="button" name="bgImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"bg-option-0"}></button>
                                 </div>
                             </div>
                             <div className="register-avatar-options-row flex-row">
                                 <div className="register-avatar-image-options flex-row">
                                     {
                                         [...Array(acc).keys()].map((n)=>
-                                        <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/avatar/a"+(n+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"acc-option-"+n+1}></button>
+                                        <button className="register-avatar-image-button flex-center" type="button" name="accImg" value={n+1} style={{backgroundImage: 'url(' + require("../img/avatar/a"+(n+1)+".png") + ')'}} onClick={function(event){HandleAvatar(event)}} key={"acc-option-"+n+1}></button>
                                         )
                                     }
-                                    <button className="topic-logo-image-button flex-center" type="button" name="accImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"acc-option-0"}></button>
+                                    <button className="register-avatar-image-button flex-center" type="button" name="accImg" value={0} onClick={function(event){HandleAvatar(event)}} key={"acc-option-0"}></button>
                                 </div>
                             </div>
-                            <button className="register-avatar-close-button flex-center" onClick={function(){setAvatarWindow(false)}}><i className='bx bx-check'></i></button>
+                            <button className="button register-avatar-save-button flex-center" onClick={function(){setAvatarWindow(false)}}>{tr("post.save")}</button>
                         </div>
                     </div>
                 }
             </div>
+            <Footer />
         </div>
       );
 }

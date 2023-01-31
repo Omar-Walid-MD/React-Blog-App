@@ -155,7 +155,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
         }
         else
         {
-            addPopUp("Must be logged in to comment!")
+            addPopUp(tr("notLoggedIn.toComment"));
             
         }
     }
@@ -331,7 +331,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
         }
         else
         {
-            addPopUp("Must be logged in to vote!")
+            addPopUp(tr("notLoggedIn.toVote"));
         }
 
     }

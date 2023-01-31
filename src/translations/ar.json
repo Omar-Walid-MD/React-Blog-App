@@ -73,12 +73,17 @@
     "accountPages":
     {
         "logIn": "تسجيل الدخول",
+        "register": "إنشاء",
+        "registerNewUser": "إنشاء حساب جديد",
+
         "enterEmail": "ادخل البريد الالكتروني",
         "enterPassword": "ادخل كلمة المرور",
-
-        "registerNewUser": "إنشاء حساب جديد",
-        "register": "إنشاء",
         "enterUsername": "ادخل إسم المستخدم",
+
+        "editEmail": "تعديل البريد الالكتروني",
+        "editPassword": "تعديل كلمة المرور",
+        "editUsername": "تعديل إسم المستخدم",
+
         "randomize": "عشوائي",
         "confirmPassword": "تأكيد كلمة المرور",
         "editAvatar": "تعديل الصورة الرمزية",
@@ -91,5 +96,13 @@
         "emailNotRegistered": "البريد الالكتروني ليس مسجلا!",
         "passwordIncorrect": "كلمة المرور غير صحيحة",
         "passwordMismatch": "كلمة المرور غير متطابقة"
+    },
+    "notLoggedIn":
+    {
+        "toVote": "يجب تسجيل الدخول للتصويت!",
+        "toSave": "يجب تسجيل الدخول للحفظ!",
+        "toComment": "يجب تسجيل الدخول للتعليق!",
+        "toReply": "يجب تسجيل الدخول للرد!",
+        "toSub": "يجب تسجيل الدخول للإشترلك!"
     }
 }

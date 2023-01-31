@@ -11,6 +11,7 @@ import i18next from "i18next";
 import './MainPage.css';
 import "../Submit Pages/WritePage.css";
 import Footer from "./Footer";
+import PopUpContainer from "./PopUp";
 
 function MainPage({posts, topics, currentUser, setCurrentUser})
 {
@@ -21,6 +22,18 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
     const [topic,setTopic] = useState(null);
 
     const [buttonLock,setButtonLock] = useState(false);
+
+    const [popUps,setPopUps] = useState([]);
+
+    function addPopUp(text)
+    {
+        let newPopUp = {
+            text: text,
+            id: makeId(5),
+            active: false
+        };
+        setPopUps(prev => [...prev,newPopUp]);
+    }
 
     function lockButtons()
     {
@@ -54,47 +67,65 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
 
     function SetTopicSubbed(topicId)
     {
-
-      let newSubbedTopics = [];
-
-      if(IsTopicSubbed(topicId))
+      if(currentUser)
       {
-        newSubbedTopics = currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId);
+
+        let newSubbedTopics = [];
+  
+        if(IsTopicSubbed(topicId))
+        {
+          newSubbedTopics = currentUser.subbedTopics.filter((subbedTopic)=>subbedTopic!==topicId);
+        }
+        else
+        {
+          newSubbedTopics = [...currentUser.subbedTopics,topicId];
+        }
+  
+        let updatedUser = {
+          ...currentUser,
+          subbedTopics: newSubbedTopics
+        }
+        
+        axios.put('http://localhost:8000/users/'+updatedUser.id,
+          updatedUser
+        )
+        .then(resp =>{
+            console.log("Updated User Subs");
+            localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+            setCurrentUser(updatedUser);
+        }).catch(error => {
+            console.log(error);
+        });
+  
+        let updatedTopic = {
+          ...topic,
+          members: topic.members + (newSubbedTopics.includes(topic.id) ? 1 : -1)
+        }
+  
+        axios.put('http://localhost:8000/topics/'+topic.id,
+          updatedTopic
+        )
+        .then(resp =>{
+            setTopic(updatedTopic);
+        }).catch(error => {
+            console.log(error);
+        });
       }
       else
       {
-        newSubbedTopics = [...currentUser.subbedTopics,topicId];
+        addPopUp(tr("notLoggedIn.toSub"));
       }
 
-      let updatedUser = {
-        ...currentUser,
-        subbedTopics: newSubbedTopics
-      }
-      
-      axios.put('http://localhost:8000/users/'+updatedUser.id,
-        updatedUser
-      )
-      .then(resp =>{
-          console.log("Updated User Subs");
-          localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-          setCurrentUser(updatedUser);
-      }).catch(error => {
-          console.log(error);
-      });
+    }
 
-      let updatedTopic = {
-        ...topic,
-        members: topic.members + (newSubbedTopics.includes(topic.id) ? 1 : -1)
-      }
-
-      axios.put('http://localhost:8000/topics/'+topic.id,
-        updatedTopic
-      )
-      .then(resp =>{
-          setTopic(updatedTopic);
-      }).catch(error => {
-          console.log(error);
-      });
+    function makeId(length)
+    {
+        let result = "";
+        let chars = "123456789";
+        for (var i = 0; i < length; i++) {
+        result += chars[Math.floor(Math.random() * 9)];
+        }
+        return result;
     }
 
     useEffect(()=>{
@@ -163,6 +194,7 @@ function MainPage({posts, topics, currentUser, setCurrentUser})
               </div>
             }
           </div>
+          <PopUpContainer popUps={popUps} setPopUps={setPopUps} />
           <Footer />
         </div>
       );
