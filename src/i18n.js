@@ -31,6 +31,6 @@ i18n
   });
 
 // i18n.use(LanguageDetector).init(i18nextOptions);
-document.body.setAttribute("lang",i18n.language);
+document.documentElement.setAttribute("lang",i18n.language);
 
 export default i18n;

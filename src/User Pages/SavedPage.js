@@ -10,6 +10,7 @@ import Comment from "./Comment";
 import "../Post Page/PostPage.css"
 import '../Main Page/MainPage.css';
 import "./UserActivityPage.css"
+import Footer from "../Main Page/Footer";
 
 
 function SavedPage({posts, topics, currentUser, setCurrentUser})
@@ -85,6 +86,7 @@ function SavedPage({posts, topics, currentUser, setCurrentUser})
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       );
 }

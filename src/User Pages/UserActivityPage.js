@@ -11,6 +11,7 @@ import Avatar from "../Main Page/Avatar";
 import "../Post Page/PostPage.css"
 import '../Main Page/MainPage.css';
 import "./UserActivityPage.css"
+import Footer from "../Main Page/Footer";
 
 
 
@@ -113,6 +114,7 @@ function UserActivityPage({posts, topics, currentUser, setCurrentUser})
               </div>
             }
           </div>
+          <Footer />
         </div>
       );
 }

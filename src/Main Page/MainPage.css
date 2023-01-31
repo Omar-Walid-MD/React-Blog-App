@@ -1,15 +1,16 @@
 *
 {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     box-sizing: border-box;
+}
+[lang="ar"] *
+{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    direction: rtl;
 }
 body
 {
     overflow-x: hidden;
-}
-body[lang="ar"]
-{
-    direction: rtl;
 }
 .flex-center
 {

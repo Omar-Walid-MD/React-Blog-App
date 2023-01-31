@@ -47,7 +47,7 @@
     bottom: calc(100% + 0.5em); 
 }
 
-.footer-checkbox:checked ~.footer-dropdown
+.footer-menu:hover .footer-dropdown, .footer-menu:focus .footer-dropdown
 {
     transform: scaleY(1);
 }
@@ -72,7 +72,10 @@
     color: var(--txt-2);
     transform: scale(1.1);
 }
-
+.footer-lang-button[lang="ar"]
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .footer-theme-button
 {
     width: 100%;
@@ -110,19 +113,3 @@
         font-size: 0.6em;
     }
 }
-
-/* @media (max-width:350px)
-{
-    .footer
-    {
-        padding: 0.3rem 0.3rem;
-    }
-    .navbar-logo
-    {
-        font-size: 1.5em;
-    }
-    .navbar-notif-dropdown-container
-    {
-        font-size: 1em;
-    }
-} */

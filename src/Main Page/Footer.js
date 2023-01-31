@@ -18,7 +18,7 @@ function Footer()
     function setTheme(event)
     {
         let theme = event.target.getAttribute("theme");
-        document.body.setAttribute("theme",theme);
+        document.documentElement.setAttribute("theme",theme);
         localStorage.setItem("theme",theme);
     }
 
