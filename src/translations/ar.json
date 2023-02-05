@@ -32,7 +32,7 @@
         "writeComment": "اكتب تعليقك",
         "comment": "تعليق",
         "mustBeLoggedInToComment": "يجب تسجيل الدخول للتعليق",
-        "noComments": "لا تعليقات..."
+        "noComments": "لا يوجد تعليقات..."
     },
     "comment":
     {

@@ -9,6 +9,8 @@ function Comment({posts, comment, currentUser, setCurrentUser})
 
   const linkPost = (posts.filter((post)=>post.id===comment.post)[0]);
 
+  const [user,setUser] = useState();
+
   const [voteState,setVoteState] = useState(CheckUserVote());
   const [likes,setLikes] = useState(comment.likes);
   const [dislikes,setDislikes] = useState(comment.dislikes);
@@ -233,11 +235,26 @@ function Comment({posts, comment, currentUser, setCurrentUser})
       }
   }
 
+  useEffect(()=>{
+
+    if(!user)
+    {
+        fetch('http://localhost:8000/users/'+comment.user.id)
+        .then(res => {
+        return res.json()
+        })
+        .then((data)=>{
+        setUser(data);
+        })
+    }
+
+},[comment]);
+
   return (
     <div className="activity-page-comment-container">
       <div className="activity-page-comment-link-padding">
         <Link to={"/post/"+linkPost.id} state={{targetCommentId: comment.id}} className="activity-page-comment-link">
-          <p className="activity-page-comment-info">{tr("userPages.by")} <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}</Link> {CalculateTime()}</p>
+          <p className="activity-page-comment-info">{tr("userPages.by")} <Link className="user-tag" to={"/user/"+comment.user.id}>{user && user.username}</Link> {CalculateTime()}</p>
           <p className="activity-page-comment-post">{tr("userPages.on")} "{linkPost.title}"</p>
           <p className="activity-page-comment-text">{comment.text}</p>
         </Link>

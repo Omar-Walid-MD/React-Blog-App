@@ -20,6 +20,8 @@ function PostPage({topics, currentUser, setCurrentUser,users})
 
     let postId = useParams().id;
 
+    const [postUser,setPostUser] = useState();
+
     const location = useLocation();
     const {targetCommentId} = location.state || {};
     const {submittedPost} = location.state || {};
@@ -600,8 +602,11 @@ function PostPage({topics, currentUser, setCurrentUser,users})
             });
         }
 
-    },[post, currentUser])
+    },[post, currentUser]);
 
+    useEffect(()=>{
+        post && users && setPostUser(users.filter((userInList)=>userInList.id===post.user.id)[0]);
+    },[users,post]);
 
     useEffect(()=>{
         if(targetComment.current) ScrollToComment();
@@ -622,7 +627,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                         <div className="post-page-post-container flex-column">
                             <div className="post-info">
                                
-                                <p className="post-page-post-date">{tr("post.postedBy")} <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> {CalculateTime()}</p>
+                                <p className="post-page-post-date">{tr("post.postedBy")} <Link className="user-tag" to={"/user/"+post.user.id}>{postUser && postUser.username}</Link> {CalculateTime()}</p>
                                 <h1 className="post-page-post-title">{post.title}</h1>
                                 <p className="post-page-post-body">{FormatText(post.body)}</p>
                             </div>        
@@ -644,7 +649,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                                 // currentUser ?
                                 <form className="post-page-write-comment-form flex-column" onSubmit={(event)=>{event.preventDefault();if(!buttonLock){submitComment(event);lockButtons();}}}>
                                     {/* <textarea className="post-page-write-comment-input" placeholder={tr("post.writeComment")} minheight={100} value={newComment} onChange={handleComment} onInput={AutoResize}></textarea> */}
-                                    <TextInput type="area" selectorClass="post-page-write-comment-input" inputLabel={tr("post.writeComment")} inputValue={newComment} inputFunc={handleComment} onInput={AutoResize} />
+                                    <TextInput containerType="area" inputType="text" selectorClass="post-page-write-comment-input" inputLabel={tr("post.writeComment")} inputValue={newComment} inputFunc={handleComment} onInput={AutoResize} />
                                     <input className="button post-page-write-comment-submit" type="submit" value={tr("post.comment")} />
                                 </form>
                                 // :
@@ -657,7 +662,7 @@ function PostPage({topics, currentUser, setCurrentUser,users})
                                     comments && GetMainComments(comments).length > 0 ? GetMainComments(comments).map((comment)=>
                                     <Comment comment={comment} key={comment.id} SetCommentRef={SetTargetComment} targetCommentId={targetCommentId} currentUser={currentUser} setCurrentUser={setCurrentUser} setComments={setComments} replyList={GetCommentReplies(comment.id,comments)} users={users} addPopUp={addPopUp} />
                                     )
-                                    : <h1 className="post-page-comments-section-empty-label">{tr("noComments")}</h1>
+                                    : <h1 className="post-page-comments-section-empty-label">{tr("post.noComments")}</h1>
                                 }
                             </div>
                         </div>

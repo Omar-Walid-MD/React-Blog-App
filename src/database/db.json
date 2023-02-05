@@ -15,7 +15,8 @@
       "subbedTopics": [
         "topic-8911298389",
         "topic-9186347593",
-        "topic-8781529897"
+        "topic-8781529897",
+        "topic-1211381976"
       ],
       "likes": [
         "post-1432977528",
@@ -115,7 +116,7 @@
       },
       "id": "topic-1211381976",
       "posts": [],
-      "members": 0,
+      "members": 1,
       "date": 1666728084604
     }
   ],
@@ -128,7 +129,6 @@
       "likes": 0,
       "dislikes": 0,
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "comments": [],
@@ -142,7 +142,6 @@
       "likes": 0,
       "dislikes": 0,
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "comments": [],
@@ -156,7 +155,6 @@
       "likes": 1,
       "dislikes": 0,
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "comments": [],
@@ -170,7 +168,6 @@
       "likes": 0,
       "dislikes": 0,
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "comments": [],
@@ -184,7 +181,6 @@
       "likes": 1,
       "dislikes": 1,
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "comments": [],
@@ -198,7 +194,6 @@
       "likes": 0,
       "dislikes": 0,
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "comments": [],
@@ -212,7 +207,6 @@
       "likes": 0,
       "dislikes": 0,
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "comments": [],
@@ -226,7 +220,6 @@
       "likes": 0,
       "dislikes": 0,
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "comments": [],
@@ -240,11 +233,23 @@
       "likes": 1,
       "dislikes": 0,
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "comments": [],
       "date": 1670270251097
+    },
+    {
+      "title": "I love cats",
+      "body": "Cats are cute <3",
+      "topic": "topic-8781529897",
+      "id": "post-7144881636",
+      "likes": 0,
+      "dislikes": 0,
+      "user": {
+        "id": "user-4499347254"
+      },
+      "comments": [],
+      "date": 1675495094960
     }
   ],
   "comments": [
@@ -252,7 +257,6 @@
       "id": "comment-4487479368",
       "text": "Nice!",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4581794152",
@@ -265,7 +269,6 @@
       "id": "comment-9868731288",
       "text": "Reply to me",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -278,7 +281,6 @@
       "id": "comment-4864453441",
       "text": "Reply to me",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -291,7 +293,6 @@
       "id": "comment-2742192696",
       "text": "@OmarWalid Hello",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -304,7 +305,6 @@
       "id": "comment-7733864914",
       "text": "@OmarWalid hope this works...",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -317,7 +317,6 @@
       "id": "comment-1279849249",
       "text": "@OmarWalid great",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -330,7 +329,6 @@
       "id": "comment-1698995821",
       "text": "Hello",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -343,7 +341,6 @@
       "id": "comment-7394546354",
       "text": "Hope it works now",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -356,7 +353,6 @@
       "id": "comment-5413572296",
       "text": "Hello to you",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -369,7 +365,6 @@
       "id": "comment-7139783619",
       "text": "1 minute ago",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -382,7 +377,6 @@
       "id": "comment-3325521549",
       "text": "This comment is older than the website",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -395,7 +389,6 @@
       "id": "comment-6343429999",
       "text": "Notice my comment",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-8394453844",
@@ -408,7 +401,6 @@
       "id": "comment-3677849172",
       "text": "Please work this time",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-8394453844",
@@ -421,7 +413,6 @@
       "id": "comment-1375361646",
       "text": "Hello",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-8394453844",
@@ -434,7 +425,6 @@
       "id": "comment-2815149816",
       "text": "Please",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-8394453844",
@@ -447,7 +437,6 @@
       "id": "comment-7349823398",
       "text": "Here",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-8394453844",
@@ -460,7 +449,6 @@
       "id": "comment-4148627123",
       "text": "here",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-8394453844",
@@ -473,7 +461,6 @@
       "id": "comment-7836671447",
       "text": "This time",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-8394453844",
@@ -486,7 +473,6 @@
       "id": "comment-2518343777",
       "text": "@OmarWalid come here @Hello",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-6368489845",
@@ -499,7 +485,6 @@
       "id": "comment-9783818731",
       "text": "Huh?",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-6368489845",
@@ -512,7 +497,6 @@
       "id": "comment-4123586187",
       "text": "Okay let's see",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -525,7 +509,6 @@
       "id": "comment-7411917819",
       "text": "Can I?",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-2622658512",
@@ -538,7 +521,6 @@
       "id": "comment-9548364563",
       "text": "Hello?",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-2622658512",
@@ -551,7 +533,6 @@
       "id": "comment-7967219832",
       "text": "Helloooo",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-6368489845",
@@ -564,7 +545,6 @@
       "id": "comment-9878677941",
       "text": "@OmarWalid",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-6368489845",
@@ -577,7 +557,6 @@
       "id": "comment-7517764195",
       "text": "@OmarWalid I'll tag you",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-6368489845",
@@ -590,7 +569,6 @@
       "id": "comment-5629185937",
       "text": "Hello",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-4756244164",
@@ -603,7 +581,6 @@
       "id": "comment-7195275931",
       "text": "I see...",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -616,7 +593,6 @@
       "id": "comment-4572666536",
       "text": "@VibrantTomato769 Hello",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -629,7 +605,6 @@
       "id": "comment-9163368912",
       "text": "@VibrantTomato769 Hello!",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -642,7 +617,6 @@
       "id": "comment-8983525792",
       "text": "@VibrantTomato769 This time, hello",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -655,7 +629,6 @@
       "id": "comment-6675415677",
       "text": "Hellooo",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -668,7 +641,6 @@
       "id": "comment-5645159349",
       "text": "Here",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -681,7 +653,6 @@
       "id": "comment-9722782524",
       "text": "Neww",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -694,7 +665,6 @@
       "id": "comment-6885328377",
       "text": "EE",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -707,7 +677,6 @@
       "id": "comment-5343695933",
       "text": "ee",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -720,7 +689,6 @@
       "id": "comment-9978851341",
       "text": "Here is better",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -733,7 +701,6 @@
       "id": "comment-3411564511",
       "text": "I agree",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -746,7 +713,6 @@
       "id": "comment-3987224889",
       "text": "Yea I guess",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -759,7 +725,6 @@
       "id": "comment-8319753158",
       "text": "hmmm",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -772,7 +737,6 @@
       "id": "comment-1877653352",
       "text": "@VibrantTomato769 ",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -785,7 +749,6 @@
       "id": "comment-4451617299",
       "text": "testing auto ",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -798,7 +761,6 @@
       "id": "comment-9855684642",
       "text": "h",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -811,7 +773,6 @@
       "id": "comment-8732638222",
       "text": "h",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -824,7 +785,6 @@
       "id": "comment-3444476724",
       "text": "h",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -837,7 +797,6 @@
       "id": "comment-6574651473",
       "text": "f",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -850,7 +809,6 @@
       "id": "comment-8159788683",
       "text": "g",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -863,7 +821,6 @@
       "id": "comment-5693119477",
       "text": "f",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -876,7 +833,6 @@
       "id": "comment-4593612127",
       "text": "d",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -889,7 +845,6 @@
       "id": "comment-5838894317",
       "text": "hh",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -902,7 +857,6 @@
       "id": "comment-1337699645",
       "text": "f",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -915,7 +869,6 @@
       "id": "comment-9577935886",
       "text": "yay",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -928,7 +881,6 @@
       "id": "comment-3711482135",
       "text": "yes",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -941,7 +893,6 @@
       "id": "comment-7855766121",
       "text": "guess it works now",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -954,7 +905,6 @@
       "id": "comment-1275823694",
       "text": "test",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -967,7 +917,6 @@
       "id": "comment-7746935281",
       "text": "test",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -980,7 +929,6 @@
       "id": "comment-2869383285",
       "text": "e",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -993,7 +941,6 @@
       "id": "comment-3486854774",
       "text": "er",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1006,7 +953,6 @@
       "id": "comment-9685736976",
       "text": "e",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1019,7 +965,6 @@
       "id": "comment-6657256333",
       "text": "f",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1032,7 +977,6 @@
       "id": "comment-3898463758",
       "text": "yet",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1045,7 +989,6 @@
       "id": "comment-1189272526",
       "text": "fff",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1058,7 +1001,6 @@
       "id": "comment-7583153817",
       "text": "1",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1071,7 +1013,6 @@
       "id": "comment-2194346387",
       "text": "2",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1084,7 +1025,6 @@
       "id": "comment-9876393623",
       "text": "3",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1097,7 +1037,6 @@
       "id": "comment-3632349869",
       "text": "4",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1110,7 +1049,6 @@
       "id": "comment-4282728339",
       "text": "5",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1123,7 +1061,6 @@
       "id": "comment-1425742494",
       "text": "success",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1136,7 +1073,6 @@
       "id": "comment-5323356387",
       "text": "still?",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1149,7 +1085,6 @@
       "id": "comment-8242729857",
       "text": "yes",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1162,7 +1097,6 @@
       "id": "comment-4987957129",
       "text": "hh",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1175,7 +1109,6 @@
       "id": "comment-1763979395",
       "text": "hhhhhee",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1188,7 +1121,6 @@
       "id": "comment-2414153737",
       "text": "yey",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -1201,7 +1133,6 @@
       "id": "comment-9351848119",
       "text": "uh oh",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -1214,7 +1145,6 @@
       "id": "comment-1448414249",
       "text": "idk",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -1227,7 +1157,6 @@
       "id": "comment-9256489466",
       "text": "here?",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1240,7 +1169,6 @@
       "id": "comment-1976757211",
       "text": "hey",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-2622658512",
@@ -1253,7 +1181,6 @@
       "id": "comment-6633558516",
       "text": "Wow, happy for you!",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-6369769999",
@@ -1266,7 +1193,6 @@
       "id": "comment-9647666785",
       "text": "Thank you",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-6369769999",
@@ -1279,7 +1205,6 @@
       "id": "comment-9959228156",
       "text": "Thank you too",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-6369769999",
@@ -1292,7 +1217,6 @@
       "id": "comment-7257351551",
       "text": "Let's commit",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-6369769999",
@@ -1305,7 +1229,6 @@
       "id": "comment-5777471219",
       "text": "sure",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-6369769999",
@@ -1318,7 +1241,6 @@
       "id": "comment-9718618387",
       "text": "@OmarWalid hello",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-6368489845",
@@ -1331,7 +1253,6 @@
       "id": "comment-8483594772",
       "text": "wow",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-4581794152",
@@ -1344,7 +1265,6 @@
       "id": "comment-5874879828",
       "text": "he",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-8394453844",
@@ -1357,7 +1277,6 @@
       "id": "comment-7584393387",
       "text": "Hello",
       "user": {
-        "username": "VibrantTomato769",
         "id": "user-1466759493"
       },
       "post": "post-8394453844",
@@ -1370,7 +1289,6 @@
       "id": "comment-7667484517",
       "text": "s",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",
@@ -1383,7 +1301,6 @@
       "id": "comment-1964291713",
       "text": "Comment Here",
       "user": {
-        "username": "OmarWalid",
         "id": "user-4499347254"
       },
       "post": "post-4756244164",

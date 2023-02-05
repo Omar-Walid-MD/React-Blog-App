@@ -424,7 +424,7 @@ function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToRep
                     }
                     </div>
                     <div className="post-page-comment-content flex-column">
-                        <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}&nbsp; </Link>{CalculateTime()}</p>
+                        <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{user && user.username}&nbsp; </Link>{CalculateTime()}</p>
                         <p className="post-page-comment-text">{FormatText(comment.text)}</p>
                     </div>
                 </div>
@@ -437,7 +437,7 @@ function Reply({comment, targetReply, setTargetReplyId, SetReplyRef, ScrollToRep
                     </div>
                     {
                         currentUser &&
-                        <label htmlFor={"post-page-reply-checkbox-"+comment.id} className="comment-reply-button flex-row" onClick={function(){MentionReply(comment.user.username)}}><i className='bx bxs-comment-detail comment-icon'></i>{tr("comment.reply")}</label>
+                        <label htmlFor={"post-page-reply-checkbox-"+comment.id} className="comment-reply-button flex-row" onClick={function(){MentionReply(user.username)}}><i className='bx bxs-comment-detail comment-icon'></i>{tr("comment.reply")}</label>
                     }
                     {
                         currentUser &&

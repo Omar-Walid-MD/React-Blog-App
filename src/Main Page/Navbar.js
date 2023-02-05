@@ -8,11 +8,10 @@ import Notif from "./Notif";
 import axios from 'axios';
 
 import TopicLogo from "./TopicLogo";
+import VectorIcon from "./VectorIcon";
 
 import './Navbar.css';
 import './MainPage.css';
-import { ReactComponent as NoNotifs } from '../img/icons/no-notifs.svg';
-import NoNotifIcon from "./NoNotifIcon";
 
 function Navbar({topics, currentUser, setCurrentUser})
 {
@@ -159,7 +158,7 @@ function Navbar({topics, currentUser, setCurrentUser})
         <header className="navbar flex-row">
             <Link to="/" className="navbar-logo">{tr("logo")}</Link>
             <div className="navbar-search-container flex-center">
-              <input className="navbar-search-input" type="search" placeholder={tr("header.searchForTopics")} value={searchValue} onChange={handleSearchValue} />          
+              <input className="navbar-search-input" type="search" placeholder={tr("header.searchForTopics")} maxLength={30} value={searchValue} onChange={handleSearchValue} />          
                   {
                     searchValue!=="" &&
                     <div className="navbar-search-dropdown">

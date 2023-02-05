@@ -38,7 +38,7 @@
 
     transition: all 0.1s ease-in-out;
 }
-.text-input:focus +.text-input-label
+:is(.text-input-field:focus,.text-input-field:not([value=""])) +.text-input-label
 {
     background-color: inherit;
 
@@ -47,14 +47,14 @@
 
     top: 0;
 }
-:is(.text-input-area:not(:empty),.text-input-field:not([value=""])) +.text-input-label
+:is(.text-input-area:focus,.text-input-area:not(:empty)) +.text-input-label
 {
     background-color: inherit;
 
     font-size: 0.8em;
     padding: 0 0.3em;
 
-    top: 0;
+    top: 0.5em;
 }
 .text-input:-webkit-autofill,
 .text-input:-webkit-autofill:hover,
@@ -75,8 +75,16 @@
     border: none; outline: none;
 
     position: absolute;
-    top: 50%; right: 0;
+    top: 50%;
     transform: translateY(-50%);
 
     cursor: pointer;
+}
+[lang="ar"] .text-input-toggle-password-button
+{
+    left: 0;
+}
+[lang="en"] .text-input-toggle-password-button
+{
+    right: 0;
 }

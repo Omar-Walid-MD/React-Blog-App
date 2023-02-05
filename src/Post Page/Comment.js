@@ -446,7 +446,6 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
 
     },[comment]);
 
-
     return (
         <div className="post-page-comment-container">
             <input id={"reply-checkbox-"+comment.id} type="checkbox" className="post-page-comment-reply-checkbox hidden-checkbox"/>        
@@ -459,7 +458,7 @@ function Comment({comment, SetCommentRef, targetCommentId, currentUser, setCurre
                     }
                     </div>
                     <div className="post-page-comment-content flex-column">
-                        <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{comment.user.username}&nbsp; </Link>{CalculateTime()}</p>
+                        <p className="post-page-comment-info"> <Link className="user-tag" to={"/user/"+comment.user.id}>{user && user.username}&nbsp; </Link>{CalculateTime()}</p>
                         <p className="post-page-comment-text">{FormatText(comment.text)}</p>
                     </div>
                 </div>

@@ -8,8 +8,8 @@ import Navbar from "../Main Page/Navbar";
 import TopicLogo from "../Main Page/TopicLogo";
 import i18next from "i18next";
 
-import "./WritePage.css"
 import Footer from "../Main Page/Footer";
+import "./WritePage.css"
 
 
 function SelectTopic({topic, newPost, setNewPost, setSelectTopicWindow})

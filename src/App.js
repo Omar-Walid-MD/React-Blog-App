@@ -17,7 +17,6 @@ import './Main Page/MainPage.css';
 import EditProfilePage from "./Account Pages/EditProfilePage";
 
 
-
 function App()
 {
   const navigate = useLocation();
@@ -61,14 +60,14 @@ function App()
     setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
 
     let theme = localStorage.getItem("theme") || "hazelnut";
-    document.body.setAttribute("theme",theme);
+    document.documentElement.setAttribute("theme",theme);
     // console.log("reload");
 
   },[navigate.pathname]);
 
   return (
     <Routes>
-      <Route path="/" element={<MainPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/" element={<MainPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} users={users} />} />
       <Route path="/write" element={<WritePage topics={topics} handlePostList={setPosts} currentUser={currentUser} setCurrentUser={setCurrentUser} users={users} />} />
       <Route path="/post/:id" element={<PostPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} users={users} />} />
 
@@ -79,8 +78,8 @@ function App()
       <Route path="/login" element={<LoginPage userList={users} handleUser={setCurrentUser} />} />
       <Route path="/edit-profile" element={<EditProfilePage userList={users} handleUserList={setUsers} currentUser={currentUser} handleUser={setCurrentUser} />} />
 
-      <Route path="/user/:id" element={<UserActivityPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-      <Route path="/saved" element={<SavedPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+      <Route path="/user/:id" element={<UserActivityPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} users={users} />} />
+      <Route path="/saved" element={<SavedPage posts={posts} topics={topics} currentUser={currentUser} setCurrentUser={setCurrentUser} users={users} />} />
     </Routes>
     
   );

@@ -11,7 +11,7 @@ function Footer()
     function setLanguage(lang)
     {
       i18next.changeLanguage(lang);
-      document.body.setAttribute("lang",lang);
+      document.documentElement.setAttribute("lang",lang);
       localStorage.setItem("lang",lang);
     }
 

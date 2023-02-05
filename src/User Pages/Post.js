@@ -7,9 +7,11 @@ import TopicLogo from "../Main Page/TopicLogo";
 
 import '../Main Page/MainPage.css';
 
-function Post({post,currentUser,setCurrentUser})
+function Post({post,currentUser,setCurrentUser,users})
 {
   const [tr,il8n] = useTranslation();
+
+  const [user,setPostUser] = useState();
 
   const [voteState,setVoteState] = useState(CheckUserVote());
   const [likes,setLikes] = useState(post.likes);
@@ -282,6 +284,11 @@ function Post({post,currentUser,setCurrentUser})
     });
   },[post]);
 
+  useEffect(()=>{
+    post && users && setPostUser(users.filter((userInList)=>userInList.id===post.user.id)[0]);
+    console.log(users);
+  },[users,post]);
+
   return(     
     <div className="post-container flex-column">
       <div className="post-info">
@@ -293,7 +300,7 @@ function Post({post,currentUser,setCurrentUser})
               <p className="post-topic-title">{topic.title}</p>
             </Link>
           }
-          <p className="post-date">{tr("post.postedBy")} <Link className="user-tag" to={"/user/"+post.user.id}>{post.user.username}</Link> {CalculateTime()}</p>
+          <p className="post-date">{tr("post.postedBy")} <Link className="user-tag" to={"/user/"+post.user.id}>{user && user.username}</Link> {CalculateTime()}</p>
         </div>
         <Link to={"/post/"+post.id} className="post-link"> 
           <h1 className="post-title">{post.title}</h1>

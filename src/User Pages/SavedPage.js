@@ -13,7 +13,7 @@ import "./UserActivityPage.css"
 import Footer from "../Main Page/Footer";
 
 
-function SavedPage({posts, topics, currentUser, setCurrentUser})
+function SavedPage({posts, topics, currentUser, setCurrentUser, users})
 {
     const [tr,il8n] = useTranslation();
 
@@ -78,7 +78,7 @@ function SavedPage({posts, topics, currentUser, setCurrentUser})
               <div className="activity-page-content-container">
               {
                 currentUser ? comments && posts ? SortContent(GetContent(currentTab)).length > 0 ? SortContent(GetContent(currentTab)).map((content)=>
-                  content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : content.type==="comment" && <Comment comment={content} posts={posts} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser}/>)
+                  content.type==="post" ? <Post post={content} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser} users={users} /> : content.type==="comment" && <Comment comment={content} posts={posts} key={content.id} currentUser={currentUser} setCurrentUser={setCurrentUser}/>)
                  : <div className="blog-empty-label flex-center"><h1>{tr("userPages.noContent")}</h1></div>
                  : <div className="blog-empty-label flex-center"><img src={require("../img/loading.png")} /></div>
                  : <div className="blog-empty-label flex-center"><h1>{tr("userPages.mustBeLoggedInToView")}</h1></div>

@@ -7,6 +7,7 @@ import axios from 'axios';
 import Navbar from "../Main Page/Navbar";
 import TopicLogo from "../Main Page/TopicLogo";
 
+import Footer from "../Main Page/Footer";
 import './WritePage.css';
 
 function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
@@ -147,7 +148,7 @@ function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
                             <textarea className="post-write-form-body-input" name="description" maxLength={150} placeholder={tr("newTopicPage.enterBody")} value={newTopic.description} onChange={handleTopic} required ></textarea>
                         </div>
                         <div className="post-write-form-submit-container">
-                            <input className="post-write-form-submit" type="submit" value={tr("newTopicPage.submit")} disabled={readyToSubmit()} />
+                            <input className="button post-write-form-submit" type="submit" value={tr("newTopicPage.submit")} disabled={readyToSubmit()} />
                         </div>
                     </form>
                 </div>
@@ -183,11 +184,12 @@ function NewTopicPage({currentUser,setCurrentUser, topics, setTopics})
                                     }
                                 </div>
                             </div>
-                            <button className="register-avatar-save-button flex-center" onClick={function(){setTopicLogoWindow(false)}}>{tr("post.save")}</button>
+                            <button className="button topic-logo-save-button flex-center" onClick={function(){setTopicLogoWindow(false)}}>{tr("post.save")}</button>
                         </div>
                     </div>
                 }                            
             </div>
+            <Footer />
         </div>
       );
 }

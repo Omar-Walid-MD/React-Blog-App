@@ -151,7 +151,7 @@
 }
 .register-avatar-options-container
 {
-    width: min(600px,90vw);
+    width: min(600px,90vw); max-height: 80vh;
 
     background-color: var(--nav);
     color: var(--txt);

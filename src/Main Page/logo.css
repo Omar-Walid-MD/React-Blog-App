@@ -100,4 +100,24 @@
 
     position: absolute;
 }
+/* 
+.vector-icon-container
+{
+    width: 100%; height: 100%;
 
+    position: relative;
+}
+.vector-icon
+{
+    width: 100%; height: 100%;
+    -webkit-mask-size: 100% 100%;
+    position: absolute;
+}
+.vector-icon-shadow
+{
+    width: 100%; height: 100%;
+    background-image: url("../img/icons/no-notifs.svg");
+    background-size: 100% 100%;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.75));
+    position: absolute;
+} */
